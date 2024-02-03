@@ -4,7 +4,7 @@ email: tctctc888@gmail.com
 url: https://timothy-cao.github.io/
 description: "Timothy Cao's Personal Website."
 keywords: "Timothy Cao, Personal website, 2024"
-skills: "Software Engineer - Fullstack Developer - Technical Lead"
+skills: "Fullstack Developer - Technical Lead - Designer"
 meta_author: Cao Timothy
 
 # Google webmaster tools
@@ -38,16 +38,16 @@ footer:
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
-  - title: twitter
-    url: http://twitter.com/jekyllrb
-  - title: facebook
-    url:
-  - title: stack-overflow
-    url: http://stackoverflow.com/questions/tagged/jekyll
-  - title: bitbucket
-    url: http://bitbucket.org/jekyll
+  - title: youtube
+    url: https://www.youtube.com/channel/UCNx2UtrexMU35fE8VfY_8Zw
+  - title: human-benchmark
+    url: https://humanbenchmark.com/users/5e8ab648095b40000159ac8e
+  - title: monkey-type
+    url: https://monkeytype.com/profile/dodoman767
+  - title: instagram
+    url: https://www.instagram.com/timothy_cao/
   - title: github
-    url: http://github.com/jekyll
+    url: https://github.com/Timothy-Cao
 
 # Postal address (add as many lines as necessary)
 address:
