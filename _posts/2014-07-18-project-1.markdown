@@ -1,7 +1,5 @@
 ---
 layout: default
-modal-id: 1
-date: 2014-07-18
 img: portfolio-music.png
 alt: image-alt
 category: Performance, Composition, Generative AI
