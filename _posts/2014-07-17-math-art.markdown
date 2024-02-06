@@ -1,7 +1,8 @@
 ---
 layout: default
+modal-id: 2
 img: portfolio-desmos.png
 alt: image-alt
-category: Performance, Composition, Generative AI
-description: I like to play and write music. Can AI do it better?
+category: Math, Graphics, Art
+description: Everything is math.
 ---
