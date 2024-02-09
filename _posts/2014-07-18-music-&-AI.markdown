@@ -1,10 +1,9 @@
 ---
-layout: default
+layout: page
 modal-id: 1
 img: portfolio-music.png
 alt: image-alt
 description: I like to play and write music. Can AI do it better?
-layout: page
 ---
 
 
