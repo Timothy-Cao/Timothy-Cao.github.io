@@ -4,10 +4,8 @@ modal-id: 1
 img: portfolio-music.png
 alt: image-alt
 description: I like to play and write music. Can AI do it better?
+layout: page
 ---
-
-
-<a href="/blog" style="position: fixed; bottom: 20px; right: 20px; background-color: #6495ED; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">← Back</a>
 
 
 Since the 6th grade, I've enjoyed writing music. I've used tools such as finale or musescore, but can I use AI as a tool? Here are some compositions I've done over the years. 
