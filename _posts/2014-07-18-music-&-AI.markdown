@@ -6,6 +6,10 @@ alt: image-alt
 description: I like to play and write music. Can AI do it better?
 ---
 
+
+<a href="/blog" style="position: fixed; bottom: 20px; right: 20px; background-color: #6495ED; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">← Back</a>
+
+
 Since the 6th grade, I've enjoyed writing music. I've used tools such as finale or musescore, but can I use AI as a tool? Here are some compositions I've done over the years. 
 
 ![alt text](../assets/images/musescore.png){:width="500px" height="500px"}
@@ -145,22 +149,9 @@ A draft into a shrek inspired theme.
 </body>
 </html>
 
-## <span style="color: #89CFF0;">Kanada</span>
-
-I wanted to see if I could transcribe O canada like I heard it in elementary school. This was an attempt to try to imitate this unknown O canada version that was stuck in my head although I've definetely went off the script and added parts of my own too. 
-
-<html>
-<body>
-  <audio controls>
-    <source src="../assets/audio/Kanada.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</body>
-</html>
-
 ## <span style="color: #89CFF0;">Violin nostalgia</span>
 
-I don't know why this sounds so nostalgic to me. It draws inspiration from Joe Hisashi's descending piano chords. 
+2017 piece written for violin piano duet sounds nostalgic for some reason. 
 
 <html>
 <body>
@@ -173,7 +164,7 @@ I don't know why this sounds so nostalgic to me. It draws inspiration from Joe H
 
 ## <span style="color: #89CFF0;">Autumn Leaves variations</span>
 
-Just some random variations on autumn leaves for our jazz band. This is an early work in progress. It features a classical and jazz style. Currently working on extended smooth jazz section, latin style and some solo parts. 
+Variations on autumn leaves for our jazz band. This  WIP was arranged in 2023. It features a classical and jazz style so far.
 
 <html>
 <body>
