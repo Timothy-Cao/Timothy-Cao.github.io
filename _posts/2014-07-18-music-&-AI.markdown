@@ -3,11 +3,9 @@ layout: page
 modal-id: 1
 img: portfolio-music.png
 alt: image-alt
-description: I like to play and write music. Can AI do it better?
 ---
 
-
-Since the 6th grade, I've enjoyed writing music. I've used tools such as finale or musescore, but can I use AI as a tool? Here are some compositions I've done over the years. 
+ I like to play and write music. Can AI do it better? Here are some compositions I've done over the years. 
 
 ![alt text](../assets/images/musescore.png){:width="500px" height="500px"}
 
@@ -98,17 +96,6 @@ This experimental piece written in 2023 scores the life of my rabbit as she runs
 </body>
 </html>
 
-## <span style="color: #89CFF0;">Spooky Noises</span>
-
-Trying to emulate horror through study of Danny Elfman, Bernard Herrman and Krzystof Penderecki. 2019.
-
-<html>
-<body>
-  <audio controls>
-    <source src="../assets/audio/spooky_noise.mp3" type="audio/mpeg">
-  </audio>
-</body>
-</html>
 
 ## <span style="color: #89CFF0;">Game OST 2</span>
 
@@ -118,30 +105,6 @@ This 2017 piece is my first orchestral piece, drawing light inspiration from map
 <body>
   <audio controls>
     <source src="../assets/audio/Game_OST_3.mp3" type="audio/mpeg">
-  </audio>
-</body>
-</html>
-
-## <span style="color: #89CFF0;">March of the clowns</span>
-
-This 2015 piece was my first multi-instrumental arrangement. The theme is clowns. 
-
-<html>
-<body>
-  <audio controls>
-    <source src="../assets/audio/March_of_the_clowns.mp3" type="audio/mpeg">
-  </audio>
-</body>
-</html>
-
-## <span style="color: #89CFF0;">Shrekesque</span>
-
-A draft into a shrek inspired theme. 
-
-<html>
-<body>
-  <audio controls>
-    <source src="../assets/audio/shrekesque.mp3" type="audio/mpeg">
   </audio>
 </body>
 </html>
