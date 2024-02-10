@@ -1,7 +1,30 @@
----
-layout: default
----
-<article>
-  <header><h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1></header>
-  {{ content }}
-</article>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+  <title>{{ page.title | default: site.title }}</title>
+  <!-- Additional head elements -->
+</head>
+<body id="page-top" class="index">
+  {% include nav.html %}
+  {% include header.html %}
+
+  <main role="main" class="container">
+    <article>
+      <header>
+        <h1>{{ page.title }}</h1>
+        {% if page.img %}
+        <img src="{{ page.img | relative_url }}" alt="{{ page.alt }}" style="width: 100%;">
+        {% endif %}
+      </header>
+      <div class="page-content">
+        {{ content }}
+      </div>
+    </article>
+  </main>
+
+  {% include footer.html %}
+  {% include modals.html %}
+  {% include js.html %}
+</body>
+</html>
