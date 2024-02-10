@@ -5,4 +5,5 @@ img: portfolio-desmos.png
 alt: image-alt
 category: Math, Graphics, Art
 description: Everything is math.
+permalink: "/music"
 ---
