@@ -5,7 +5,8 @@ img: portfolio-music.png
 alt: image-alt
 ---
 
- I like to play and write music. Can AI do it better? Here are some compositions I've done over the years. 
+
+I like to play and write music. Can AI do it better? Here are some compositions I've done over the years. 
 
 ![alt text](../assets/images/musescore.png){:width="500px" height="500px"}
 
