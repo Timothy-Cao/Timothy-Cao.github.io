@@ -9,7 +9,7 @@ permalink: /music/
 
 I like to play and write music. Can AI do it better? Here are some compositions I've done over the years. 
 
-![alt text](../assets/images/musescore.png){:width="500px" height="200px"}
+![alt text](../assets/images/musescore.png){:width="1000px" height="400px"}
 
 ## <span style="color: #89CFF0;">Dodoman's Theme</span>
 
