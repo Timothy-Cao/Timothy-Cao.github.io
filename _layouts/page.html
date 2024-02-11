@@ -10,43 +10,82 @@
       font-family: sans-serif;
     }
     .page-container {
-      margin: 40px auto; /* Adjust the margin value to increase or decrease the side margins */
+      margin: 40px auto;
       padding: 20px;
-      max-width: 1200px; /* Set max width for larger screens */
-      position: relative; /* For the positioning of the close button */
-      background: #ffffff; /* Background for the content area */
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for some depth */
+      max-width: 1200px;
+      position: relative;
     }
     .close-modal-button {
-      position: absolute;
-      top: 20px; /* Adjust the top position to move the button inside the content area */
-      right: 20px; /* Adjust the right position to move the button inside the content area */
+      position: fixed;
+      top: 20px;
+      right: 20px;
       cursor: pointer;
       border: none;
       background: transparent;
-      font-size: 32px; /* Increase the font-size for a larger 'X' */
-      z-index: 1051; /* Ensure it's above other content */
-      line-height: 0.8; /* Adjust line height to reduce the button height */
+      font-size: 48px; /* Further increase the size of the 'X' */
+      z-index: 1052; /* Ensure it's above the navbar */
+      line-height: 0.8;
     }
     .content {
       padding: 20px;
-      box-shadow: none; /* Since the shadow is on the container, no need for it here */
+    }
+    .navbar-custom {
+      border-bottom: 1px solid #e7e7e7;
+      background-color: #fff;
+      z-index: 1051; /* Ensure the navbar is below the close button */
+    }
+    .navbar-custom .navbar-nav > li > a {
+      color: #777;
+    }
+    .navbar-custom .navbar-brand {
+      color: #555;
     }
   </style>
 </head>
 <body>
 
+  <!-- Custom Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">{{ site.title }}</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="page-scroll">
+            <a href="/">Portfolio</a>
+          </li>
+          <li class="page-scroll">
+            <a href="/">About</a>
+          </li>
+          <li class="page-scroll">
+            <a href="/">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="page-container">
-    <!-- Close Button using 'X' icon -->
-    <button class="close-modal-button" onclick="history.back();">
-      &times; <!-- This is a simple 'X' character, use FontAwesome icon if preferred -->
-    </button>
-    
     <div class="content">
       <!-- Single Post Content Goes Here -->
       {{ content }}
     </div>
   </div>
+
+  <!-- Close Button using 'X' icon -->
+  <button class="close-modal-button" onclick="location.href='/';">
+    &times; <!-- This is a simple 'X' character, use FontAwesome icon if preferred -->
+  </button>
 
   <!-- Include your site-wide JavaScript files -->
   {% include js.html %}
