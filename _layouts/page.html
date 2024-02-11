@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <!-- Ensure your head.html includes the correct paths to your CSS files -->
   {% include head.html %}
-  <body>
+</head>
+<body>
+
+  <div class="container page-container">
+    <!-- Content of the page will go here -->
     {{ content }}
-    <!-- Include any site-wide scripts if needed -->
-    {% include js.html %}
-  </body>
+  </div>
+
+  <!-- Close button -->
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <a href="{{ '/' | relative_url }}" class="btn btn-default">
+        <i class="fa fa-times"></i> Close
+      </a>
+    </div>
+  </div>
+
+  <!-- Include your site-wide JavaScript files -->
+  {% include js.html %}
+</body>
 </html>
