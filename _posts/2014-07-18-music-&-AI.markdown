@@ -6,3 +6,8 @@ alt: image-alt
 description: I like to play and write music. Can AI do it better? 
 link: /music
 ---
+
+# Music & AI
+
+testtest
+
