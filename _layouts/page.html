@@ -14,21 +14,23 @@
       padding: 20px;
       max-width: 1200px; /* Set max width for larger screens */
       position: relative; /* For the positioning of the close button */
+      background: #ffffff; /* Background for the content area */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for some depth */
     }
     .close-modal-button {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 20px; /* Adjust the top position to move the button inside the content area */
+      right: 20px; /* Adjust the right position to move the button inside the content area */
       cursor: pointer;
       border: none;
       background: transparent;
-      font-size: 24px;
+      font-size: 32px; /* Increase the font-size for a larger 'X' */
       z-index: 1051; /* Ensure it's above other content */
+      line-height: 0.8; /* Adjust line height to reduce the button height */
     }
     .content {
       padding: 20px;
-      background: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for some depth */
+      box-shadow: none; /* Since the shadow is on the container, no need for it here */
     }
   </style>
 </head>
