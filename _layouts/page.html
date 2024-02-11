@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Ensure your head.html includes the correct paths to your CSS files -->
+  <!-- Ensure your head.html includes the correct paths to your CSS files and FontAwesome for the icon -->
   {% include head.html %}
+  <style>
+    .close-modal-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-size: 24px;
+      z-index: 1051; /* Ensure it's above other content */
+    }
+  </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" style="position: relative;">
+    <!-- Close Button -->
+    <button class="close-modal-button" onclick="history.back();">
+      <i class="fa fa-times"></i>
+    </button>
+    
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
         <div class="modal-body">
           <!-- Single Post Content Goes Here -->
           {{ content }}
-          
-          <!-- Optional: Include navigation or close button -->
-          <button type="button" class="btn btn-default" onclick="history.back();">
-            <i class="fa fa-times"></i> Close
-          </button>
         </div>
       </div>
     </div>
