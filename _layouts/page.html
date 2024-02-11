@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Ensure your head.html includes the correct paths to your CSS files -->
-  {% include head.html %}
-</head>
-<body>
-
-  <div class="container page-container">
-    <!-- Content of the page will go here -->
-    {{ content }}
-  </div>
-
-  <!-- Close button -->
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <a href="{{ '/' | relative_url }}" class="btn btn-default">
-        <i class="fa fa-times"></i> Close
-      </a>
+aria-hidden="true">
+<div class="modal-content">
+  <div class="close-modal" data-dismiss="modal">
+    <div class="lr">
+      <div class="rl"></div>
     </div>
   </div>
-
-  <!-- Include your site-wide JavaScript files -->
-  {% include js.html %}
-</body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <div class="modal-body">
+          <h2>{{ post.title }}</h2>
+          <hr class="star-primary">
+          <img src="{{ '/img/portfolio/' | append: post.img }}" class="img-responsive img-centered" alt="{{ post.alt }}">
+          {% if post.description %}
+          <p>{{ post.description | safe }}</p>
+          {% endif %}
+          <ul class="list-inline item-details">
+            {% if post.client %}
+            <li>Client: <strong>{{ post.client }}</strong></li>
+            {% endif %}
+            {% if post.project-date %}
+            <li>Date: <strong>{{ post.project-date }}</strong></li>
+            {% endif %}
+            {% if post.category %}
+            <li>Service: <strong>{{ post.category }}</strong></li>
+            {% endif %}
+          </ul>
+          {% if post.link %}
+          <a href="{{ post.link | relative_url }}" class="btn btn-default">
+            Read More
+          </a>
+          {% endif %}
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-times"></i> Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </html>
