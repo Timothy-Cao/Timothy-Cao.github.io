@@ -4,33 +4,45 @@
   <!-- Ensure your head.html includes the correct paths to your CSS files and FontAwesome for the icon -->
   {% include head.html %}
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+    .page-container {
+      margin: 40px auto; /* Adjust the margin value to increase or decrease the side margins */
+      padding: 20px;
+      max-width: 1200px; /* Set max width for larger screens */
+      position: relative; /* For the positioning of the close button */
+    }
     .close-modal-button {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 0;
+      right: 0;
       cursor: pointer;
       border: none;
       background: transparent;
       font-size: 24px;
       z-index: 1051; /* Ensure it's above other content */
     }
+    .content {
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for some depth */
+    }
   </style>
 </head>
 <body>
 
-  <div class="container" style="position: relative;">
-    <!-- Close Button -->
+  <div class="page-container">
+    <!-- Close Button using 'X' icon -->
     <button class="close-modal-button" onclick="history.back();">
-      <i class="fa fa-times"></i>
+      &times; <!-- This is a simple 'X' character, use FontAwesome icon if preferred -->
     </button>
     
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2">
-        <div class="modal-body">
-          <!-- Single Post Content Goes Here -->
-          {{ content }}
-        </div>
-      </div>
+    <div class="content">
+      <!-- Single Post Content Goes Here -->
+      {{ content }}
     </div>
   </div>
 
