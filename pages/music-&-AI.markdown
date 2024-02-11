@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Music & AI - My Compositions
+layout: page
+title: Music & AI
 permalink: /music/
 ---
 
