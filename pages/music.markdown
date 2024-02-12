@@ -1,5 +1,5 @@
 ---
-layout: pages
+layout: page
 title: Music & AI
 permalink: /music/
 ---
