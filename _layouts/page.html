@@ -22,26 +22,33 @@
       font-family: 'Montserrat', sans-serif;
     }
     .navbar a {
-      float: left;
+      float: none;
       display: block;
-      color: white;
       text-align: center;
+      color: white;
       padding: 20px;
       text-decoration: none;
-      font-size: 22px; /* Increased font size for better visibility */
+      font-size: 22px;
     }
     .content {
       padding: 16px;
-      max-width: 800px; /* Maximum width for the content */
-      margin: auto; /* Centers the content */
+      max-width: 800px;
+      margin: auto;
+    }
+    img, iframe {
+      max-width: 100%;
+      height: auto;
     }
     @media (max-width: 768px) {
       .navbar a {
         padding: 10px;
-        font-size: 18px; /* Smaller font size on mobile */
+        font-size: 18px;
       }
       .content {
         padding: 10px;
+      }
+      img, iframe {
+        width: 100%;
       }
     }
   </style>
@@ -49,12 +56,30 @@
 <body>
 
 <div class="navbar">
-  <a href="https://timothy-cao.github.io/">TIMOTHY CAO</a>
+  <a href="https://timothy-cao.github.io/">HOME</a>
 </div>
 
 <div class="content">
   {{ content }}
 </div>
+
+<script>
+  // This script ensures that YouTube iframes are responsive
+  document.addEventListener("DOMContentLoaded", function() {
+    var iframes = document.getElementsByTagName('iframe');
+    for (var i = 0; i < iframes.length; i++) {
+      if (iframes[i].src.includes("youtube.com")) {
+        iframes[i].parentNode.style.position = 'relative';
+        iframes[i].parentNode.style.paddingBottom = '56.25%'; // for 16:9 aspect ratio
+        iframes[i].parentNode.style.height = 0;
+        iframes[i].style.position = 'absolute';
+        iframes[i].style.width = '100%';
+        iframes[i].style.height = '100%';
+        iframes[i].style.left = '0';
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
