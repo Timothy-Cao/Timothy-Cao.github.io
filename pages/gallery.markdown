@@ -78,8 +78,6 @@ permalink: /gallery/
 }
 </style>
 
-# Gallery
-
 <div class="tab-container">
   {% for gallery in site.data.gallery %}
     <div class="tab" onclick="showGallery('{{ gallery[0] | slugify }}')">{{ gallery[0] }}</div>
@@ -118,4 +116,11 @@ function showGallery(galleryName) {
     }
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const firstTab = document.querySelector('.tab');
+  if (firstTab) {
+    firstTab.click();
+  }
+});
 </script>
