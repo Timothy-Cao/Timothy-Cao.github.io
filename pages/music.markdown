@@ -8,7 +8,7 @@ permalink: /music/
 
 ![alt text](../assets/images/musescore.png){:width="1000px" height="400px"}
 
-Here are composed music pieces for years on and off for years. These projects can often take dozens of hours, and once I've stopped working on it for a while, it usually never gets touched again. Here are some compositions I've worked on in the past. 
+I have written music on and off since elementary school. These projects can often take dozens of hours, and once I've stopped working on it for a while, it usually never gets touched again. Here are some compositions I've worked on in the past. 
 
 
 ## <span style="color: #6666FF;">Dodoman's Theme</span>
