@@ -1,7 +1,7 @@
-
 <!-- Portfolio Modals -->
 {% for post in site.posts %}
-<div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog"
+  aria-hidden="true">
   <div class="modal-content">
     <div class="close-modal" data-dismiss="modal">
       <div class="lr">
@@ -30,7 +30,7 @@
               {% endif %}
             </ul>
             {% if post.link %}
-            <a href="{{ post.link | relative_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-default" onclick="closeModal('{{ post.modal-id }}')">
+            <a href="{{ post.link | relative_url }}" class="btn btn-default">
               Read More
             </a>
             {% endif %}
@@ -44,10 +44,3 @@
   </div>
 </div>
 {% endfor %}
-
-<script>
-  function closeModal(modalId) {
-    // Hide the modal with the given ID
-    $('#portfolioModal-' + modalId).modal('hide');
-  }
-</script>
