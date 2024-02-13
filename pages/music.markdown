@@ -20,6 +20,30 @@ I wrote this piece in 2021 for a symphonic orchestra with a choir. The music tak
 
 Here are a sample some of my other compositions over the years.
 
+<head>
+  <style>
+    select {
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: white;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    /* Optionally, style the focus state */
+    select:focus {
+      border-color: #6666FF;
+    }
+  </style>
+</head>
+
 <select id="compositionSelect">
     <option value="">Select a Composition</option>
     <option value="MySeptember">My September</option>
