@@ -2,6 +2,6 @@
 layout: default
 modal-id: 2
 img: portfolio-desmos.png
-description: What medium do I make my digit art with? Have you heard of desmos.com?
+description: How bored have you've gotten in math class?
 link: /math/
 ---
