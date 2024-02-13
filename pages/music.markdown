@@ -37,7 +37,6 @@ Here are a sample some of my other compositions over the years.
       appearance: none;
     }
 
-    /* Optionally, style the focus state */
     select:focus {
       border-color: #6666FF;
     }
