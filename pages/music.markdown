@@ -11,7 +11,7 @@ permalink: /music/
 Here are composed music pieces for years on and off for years. These projects can often take dozens of hours, and once I've stopped working on it for a while, it usually never gets touched again. Here are some compositions I've worked on in the past. 
 
 
-## <span style="color: #89CFF0;">Dodoman's Theme</span>
+## <span style="color: #6666FF;">Dodoman's Theme</span>
 
 This piece was composed in 2021, and written for a symphonic orchestra with a choir. This piece took me nearly a 30 hours of work. 
 
@@ -27,7 +27,7 @@ The music takes light inspiration from Schubert Ständchen and Luigi's mansion.
 </html>
 
 
-## <span style="color: #89CFF0;">My September</span>
+## <span style="color: #6666FF;">My September</span>
 
 This piece is from September 2023, as suggested by the name. Written for solo piano. 
 
@@ -40,7 +40,7 @@ This piece is from September 2023, as suggested by the name. Written for solo pi
 </html>
 
 
-## <span style="color: #89CFF0;">8 bit nostalgia</span>
+## <span style="color: #6666FF;">8 bit nostalgia</span>
 
 This 2023 piece is written for solo piano but recorded as a synthesizer.
 
@@ -52,7 +52,7 @@ This 2023 piece is written for solo piano but recorded as a synthesizer.
 </body>
 </html>
 
-## <span style="color: #89CFF0;">3 Hands</span>
+## <span style="color: #6666FF;">3 Hands</span>
 
 This 2023 3-handed piano piece was initally inspired by a tune I heard someone hum. 
 
@@ -64,7 +64,7 @@ This 2023 3-handed piano piece was initally inspired by a tune I heard someone h
 </body>
 </html>
 
-## <span style="color: #89CFF0;">Game OST 4</span>
+## <span style="color: #6666FF;">Game OST 4</span>
 
 This is 2018 orchestral piece is inspired from Sonny music.
 
@@ -76,7 +76,7 @@ This is 2018 orchestral piece is inspired from Sonny music.
 </body>
 </html>
 
-## <span style="color: #89CFF0;">Sadge in C</span>
+## <span style="color: #6666FF;">Sadge in C</span>
 
 An incomplete draft for solo synthesizer piano written in 2018.
 
@@ -89,7 +89,7 @@ An incomplete draft for solo synthesizer piano written in 2018.
 </html>
 
 
-## <span style="color: #89CFF0;">Puddings day off</span>
+## <span style="color: #6666FF;">Puddings day off</span>
 
 This experimental piece written in 2023 scores the life of my rabbit as she runs for her life from the vacuum, only to stumble herself into an oasis of celery sticks. 
 
@@ -102,7 +102,7 @@ This experimental piece written in 2023 scores the life of my rabbit as she runs
 </html>
 
 
-## <span style="color: #89CFF0;">Game OST 2</span>
+## <span style="color: #6666FF;">Game OST 2</span>
 
 This 2017 piece is my first orchestral piece, drawing light inspiration from maplestory OSTs.
 
@@ -114,7 +114,7 @@ This 2017 piece is my first orchestral piece, drawing light inspiration from map
 </body>
 </html>
 
-## <span style="color: #89CFF0;">Violin nostalgia</span>
+## <span style="color: #6666FF;">Violin nostalgia</span>
 
 2017 piece written for violin piano duet sounds nostalgic for some reason. 
 
@@ -127,7 +127,7 @@ This 2017 piece is my first orchestral piece, drawing light inspiration from map
 </body>
 </html>
 
-## <span style="color: #89CFF0;">Autumn Leaves variations</span>
+## <span style="color: #6666FF;">Autumn Leaves variations</span>
 
 Variations on autumn leaves for our jazz band. This  WIP was arranged in 2023. It features a classical and jazz style so far.
 
