@@ -6,7 +6,7 @@
       },
       {
         "imageUrl": "../assets/images/pudding2.png",
-        "description": "Transformed into loaf"
+        "description": "Loaf of bread"
       },
       {
         "imageUrl": "../assets/images/pudding3.png",
@@ -18,35 +18,35 @@
       },
       {
         "imageUrl": "../assets/images/pudding5.png",
-        "description": "The worst spot to lounge"
+        "description": "peekaboo"
       },
       {
         "imageUrl": "../assets/images/pudding6.png",
-        "description": "Stretching before the big game"
+        "description": "Big stretch"
       },
       {
         "imageUrl": "../assets/images/pudding7.jpg",
-        "description": "On her way to Hawaii"
+        "description": "Aloha"
       },
       {
         "imageUrl": "../assets/images/pudding8.jpg",
-        "description": "New friend!"
+        "description": "Friend or foe"
       },
       {
         "imageUrl": "../assets/images/pudding9.jpg",
-        "description": "Wearing a backpack"
+        "description": "Backpack"
       },
       {
         "imageUrl": "../assets/images/pudding10.jpg",
-        "description": "More flexible than me"
+        "description": "My foot is delicious"
       },
       {
         "imageUrl": "../assets/images/pudding11.jpg",
-        "description": "Fort Night!"
+        "description": "She loves forts"
       },
       {
         "imageUrl": "../assets/images/pudding12.jpg",
-        "description": "Checking out the new house"
+        "description": "Her new crib"
       }
     ],
     "Cooking": [
@@ -60,23 +60,23 @@
       },
       {
         "imageUrl": "../assets/images/chef3.jpg",
-        "description": "Pasta water = secret ingredient"
+        "description": "Just toss everything in"
       },
       {
         "imageUrl": "../assets/images/chef4.jpg",
-        "description": "Unknown Spiciness"
+        "description": "Looks spicy"
       },
       {
         "imageUrl": "../assets/images/chef5.jpg",
-        "description": "Pineapple on pizza? Apple on pizza."
+        "description": "Pineapple? What about apple on pizza."
       },
       {
         "imageUrl": "../assets/images/chef6.jpg",
-        "description": "No fish egg? Shredded carrots."
+        "description": "Shredded carrots look like fisheggs"
       },
       {
         "imageUrl": "../assets/images/chef7.jpg",
-        "description": "Hola"
+        "description": "Very filling"
       },
       {
         "imageUrl": "../assets/images/chef8.jpg",
@@ -84,19 +84,19 @@
       },
       {
         "imageUrl": "../assets/images/chef9.jpg",
-        "description": "Farmer's Market Cheese >"
+        "description": "I love cheese"
       },
       {
         "imageUrl": "../assets/images/chef10.jpg",
-        "description": "Calories Galore"
+        "description": "Calories"
       },
       {
         "imageUrl": "../assets/images/chef11.jpg",
-        "description": "Chicken Thigh >> Breast"
+        "description": "Chicken Thigh > Breast"
       },
       {
         "imageUrl": "../assets/images/chef12.jpg",
-        "description": "Guess the incoming dish"
+        "description": "Guess the dish"
       }
     ],
     "Summer": [
@@ -106,15 +106,15 @@
       },
       {
         "imageUrl": "../assets/images/summer2.jpg",
-        "description": "I'm something of a celebrity"
+        "description": "Fresh cut"
       },
       {
         "imageUrl": "../assets/images/summer3.jpg",
-        "description": "POV: You're getting buried alive"
+        "description": "POV: We're burying you alive"
       },
       {
         "imageUrl": "../assets/images/summer4.jpg",
-        "description": "Pinkies up!"
+        "description": "Pinkies up"
       },
       {
         "imageUrl": "../assets/images/summer5.jpg",
@@ -138,11 +138,11 @@
       },
       {
         "imageUrl": "../assets/images/summer10.jpg",
-        "description": "Cloud."
+        "description": "Cloud"
       },
       {
         "imageUrl": "../assets/images/summer11.jpg",
-        "description": "Foie Gras is disgusting"
+        "description": "Foie Gras is not for me"
       },
       {
         "imageUrl": "../assets/images/summer12.jpg",
@@ -156,19 +156,19 @@
       },
       {
         "imageUrl": "../assets/images/spook2.jpg",
-        "description": "More Pumpkins"
+        "description": "Pumpkins"
       },
       {
         "imageUrl": "../assets/images/spook3.jpg",
-        "description": "Even More Pumpkins"
+        "description": "Pumpkins"
       },
       {
         "imageUrl": "../assets/images/spook4.jpg",
-        "description": "Even Even More Pumpkins"
+        "description": "Pumpkins"
       },
       {
         "imageUrl": "../assets/images/spook5.jpg",
-        "description": "Even Even Even More Pumpkins"
+        "description": "Pumpkins"
       },
       {
         "imageUrl": "../assets/images/spook6.jpg",
@@ -184,11 +184,11 @@
       },
       {
         "imageUrl": "../assets/images/spook9.jpg",
-        "description": "How to eat 3 apples in parallel"
+        "description": "How to eat 3 apples at once"
       },
       {
         "imageUrl": "../assets/images/spook10.jpg",
-        "description": "UFO spotting"
+        "description": "Country roads take me home"
       },
       {
         "imageUrl": "../assets/images/spook11.jpg",
