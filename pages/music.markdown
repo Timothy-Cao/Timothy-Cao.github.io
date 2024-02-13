@@ -19,7 +19,7 @@ The music takes light inspiration from Schubert Ständchen and Luigi's mansion.
 
 <html>
 <body>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/8N39upFgpts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/8N39upFgpts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </body>
 </html>
 
