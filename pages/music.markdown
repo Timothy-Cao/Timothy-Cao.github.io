@@ -110,9 +110,10 @@ document.getElementById('compositionSelect').addEventListener('change', function
 
 <br><br><br>
 
-The thing with music is that once experienced, it loses the element of surprise for the listener. How could we create music that always leave the listener curious? Can we write compositions that ensure a perpetually fresh listening experience?
+## <span style="color: #6666FF;">A fresh listening experience</span>
 
-s
+The thing with music is that once experienced, it loses the element of surprise. How could we create music that always leave the listener curious? We would need to write music that continously evolves. 
+
 
 
 
