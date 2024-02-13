@@ -3,12 +3,6 @@ layout: page
 permalink: /gallery/
 ---
 
----
-layout: page
-title: ""
-permalink: /gallery/
----
-
 <style>
   .gallery-title {
     font-size: 36px;
@@ -32,7 +26,7 @@ permalink: /gallery/
   .gallery-caption {
     font-size: 14px;
     margin-top: 10px;
-    color: #ccc;
+    color: black;
   }
 
   .tab-container {
