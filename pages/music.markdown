@@ -12,12 +12,13 @@ permalink: /music/
 I have written music on and off since elementary school. These projects can often take dozens of hours, and if progress slows down, they may never be touched again. 
 
 ## <span style="color: #6666FF;">Dodoman's Theme</span>
-I wrote this piece in 2021, and written for a symphonic orchestra with a choir. This piece took me nearly a 30 hours of work. 
-The music takes light inspiration from Schubert Ständchen and Luigi's mansion. 
+I wrote this piece in 2021 for a symphonic orchestra with a choir. The music takes light inspiration from Schubert Ständchen and Luigi's mansion. This piece took me nearly a 40 hours of work. 
 
 <div class="iframe-wrapper">
   <iframe src="https://www.youtube.com/embed/8N39upFgpts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+Here are a sample some of my other compositions over the years.
 
 <select id="compositionSelect">
     <option value="">Select a Composition</option>
@@ -75,6 +76,10 @@ document.getElementById('compositionSelect').addEventListener('change', function
 });
 </script>
 
-Music, once experienced, reveals its essence, losing the element of surprise for the listener who can no longer approach it with the same curiosity. My aim is to delve into music generation, striving to create compositions that continually evolve, ensuring a perpetually fresh listening experience.
+The thing with music is that once experienced, it loses the element of surprise for the listener. How could we create music that always leave the listener curious? Can we write compositions that ensure a perpetually fresh listening experience?
 
-Let's begin by investigating how existing generative AI works to create music from existing works.
+
+
+
+
+s
