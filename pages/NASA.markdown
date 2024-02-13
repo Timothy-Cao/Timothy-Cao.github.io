@@ -19,8 +19,8 @@ permalink: /nasa/
     fetch('https://api.nasa.gov/planetary/apod?api_key=JELkWxHjp7EmBUP9qCRfEOycHBZtmpf5k5qWlhsT')
       .then(response => response.json())
       .then(data => {
-        const apodImage = document.querySelector('.apod-image img');
         const apodDescription = document.querySelector('.apod-description');
+        const apodImage = document.querySelector('.apod-image img');
 
         apodImage.src = data.hdurl || data.url;
         apodImage.alt = data.title;
