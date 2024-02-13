@@ -5,6 +5,7 @@ permalink: /music/
 ---
 
 # Music & AI
+<hr class="star-light" />
 
 ![alt text](../assets/images/musescore.png){:width="1000px" height="400px"}
 
