@@ -11,12 +11,28 @@ permalink: /gallery/
     color: #fff;
   }
 
-  .gallery-table {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-  }
+    .gallery-table {
+        /* Remove the grid display type */
+        /* display: grid; */
+        /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+        
+        /* New style */
+        column-count: 3; /* Adjust the number of columns as needed */
+        column-gap: 20px;
+        margin-top: 20px;
+    }
+
+    /* Adjust the div containing the image and caption to break inside the column layout */
+    .gallery-table div {
+        break-inside: avoid;
+        margin-bottom: 20px; /* Adjust spacing between items */
+    }
+
+    @media (max-width: 768px) {
+        .gallery-table {
+            column-count: 2; /* Less columns for smaller screens */
+        }
+    }
 
   .gallery-image {
     width: 100%;
