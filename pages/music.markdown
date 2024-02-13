@@ -39,40 +39,48 @@ Here are a sample some of my other compositions over the years.
 <script>
 document.getElementById('compositionSelect').addEventListener('change', function() {
     var selectedValue = this.value;
-    var audioHtml = '';
+    var content = '';
 
     switch(selectedValue) {
         case 'MySeptember':
-            audioHtml = '<audio controls><source src="../assets/audio/myseptember.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2023, for solo piano.</p>
+                <audio controls><source src="../assets/audio/myseptember.mp3" type="audio/mpeg"></audio>`;
             break;
         case '8BitNostalgia':
-            audioHtml = '<audio controls><source src="../assets/audio/8_bit_nostalgia.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2021, for solo piano (synth).</p>
+                <audio controls><source src="../assets/audio/8_bit_nostalgia.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'ThreeHands':
-            audioHtml = '<audio controls><source src="../assets/audio/4hand_remix.mp3" type="audio/mpeg"></audio>';
+            content = `<p> Written 2022, for piano duet. Unknown inspiration.</p>
+                <audio controls><source src="../assets/audio/4hand_remix.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'GameOST4':
-            audioHtml = '<audio controls><source src="../assets/audio/Game_OST_4.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2020, for orchestra. Inspiration from Sonny.</p>
+                <audio controls><source src="../assets/audio/Game_OST_4.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'SadgeInC':
-            audioHtml = '<audio controls><source src="../assets/audio/sadgeC.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2019, for solo piano (synth).</p>
+                <audio controls><source src="../assets/audio/sadgeC.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'PuddingsDayOff':
-            audioHtml = '<audio controls><source src="../assets/audio/Puddings_day_off.mp3" type="audio/mpeg"></audio>';
+            content = `<p> Written 2022, for solo piano.</p>
+                <audio controls><source src="../assets/audio/Puddings_day_off.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'GameOST2':
-            audioHtml = '<audio controls><source src="../assets/audio/Game_OST_3.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2019, for orchestra.</p>
+                <audio controls><source src="../assets/audio/Game_OST_3.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'ViolinNostalgia':
-            audioHtml = '<audio controls><source src="../assets/audio/violin_nostalgia.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2018, for violin & piano.</p>
+                <audio controls><source src="../assets/audio/violin_nostalgia.mp3" type="audio/mpeg"></audio>`;
             break;
         case 'AutumnLeavesVariations':
-            audioHtml = '<audio controls><source src="../assets/audio/Tim\'s Leaves.mp3" type="audio/mpeg"></audio>';
+            content = `<p>Written 2023, for piano, guitar & trumpet.</p>
+                <audio controls><source src="../assets/audio/Tim\'s Leaves.mp3" type="audio/mpeg"></audio>`;
             break;
-        // Add more cases as necessary for each piece
     }
 
-    document.getElementById('audioPlayerContainer').innerHTML = audioHtml;
+    document.getElementById('audioPlayerContainer').innerHTML = content;
 });
 </script>
 
