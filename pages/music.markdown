@@ -138,4 +138,7 @@ Variations on autumn leaves for our jazz band. This  WIP was arranged in 2023. I
 </body>
 </html>
 
-The thing with this music is that once you've listened to it once, you know how it sounds. You can never get surprised again by a static composition. What if we try generating music so that it's never quite the same everytime you listen to it...
+The thing with this music is that once you've listened to it once, you know how it sounds. You can never get surprised again by a static composition. 
+
+
+Let's try generating music so that it's never quite the same everytime you listen to it.
