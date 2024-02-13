@@ -4,7 +4,7 @@ permalink: /nasa/
 ---
 
 <h2 class="apod-title">Picture of the day</h2>
-<p style="; margin: 10px 0;"> Some astronomy a day keeps your anthropocentrism away. </p>
+<p style="; margin: 10px 0;"> An astronomy picture a day keeps the anthropocentrism away. </p>
 <p> <span id="current-day"></span> </p>
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
