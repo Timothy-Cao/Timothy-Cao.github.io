@@ -4,12 +4,13 @@ permalink: /nasa/
 ---
 
 <h2 class="apod-title">Picture of the day</h2>
-<p style="; margin: 10px 0;"> An astronomy picture a day keeps the anthropocentrism away. </p>
+
+<br><p class="apod-description"></p><br>
+
 <p> <span id="current-day"></span> </p>
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
 </div>
-<p class="apod-description"></p>
 <script>
   const currentDaySpan = document.getElementById('current-day');
   const today = new Date();
@@ -20,8 +21,8 @@ permalink: /nasa/
     fetch('https://api.nasa.gov/planetary/apod?api_key=JELkWxHjp7EmBUP9qCRfEOycHBZtmpf5k5qWlhsT')
       .then(response => response.json())
       .then(data => {
-        const apodDescription = document.querySelector('.apod-description');
         const apodImage = document.querySelector('.apod-image img');
+        const apodDescription = document.querySelector('.apod-description');
 
         apodImage.src = data.hdurl || data.url;
         apodImage.alt = data.title;
@@ -32,3 +33,5 @@ permalink: /nasa/
       });
   });
 </script>
+
+<p> An astronomy picture a day keeps the anthropocentrism away. </p>
