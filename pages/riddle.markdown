@@ -4,12 +4,8 @@ permalink: /riddle/
 ---
 
 
-
-<a href="/blog" style="position: fixed; bottom: 20px; right: 20px; background-color: #6495ED; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">← Back</a>
-
 <style>
   .bubble-section {
-    background-color: #333;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -17,80 +13,6 @@ permalink: /riddle/
   }
 </style>
 
-<!-----------------------------SCIENCE QUIZ ----------------------------->
-<div class="bubble-section">
-
-<h2><span style="color: #89CFF0;">Random science quiz</span></h2>
-
-<button id="next-question-button" onclick="fetchNewQuiz()">Next Question</button>
-
-<div class="quiz-container">
-    <div id="science-quiz">
-        <p>Loading...</p>
-    </div>
-</div>
-
-<script>
-  function fetchNewQuiz() {
-    const quizContainer = document.getElementById('science-quiz');
-
-    // Set the container's height to its current height
-    quizContainer.style.height = `${quizContainer.offsetHeight}px`;
-
-    // Fetch the new question
-    fetch('https://opentdb.com/api.php?amount=1&category=17&difficulty=hard')
-      .then(response => response.json())
-      .then(data => {
-        quizContainer.innerHTML = ''; // Clear old question
-
-        const question = data.results[0];
-        const options = [...question.incorrect_answers, question.correct_answer];
-        options.sort(() => Math.random() - 0.5);
-
-        const questionContainer = document.createElement('div');
-        questionContainer.classList.add('quiz-question');
-        questionContainer.innerHTML = `
-          <p>${question.question}</p>
-          <ul class="quiz-options">
-            ${options.map(option => `
-              <li data-correct="${option === question.correct_answer ? 'true' : 'false'}">${option}</li>
-            `).join('')}
-          </ul>
-          <p class="quiz-feedback"></p>
-        `;
-
-        quizContainer.appendChild(questionContainer);
-
-        // Add click event listeners for the answer options
-        const optionElements = questionContainer.querySelectorAll('.quiz-options li');
-        optionElements.forEach(option => {
-          option.addEventListener('click', function() {
-            const correct = this.getAttribute('data-correct') === 'true';
-            const feedback = this.parentElement.nextElementSibling;
-            feedback.textContent = correct ? 'Correct!' : 'Incorrect!';
-            feedback.style.color = correct ? 'green' : 'red';
-
-            optionElements.forEach(elem => {
-              elem.style.pointerEvents = 'none'; 
-              if (elem.getAttribute('data-correct') === 'true') {
-                elem.style.color = 'green';
-              }
-            });
-          });
-        });
-
-        // Reset the container's height
-        quizContainer.style.height = 'auto';
-      })
-      .catch(error => {
-        console.error('Error fetching quiz:', error);
-      });
-  }
-
-  // Fetch initial question
-  fetchNewQuiz();
-</script>
-</div>
 
 <style>
   button {
@@ -104,7 +26,6 @@ permalink: /riddle/
     margin: 5px 0;
   }
   #quiz-popup {
-    background-color: rgba(0, 0, 0, 0.5); 
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
