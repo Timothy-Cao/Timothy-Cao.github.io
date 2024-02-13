@@ -3,9 +3,6 @@ layout: page
 permalink: /game/
 ---
 
-
-<a href="/personal/blog" style="position: fixed; bottom: 20px; right: 20px; background-color: #6495ED; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">← Back</a>
-
 # Solving Prime Climb
 
 ## What is prime climb?
