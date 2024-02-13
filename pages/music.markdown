@@ -18,8 +18,7 @@ I wrote this piece in 2021 for a symphonic orchestra with a choir. The music tak
   <iframe src="https://www.youtube.com/embed/8N39upFgpts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-
-
+<br><br>
 Here are a sample some of my other compositions over the years.
 
 <head>
@@ -109,10 +108,12 @@ document.getElementById('compositionSelect').addEventListener('change', function
 });
 </script>
 
+<br><br><br>
+
 The thing with music is that once experienced, it loses the element of surprise for the listener. How could we create music that always leave the listener curious? Can we write compositions that ensure a perpetually fresh listening experience?
 
-
-
-
-
 s
+
+
+
+<br><br><br><br>
