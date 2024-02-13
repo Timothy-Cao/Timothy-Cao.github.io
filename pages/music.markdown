@@ -4,16 +4,16 @@ title: Music & AI
 permalink: /music/
 ---
 
-# Music & AI - My Compositions
-
-
-I like to play and write music. Can AI do it better? Here are some compositions I've done over the years. 
+# Music & AI
 
 ![alt text](../assets/images/musescore.png){:width="1000px" height="400px"}
 
+Here are composed music pieces for years on and off for years. These projects can often take dozens of hours, and once I've stopped working on it for a while, it usually never gets touched again. Here are some compositions I've worked on in the past. 
+
+
 ## <span style="color: #89CFF0;">Dodoman's Theme</span>
 
-This piece was composed in 2021, and written for a symphonic orchestra with a choir. My magnus opum thus far.
+This piece was composed in 2021, and written for a symphonic orchestra with a choir. This piece took me nearly a 30 hours of work. 
 
 The music takes light inspiration from Schubert Ständchen and Luigi's mansion. 
 
@@ -42,7 +42,7 @@ This piece is from September 2023, as suggested by the name. Written for solo pi
 
 ## <span style="color: #89CFF0;">8 bit nostalgia</span>
 
-This 2023 piece is written for solo piano but recorded as a synthesizer. I try to sound nostalgic and feature a guilty crown easter egg. 
+This 2023 piece is written for solo piano but recorded as a synthesizer.
 
 <html>
 <body>
@@ -140,3 +140,4 @@ Variations on autumn leaves for our jazz band. This  WIP was arranged in 2023. I
 </body>
 </html>
 
+The thing with this music is that once you've listened to it once, you know how it sounds. You can never get surprised again by a static composition. What if we try generating music so that it's never quite the same everytime you listen to it...
