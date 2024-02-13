@@ -44,7 +44,7 @@ permalink: /riddle/
 <!-----------------------------TETRIS PUZZLE ----------------------------->
 <div class="bubble-section">
 
-<h2><span style="color: #89CFF0;">Tetris Puzzles</span></h2>
+<h2><span style=": #6666FF;">Tetris Puzzles</span></h2>
 <p>A surprisingly hard puzzle that may arise from PCO. </p>
 <p>The goal is to fully clear the board.</p>
 <img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;"><br>
@@ -69,7 +69,7 @@ function toggleSpoiler(spoilerId) {
 </script>
 <!-----------------------------CHESS PUZZLE ----------------------------->
 <div class="bubble-section">
-<h2><span style="color: #89CFF0;">Chess Puzzles</span></h2>
+<h2><span style=": #6666FF;">Chess Puzzles</span></h2>
 <p>Difficulty: ~2400</p>
 <img src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
 <div>
@@ -82,11 +82,11 @@ function toggleSpoiler(spoilerId) {
 </div>
 <!-----------------------------LOGIC PUZZLE ----------------------------->
 <div class="bubble-section">
-    <h2><span style="color: #89CFF0;">Logic Puzzles</span></h2>
+    <h2><span style=": #6666FF;">Logic Puzzles</span></h2>
     <p>New puzzles are cycled in every month!</p>
 
     <div class="puzzle">
-        <h3 style="color: #89CFF0;">Meta Puzzle</h3>
+        <h3 style=": #6666FF;">Meta Puzzle</h3>
         <p>What is the correct answer?</p>
         <ol>
             <li>All of the below</li>
@@ -99,24 +99,24 @@ function toggleSpoiler(spoilerId) {
     </div>
 
     <div class="puzzle">
-        <h3 style="color: #89CFF0;">Triangle Puzzle</h3>
+        <h3 style=": #6666FF;">Triangle Puzzle</h3>
         <p>Draw 3 straight lines on top of this image to create 9 triangles:</p>
         <img src="../assets/images/triangle_puzzle.png" alt="Triangle Puzzle">
     </div>
 
     <div class="puzzle">
-        <h3 style="color: #89CFF0;">Scooter Puzzle</h3>
+        <h3 style=": #6666FF;">Scooter Puzzle</h3>
         <p>Amanda lives with her teenage son, Matt, in the countryside—a car ride away from Matt’s school. Every afternoon, Amanda leaves the house at the same time, drives to the school at a constant speed, picks Matt up exactly when his chess club ends at 5 p.m., and then they immediately return home together at the same constant speed. But one day, Matt isn’t feeling well, so he leaves chess practice early and starts to head home on his portable scooter.</p>
         <p>After Matt has been scooting for an hour, Amanda comes across him in her car (on her usual route to pick him up), and they return together, arriving home 40 minutes earlier than they usually do. How much chess practice did Matt miss?</p>
     </div>
 
     <div class="puzzle">
-        <h3 style="color: #89CFF0;">Chameleon Puzzle</h3>
-        <p>There are 13 Red, 15 Green, and 17 Blue Chameleons at some point of time. Whenever two Chameleons of the different colors meet both of them change their color to the third color. Is it ever possible for all Chameleons to become of the same color?</p>
+        <h3 style=": #6666FF;">Chameleon Puzzle</h3>
+        <p>There are 13 Red, 15 Green, and 17 Blue Chameleons at some point of time. Whenever two Chameleons of the different s meet both of them change their  to the third . Is it ever possible for all Chameleons to become of the same ?</p>
     </div>
 
     <div class="puzzle">
-        <h3 style="color: #89CFF0;">Handshake Puzzle</h3>
+        <h3 style=": #6666FF;">Handshake Puzzle</h3>
         <p>Five couples, including Obama and Michelle, meet at a bar. Eager to greet one another, every person shakes hands with those they haven't previously met. After the greetings, Michelle asks everyone about the number of hands they shook and gets nine different answers.</p>
         <p>Question: How many hands did Obama shake?</p>
     </div>
@@ -124,10 +124,10 @@ function toggleSpoiler(spoilerId) {
 
 <!-----------------------------MATH PUZZLE ----------------------------->
 <div class="bubble-section">
-    <h2><span style="color: #89CFF0;">Math Puzzle</span></h2>
+    <h2><span style=": #6666FF;">Math Puzzle</span></h2>
 
     <div class="puzzle">
-        <h3 style="color: #89CFF0;">The Four 4's Puzzle</h3>
+        <h3 style=": #6666FF;">The Four 4's Puzzle</h3>
         <p>Using exactly four \(4\)'s and the operations \(+\), \(-\), \(\times\), \(\div\), \(\sqrt{x}\), and \(x^y\), and brackets, how many integers starting from 0 can you produce?</p>
         <p>For instance:<br>
         \(0 = 44 - 44\) <br>
@@ -138,7 +138,7 @@ function toggleSpoiler(spoilerId) {
         <p>How many integers can you form?</p>
 
         <div class="bonus-section">
-            <h4 style="color: #89CFF0;">Bonus Challenge:</h4>
+            <h4 style=": #6666FF;">Bonus Challenge:</h4>
             <p>Can you generalize your solution to produce any positive integer?</p>
         </div>
     </div>
