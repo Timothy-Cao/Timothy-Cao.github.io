@@ -1,0 +1,203 @@
+{
+    "Seasonal Gallery": [
+      {
+        "imageUrl": "../assets/images/summer1.jpeg",
+        "description": "3 Stooges"
+      },
+      {
+        "imageUrl": "../assets/images/summer2.jpg",
+        "description": "I'm something of a celebrity"
+      },
+      {
+        "imageUrl": "../assets/images/summer3.jpg",
+        "description": "POV: You're getting buried alive"
+      },
+      {
+        "imageUrl": "../assets/images/summer4.jpg",
+        "description": "Pinkies up!"
+      },
+      {
+        "imageUrl": "../assets/images/summer5.jpg",
+        "description": "I'm actually 100ft in the air"
+      },
+      {
+        "imageUrl": "../assets/images/summer6.jpg",
+        "description": "Creatures of the night"
+      },
+      {
+        "imageUrl": "../assets/images/summer7.jpg",
+        "description": "Bro is scared of the water"
+      },
+      {
+        "imageUrl": "../assets/images/summer8.jpg",
+        "description": "When I paint on the walls they call it vandalism"
+      },
+      {
+        "imageUrl": "../assets/images/summer9.jpg",
+        "description": "The ugly duckling that stayed ugly"
+      },
+      {
+        "imageUrl": "../assets/images/summer10.jpg",
+        "description": "Cloud."
+      },
+      {
+        "imageUrl": "../assets/images/summer11.jpg",
+        "description": "Foie Gras is disgusting"
+      },
+      {
+        "imageUrl": "../assets/images/summer12.jpg",
+        "description": "POV: you can't afford roads"
+      }
+    ],
+    "Rabbit Gallery": [
+      {
+        "imageUrl": "../assets/images/pudding1.png",
+        "description": "She smells but not sees"
+      },
+      {
+        "imageUrl": "../assets/images/pudding2.png",
+        "description": "Transformed into loaf"
+      },
+      {
+        "imageUrl": "../assets/images/pudding3.png",
+        "description": "Dreaming about bananas"
+      },
+      {
+        "imageUrl": "../assets/images/pudding4.png",
+        "description": "Woken from slumber"
+      },
+      {
+        "imageUrl": "../assets/images/pudding5.png",
+        "description": "The worst spot to lounge"
+      },
+      {
+        "imageUrl": "../assets/images/pudding6.png",
+        "description": "Stretching before the big game"
+      },
+      {
+        "imageUrl": "../assets/images/pudding7.jpg",
+        "description": "On her way to Hawaii"
+      },
+      {
+        "imageUrl": "../assets/images/pudding8.jpg",
+        "description": "New friend!"
+      },
+      {
+        "imageUrl": "../assets/images/pudding9.jpg",
+        "description": "Wearing a backpack"
+      },
+      {
+        "imageUrl": "../assets/images/pudding10.jpg",
+        "description": "More flexible than me"
+      },
+      {
+        "imageUrl": "../assets/images/pudding11.jpg",
+        "description": "Fort Night!"
+      },
+      {
+        "imageUrl": "../assets/images/pudding12.jpg",
+        "description": "Checking out the new house"
+      }
+    ],
+    "Cooking Gallery": [
+      {
+        "imageUrl": "../assets/images/chef1.jpg",
+        "description": "Meatball[4][4]"
+      },
+      {
+        "imageUrl": "../assets/images/chef2.jpg",
+        "description": "Comfort Food"
+      },
+      {
+        "imageUrl": "../assets/images/chef3.jpg",
+        "description": "Pasta water = secret ingredient"
+      },
+      {
+        "imageUrl": "../assets/images/chef4.jpg",
+        "description": "Unknown Spiciness"
+      },
+      {
+        "imageUrl": "../assets/images/chef5.jpg",
+        "description": "Pineapple on pizza? Apple on pizza."
+      },
+      {
+        "imageUrl": "../assets/images/chef6.jpg",
+        "description": "No fish egg? Shredded carrots."
+      },
+      {
+        "imageUrl": "../assets/images/chef7.jpg",
+        "description": "Hola"
+      },
+      {
+        "imageUrl": "../assets/images/chef8.jpg",
+        "description": "Messy"
+      },
+      {
+        "imageUrl": "../assets/images/chef9.jpg",
+        "description": "Farmer's Market Cheese >"
+      },
+      {
+        "imageUrl": "../assets/images/chef10.jpg",
+        "description": "Calories Galore"
+      },
+      {
+        "imageUrl": "../assets/images/chef11.jpg",
+        "description": "Chicken Thigh >> Breast"
+      },
+      {
+        "imageUrl": "../assets/images/chef12.jpg",
+        "description": "Guess the incoming dish"
+      }
+    ],
+    "Spooky Gallery": [
+      {
+        "imageUrl": "../assets/images/spook1.jpg",
+        "description": "Pumpkins"
+      },
+      {
+        "imageUrl": "../assets/images/spook2.jpg",
+        "description": "More Pumpkins"
+      },
+      {
+        "imageUrl": "../assets/images/spook3.jpg",
+        "description": "Even More Pumpkins"
+      },
+      {
+        "imageUrl": "../assets/images/spook4.jpg",
+        "description": "Even Even More Pumpkins"
+      },
+      {
+        "imageUrl": "../assets/images/spook5.jpg",
+        "description": "Even Even Even More Pumpkins"
+      },
+      {
+        "imageUrl": "../assets/images/spook6.jpg",
+        "description": "Rawr"
+      },
+      {
+        "imageUrl": "../assets/images/spook7.jpg",
+        "description": "Murder mystery"
+      },
+      {
+        "imageUrl": "../assets/images/spook8.png",
+        "description": "The Exorcist"
+      },
+      {
+        "imageUrl": "../assets/images/spook9.jpg",
+        "description": "How to eat 3 apples in parallel"
+      },
+      {
+        "imageUrl": "../assets/images/spook10.jpg",
+        "description": "UFO spotting"
+      },
+      {
+        "imageUrl": "../assets/images/spook11.jpg",
+        "description": "Tribe Leader Cao"
+      },
+      {
+        "imageUrl": "../assets/images/spook12.jpg",
+        "description": "Autumn Painting"
+      }
+    ]
+  }
+  
