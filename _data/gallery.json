@@ -1,54 +1,4 @@
 {
-    "Seasonal Gallery": [
-      {
-        "imageUrl": "../assets/images/summer1.jpeg",
-        "description": "3 Stooges"
-      },
-      {
-        "imageUrl": "../assets/images/summer2.jpg",
-        "description": "I'm something of a celebrity"
-      },
-      {
-        "imageUrl": "../assets/images/summer3.jpg",
-        "description": "POV: You're getting buried alive"
-      },
-      {
-        "imageUrl": "../assets/images/summer4.jpg",
-        "description": "Pinkies up!"
-      },
-      {
-        "imageUrl": "../assets/images/summer5.jpg",
-        "description": "I'm actually 100ft in the air"
-      },
-      {
-        "imageUrl": "../assets/images/summer6.jpg",
-        "description": "Creatures of the night"
-      },
-      {
-        "imageUrl": "../assets/images/summer7.jpg",
-        "description": "Bro is scared of the water"
-      },
-      {
-        "imageUrl": "../assets/images/summer8.jpg",
-        "description": "When I paint on the walls they call it vandalism"
-      },
-      {
-        "imageUrl": "../assets/images/summer9.jpg",
-        "description": "The ugly duckling that stayed ugly"
-      },
-      {
-        "imageUrl": "../assets/images/summer10.jpg",
-        "description": "Cloud."
-      },
-      {
-        "imageUrl": "../assets/images/summer11.jpg",
-        "description": "Foie Gras is disgusting"
-      },
-      {
-        "imageUrl": "../assets/images/summer12.jpg",
-        "description": "POV: you can't afford roads"
-      }
-    ],
     "Rabbit Gallery": [
       {
         "imageUrl": "../assets/images/pudding1.png",
@@ -149,7 +99,57 @@
         "description": "Guess the incoming dish"
       }
     ],
-    "Spooky Gallery": [
+    "Summer Gallery": [
+      {
+        "imageUrl": "../assets/images/summer1.jpeg",
+        "description": "3 Stooges"
+      },
+      {
+        "imageUrl": "../assets/images/summer2.jpg",
+        "description": "I'm something of a celebrity"
+      },
+      {
+        "imageUrl": "../assets/images/summer3.jpg",
+        "description": "POV: You're getting buried alive"
+      },
+      {
+        "imageUrl": "../assets/images/summer4.jpg",
+        "description": "Pinkies up!"
+      },
+      {
+        "imageUrl": "../assets/images/summer5.jpg",
+        "description": "I'm actually 100ft in the air"
+      },
+      {
+        "imageUrl": "../assets/images/summer6.jpg",
+        "description": "Creatures of the night"
+      },
+      {
+        "imageUrl": "../assets/images/summer7.jpg",
+        "description": "Bro is scared of the water"
+      },
+      {
+        "imageUrl": "../assets/images/summer8.jpg",
+        "description": "When I paint on the walls they call it vandalism"
+      },
+      {
+        "imageUrl": "../assets/images/summer9.jpg",
+        "description": "The ugly duckling that stayed ugly"
+      },
+      {
+        "imageUrl": "../assets/images/summer10.jpg",
+        "description": "Cloud."
+      },
+      {
+        "imageUrl": "../assets/images/summer11.jpg",
+        "description": "Foie Gras is disgusting"
+      },
+      {
+        "imageUrl": "../assets/images/summer12.jpg",
+        "description": "POV: you can't afford roads"
+      }
+    ],
+    "Fall Gallery": [
       {
         "imageUrl": "../assets/images/spook1.jpg",
         "description": "Pumpkins"
