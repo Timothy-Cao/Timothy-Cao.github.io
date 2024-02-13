@@ -49,6 +49,7 @@ permalink: /gallery/
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 30px;
   }
 
   .tab {
