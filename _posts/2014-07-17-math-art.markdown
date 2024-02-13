@@ -2,6 +2,6 @@
 layout: default
 modal-id: 2
 img: portfolio-desmos.png
-description: Everything is math.
+description: What medium do I make my digit art with? Have you heard of desmos.com?
 link: /math/
 ---

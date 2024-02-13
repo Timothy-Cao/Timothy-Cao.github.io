@@ -41,6 +41,12 @@ permalink: /riddle/
 </style>
 
 
+insert self-referencing riddle generator code here
+
+
+insert fermi estimation puzzle generator code here
+
+
 <!-----------------------------TETRIS PUZZLE ----------------------------->
 <div class="bubble-section">
 
