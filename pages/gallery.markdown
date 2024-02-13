@@ -78,6 +78,8 @@ permalink: /gallery/
 }
 </style>
 
+# Gallery
+
 <div class="tab-container">
   {% for gallery in site.data.gallery %}
     <div class="tab" onclick="showGallery('{{ gallery[0] | slugify }}')">{{ gallery[0] }}</div>
