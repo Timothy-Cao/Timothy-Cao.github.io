@@ -42,7 +42,7 @@ This piece is from September 2023, as suggested by the name. Written for solo pi
 
 ## <span style="color: #6666FF;">8 bit nostalgia</span>
 
-This 2023 piece is written for solo piano but recorded as a synthesizer.
+This 2021 piece is written for solo piano but recorded as a synthesizer.
 
 <html>
 <body>
@@ -122,7 +122,6 @@ This 2017 piece is my first orchestral piece, drawing light inspiration from map
 <body>
   <audio controls>
     <source src="../assets/audio/violin_nostalgia.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 </body>
 </html>
@@ -135,7 +134,6 @@ Variations on autumn leaves for our jazz band. This  WIP was arranged in 2023. I
 <body>
   <audio controls>
     <source src="../assets/audio/Tim's Leaves.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 </body>
 </html>
