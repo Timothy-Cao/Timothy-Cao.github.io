@@ -3,8 +3,8 @@ layout: page
 permalink: /nasa/
 ---
 
-<h2 class="apod-title">NASA picture of the day</h2>
-<p style="; margin: 10px 0;">Photo and fun fact for <span id="current-day"></span></p>
+<h2 class="apod-title">Some astronomy everyday keeps your anthropocentrism at bay</h2>
+<p style="; margin: 10px 0;"><span id="current-day"></span></p>
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
 </div>
