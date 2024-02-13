@@ -4,7 +4,7 @@ permalink: /nasa/
 ---
 
 <h2 class="apod-title">NASA picture of the day</h2>
-<p style="; margin: 10px 0;">Photo for <span id="current-day"></span></p>
+<p style="; margin: 10px 0;">Photo and fun fact for <span id="current-day"></span></p>
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
 </div>
