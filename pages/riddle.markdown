@@ -67,7 +67,7 @@ function toggleSpoiler(spoilerId) {
   </div>
 </div>
 
-<script src="/path/to/fermi.js"></script>
+<script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
 
 
 
