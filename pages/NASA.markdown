@@ -5,12 +5,13 @@ permalink: /nasa/
 
 <h2 class="apod-title">Picture of the day</h2>
 
+<p><span id="current-day"></span></p>
 
-<p> <span id="current-day"> </p>
+<br><p class="apod-description"></p><br>
+
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
 </div>
-<br><p class="apod-description"></p><br>
 <script>
   const currentDaySpan = document.getElementById('current-day');
   const today = new Date();
