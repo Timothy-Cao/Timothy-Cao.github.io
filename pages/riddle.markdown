@@ -12,7 +12,6 @@ permalink: /riddle/
   }
 </style>
 
-
 <style>
   button {
     margin-bottom: 10px;
@@ -39,8 +38,19 @@ permalink: /riddle/
   }
 </style>
 
+<script>
+function toggleSpoiler(spoilerId) {
+    const spoiler = document.getElementById(spoilerId);
+    if (spoiler.style.display === "none") {
+        spoiler.style.display = "block";
+    } else {
+        spoiler.style.display = "none";
+    }
+}
+</script>
 
-<!-- Placeholder for the generated riddle -->
+
+<!-----------------------------GENERATED SELF-REFERENCE PUZZLE ----------------------------->
 <script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
 <div id="generated-riddle"></div>
 
@@ -51,21 +61,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const { question, statements, correctAnswer } = generateQuestion();
     console.log('Question generated:', question);
     
-    // Construct the HTML for the question and its multiple-choice options
     let contentHtml = `<div class="puzzle"><h3>Generated Riddle</h3><p>${question}</p><ol>`;
     statements.forEach((statement, index) => {
       contentHtml += `<li>${statement}</li>`;
     });
-    contentHtml += `</ol><p>Correct Answer: ${correctAnswer}</p></div>`;
+    contentHtml += `</ol>`;
     
-    // Insert the generated content into the page
+    contentHtml += `<button onclick="toggleSpoiler('correctAnswer')">Show/Hide Correct Answer</button>`;
+    contentHtml += `<div id="correctAnswer" style="display:none;"><p>${correctAnswer}</p></div>`;
+    
     document.getElementById('generated-riddle').innerHTML = contentHtml;
   } catch (error) {
     console.error('Error generating question:', error);
   }
 });
 </script>
-
 
 insert fermi estimation puzzle generator code here
 
@@ -88,16 +98,6 @@ insert fermi estimation puzzle generator code here
 </div>
 </div>
 
-<script>
-function toggleSpoiler(spoilerId) {
-    const spoiler = document.getElementById(spoilerId);
-    if (spoiler.style.display === "none") {
-        spoiler.style.display = "block";
-    } else {
-        spoiler.style.display = "none";
-    }
-}
-</script>
 <!-----------------------------CHESS PUZZLE ----------------------------->
 <div class="bubble-section">
 <h2>Chess Puzzles</h2>
