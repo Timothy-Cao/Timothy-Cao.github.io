@@ -46,15 +46,18 @@ permalink: /riddle/
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
-  const { questionText, correctAnswer } = generateQuestion();
+  // Call the generateQuestion function to get the question and statements
+  const { question, statements, correctAnswer } = generateQuestion();
   
-  document.getElementById('generated-riddle').innerHTML = `
-    <div class="puzzle">
-      <h3>Generated Riddle</h3>
-      <p>${questionText}</p>
-      <p>Correct Answer: ${correctAnswer}</p>
-    </div>
-  `;
+  // Construct the HTML for the question and its multiple-choice options
+  let contentHtml = `<div class="puzzle"><h3>Generated Riddle</h3><p>${question}</p><ol>`;
+  statements.forEach((statement, index) => {
+    contentHtml += `<li>${statement}</li>`;
+  });
+  contentHtml += `</ol><p>Correct Answer: ${correctAnswer}</p></div>`;
+  
+  // Insert the generated content into the page
+  document.getElementById('generated-riddle').innerHTML = contentHtml;
 });
 </script>
 
