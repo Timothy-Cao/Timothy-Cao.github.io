@@ -117,12 +117,6 @@ insert fermi estimation puzzle generator code here
     <p>New puzzles are cycled in every month!</p>
 
     <div class="puzzle">
-        <h3 style=": #6666FF;">Triangle Puzzle</h3>
-        <p>Draw 3 straight lines on top of this image to create 9 triangles:</p>
-        <img src="../assets/images/triangle_puzzle.png" alt="Triangle Puzzle">
-    </div>
-
-    <div class="puzzle">
         <h3 style=": #6666FF;">Chameleon Puzzle</h3>
         <p>There are 13 Red, 15 Green, and 17 Blue Chameleons at some point of time. Whenever two Chameleons of the different s meet both of them change their  to the third . Is it ever possible for all Chameleons to become of the same ?</p>
     </div>
