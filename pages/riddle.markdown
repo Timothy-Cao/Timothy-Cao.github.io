@@ -28,6 +28,17 @@ button {
   border-radius: 12px;
 }
 
+#scrollToTopButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+  z-index: 1000;
+}
+
 .quiz-options li {
   cursor: pointer;
   list-style-type: none;
@@ -94,6 +105,17 @@ function toggleSpoiler(spoilerId) {
 function scrollToTop() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('#table-of-contents ul li a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(link.getAttribute('href')).scrollIntoView({ 
+        behavior: 'smooth' 
+      });
+    });
+  });
+});
 </script>
 
 <div id="table-of-contents">
@@ -107,65 +129,46 @@ function scrollToTop() {
   </ul>
 </div>
 
-<button onclick="scrollToTop()">Scroll to Top</button>
+<button id="scrollToTopButton" onclick="scrollToTop()">Scroll to Top</button>
 
 <h2 id="fermi-estimations">Fermi Estimations</h2>
+<div class="bubble-section">
+  <div id="howto" class="hidden" style="margin-bottom: 20px;">
+      <p>In Science Olympiad, Fermi questions are a type of question that asks for answers given in powers of ten. For example, an estimated answer of 300 km is put in scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
+      <ul>
+          <li>5 points for the correct power of ten</li>
+          <li>3 points for one off</li>
+          <li>1 point for two off</li>
+      </ul>
+      <p>Want to know more? Click <a href="https://scioly.org/wiki/index.php/Fermi_Questions">here</a>.</p>
+  </div>
 
-<div id="howto" class="hidden" style="margin-bottom: 20px;">
-    <p>In Science Olympiad, Fermi questions are a type of question that asks for answers given in powers of ten. For example, an estimated answer of 300 km is put in scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
-    <ul>
-        <li>5 points for the correct power of ten</li>
-        <li>3 points for one off</li>
-        <li>1 point for two off</li>
-    </ul>
-    <p>Want to know more? Click <a href="https://scioly.org/wiki/index.php/Fermi_Questions">here</a>.</p>
+  <div class="content-container">
+      <div class="field">
+          <label class="label" id="fermi-question"></label>
+          <div class="control">
+              <input onkeypress="enter(event)" class="input" id="fermi-answer" type="number" pattern="[0-9]*" />
+          </div>
+      </div>
+      <br>
+      <button onclick="check_answer()" id="fermi-button" class="button is-link">Check Answer</button>
+      <div id="result" class="content"></div>
+      <div id="score" class="content">
+          You currently have: <span id="points">0</span> points<br />
+          You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span><br />
+      </div>
+      <div id="fermi-source" class="content"></div>
+  </div>
 </div>
-
-<div class="content-container">
-    <div class="field">
-        <label class="label" id="fermi-question"></label>
-        <div class="control">
-            <input onkeypress="enter(event)" class="input" id="fermi-answer" type="number" pattern="[0-9]*" />
-        </div>
-    </div>
-    <br>
-    <button onclick="check_answer()" id="fermi-button" class="button is-link">Check Answer</button>
-    <div id="result" class="content"></div>
-    <div id="score" class="content">
-        You currently have: <span id="points">0</span> points<br />
-        You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span><br />
-    </div>
-    <div id="fermi-source" class="content"></div>
-</div>
-
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
 
 <hr> <!-- Visual divider -->
 
 <h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
-<script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
-<div id="generated-riddle"></div>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-  try {
-    const { question, statements, correctAnswer } = generateQuestion();
-    
-    let contentHtml = `<div class="puzzle"><h3>Self-Reference Puzzles</h3><p>${question}</p><ol>`;
-    statements.forEach((statement, index) => {
-      contentHtml += `<li>${statement}</li>`;
-    });
-    contentHtml += `</ol>`;
-    
-    contentHtml += `<button onclick="toggleSpoiler('correctAnswer')">Show/Hide Correct Answer</button>`;
-    contentHtml += `<div id="correctAnswer" style="display:none;"><p>${correctAnswer}</p></div></div>`;
-    
-    document.getElementById('generated-riddle').innerHTML = contentHtml;
-  } catch (error) {
-    console.error('Error generating question:', error);
-  }
-});
-</script>
+<div class="bubble-section">
+  <script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
+  <div id="generated-riddle"></div>
+</div>
 
 <hr> <!-- Visual divider -->
 
