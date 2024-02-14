@@ -59,6 +59,23 @@ function toggleSpoiler(spoilerId) {
 
 <h3>Fermi Estimations</h3>
 
+<div>
+    <a href="javascript:void(0);" onclick="document.getElementById('howto').classList.toggle('hidden');" style="text-decoration: underline; cursor: pointer;">
+        How do Fermi Questions Work?
+    </a>
+</div>
+
+<div id="howto" class="hidden" style="margin-bottom: 20px;">
+    <p>In Science Olympiad, answers to Fermi questions are given in powers of ten. For example, an estimated answer to the above question of 400 licks is put in scientific notation as 4⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 licks, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
+    <p>Points are given as follows:</p>
+    <ul>
+        <li>5 points for the correct power of ten</li>
+        <li>3 points for one away from the correct power of ten</li>
+        <li>1 point for two away from the correct power of ten</li>
+    </ul>
+    <p>Want to know more? Click<a href="https://scioly.org/wiki/index.php/Fermi_Questions">here</a>.</p>
+</div>
+
 <div class="content-container">
     <div class="field">
         <label class="label" id="fermi-question"></label>
@@ -77,8 +94,8 @@ function toggleSpoiler(spoilerId) {
     <div id="fermi-source" class="content"></div>
 </div>
 
-<!-- Reference to fermi.js and any other necessary scripts or styles -->
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
+
 
 
 
