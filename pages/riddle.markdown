@@ -61,6 +61,7 @@ function toggleSpoiler(spoilerId) {
             <input onkeypress="enter(event)" class="input" id="fermi-answer" type="number" pattern="[0-9]*" />
         </div>
     </div>
+    <br>
     <button onclick="negate_answer()" title="Negate your answer" id="negate-button" class="button is-link">+/-</button>
     <button onclick="check_answer()" id="fermi-button" class="button is-link">Check Answer</button>
     <div id="result" class="content"></div>
@@ -73,7 +74,6 @@ function toggleSpoiler(spoilerId) {
 
 <!-- Reference to fermi.js and any other necessary scripts or styles -->
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
-<link rel="stylesheet" href="{{ '/path/to/styles.css' | relative_url }}">
 
 
 
