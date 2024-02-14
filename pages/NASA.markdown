@@ -3,17 +3,6 @@ layout: page
 permalink: /nasa/
 ---
 
-
- <h2 class="apod-title">Picture of the day</h2>
-    <p style="text-align: center; margin: 10px 0;">Photo for <span id="current-day"></span></p>
-    <div class="apod-image">
-      <img src="" alt="Picture of the Day">
-    </div>
-    <p class="apod-description"></p>
-
-
-
-    
 <h2 class="apod-title">Picture of the day</h2>
 
 <p><span id="current-day"></span></p>
