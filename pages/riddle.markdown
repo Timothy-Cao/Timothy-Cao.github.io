@@ -53,6 +53,27 @@ function toggleSpoiler(spoilerId) {
 }
 </script>
 
+
+<div class="fermi-game">
+  <div class="fermi-game">
+      <label id="fermi-question"></label>
+      <input onkeypress="enter(event)" id="fermi-answer" type="number" />
+      <button onclick="negate_answer()" id="negate-button">+/-</button>
+      <button onclick="check_answer()" id="fermi-button">Check Answer</button>
+      <div id="result"></div>
+      <div id="score">You currently have: <span id="points">0</span> points<br />
+      You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span></div>
+      <div id="fermi-source"></div>
+  </div>
+</div>
+
+<script src="/path/to/fermi.js"></script>
+
+
+
+
+
+
 <!-- GENERATED SELF-REFERENCE PUZZLE -->
 <script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
 <div id="generated-riddle"></div>
