@@ -172,9 +172,3 @@ function source(source) {
         date
     );
 }
-
-// toggle the negative/positive sign on the answer field
-function negate_answer() {
-    document.getElementById('fermi-answer').value =
-        -document.getElementById('fermi-answer').value;
-}

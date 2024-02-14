@@ -77,7 +77,6 @@ function toggleSpoiler(spoilerId) {
         </div>
     </div>
     <br>
-    <button onclick="negate_answer()" title="Negate your answer" id="negate-button" class="button is-link">+/-</button>
     <button onclick="check_answer()" id="fermi-button" class="button is-link">Check Answer</button>
     <div id="result" class="content"></div>
     <div id="score" class="content">
@@ -88,8 +87,6 @@ function toggleSpoiler(spoilerId) {
 </div>
 
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
-
-
 
 
 
