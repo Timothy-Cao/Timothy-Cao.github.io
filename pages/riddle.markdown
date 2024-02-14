@@ -76,8 +76,10 @@ insert fermi estimation puzzle generator code here
 <h2>Tetris Puzzles</h2>
 <p>A surprisingly hard puzzle that may arise from PCO. </p>
 <p>The goal is to fully clear the board.</p>
-<img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;"><br>
 <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
+<br>
+<img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;">
+<br>
 <div>
   <button onclick="toggleSpoiler('tetrisSpoiler1')">Show/Hide Hint</button>
   <div id="tetrisSpoiler1" style="display:none;">
@@ -115,28 +117,9 @@ function toggleSpoiler(spoilerId) {
     <p>New puzzles are cycled in every month!</p>
 
     <div class="puzzle">
-        <h3 style=": #6666FF;">Meta Puzzle</h3>
-        <p>What is the correct answer?</p>
-        <ol>
-            <li>All of the below</li>
-            <li>None of the below</li>
-            <li>All of the above</li>
-            <li>One of the above</li>
-            <li>None of the above</li>
-            <li>None of the above.</li>
-        </ol>
-    </div>
-
-    <div class="puzzle">
         <h3 style=": #6666FF;">Triangle Puzzle</h3>
         <p>Draw 3 straight lines on top of this image to create 9 triangles:</p>
         <img src="../assets/images/triangle_puzzle.png" alt="Triangle Puzzle">
-    </div>
-
-    <div class="puzzle">
-        <h3 style=": #6666FF;">Scooter Puzzle</h3>
-        <p>Amanda lives with her teenage son, Matt, in the countryside—a car ride away from Matt’s school. Every afternoon, Amanda leaves the house at the same time, drives to the school at a constant speed, picks Matt up exactly when his chess club ends at 5 p.m., and then they immediately return home together at the same constant speed. But one day, Matt isn’t feeling well, so he leaves chess practice early and starts to head home on his portable scooter.</p>
-        <p>After Matt has been scooting for an hour, Amanda comes across him in her car (on her usual route to pick him up), and they return together, arriving home 40 minutes earlier than they usually do. How much chess practice did Matt miss?</p>
     </div>
 
     <div class="puzzle">
@@ -147,29 +130,7 @@ function toggleSpoiler(spoilerId) {
     <div class="puzzle">
         <h3 style=": #6666FF;">Handshake Puzzle</h3>
         <p>Five couples, including Obama and Michelle, meet at a bar. Eager to greet one another, every person shakes hands with those they haven't previously met. After the greetings, Michelle asks everyone about the number of hands they shook and gets nine different answers.</p>
-        <p>Question: How many hands did Obama shake?</p>
-    </div>
-</div>
-
-<!-----------------------------MATH PUZZLE ----------------------------->
-<div class="bubble-section">
-    <h2>Math Puzzle</h2>
-
-    <div class="puzzle">
-        <h3 style=": #6666FF;">The Four 4's Puzzle</h3>
-        <p>Using exactly four \(4\)'s and the operations \(+\), \(-\), \(\times\), \(\div\), \(\sqrt{x}\), and \(x^y\), and brackets, how many integers starting from 0 can you produce?</p>
-        <p>For instance:<br>
-        \(0 = 44 - 44\) <br>
-        \(1 = \frac{44}{44}\) <br>
-        \(2 = \frac{4}{4} + \frac{4}{4}\) <br>
-        ... and so on.
-        </p>
-        <p>How many integers can you form?</p>
-
-        <div class="bonus-section">
-            <h4 style=": #6666FF;">Bonus Challenge:</h4>
-            <p>Can you generalize your solution to produce any positive integer?</p>
-        </div>
+        <p>How many hands did Obama shake?</p>
     </div>
 </div>
 
