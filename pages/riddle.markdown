@@ -63,6 +63,25 @@ button {
   font-style: italic;
   color: #333;
 }
+
+/* Table of Contents */
+#table-of-contents {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+#table-of-contents ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#table-of-contents ul li a {
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
 </style>
 
 <script>
@@ -70,11 +89,27 @@ function toggleSpoiler(spoilerId) {
   const spoiler = document.getElementById(spoilerId);
   spoiler.style.display = spoiler.style.display === "none" ? "block" : "none";
 }
+
+// Scroll to top function
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 </script>
 
-<h2>Generated Logic Puzzles</h2>
+<div id="table-of-contents">
+  <h4>Table of Contents</h4>
+  <ul>
+    <li><a href="#fermi-estimations">Fermi Estimations</a></li>
+    <li><a href="#self-reference-puzzles">Self-Reference Puzzles</a></li>
+    <li><a href="#tetris-puzzles">Tetris Puzzles</a></li>
+    <li><a href="#chess-puzzles">Chess Puzzles</a></li>
+    <li><a href="#logic-puzzles">Logic Puzzles</a></li>
+  </ul>
+</div>
 
-<h3>Fermi Estimations</h3>
+<button onclick="scrollToTop()">Scroll to Top</button>
+
+<h2 id="fermi-estimations">Fermi Estimations</h2>
 
 <div id="howto" class="hidden" style="margin-bottom: 20px;">
     <p>In Science Olympiad, Fermi questions are a type of question that asks for answers given in powers of ten. For example, an estimated answer of 300 km is put in scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
@@ -107,7 +142,7 @@ function toggleSpoiler(spoilerId) {
 
 <hr> <!-- Visual divider -->
 
-<!-- GENERATED SELF-REFERENCE PUZZLE -->
+<h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
 <script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
 <div id="generated-riddle"></div>
 
@@ -134,9 +169,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 <hr> <!-- Visual divider -->
 
-<!-- TETRIS PUZZLE -->
+<h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
-  <h2>Tetris Puzzles</h2>
   <p>A surprisingly hard puzzle that may arise from PCO. The goal is to fully clear the board.</p>
   <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a><br>
   <img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;"><br>
@@ -150,9 +184,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 <hr> <!-- Visual divider -->
 
-<!-- CHESS PUZZLE -->
+<h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
-  <h2>Chess Puzzles</h2>
   <p>Difficulty: ~2400</p>
   <img src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
   <div>
@@ -166,9 +199,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 <hr> <!-- Visual divider -->
 
-<!-- LOGIC PUZZLE -->
+<h2 id="logic-puzzles">Logic Puzzles</h2>
 <div class="bubble-section">
-  <h2>Logic Puzzles</h2>
   <p>New puzzles are cycled in every month!</p>
 
   <div class="puzzle">
