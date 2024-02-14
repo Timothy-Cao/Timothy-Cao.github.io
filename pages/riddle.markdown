@@ -5,23 +5,43 @@ permalink: /riddle/
 
 <style>
 .bubble-section {
+  background-color: #f9f9f9;
   border-radius: 15px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
   padding: 20px;
   margin-bottom: 20px;
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 button {
-  margin-bottom: 10px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
 }
 
 .quiz-options li {
   cursor: pointer;
   list-style-type: none;
-  padding: 5px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #ddd;
+  border: none;
   margin: 5px 0;
+  text-align: center;
+  user-select: none;
+  border-radius: 5px;
+}
+
+.quiz-options li:hover {
+  background-color: #ccc;
 }
 
 #quiz-popup {
@@ -29,7 +49,8 @@ button {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   max-width: 80%;
-  overflow: auto;
+  margin: 20px auto;
+  background-color: #fff;
 }
 
 .quiz-question, .puzzle h3 {
@@ -39,21 +60,17 @@ button {
 
 .quiz-feedback {
   margin-top: 10px;
+  font-style: italic;
+  color: #333;
 }
 </style>
 
 <script>
 function toggleSpoiler(spoilerId) {
   const spoiler = document.getElementById(spoilerId);
-  if (spoiler.style.display === "none") {
-    spoiler.style.display = "block";
-  } else {
-    spoiler.style.display = "none";
-  }
+  spoiler.style.display = spoiler.style.display === "none" ? "block" : "none";
 }
 </script>
-
-
 
 <h2>Generated Logic Puzzles</h2>
 
@@ -88,10 +105,7 @@ function toggleSpoiler(spoilerId) {
 
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
 
-
-<hr>
-
-
+<hr> <!-- Visual divider -->
 
 <!-- GENERATED SELF-REFERENCE PUZZLE -->
 <script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>

@@ -165,10 +165,6 @@ function source(source) {
     return (
         '<a href="' +
         link +
-        '" target="_blank">Previous question</a>' +
-        ' sourced by ' +
-        author +
-        ' on ' +
-        date
+        '" target="_blank">Previous question</a>'
     );
 }
