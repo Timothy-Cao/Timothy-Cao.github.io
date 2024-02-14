@@ -3,17 +3,17 @@ layout: page
 permalink: /math/
 ---
 
-## What's Desmos?</span>
+## What's Desmos?>
 
 [Desmos](https://www.desmos.com/calculator) is an online graphing calculator whos appeal is owed to its abundant array of features, empowering users to craft splendid creations solely through the foundation of mathematics.
 
 <hr>
 
-## Basic Graphing Functions</span>
+## Basic Graphing Functions>
 
 If you're reading this, it's likely that you've gone through high school math, and perhaps even university-level math. Moving forward, I'll assume you have a grasp of first-year university mathematics. While I won't extensively delve into pure math, I will focus on how mathematical concepts intersect with art in this context.
 
-###  Linear Functions</span>
+###  Linear Functions>
 
 Linear functions are the simplest functions to both design and bound. In theory, a masterpiece could be indistinguishably approximated with sufficient linear functions given an infinitely powerful computer to render it on Desmos. However, due to computational restraints of the website and the amount of time it would to write (or generate) all linear functions, it's an infeasible method. Instead, we will use linear functions only for straight lines. This may be a promiment feature in the art depending on the theme. For example, a 2-point perspective city art will contain primarily straight lines, while organic drawings will contain almost none. 
 
@@ -32,7 +32,7 @@ Cubes aren't curvy without perspective distortion.
 
 Fun fact: that linear function bounds can be entirely described with a single variable.
 
-### Polynomial Functions</span>
+### Polynomial Functions>
 
 Polynomials show up often in math classes, but it's function in art is less pronounced. Most degrees of polynomials simply don't have an important shape in art aside from possibly the quadratic. And even so most shapes you see in real life that look like a quadratic aren't. For example Catenary functions better describe hanging chains than quadratics. Polynomials functions in Desmos art truly only shines in motion. 
 
@@ -44,7 +44,7 @@ vs
 Quadratics
 $$ (y-y_1) = a(x-x_1)^2 $$
 
-### Parametric Equations</span>
+### Parametric Equations>
 
 Parametric equations introduce a pair of variables, usually denoted as $$x(t)$$ and $$y(t)$$, to define a curve. Parametric functions act most similar to how a hand would draw as they start at a point and move with some pattern, similar to an artist. Introducing piecewise definition to parametric functions allows one to draw art of unbounded complexity, but just like code it's important to ensure readability and not just have a "1-liner" in Desmos. This is so that sections can be reused or modified in the future. 
 
@@ -55,47 +55,47 @@ $$\left(16\left(\sin t\right)^{3},13\cos t-5\cos\left(2t\right)-2\cos\left(3t\ri
 
 ![heart](../assets/images/desmos_heart.png){:width="300px" height="300px"}
 
-### Rotational wrapper functions</span>
+### Rotational wrapper functions>
 
-### Splines</span>
+### Splines>
 
-### Ellipses and circles</span>
+### Ellipses and circles>
 
 <hr>
 
-## Advanced Techniques</span>
+## Advanced Techniques>
 
-### Domain coloring</span>
+### Domain coloring>
 
-### Lag management</span>
+### Lag management>
 
-### </span>
+### >
 
-### Animating with sliders</span>
+### Animating with sliders>
 
 <iframe src="https://www.desmos.com/calculator/wyvgcujo4p" width="100%" style="min-height:400px"></iframe>
 
-### 3-D rendering</span>
+### 3-D rendering>
 
 
-### Animating 3-D Graphing</span>
+### Animating 3-D Graphing>
 
 <iframe src="https://www.desmos.com/calculator/yl7ftbic4g" width="100%" style="min-height:400px"></iframe>
 
-### Physics engines</span>
+### Physics engines>
 
-### Adding texture with Fourier and brownian noise</span>
+### Adding texture with Fourier and brownian noise>
 
-### Free style parametrics</span>
+### Free style parametrics>
 
 
 <hr>
 
-## Artistic Vision in Desmos</span>
+## Artistic Vision in Desmos>
 
-### Knowing the limitations</span>
+### Knowing the limitations>
 
-### High density lossy rendering </span>
+### High density lossy rendering >
 
 
 

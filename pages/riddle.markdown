@@ -50,7 +50,7 @@ insert fermi estimation puzzle generator code here
 <!-----------------------------TETRIS PUZZLE ----------------------------->
 <div class="bubble-section">
 
-<h2><span style=": #6666FF;">Tetris Puzzles</span></h2>
+<h2>Tetris Puzzles</h2>
 <p>A surprisingly hard puzzle that may arise from PCO. </p>
 <p>The goal is to fully clear the board.</p>
 <img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;"><br>
@@ -75,7 +75,7 @@ function toggleSpoiler(spoilerId) {
 </script>
 <!-----------------------------CHESS PUZZLE ----------------------------->
 <div class="bubble-section">
-<h2><span style=": #6666FF;">Chess Puzzles</span></h2>
+<h2>Chess Puzzles</h2>
 <p>Difficulty: ~2400</p>
 <img src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
 <div>
@@ -88,7 +88,7 @@ function toggleSpoiler(spoilerId) {
 </div>
 <!-----------------------------LOGIC PUZZLE ----------------------------->
 <div class="bubble-section">
-    <h2><span style=": #6666FF;">Logic Puzzles</span></h2>
+    <h2>Logic Puzzles</h2>
     <p>New puzzles are cycled in every month!</p>
 
     <div class="puzzle">
@@ -130,7 +130,7 @@ function toggleSpoiler(spoilerId) {
 
 <!-----------------------------MATH PUZZLE ----------------------------->
 <div class="bubble-section">
-    <h2><span style=": #6666FF;">Math Puzzle</span></h2>
+    <h2>Math Puzzle</h2>
 
     <div class="puzzle">
         <h3 style=": #6666FF;">The Four 4's Puzzle</h3>

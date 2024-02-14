@@ -7,7 +7,7 @@ permalink: /nasa/
 
 <br><p class="apod-description"></p><br>
 
-<p> <span id="current-day"></span> </p>
+<p> <span id="current-day"> </p>
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
 </div>
