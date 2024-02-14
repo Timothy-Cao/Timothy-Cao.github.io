@@ -3,6 +3,7 @@ layout: page
 permalink: /riddle/
 ---
 
+<script src="questionGenerate.js"></script>
 
 <style>
   .bubble-section {
@@ -41,7 +42,9 @@ permalink: /riddle/
 </style>
 
 
-insert self-referencing riddle generator code here
+<!-- Placeholder for the generated riddle -->
+<div id="generated-riddle"></div>
+
 
 
 insert fermi estimation puzzle generator code here
@@ -149,3 +152,20 @@ function toggleSpoiler(spoilerId) {
         </div>
     </div>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  // Assuming generateQuestion is a function that returns an object with questionText and correctAnswer
+  const { questionText, correctAnswer } = generateQuestion();
+  
+  // Insert the generated question and answer into the div
+  document.getElementById('generated-riddle').innerHTML = `
+    <div class="puzzle">
+      <h3>Generated Riddle</h3>
+      <p>${questionText}</p>
+      <p>Correct Answer: ${correctAnswer}</p>
+    </div>
+  `;
+});
+</script>
