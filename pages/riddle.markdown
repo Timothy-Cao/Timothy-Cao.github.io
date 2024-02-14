@@ -41,7 +41,7 @@ permalink: /riddle/
 
 
 <!-- Placeholder for the generated riddle -->
-<script src="/questionGenerate.js"></script>
+<script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
 <div id="generated-riddle"></div>
 
 <script>
