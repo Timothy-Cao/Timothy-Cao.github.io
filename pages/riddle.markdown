@@ -54,20 +54,27 @@ function toggleSpoiler(spoilerId) {
 </script>
 
 
-<div class="fermi-game">
-  <div class="fermi-game">
-      <label id="fermi-question"></label>
-      <input onkeypress="enter(event)" id="fermi-answer" type="number" />
-      <button onclick="negate_answer()" id="negate-button">+/-</button>
-      <button onclick="check_answer()" id="fermi-button">Check Answer</button>
-      <div id="result"></div>
-      <div id="score">You currently have: <span id="points">0</span> points<br />
-      You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span></div>
-      <div id="fermi-source"></div>
-  </div>
+<div class="content-container">
+    <div class="field">
+        <label class="label" id="fermi-question"></label>
+        <div class="control">
+            <input onkeypress="enter(event)" class="input" id="fermi-answer" type="number" pattern="[0-9]*" />
+        </div>
+    </div>
+    <button onclick="negate_answer()" title="Negate your answer" id="negate-button" class="button is-link">+/-</button>
+    <button onclick="check_answer()" id="fermi-button" class="button is-link">Check Answer</button>
+    <div id="result" class="content"></div>
+    <div id="score" class="content">
+        You currently have: <span id="points">0</span> points<br />
+        You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span><br />
+    </div>
+    <div id="fermi-source" class="content"></div>
 </div>
 
+<!-- Reference to fermi.js and any other necessary scripts or styles -->
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
+<link rel="stylesheet" href="{{ '/path/to/styles.css' | relative_url }}">
+
 
 
 
