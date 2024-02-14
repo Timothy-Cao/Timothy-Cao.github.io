@@ -54,6 +54,11 @@ function toggleSpoiler(spoilerId) {
 </script>
 
 
+
+<h2>Generated Logic Puzzles</h2>
+
+<h3>Fermi Estimations</h3>
+
 <div class="content-container">
     <div class="field">
         <label class="label" id="fermi-question"></label>
@@ -90,7 +95,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   try {
     const { question, statements, correctAnswer } = generateQuestion();
     
-    let contentHtml = `<div class="puzzle"><h3>Generated Self-Reference Riddle</h3><p>${question}</p><ol>`;
+    let contentHtml = `<div class="puzzle"><h3>Self-Reference Puzzles</h3><p>${question}</p><ol>`;
     statements.forEach((statement, index) => {
       contentHtml += `<li>${statement}</li>`;
     });
