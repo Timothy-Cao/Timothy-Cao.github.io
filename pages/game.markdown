@@ -17,6 +17,10 @@ Primeclimb is a math based board game with the goal of getting 2 of your pieces 
 
 This is the  board of which the game is played. We will simplify the game's rules to only the rolling and moving aspect.
 
+<div class="iframe-wrapper">
+  <iframe src="https://www.youtube.com/watch?v=tWhVw3mTpPU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 [Here are the full rules if you're interested](https://mathforlove.com/2010/01/prime-climb-rules/)
 
 ## Naive approach
