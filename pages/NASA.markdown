@@ -7,11 +7,11 @@ permalink: /nasa/
 
 <p><span id="current-day"></span></p>
 
-<p class="apod-description"></p>
-
 <div class="apod-image">
   <img src="" alt="Picture of the Day">
 </div>
+<p class="apod-description"></p>
+
 <script>
   const currentDaySpan = document.getElementById('current-day');
   const today = new Date();
