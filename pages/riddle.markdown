@@ -197,7 +197,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
   <p>A surprisingly hard puzzle that may arise from PCO. The goal is to fully clear the board.</p>
-  <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a><br>
+  <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
+  <br>
+  <br>
   <img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;"><br>
   <div>
     <button onclick="toggleSpoiler('tetrisSpoiler1')">Show/Hide Hint</button>
