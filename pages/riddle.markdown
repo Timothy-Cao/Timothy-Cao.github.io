@@ -200,14 +200,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
   <br>
   <br>
-  <img src="../assets/images/tetris_puzzle1.png" style="width: 300px; height: auto;"><br>
+  <img src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
   <div>
-    <button onclick="toggleSpoiler('tetrisSpoiler1')">Show/Hide Hint</button>
-    <div id="tetrisSpoiler1" style="display:none;">
-      Piece order: O L I Z S. Three of the pieces need to be spun in.
+    <button onclick="toggleSpoiler('tetrisSolution')">Show/Hide Solution</button>
+    <div id="tetrisSolution" style="display:none;">
+      <img src="{{ '/assets/gifs/tetris_solution.gif' | relative_url }}" style="width: 300px; height: auto;">
     </div>
   </div>
 </div>
+
 
 <hr> <!-- Visual divider -->
 
