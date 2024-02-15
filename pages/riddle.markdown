@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     <button onclick="toggleSpoiler('chessSolution')">Show/Hide Solution</button>
     <div id="chessSolution" style="display:none;">
       <img src="{{ '/assets/gifs/chess_solution.gif' | relative_url }}" style="width: 300px; height: auto;">
-      <p>Bishop to G4 threatens a fork between the backrank mate on e1 and the queen!</p>
+      <p>Bishop to G4 threatens a fork between the backrank mate on e1 and the queen! The continuation is white pushes pawn to f3 enabling escape from the backrank on e1.</p>
     </div>
   </div>
 </div>
