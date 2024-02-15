@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
-  <p>A surprisingly hard puzzle that may arise from PCO. The goal is to fully clear the board.</p>
+  <p>The goal is to fully clear the board by filling the bottom 4 rows. You can hold up to 1 piece at a time. Hint: you may need to "spin" pieces into place</p>
   <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
   <br>
   <br>
