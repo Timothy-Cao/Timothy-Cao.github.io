@@ -214,6 +214,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 <h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
+  <p>Black to move</p>
   <p>Difficulty: ~2400</p>
   <img src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
   <div>
