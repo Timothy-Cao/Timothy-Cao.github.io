@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <li>3 points for one off</li>
           <li>1 point for two off</li>
       </ul>
-      <p>Want to know more? Click <a href="https://scioly.org/wiki/index.php/Fermi_Questions">here</a>.</p>
+      <p>If you want to know more details, visit <a href="https://scioly.org/wiki/index.php/Fermi_Questions">the wiki</a>.</p>
   </div>
 
   <div class="content-container">
