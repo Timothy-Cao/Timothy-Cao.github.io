@@ -170,6 +170,28 @@ document.addEventListener('DOMContentLoaded', function() {
   <div id="generated-riddle"></div>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  try {
+    const { question, statements, correctAnswer } = generateQuestion();
+    
+    let contentHtml = `<div class="puzzle"><h3>Self-Reference Puzzles</h3><p>${question}</p><ol>`;
+    statements.forEach((statement, index) => {
+      contentHtml += `<li>${statement}</li>`;
+    });
+    contentHtml += `</ol>`;
+    
+    contentHtml += `<button onclick="toggleSpoiler('correctAnswer')">Show/Hide Correct Answer</button>`;
+    contentHtml += `<div id="correctAnswer" style="display:none;"><p>${correctAnswer}</p></div></div>`;
+    
+    document.getElementById('generated-riddle').innerHTML = contentHtml;
+  } catch (error) {
+    console.error('Error generating question:', error);
+  }
+});
+</script>
+
+
 <hr> <!-- Visual divider -->
 
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
