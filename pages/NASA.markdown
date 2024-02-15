@@ -8,8 +8,8 @@ permalink: /nasa/
 <p><span id="current-day"></span></p>
 
 <p class="apod-description"></p>
-<div class="apod-image">
-  <img src="" alt="Picture of the Day">
+<div class="apod-image" style="max-width:100%; overflow:hidden;">
+  <img src="" alt="Picture of the Day" style="max-width:100%; height:auto;">
 </div>
 
 <script>
@@ -25,7 +25,7 @@ permalink: /nasa/
         const apodImage = document.querySelector('.apod-image img');
         const apodDescription = document.querySelector('.apod-description');
 
-        apodImage.src = data.hdurl || data.url;
+        apodImage.src = data.url;
         apodImage.alt = data.title;
         apodDescription.textContent = data.explanation;
       })
