@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 id="fermi-estimations">Fermi Estimations</h2>
 <div class="bubble-section">
   <div id="howto" class="hidden" style="margin-bottom: 20px;">
-      <p>In Science Olympiad, Fermi questions are a type of question that asks for answers given in powers of ten. For example, an estimated answer of 300 km is put in scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
+      <p>In Science Olympiad, Fermi questions are a type of question that asks for estimates given in powers of ten. For example, an estimated answer of 300 km is put in scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
       <ul>
           <li>5 points for the correct power of ten</li>
           <li>3 points for one off</li>
