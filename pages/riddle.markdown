@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
 <div class="bubble-section">
-  <script src="{{ '/assets/js/questionGenerate.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/selfReference.js' | relative_url }}"></script>
   <div id="generated-riddle"></div>
 </div>
 
