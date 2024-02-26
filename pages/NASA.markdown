@@ -22,11 +22,31 @@ permalink: /nasa/
     fetch('https://api.nasa.gov/planetary/apod?api_key=JELkWxHjp7EmBUP9qCRfEOycHBZtmpf5k5qWlhsT')
       .then(response => response.json())
       .then(data => {
-        const apodImage = document.querySelector('.apod-image img');
+        const apodContainer = document.querySelector('.apod-image');
         const apodDescription = document.querySelector('.apod-description');
 
-        apodImage.src = data.url;
-        apodImage.alt = data.title;
+        // Clear previous content
+        apodContainer.innerHTML = '';
+        apodDescription.textContent = '';
+
+        // Handle image or video
+        if (data.media_type === 'image') {
+          const img = document.createElement('img');
+          img.src = data.url;
+          img.alt = data.title;
+          img.style.maxWidth = '100%';
+          img.style.height = 'auto';
+          apodContainer.appendChild(img);
+        } else if (data.media_type === 'video') {
+          const iframe = document.createElement('iframe');
+          iframe.src = data.url;
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allowfullscreen', 'true');
+          iframe.style.width = '100%';
+          iframe.style.height = '500px'; // Adjust height as needed
+          apodContainer.appendChild(iframe);
+        }
+
         apodDescription.textContent = data.explanation;
       })
       .catch(error => {
@@ -34,5 +54,6 @@ permalink: /nasa/
       });
   });
 </script>
+
 
 <p> An astronomy picture a day keeps the anthropocentrism away. </p>
