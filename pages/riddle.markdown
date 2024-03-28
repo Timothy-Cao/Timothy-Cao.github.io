@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <hr> <!-- Visual divider -->
 
-<h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
+<!-- <h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
 <div class="bubble-section">
   <script src="{{ '/assets/js/selfReference.js' | relative_url }}"></script>
   <div id="generated-riddle"></div>
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.error('Error generating question:', error);
   }
 });
-</script>
+</script> -->
 
 
 <hr> <!-- Visual divider -->
