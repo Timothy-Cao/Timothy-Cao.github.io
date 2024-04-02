@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="bubble-section" style="overflow: hidden;"> <!-- Ensure container encompasses floated elements -->
   <div id="howto" class="hidden" style="margin-bottom: 20px;">
     <!-- Move the image tag before the paragraph and apply float:right -->
-    <img src="{{ '/assets/images/fermi.jpg' | relative_url }}" style="width: 300px; height: auto; float: right; margin-left: 20px;"><br>
+    <img src="{{ '/assets/images/fermi.jpg' | relative_url }}" style="width: 300px; height: auto; float: right; margin-left: 40px; margin-top: 40px;"><br>
     <p>During the development of the atomic bomb at the Trinity test, Enrico Fermi dropped pieces of paper from his hand during the atomic blast. By observing the distance the paper traveled, he estimated that the bomb was roughly equivalent to 10 kilotons of TNT. This estimate was later verified to be within an order of magnitude of the actual yield of 21 kilotons. This process, now named Fermi estimations, is used today to estimate measurements that are difficult to calculate. The premise of the method is that overestimates and underestimates generally cancel each other out across orders of magnitude during calculations. The challenging part of making Fermi estimations is devising a path of calculations that minimizes uncertainty and variance.</p>
     <p>In Science Olympiad, Fermi Questions ask for estimates given in powers of ten. For example, an estimated answer of 300 km is put into scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
     <ul>
@@ -141,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <li>3 points for one off</li>
       <li>1 point for two off</li>
     </ul>
-    <p>If you want to know more details, visit <a href="https://scioly.org/wiki/index.php/Fermi_Questions">the wiki</a>.</p>
   </div>
 
   <div class="content-container">
