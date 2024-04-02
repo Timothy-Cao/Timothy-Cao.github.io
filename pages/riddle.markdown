@@ -122,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
   <h4>Table of Contents</h4>
   <ul>
     <li><a href="#fermi-estimations">Fermi Estimations</a></li>
-    <li><a href="#self-reference-puzzles">Self-Reference Puzzles</a></li>
     <li><a href="#tetris-puzzles">Tetris Puzzles</a></li>
     <li><a href="#chess-puzzles">Chess Puzzles</a></li>
     <li><a href="#logic-puzzles">Logic Puzzles</a></li>
