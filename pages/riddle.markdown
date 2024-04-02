@@ -142,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <li>1 point for two off</li>
     </ul>
   </div>
-
   <div class="content-container">
       <div class="field">
           <label class="label" id="fermi-question"></label>
@@ -155,40 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
       <div id="result" class="content"></div>
       <div id="score" class="content">
           You currently have: <span id="points">0</span> points<br />
-          You are on question: <span id="qnumber">0</span><br />
+          You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span><br />
       </div>
       <div id="fermi-source" class="content"></div>
   </div>
 </div>
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
-
-<!-- <h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
-<div class="bubble-section">
-  <script src="{{ '/assets/js/selfReference.js' | relative_url }}"></script>
-  <div id="generated-riddle"></div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', (event) => {
-  try {
-    const { question, statements, correctAnswer } = generateQuestion();
-    
-    let contentHtml = `<div class="puzzle"><h3>Self-Reference Puzzles</h3><p>${question}</p><ol>`;
-    statements.forEach((statement, index) => {
-      contentHtml += `<li>${statement}</li>`;
-    });
-    contentHtml += `</ol>`;
-    
-    contentHtml += `<button onclick="toggleSpoiler('correctAnswer')">Show/Hide Correct Answer</button>`;
-    contentHtml += `<div id="correctAnswer" style="display:none;"><p>${correctAnswer}</p></div></div>`;
-    
-    document.getElementById('generated-riddle').innerHTML = contentHtml;
-  } catch (error) {
-    console.error('Error generating question:', error);
-  }
-});
-</script> -->
-
 
 <hr> <!-- Visual divider -->
 
