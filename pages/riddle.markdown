@@ -149,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <button onclick="check_answer()" id="fermi-button" class="button is-link">Check Answer</button>
       <div id="result" class="content"></div>
       <div id="score" class="content">
-          You currently have: <span id="points">0</span> points<br />
-          You are on question: <span id="qnumber">0</span>/<span id="tnumber"></span><br />
+          You have: <span id="points">0</span> points<br />
+          Question: <span id="qnumber">0</span>/<span id="tnumber"></span><br />
       </div>
       <div id="fermi-source" class="content"></div>
   </div>
