@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <h2 id="fermi-estimations">Fermi Estimations</h2>
 <div class="bubble-section">
   <div id="howto" class="hidden" style="margin-bottom: 20px;">
+      <p>During the development of the atomic bomb at the Trinity test, Enciro Fermi dropped pieces of paper from his hand during the atomic blast. With the distance the paper traveled, he made an estimate that the bomb was roughly equivalent to 10 kilotons of TNT. This was later verified to be within an order of magnitude of 21 kilotons. This process, now named fermi estimations is used today to estimate very difficult to calculate measurements. The premise of the method is that over and underestimates generally cancel each other out in the order of magnitudes during calculations. The challenging part of making fermi estimations is coming up a path of calculations that minimizes uncertainty and variance. </p>
       <p>In Science Olympiad, Fermi questions are a type of question that asks for estimates given in powers of ten. For example, an estimated answer of 300 km is put in scientific notation as 3⋅10<sup>2</sup>, and the exponent on the ten is used as the answer, yielding 2. If the estimate was 600 km, or 6⋅10<sup>2</sup>, then the answer would be 3, rounding up.</p>
       <ul>
           <li>5 points for the correct power of ten</li>
@@ -161,8 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
-
-<hr> <!-- Visual divider -->
 
 <!-- <h2 id="self-reference-puzzles">Self-Reference Puzzles</h2>
 <div class="bubble-section">
