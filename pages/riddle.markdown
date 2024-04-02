@@ -161,7 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
-  <p>The goal is to fully clear the board by filling the bottom 4 rows. You can hold up to 1 piece at a time. </p> 
+  <p>Tetris has evolved significantly from its origins as a single-player, high-score-focused game, where the main strategy was executing quad line clears. Nowadays, it has shifted towards a competitive player vs. player format, introducing a variety of strategic plays for attacking and defending. Among these strategies, the "full clear"—eliminating all pieces from the board in one move—stands out as a major offensive tactic. Achieving a full clear requires considerable puzzle-solving skills and foresight, representing one of the most powerful attacks against an opponent. However, this strategy can be challenging to execute, especially with complex solutions. To demonstrate the difficulty of this attack, try one yourself! </p>
+  <p>The goal is to full clear from this board state. You can hold up to 1 piece at a time. For more information on the controls, click the settings button for controls. </p> 
   <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
   <p> Hint: you may need to "spin" pieces into place</p>
   <br>
