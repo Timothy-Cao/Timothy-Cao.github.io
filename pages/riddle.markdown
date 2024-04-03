@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <hr> <!-- Visual divider -->
 
-<div class="video-container" style="margin-bottom: 20px;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/jHDx0oL0KCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
+  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/jHDx0oL0KCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
