@@ -203,17 +203,16 @@ function toggleChessSolution() {
 
 <h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
-  <h3>Theme: </h3>
-  <p>Black to move</p>
-  <img src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
+  <h3>Theme: Black to move</h3>
+  <img id="chessPuzzleImage" src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
   <div>
-    <button onclick="toggleSpoiler('chessSolution')">Show/Hide Solution</button>
+    <button onclick="toggleChessSolution()">Show/Hide Solution</button>
     <div id="chessSolution" style="display:none;">
-      <img src="{{ '/assets/gifs/chess_solution.gif' | relative_url }}" style="width: 300px; height: auto;">
       <p>Bishop to G4 threatens a fork between the backrank mate on e1 and the queen! The continuation is white pushes pawn to f3 enabling escape from the backrank on e1.</p>
     </div>
   </div>
 </div>
+
 
 
 <br> <!-- Visual divider -->
