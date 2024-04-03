@@ -75,79 +75,13 @@ button {
   color: #333;
 }
 
-/* Table of Contents */
-#table-of-contents {
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: #435585;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  color: #ffffff;
-}
-
-#table-of-contents h4 {
-  margin-top: 0;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-#table-of-contents ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#table-of-contents ul li {
-  padding: 8px 0;
-}
-
-#table-of-contents ul li a {
-  text-decoration: none;
-  color: #ffffff;
-  transition: color 0.3s ease;
-}
-
-#table-of-contents ul li a:hover {
-  color: #dddddd;
-  text-decoration: underline;
-}
-
-
 </style>
 
 <script>
-function toggleSpoiler(spoilerId) {
-  const spoiler = document.getElementById(spoilerId);
-  spoiler.style.display = spoiler.style.display === "none" ? "block" : "none";
-}
-
 function scrollToTop() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('#table-of-contents ul li a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector(link.getAttribute('href')).scrollIntoView({ 
-        behavior: 'smooth' 
-      });
-    });
-  });
-});
 </script>
-
-<br>
-
-<div id="table-of-contents">
-  <h4>Table of Contents</h4>
-  <ul>
-    <li><a href="#fermi-estimations">Fermi Estimations</a></li>
-    <li><a href="#tetris-puzzles">Tetris Puzzles</a></li>
-    <li><a href="#chess-puzzles">Chess Puzzles</a></li>
-    <li><a href="#logic-puzzles">Logic Puzzles</a></li>
-  </ul>
-</div>
 
 <button id="scrollToTopButton" onclick="scrollToTop()">Scroll to Top</button>
 
