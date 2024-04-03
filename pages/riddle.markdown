@@ -203,7 +203,9 @@ function toggleChessSolution() {
 
 <h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
-  <h3>Theme: Black to move</h3>
+  <h3>Chess Puzzles</h3>
+  <p>Chess has exploded in popularity since Netflix show the Queen's Gambit, the Hans Niemann drama, the rise of online chess and rise of chess streamers. With all these new players starting out on chess, one of the best ways to learn chess independently is to play chess puzzles. A chess puzzle isn't nessesarily about checkmating, but rather  involves finding a series of forced or calculated moves - a "tactic" that guarantees an advantage. Try out this moderately challenging puzzle: </p>
+  <p>Black to move. Themes: Backrank mate</p>
   <img id="chessPuzzleImage" src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
   <div>
     <button onclick="toggleChessSolution()">Play solution</button>
