@@ -118,7 +118,6 @@ function scrollToTop() {
 
 <br> <!-- Visual divider -->
 
-<h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
   <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
   <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/jHDx0oL0KCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -160,7 +159,6 @@ function toggleChessSolution() {
 
 <br> <!-- Visual divider -->
 
-<h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
   <h3>Chess Puzzles</h3>
   <p>Chess has exploded in popularity since Netflix show the Queen's Gambit, the Hans Niemann drama, the rise of online chess and rise of chess streamers. With all these new players starting out on chess, one of the best ways to learn chess independently is to play chess puzzles. A chess puzzle isn't nessesarily about checkmating, but rather  involves finding a series of forced or calculated moves - a "tactic" that guarantees an advantage. Try out this moderately challenging puzzle! Theme: Backrank mate</p>
@@ -176,9 +174,8 @@ function toggleChessSolution() {
 
 <br> <!-- Visual divider -->
 
-<h2 id="logic-puzzles">Logic Puzzles</h2>
 <div class="bubble-section">
-  <p>New puzzles are cycled in every month!</p>
+  <h3>Logic Puzzles</h3>
 
   <div class="puzzle">
     <h3>Chameleon Puzzle</h3>
