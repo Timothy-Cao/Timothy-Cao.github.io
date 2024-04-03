@@ -172,12 +172,12 @@ document.addEventListener('DOMContentLoaded', function() {
   <br>
   <img id="tetrisPuzzleImage" src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
   <div>
-    <button onclick="toggleSolution()">Toggle Solution</button>
+    <button onclick="toggleTetrisSolution()">Toggle Solution</button>
   </div>
 </div>
 
 <script>
-function toggleSolution() {
+function toggleTetrisSolution() {
   var img = document.getElementById('tetrisPuzzleImage');
   if (img.src.includes('tetris_puzzle1.png')) {
     img.src = "{{ '/assets/gifs/tetris_solution.gif' | relative_url }}";
@@ -185,12 +185,25 @@ function toggleSolution() {
     img.src = "{{ '/assets/images/tetris_puzzle1.png' | relative_url }}";
   }
 }
+function toggleChessSolution() {
+  var img = document.getElementById('chessPuzzleImage');
+  var solutionDiv = document.getElementById('chessSolution');
+  if (img.src.includes('chess_puzzle1.png')) {
+    img.src = "{{ '/assets/gifs/chess_solution.gif' | relative_url }}";
+    solutionDiv.style.display = "block"; // This line will display the text explanation below the gif.
+  } else {
+    img.src = "{{ '/assets/images/chess_puzzle1.png' | relative_url }}";
+    solutionDiv.style.display = "none"; // This hides the text explanation when the puzzle image is shown.
+  }
+}
+
 </script>
 
 <br> <!-- Visual divider -->
 
 <h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
+  <h3>Theme: </h3>
   <p>Black to move</p>
   <img src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
   <div>
@@ -201,6 +214,7 @@ function toggleSolution() {
     </div>
   </div>
 </div>
+
 
 <br> <!-- Visual divider -->
 
