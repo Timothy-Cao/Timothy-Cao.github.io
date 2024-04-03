@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <br>
   <img id="tetrisPuzzleImage" src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
   <div>
-    <button onclick="toggleTetrisSolution()">Toggle Solution</button>
+    <button onclick="toggleTetrisSolution()">Play Solution</button>
   </div>
 </div>
 
@@ -206,7 +206,7 @@ function toggleChessSolution() {
   <h3>Theme: Black to move</h3>
   <img id="chessPuzzleImage" src="../assets/images/chess_puzzle1.png" style="width: 400px; height: auto;">
   <div>
-    <button onclick="toggleChessSolution()">Show/Hide Solution</button>
+    <button onclick="toggleChessSolution()">Play solution</button>
     <div id="chessSolution" style="display:none;">
       <p>Bishop to G4 threatens a fork between the backrank mate on e1 and the queen! The continuation is white pushes pawn to f3 enabling escape from the backrank on e1.</p>
     </div>
