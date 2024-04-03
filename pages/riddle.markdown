@@ -101,7 +101,6 @@ function toggleSpoiler(spoilerId) {
   spoiler.style.display = spoiler.style.display === "none" ? "block" : "none";
 }
 
-// Scroll to top function
 function scrollToTop() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
@@ -158,8 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <script src="{{ '/assets/js/fermi.js' | relative_url }}"></script>
 
-<hr> <!-- Visual divider -->
-
+<br> <!-- Visual divider -->
 
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
@@ -189,9 +187,7 @@ function toggleSolution() {
 }
 </script>
 
-
-
-<hr> <!-- Visual divider -->
+<br> <!-- Visual divider -->
 
 <h2 id="chess-puzzles">Chess Puzzles</h2>
 <div class="bubble-section">
@@ -206,7 +202,7 @@ function toggleSolution() {
   </div>
 </div>
 
-<hr> <!-- Visual divider -->
+<br> <!-- Visual divider -->
 
 <h2 id="logic-puzzles">Logic Puzzles</h2>
 <div class="bubble-section">
