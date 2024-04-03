@@ -79,20 +79,40 @@ button {
 #table-of-contents {
   padding: 20px;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #e8e8e8; /* Lighter shade for a subtler look */
   border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+  border-left: 5px solid #4CAF50; /* Accent border to match button color */
+}
+
+#table-of-contents h4 {
+  margin-top: 0;
+  color: #333; /* Darker text for better contrast */
+  font-size: 1.2em; /* Slightly larger heading */
+  font-weight: bold; /* Bold for emphasis */
 }
 
 #table-of-contents ul {
-  list-style-type: none;
+  list-style-type: none; /* Remove bullets */
   padding: 0;
+  margin: 0; /* Adjust spacing */
+}
+
+#table-of-contents ul li {
+  padding: 8px 0; /* More vertical padding for better touch targets */
 }
 
 #table-of-contents ul li a {
-  text-decoration: none;
-  color: #333;
-  cursor: pointer;
+  text-decoration: none; /* No underline */
+  color: #4CAF50; /* Color to match the button for consistency */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
+
+#table-of-contents ul li a:hover {
+  color: #333; /* Darker color on hover for interaction feedback */
+  text-decoration: underline; /* Underline on hover for clarity */
+}
+
 </style>
 
 <script>
