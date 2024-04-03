@@ -85,7 +85,8 @@ function scrollToTop() {
 
 <button id="scrollToTopButton" onclick="scrollToTop()">Scroll to Top</button>
 
-<h1 id="Brain Teasers">Brain Teasers</h1>
+<h1>Brain Teasers</h1>
+<h3">For those with itchy brains.</h3>
 
 <div class="bubble-section">
   <div id="howto" class="hidden" style="margin-bottom: 20px;">
