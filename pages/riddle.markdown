@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <br>
   <img id="tetrisPuzzleImage" src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
   <div>
-    <button onclick="toggleSolution()">Show/Hide Solution</button>
+    <button onclick="toggleSolution()">Toggle Solution</button>
   </div>
 </div>
 
