@@ -160,6 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <hr> <!-- Visual divider -->
 
+<div class="video-container" style="margin-bottom: 20px;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/jHDx0oL0KCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
   <p>Tetris has evolved significantly from its origins as a single-player, high-score-focused game, where the main strategy was executing quad line clears. Nowadays, it has shifted towards a competitive player vs. player format, introducing a variety of strategic plays for attacking and defending. Among these strategies, the "full clear"—eliminating all pieces from the board in one move—stands out as a major offensive tactic. Achieving a full clear requires considerable puzzle-solving skills and foresight, representing one of the most powerful attacks against an opponent. However, this strategy can be challenging to execute, especially with complex solutions. To demonstrate the difficulty of this attack, try one yourself! </p>
@@ -167,14 +171,23 @@ document.addEventListener('DOMContentLoaded', function() {
   <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
   <p> Hint: you may need to "spin" pieces into place</p>
   <br>
-  <img src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
+  <img id="tetrisPuzzleImage" src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
   <div>
-    <button onclick="toggleSpoiler('tetrisSolution')">Show/Hide Solution</button>
-    <div id="tetrisSolution" style="display:none;">
-      <img src="{{ '/assets/gifs/tetris_solution.gif' | relative_url }}" style="width: 300px; height: auto;">
-    </div>
+    <button onclick="toggleSolution()">Show/Hide Solution</button>
   </div>
 </div>
+
+<script>
+function toggleSolution() {
+  var img = document.getElementById('tetrisPuzzleImage');
+  if (img.src.includes('tetris_puzzle1.png')) {
+    img.src = "{{ '/assets/gifs/tetris_solution.gif' | relative_url }}";
+  } else {
+    img.src = "{{ '/assets/images/tetris_puzzle1.png' | relative_url }}";
+  }
+}
+</script>
+
 
 
 <hr> <!-- Visual divider -->
