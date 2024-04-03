@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/jHDx0oL0KCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
   <p>Try one yourself! The goal is to full clear from the given board state. You can hold up to 1 piece at a time. For more information on the controls, click the settings button. </p> 
-  <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
+  <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play here!</a>
   <p> Hint: you may need to "spin" pieces into place</p>
   <br>
   <img id="tetrisPuzzleImage" src="{{ '/assets/images/tetris_puzzle1.png' | relative_url }}" style="width: 300px; height: auto;"><br>
