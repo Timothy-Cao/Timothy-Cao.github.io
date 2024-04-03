@@ -66,7 +66,7 @@ button {
 
 .quiz-question, .puzzle h3 {
   margin: 20px 0;
-  color: #6666FF; /* Standardized color for puzzle headers */
+  color: #6666FF; 
 }
 
 .quiz-feedback {
@@ -85,7 +85,8 @@ function scrollToTop() {
 
 <button id="scrollToTopButton" onclick="scrollToTop()">Scroll to Top</button>
 
-<h2 id="fermi-estimations">Fermi Estimations</h2>
+<h1 id="Brain Teasers">Brain Teasers</h1>
+
 <div class="bubble-section">
   <div id="howto" class="hidden" style="margin-bottom: 20px;">
     <img src="{{ '/assets/images/fermi.jpg' | relative_url }}"><br>
