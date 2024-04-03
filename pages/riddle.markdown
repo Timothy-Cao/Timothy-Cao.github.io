@@ -163,10 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <h2 id="tetris-puzzles">Tetris Puzzles</h2>
 <div class="bubble-section">
-  <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
+<h3>Perfect Clears</h3>
+  <p>Tetris has evolved significantly from its origins as a single-player, high-score-focused game, where the main strategy was executing quad line clears. Nowadays, it has shifted towards a competitive player vs. player format, introducing a variety of strategic plays for attacking and defending. Among these strategies, the "full clear" or "perfect clear"—eliminating all pieces from the board in one move—stands out as a major offensive tactic. Achieving a full clear requires considerable puzzle-solving skills and foresight, representing one of the most powerful attacks against an opponent. However, this strategy can be challenging to execute, especially with complex solutions. To demonstrate the difficulty of this attack, try one yourself! </p>
+    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
     <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/jHDx0oL0KCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
-  <p>Tetris has evolved significantly from its origins as a single-player, high-score-focused game, where the main strategy was executing quad line clears. Nowadays, it has shifted towards a competitive player vs. player format, introducing a variety of strategic plays for attacking and defending. Among these strategies, the "full clear"—eliminating all pieces from the board in one move—stands out as a major offensive tactic. Achieving a full clear requires considerable puzzle-solving skills and foresight, representing one of the most powerful attacks against an opponent. However, this strategy can be challenging to execute, especially with complex solutions. To demonstrate the difficulty of this attack, try one yourself! </p>
   <p>The goal is to full clear from this board state. You can hold up to 1 piece at a time. For more information on the controls, click the settings button for controls. </p> 
   <a href="https://jstris.jezevec10.com/?play=6&map=51132" target="_blank">Play it yourself!</a>
   <p> Hint: you may need to "spin" pieces into place</p>
