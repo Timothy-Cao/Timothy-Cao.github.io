@@ -51,6 +51,7 @@ Here are a sample some of my other compositions over the years.
 
 <select id="compositionSelect">
     <option value="">Select a Composition</option>
+    <option value="MarchRemixChallenge">March Remix Challenge</option>
     <option value="MySeptember">My September</option>
     <option value="8BitNostalgia">8 bit nostalgia</option>
     <option value="ThreeHands">3 Hands</option>
@@ -71,6 +72,10 @@ document.getElementById('compositionSelect').addEventListener('change', function
     var content = '';
 
     switch(selectedValue) {
+            case 'MarchRemixChallenge':
+        content = `<p>Written 2024, for featuring piano & harp.</p>
+            <audio controls><source src="../assets/audio/MarchRemixChallenge.mp3" type="audio/mpeg"></audio>`;
+        break;
         case 'MySeptember':
             content = `<p>Written 2023, for solo piano.</p>
                 <audio controls><source src="../assets/audio/myseptember.mp3" type="audio/mpeg"></audio>`;
