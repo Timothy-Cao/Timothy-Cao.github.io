@@ -71,7 +71,9 @@ Here is an example graph of Patrick that demos the use of many types of conic se
 
 ### Splines
 
-Splines, particularly useful for creating smooth curves that pass through a set of points, offer flexibility in design and are instrumental in drawing complex shapes and patterns with grace and precision.
+Splines, particularly useful for creating smooth curves that pass through a set of points, offer flexibility in design and are instrumental in drawing complex shapes and patterns with grace and precision. Try playing with splines to see how they function and morph a path between two points in a smooth manner.
+
+<iframe src="https://www.desmos.com/calculator/vd1lfjkqai" width="100%" style="min-height:400px"></iframe>
 
 ### Fun Expressions to Know
 
