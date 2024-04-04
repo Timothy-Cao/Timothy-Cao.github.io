@@ -95,7 +95,7 @@ The dynamism of art is explored through animation and sliders, transforming stat
 
 ## 3D Graphing
 
-Venturing into the third dimension, this section elucidates the process of crafting and animating 3D graphs in Desmos, adding depth and complexity to the artistic endeavor.
+Venturing into the third dimension, this section elucidates the process of crafting and animating 3D graphs in Desmos, adding depth and complexity to the artistic endeavor. Clever people have devised 3D engines in this 2D graphing calculator you can use to plot and animate your own 3D functions. 
 
 <iframe src="https://www.desmos.com/calculator/yl7ftbic4g" width="100%" style="min-height:400px"></iframe>
 
