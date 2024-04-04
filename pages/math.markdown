@@ -3,103 +3,100 @@ layout: page
 permalink: /math/
 ---
 
-## What's Desmos?>
+## Introduction to Desmos
 
-[Desmos](https://www.desmos.com/calculator) is an online graphing calculator whos appeal is owed to its abundant array of features, empowering users to craft splendid creations solely through the foundation of mathematics.
-
-<hr>
-
-## Basic Graphing Functions>
-
-If you're reading this, it's likely that you've gone through high school math, and perhaps even university-level math. Moving forward, I'll assume you have a grasp of first-year university mathematics. While I won't extensively delve into pure math, I will focus on how mathematical concepts intersect with art in this context.
-
-###  Linear Functions>
-
-Linear functions are the simplest functions to both design and bound. In theory, a masterpiece could be indistinguishably approximated with sufficient linear functions given an infinitely powerful computer to render it on Desmos. However, due to computational restraints of the website and the amount of time it would to write (or generate) all linear functions, it's an infeasible method. Instead, we will use linear functions only for straight lines. This may be a promiment feature in the art depending on the theme. For example, a 2-point perspective city art will contain primarily straight lines, while organic drawings will contain almost none. 
-
-
-Example:
-$$ y = mx + b\cdot \{ |x - a_1| < a_2 \} $$
-
-Patrick Star is curvy. 
-
-![heart](../assets/images/desmos_patrick.png){:width="200px" height="200px"}
-
-
-Cubes aren't curvy without perspective distortion.
-
-![heart](../assets/images/desmos_cubes.png){:width="200px" height="200px"}
-
-Fun fact: that linear function bounds can be entirely described with a single variable.
-
-### Polynomial Functions>
-
-Polynomials show up often in math classes, but it's function in art is less pronounced. Most degrees of polynomials simply don't have an important shape in art aside from possibly the quadratic. And even so most shapes you see in real life that look like a quadratic aren't. For example Catenary functions better describe hanging chains than quadratics. Polynomials functions in Desmos art truly only shines in motion. 
-
-Catenary
-$$y = a \cosh\left(\frac{x}{a}\right)$$ 
-
-vs 
-
-Quadratics
-$$ (y-y_1) = a(x-x_1)^2 $$
-
-### Parametric Equations>
-
-Parametric equations introduce a pair of variables, usually denoted as $$x(t)$$ and $$y(t)$$, to define a curve. Parametric functions act most similar to how a hand would draw as they start at a point and move with some pattern, similar to an artist. Introducing piecewise definition to parametric functions allows one to draw art of unbounded complexity, but just like code it's important to ensure readability and not just have a "1-liner" in Desmos. This is so that sections can be reused or modified in the future. 
-
-Here's an example of a parametric equation that generates a heart shape:
-
-$$\left(16\left(\sin t\right)^{3},13\cos t-5\cos\left(2t\right)-2\cos\left(3t\right)-\cos\left(4t\right)\right)$$<br>
-
-
-![heart](../assets/images/desmos_heart.png){:width="300px" height="300px"}
-
-### Rotational wrapper functions>
-
-### Splines>
-
-### Ellipses and circles>
+[Desmos](https://www.desmos.com/calculator) is a powerful online graphing calculator celebrated for its vast range of features. From simple linear equations to complex 3D renderings, Desmos enables users to translate mathematical equations into stunning visual art, demonstrating that the bridge between mathematics and creativity is only a function away.
 
 <hr>
 
-## Advanced Techniques>
+## Demonstration of Art with Desmos
 
-### Domain coloring>
+Before diving into the technical aspects, let's take a moment to appreciate the potential of Desmos as an artistic tool. From intricate geometric patterns to lifelike portraits, artists have pushed the boundaries of what's possible with mathematical equations, turning this graphing calculator into a canvas for digital art.
 
-### Lag management>
-
-### >
-
-### Animating with sliders>
-
-<iframe src="https://www.desmos.com/calculator/wyvgcujo4p" width="100%" style="min-height:400px"></iframe>
-
-### 3-D rendering>
-
-
-### Animating 3-D Graphing>
-
-<iframe src="https://www.desmos.com/calculator/yl7ftbic4g" width="100%" style="min-height:400px"></iframe>
-
-### Physics engines>
-
-### Adding texture with Fourier and brownian noise>
-
-### Free style parametrics>
-
+![Showcase of various art made with Desmos](../assets/images/desmos_art_showcase.png){:width="400px"}
 
 <hr>
 
-## Artistic Vision in Desmos>
+## Getting Started: Understanding the Interface and Basic Operations
 
-### Knowing the limitations>
+Navigating Desmos is the first step to unleashing your creative potential. Familiarize yourself with its user-friendly interface, learning how to input functions, adjust parameters, and utilize tools essential for crafting your art.
 
-### High density lossy rendering >
+<hr>
 
+## Fundamental Concepts in Mathematical Art
 
+Mathematical art is a fascinating intersection of precision and creativity. This chapter lays the foundation for understanding how various mathematical expressions, from simple lines to complex curves, can be harnessed to create visual masterpieces.
 
+### Linear Functions
 
+Linear functions, defined by the equation $$y = mx + b$$, are the building blocks of mathematical art in Desmos. While simple, they form the basis for creating straight lines and shapes, essential elements in many artistic compositions.
 
+**Example:** A cityscape can be created using a series of linear functions to represent buildings.
 
-work in progress to be continued
+![Linear function example](../assets/images/desmos_linear_example.png){:width="200px"}
+
+### Polynomial Functions
+
+Polynomial functions offer a step up in complexity and versatility. Although not always visually prominent in art, they play a crucial role in animations and dynamic pieces, adding depth and movement.
+
+**Example:** A waving flag can be modeled using polynomial functions to simulate the motion.
+
+### Parametric Equations
+
+Parametric equations, where $$x$$ and $$y$$ are expressed as functions of a third variable, $$t$$, unlock new dimensions in Desmos art, allowing for the creation of complex curves and shapes that mimic the fluidity of natural movements.
+
+**Example:** The equation for a heart shape demonstrates the power of parametric functions in creating intricate designs.
+
+![Parametric heart](../assets/images/desmos_heart.png){:width="300px"}
+
+<hr>
+
+## Advanced Techniques in Desmos Art
+
+### Coloring and Domain Layering
+
+Discover how to bring your Desmos art to life with color and texture, using domain restrictions and layering techniques to add depth and vibrancy.
+
+### Animation and Sliders
+
+Learn to animate your creations, making them dance and move with the help of sliders. This chapter guides you through the process of turning static images into dynamic stories.
+
+### 3D Graphing
+
+Venture into the third dimension by exploring Desmos's capabilities for 3D graphing. This chapter provides the basics for creating 3D objects and environments.
+
+### Lag Management
+
+Creating complex art can slow down your Desmos experience. This section offers strategies for minimizing lag and ensuring smooth performance.
+
+### Lossy Rendering
+
+Understand the balance between detail and performance. This chapter discusses techniques for creating detailed art without overloading the graphing calculator.
+
+<hr>
+
+## From Concept to Creation: A Step-by-Step Art Project
+
+Follow along with a detailed tutorial to create a piece of art from start to finish, applying techniques covered in previous chapters. This practical application consolidates your learning and inspires you to create your own designs.
+
+<hr>
+
+## Resources and Community
+
+Dive deeper into the world of Desmos art by connecting with the community. This chapter provides links to forums, tutorials, and galleries where you can share your work and discover new inspirations.
+
+<hr>
+
+## Challenges and Contests
+
+Engage with the Desmos community through challenges and contests. This final chapter encourages you to test your skills, gain recognition, and learn from fellow artists.
+
+<hr>
+
+## Artistic Vision in Desmos
+
+Understanding Desmos's limitations is key to pushing its boundaries. This concluding section reflects on how constraints can fuel creativity, encouraging artists to think outside the box and explore new possibilities in mathematical art.
+
+### High Density Lossy Rendering
+
+Explore advanced techniques for creating highly detailed and complex art pieces within the computational constraints of Desmos, maximizing both beauty and performance.
