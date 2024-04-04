@@ -21,8 +21,9 @@ Furthermore, Desmos provides profound insights into the fundamental aspects of n
 Through Desmos, mathematical functions reveal their unexpected versatility, transforming into visually stunning artworks. From elementary shapes to elaborate designs, Desmos empowers artists to navigate the elegance of mathematics in a distinctly visual manner. Here is one of my favourite videos of a community member's desmos creations. It highlights the visually stunning capabiltiies of math by just an individual in 2 months. 
 
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
-<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/4_8eY_Ij-5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/4_8eY_Ij-5k?start=11" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
 
 ## My first introduction into Mathematical Art
 
