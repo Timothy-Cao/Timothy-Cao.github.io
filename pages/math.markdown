@@ -5,98 +5,89 @@ permalink: /math/
 
 ## Introduction to Desmos
 
-[Desmos](https://www.desmos.com/calculator) is a powerful online graphing calculator celebrated for its vast range of features. From simple linear equations to complex 3D renderings, Desmos enables users to translate mathematical equations into stunning visual art, demonstrating that the bridge between mathematics and creativity is only a function away.
+[Desmos](https://www.desmos.com/calculator) is more than just an online graphing calculator; it's a powerful tool for creating detailed and complex art using mathematical functions. It offers a user-friendly platform for transforming equations into visual masterpieces.
 
 <hr>
 
 ## Demonstration of Art with Desmos
 
-Before diving into the technical aspects, let's take a moment to appreciate the potential of Desmos as an artistic tool. From intricate geometric patterns to lifelike portraits, artists have pushed the boundaries of what's possible with mathematical equations, turning this graphing calculator into a canvas for digital art.
-
-![Showcase of various art made with Desmos](../assets/images/desmos_art_showcase.png){:width="400px"}
+Art with Desmos showcases the surprising versatility of mathematical functions, turning them into stunning visual pieces. From simple shapes to intricate designs, Desmos enables artists to explore the beauty of mathematics in a visual format.
 
 <hr>
 
 ## Getting Started: Understanding the Interface and Basic Operations
 
-Navigating Desmos is the first step to unleashing your creative potential. Familiarize yourself with its user-friendly interface, learning how to input functions, adjust parameters, and utilize tools essential for crafting your art.
+To begin crafting your artwork, familiarize yourself with Desmos's interface. This chapter covers the essentials of inputting equations, adjusting scales, and navigating the graphing environment to lay the groundwork for your creations.
 
 <hr>
 
 ## Fundamental Concepts in Mathematical Art
 
-Mathematical art is a fascinating intersection of precision and creativity. This chapter lays the foundation for understanding how various mathematical expressions, from simple lines to complex curves, can be harnessed to create visual masterpieces.
+Understanding the basic mathematical functions and how they can be visually represented is crucial in Desmos art. This section introduces the key functions and concepts that will be used throughout your artistic journey.
 
 ### Linear Functions
 
-Linear functions, defined by the equation $$y = mx + b$$, are the building blocks of mathematical art in Desmos. While simple, they form the basis for creating straight lines and shapes, essential elements in many artistic compositions.
+Linear functions form the basis for creating straight lines, essential for both abstract and representational art in Desmos.
 
-**Example:** A cityscape can be created using a series of linear functions to represent buildings.
+Example of a linear function:
+$$ y = mx + b\cdot \{ |x - a_1| < a_2 \} $$
 
-![Linear function example](../assets/images/desmos_linear_example.png){:width="200px"}
+Patrick Star is curvy, demonstrating the playful side of linear equations.
+
+![Patrick Star](../assets/images/desmos_patrick.png){:width="200px" height="200px"}
+
+Cubes can be constructed using linear functions to create the illusion of three-dimensionality on a two-dimensional plane.
+
+![Cubes](../assets/images/desmos_cubes.png){:width="200px" height="200px"}
 
 ### Polynomial Functions
 
-Polynomial functions offer a step up in complexity and versatility. Although not always visually prominent in art, they play a crucial role in animations and dynamic pieces, adding depth and movement.
-
-**Example:** A waving flag can be modeled using polynomial functions to simulate the motion.
+Polynomial functions add a layer of complexity and can be used creatively to animate and model more intricate shapes and motions.
 
 ### Parametric Equations
 
-Parametric equations, where $$x$$ and $$y$$ are expressed as functions of a third variable, $$t$$, unlock new dimensions in Desmos art, allowing for the creation of complex curves and shapes that mimic the fluidity of natural movements.
+Parametric equations allow for the creation of curves and shapes that are difficult or impossible to model with just polynomial or linear functions. They are especially useful for drawing complex and organic shapes.
 
-**Example:** The equation for a heart shape demonstrates the power of parametric functions in creating intricate designs.
+Example of a parametric heart shape, showcasing the intricacy possible with parametric equations:
 
-![Parametric heart](../assets/images/desmos_heart.png){:width="300px"}
+![Heart](../assets/images/desmos_heart.png){:width="300px" height="300px"}
 
 <hr>
 
 ## Advanced Techniques in Desmos Art
 
-### Coloring and Domain Layering
+### Animating with Sliders
 
-Discover how to bring your Desmos art to life with color and texture, using domain restrictions and layering techniques to add depth and vibrancy.
+Sliders are powerful tools in Desmos that can be used to animate graphs and create dynamic art pieces. This section explores how to use sliders to bring your artwork to life.
 
-### Animation and Sliders
+<iframe src="https://www.desmos.com/calculator/wyvgcujo4p" width="100%" style="min-height:400px"></iframe>
 
-Learn to animate your creations, making them dance and move with the help of sliders. This chapter guides you through the process of turning static images into dynamic stories.
+### 3D Graphing and Animation
 
-### 3D Graphing
+Dive into the third dimension with Desmos by learning how to create and animate 3D graphs. This advanced technique adds depth and complexity to your mathematical art.
 
-Venture into the third dimension by exploring Desmos's capabilities for 3D graphing. This chapter provides the basics for creating 3D objects and environments.
+<iframe src="https://www.desmos.com/calculator/yl7ftbic4g" width="100%" style="min-height:400px"></iframe>
 
-### Lag Management
+<hr>
 
-Creating complex art can slow down your Desmos experience. This section offers strategies for minimizing lag and ensuring smooth performance.
+## Optimizing Your Desmos Art
 
-### Lossy Rendering
-
-Understand the balance between detail and performance. This chapter discusses techniques for creating detailed art without overloading the graphing calculator.
+Creating complex art in Desmos can sometimes lead to performance issues. This chapter covers strategies for managing lag and optimizing your artwork for smoother rendering.
 
 <hr>
 
 ## From Concept to Creation: A Step-by-Step Art Project
 
-Follow along with a detailed tutorial to create a piece of art from start to finish, applying techniques covered in previous chapters. This practical application consolidates your learning and inspires you to create your own designs.
+This hands-on tutorial guides you through the process of creating a piece of art from start to finish, utilizing a combination of the techniques discussed in previous chapters. It's a practical application that consolidates your learning.
 
 <hr>
 
-## Resources and Community
+## Connecting with the Desmos Community
 
-Dive deeper into the world of Desmos art by connecting with the community. This chapter provides links to forums, tutorials, and galleries where you can share your work and discover new inspirations.
-
-<hr>
-
-## Challenges and Contests
-
-Engage with the Desmos community through challenges and contests. This final chapter encourages you to test your skills, gain recognition, and learn from fellow artists.
+The Desmos community is a vibrant space for sharing ideas, learning new techniques, and showcasing your art. This section provides insights on how to engage with fellow Desmos artists and contribute to the community.
 
 <hr>
 
-## Artistic Vision in Desmos
+## Conclusion: The Artistic Potential of Desmos
 
-Understanding Desmos's limitations is key to pushing its boundaries. This concluding section reflects on how constraints can fuel creativity, encouraging artists to think outside the box and explore new possibilities in mathematical art.
-
-### High Density Lossy Rendering
-
-Explore advanced techniques for creating highly detailed and complex art pieces within the computational constraints of Desmos, maximizing both beauty and performance.
+Reflect on the journey of creating art with Desmos, from mastering basic functions to exploring advanced techniques. This final chapter encourages you to continue experimenting, learning, and pushing the boundaries of what can be achieved with mathematical art.
