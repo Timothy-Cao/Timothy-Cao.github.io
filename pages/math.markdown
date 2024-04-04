@@ -81,9 +81,11 @@ Certain expressions, such as those forming the shape of a heart or a flower, int
 
 ![Heart](../assets/images/desmos_heart.png){:width="300px" height="300px"}
 
-## Coloring and Domain Layering
+## Shading and Domains
 
-This technique unveils how to imbue Desmos art with color and texture, employing domain restrictions and layering to infuse works with depth and vibrancy.
+The recent introduction of custom color schemes to Desmos marks a significant enhancement in its artistic capabilities. Previously, artists were limited to a palette of just six base colors, necessitating the use of transparency and color layering to achieve a wider spectrum of hues. Now, the ability to directly input RGB values opens up a whole new dimension of creativity. This advancement allows for the use of custom colors drawn from a vast array of beautiful color palettes, providing artists with unprecedented control and flexibility in their designs. Here's how you can now bring a richer, more vibrant range of colors to your Desmos art projects using custom RGB values.
+
+<iframe src="https://www.desmos.com/calculator/7phesdm2cz" width="100%" style="min-height:400px"></iframe>
 
 ## Animation and Sliders
 
