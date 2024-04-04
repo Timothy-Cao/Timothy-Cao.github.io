@@ -34,3 +34,18 @@ Due to the fact that half of the map requires addition (51 -> 100) to move up, i
 ### Finding a solution
 
 The approach I will go with is a top down approach 
+
+# JavaScript Board Game
+
+|  101  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  | 
+|-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|------| 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
+|   0   |     |     |     |     |     |     |     |     |     |      | 
