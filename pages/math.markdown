@@ -95,13 +95,15 @@ The dynamism of art is explored through animation and sliders, transforming stat
 
 ## 3D Graphing
 
-Venturing into the third dimension, this section elucidates the process of crafting and animating 3D graphs in Desmos, adding depth and complexity to the artistic endeavor. Clever people have devised 3D engines in this 2D graphing calculator you can use to plot and animate your own 3D functions. 
+Venturing into the third dimension, this section elucidates the process of crafting and animating 3D graphs in Desmos, adding depth and complexity to the artistic endeavor. Clever people have devised 3D engines in this 2D graphing calculator you can use to plot and animate your own 3D functions. Hit play on the W variable to animate this example.
 
-<iframe src="https://www.desmos.com/calculator/yl7ftbic4g" width="100%" style="min-height:400px"></iframe>
+<iframe src="https://www.desmos.com/calculator/indpgfg1xp" width="100%" style="min-height:400px"></iframe>
 
 ## Lag Management
 
 As creations grow in complexity, so too does the potential for lag. This discussion provides strategies for managing performance, ensuring a smoother rendering of intricate art.
+
+Computational efficiency in Desmos usually involves fewer total expression. 
 
 ## Lossy Rendering
 
