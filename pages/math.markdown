@@ -38,15 +38,15 @@ In recent years, the rise of Desmos.com has expanded the reach of mathematical a
 
 The journey into Desmos art begins with an understanding of the fundamental mathematical expressions and their potential for visual representation. 
 
-There are numerous classes of functions, but when it comes to art, some functions are more useful than others. We will stick to a toolbelt of particularly useful funtions. We will group them into a few categories.
+There are numerous classes of functions, but when it comes to art, some functions are more useful than others. We will stick to a toolbelt of particularly useful funtions. We will group them into a two categories.
 
-1. Motion functions
+1. Motion Functions
+For depicting the motion of everyday objects, sinusoidal and polynomial functions are often sufficient. While there are exceptions, for most practical applications outside of, say, plotting the complex orbits in a three-body problem, these two categories will serve us well. Additionally, it's worth noting that more intricate motions can be approximated using these functions through methods such as Fourier or Taylor series expansions.
 
-To describe the motion of everyday objects, sinusoidal  and polynomial functions will suffice. Of course there are exceptions, but unless you're the trisolarans trying to plot the motion of 3 bodies in space, we are likely to be good with these two classes. It's also important to remember that we can approximate more complex motion with these two classes (i.e. fourier or taylor series) 
+2. Art Strokes
+For representing objects, we find that nearly all forms can be approximated using linear functions and conic sections. Essentially, when we draw, we create lines and curves, mimicking the motion of a hand pivoting on a specific point on the paper. For crafting more elaborate shapes, one can either tailor an expression for a particular form or amalgamate segments of lines and conic sections. This approach offers a more streamlined and legible collection of mathematical expressions, which can be easily adjusted later on.
 
-2. 
-
-
+While other functions like rational, exponential, and logarithmic functions play a pivotal role in describing various phenomena, their graphical utility in art tends to be eclipsed by the aforementioned functions.
 
 
 ### Linear
