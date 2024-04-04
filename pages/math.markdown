@@ -110,10 +110,11 @@ Certain expressions can lose it's ability to render accurately due to the comput
 <iframe src="https://www.desmos.com/calculator/q31kiip7cp" width="100%" style="min-height:400px"></iframe>
 ## Desmos Community
 
-The Desmos community represents a vibrant collective of individuals sharing ideas, techniques, and their art, enriching the experience of all who participate. This section offers a gateway to engaging with fellow Desmos artists, fostering a sense of camaraderie and mutual inspiration.
+The Desmos community is a dynamic and vibrant assembly where individuals unite to exchange ideas, share artistic techniques, and showcase their creations. 
 
-Visit https://www.desmos.com/art to check out more community art. 
+Explore a diverse range of community art and learn more by visiting [Desmos Art](https://www.desmos.com/art).
 
-## In Closing
+
+## Thanks for checking this out
 
 Prominent mathematicians and philosophers have pondered whether math is a discovery or an invention. I believe it falls into the realm of discovery. Math itself is not a tangible object but rather a concept; it exists inherently, not necessitating our conceptualization to be. However, the methods we employ to describe, comprehend, and communicate mathematical ideas are indeed inventions. Whenever you create something new on Desmos, you are engaging in an act of invention or reinvention. So, I encourage you to venture forth and invent.
