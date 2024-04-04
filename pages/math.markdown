@@ -57,8 +57,6 @@ While other functions like rational, exponential, and logarithmic functions play
 
 Linear functions, epitomized by the equation $$y = mx + b$$, lay the groundwork for crafting straight lines, an essential element in both abstract and representational art within Desmos.
 
-For instance, consider the linear function: $$ y = mx + b\cdot \{ |x - a_1| < a_2 \} $$
-
 Cityscapes and angular abstract art can often be drawn with only a few linear functions. 
 
 ![Cubes](../assets/images/desmos_cubes.png){:width="200px" height="200px"}
@@ -67,7 +65,7 @@ Cityscapes and angular abstract art can often be drawn with only a few linear fu
 
 Conic sections expand the artist's palette with curves derived from the intersections of a plane with a cone, including circles, ellipses, parabolas, and hyperbolas, each offering unique aesthetic contributions to Desmos art.
 
-Here is an example graph of Patrick that demos the use of many types of conic sections. 
+Here is an example graph of Patrick that demos the use of many types of conic sections. His belly is a circle, his arms are quadratics, eyes are ellipses, and other lines are sections of circles. 
 
 ![Patrick Star](../assets/images/desmos_patrick.png){:width="200px" height="200px"}
 
