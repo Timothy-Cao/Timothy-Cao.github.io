@@ -15,7 +15,8 @@ permalink: /math/
 [Desmos](https://www.desmos.com/calculator) serves as more than an online graphing calculator as in recent years, it's grown into sort of an instrument for conjuring art. It presents an unique way to express creavitiy in a visual way. You may think that it's byzantine for it's purpose but it has some advantages over all other mediums. 
 
 1. Mathematical art can be infinite, as the math itself is not bound by any canvas.
-2. 
+2. Animations can be done efficiently and accurately. Animating by hand is tough work, but with math, motion can be described precisely with the physical equations of the world.
+3. Provides insight into the nature of natural geometries, perspective, motion and vision as you break down things into it's constituent mathematical properties and objects.
 
 ## Demonstration of Art with Desmos
 
