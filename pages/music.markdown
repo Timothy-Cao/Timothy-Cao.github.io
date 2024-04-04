@@ -51,7 +51,7 @@ Here are a sample some of my other compositions over the years.
 
 <select id="compositionSelect">
     <option value="">Select a Composition</option>
-    <option value="MarchRemixChallenge">March Remix Challenge</option>
+    <option value="MarchRemixChallenge">March Challenge</option>
     <option value="MySeptember">My September</option>
     <option value="8BitNostalgia">8 bit nostalgia</option>
     <option value="ThreeHands">3 Hands</option>
