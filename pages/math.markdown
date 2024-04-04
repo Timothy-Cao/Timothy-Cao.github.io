@@ -101,18 +101,19 @@ Venturing into the third dimension, this section elucidates the process of craft
 
 ## Lag Management
 
-As creations grow in complexity, so too does the potential for lag. This discussion provides strategies for managing performance, ensuring a smoother rendering of intricate art.
-
-Computational efficiency in Desmos usually involves fewer total expression. 
+As creations grow in complexity, so too does the potential for lag. Without delving too much into it's computational complexity, as a general rule of thumb is to minimize the number of expressions, and use easily computable expressions. For now, the toolkit described before is relatively efficient. 
 
 ## Lossy Rendering
 
-This concept explores the balance between detail and computational efficiency, discussing techniques for achieving detailed artistic expressions within the constraints of Desmos.
+Certain expressions can lose it's ability to render accurately due to the computational restratints of rendering. For example, the graph below is not composed of countless confetti, but rather due to the inability to render such detailed and computationally heavy sections. Minimizing nested expressions can mitigate this result. However, sometimes this texture is desired.
 
+<iframe src="https://www.desmos.com/calculator/q31kiip7cp" width="100%" style="min-height:400px"></iframe>
 ## Desmos Community
 
 The Desmos community represents a vibrant collective of individuals sharing ideas, techniques, and their art, enriching the experience of all who participate. This section offers a gateway to engaging with fellow Desmos artists, fostering a sense of camaraderie and mutual inspiration.
 
+Visit https://www.desmos.com/art to check out more community art. 
+
 ## In Closing
 
-Prominent mathematicians and philosophers have pondered whether math is a discovery or an invention. I believe it falls into the realm of discovery. Math itself is not a tangible object but rather a concept; it exists inherently, not necessitating our conceptualization to be. However, the methods we employ to describe, comprehend, and communicate mathematical ideas are indeed inventions. Whenever you create something new on Desmos, you are engaging in an act of one of invention or reinvention. So, I encourage you to venture forth and invent.
+Prominent mathematicians and philosophers have pondered whether math is a discovery or an invention. I believe it falls into the realm of discovery. Math itself is not a tangible object but rather a concept; it exists inherently, not necessitating our conceptualization to be. However, the methods we employ to describe, comprehend, and communicate mathematical ideas are indeed inventions. Whenever you create something new on Desmos, you are engaging in an act of invention or reinvention. So, I encourage you to venture forth and invent.
