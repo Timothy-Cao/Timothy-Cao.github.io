@@ -24,6 +24,7 @@ Through Desmos, mathematical functions reveal their unexpected versatility, tran
 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/4_8eY_Ij-5k?start=11" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+<br>
 
 ## My first introduction into Mathematical Art
 
@@ -33,6 +34,7 @@ In recent years, the rise of Desmos.com has expanded the reach of mathematical a
 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/kkGeOWYOFoA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+<br>
 
 ## Expressions Most Useful for Art
 
