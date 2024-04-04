@@ -3,6 +3,10 @@ layout: page
 permalink: /math/
 ---
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
 ## Introduction to Desmos
 
 [Desmos](https://www.desmos.com/calculator) is more than just an online graphing calculator; it's a powerful tool for creating detailed and complex art using mathematical functions. It offers a user-friendly platform for transforming equations into visual masterpieces.
