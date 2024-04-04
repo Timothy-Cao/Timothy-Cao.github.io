@@ -36,7 +36,18 @@ In recent years, the rise of Desmos.com has expanded the reach of mathematical a
 
 ## Expressions Most Useful for Art
 
-The journey into Desmos art begins with an understanding of the fundamental mathematical expressions and their potential for visual representation. This discourse introduces pivotal functions and concepts, laying the groundwork for artistic exploration.
+The journey into Desmos art begins with an understanding of the fundamental mathematical expressions and their potential for visual representation. 
+
+There are numerous classes of functions, but when it comes to art, some functions are more useful than others. We will stick to a toolbelt of particularly useful funtions. We will group them into a few categories.
+
+1. Motion functions
+
+To describe the motion of everyday objects, sinusoidal  and polynomial functions will suffice. Of course there are exceptions, but unless you're the trisolarans trying to plot the motion of 3 bodies in space, we are likely to be good with these two classes. It's also important to remember that we can approximate more complex motion with these two classes (i.e. fourier or taylor series) 
+
+2. 
+
+
+
 
 ### Linear
 
