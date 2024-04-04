@@ -24,17 +24,17 @@ Linear functions, epitomized by the equation $$y = mx + b$$, lay the groundwork 
 
 For instance, consider the linear function: $$ y = mx + b\cdot \{ |x - a_1| < a_2 \} $$
 
-Observe how Patrick Star, albeit curvy, exemplifies the playful application of linear equations.
-
-![Patrick Star](../assets/images/desmos_patrick.png){:width="200px" height="200px"}
-
-Moreover, cubes, through linear functions, can be depicted to create an illusion of three-dimensionality on a two-dimensional plane.
+Cityscapes and angular abstract art can often be drawn with only a few linear functions. 
 
 ![Cubes](../assets/images/desmos_cubes.png){:width="200px" height="200px"}
 
 ### Conic Sections
 
 Conic sections expand the artist's palette with curves derived from the intersections of a plane with a cone, including circles, ellipses, parabolas, and hyperbolas, each offering unique aesthetic contributions to Desmos art.
+
+Here is an example graph of Patrick that demos the use of many types of conic sections. 
+
+![Patrick Star](../assets/images/desmos_patrick.png){:width="200px" height="200px"}
 
 ### Splines
 
