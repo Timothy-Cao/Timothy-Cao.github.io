@@ -22,6 +22,15 @@ Through Desmos, mathematical functions reveal their unexpected versatility, tran
 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/4_8eY_Ij-5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## My first introduction into Mathematical Art
+
+Recent years, the growth of Desmos.com has brough mathematical art to a wider audience, but it was even more niche in the past than it is today. Around 2012, during my elementary school years, the only known "math" art had been impractical for an average person. Graphing calculators were for the most part, handheld and very tedious to work with. At most, some people have graphed the expression for a heart, and some smart and dedicated people on the internet have made maybe a batman symbol. It was after my one of my math teachers showed us a little math video showing us the math within our daily lives, was I determined to draw with math. 
+
+<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
+<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/kkGeOWYOFoA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
 ## Expressions Most Useful for Art
 
 The journey into Desmos art begins with an understanding of the fundamental mathematical expressions and their potential for visual representation. This discourse introduces pivotal functions and concepts, laying the groundwork for artistic exploration.
@@ -84,4 +93,4 @@ The Desmos community represents a vibrant collective of individuals sharing idea
 
 ## In Closing
 
-Reflecting on the journey of creating art with Desmos, from grasping basic functions to delving into advanced techniques, this closing chapter encourages continued experimentation, learning, and the pushing of boundaries within the fascinating confluence of mathematics and art.
+Prominent mathematicians and philosophers have pondered whether math is a discovery or an invention. I believe it falls into the realm of discovery. Math itself is not a tangible object but rather a concept; it exists inherently, not necessitating our conceptualization to be. However, the methods we employ to describe, comprehend, and communicate mathematical ideas are indeed inventions. Whenever you create something new on Desmos, you are engaging in an act of one of invention or reinvention. So, I encourage you to venture forth and invent.
