@@ -8,7 +8,14 @@ permalink: /math/
 
 ## Introduction to Desmos
 
-[Desmos](https://www.desmos.com/calculator) serves not merely as an online graphing calculator but as a profound instrument for conjuring detailed and complex art utilizing mathematical functions. It presents a user-friendly interface for the metamorphosis of equations into visual masterpieces, demonstrating the fascinating intersection between the realms of mathematics and art.
+<div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
+<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/4_8eY_Ij-5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+[Desmos](https://www.desmos.com/calculator) serves as more than an online graphing calculator as in recent years, it's grown into sort of an instrument for conjuring art. It presents an unique way to express creavitiy in a visual way. You may think that it's byzantine for it's purpose but it has some advantages over all other mediums. 
+
+1. Mathematical art can be infinite, as the math itself is not bound by any canvas.
+2. 
 
 ## Demonstration of Art with Desmos
 
