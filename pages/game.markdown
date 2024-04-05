@@ -3,34 +3,24 @@ layout: page
 permalink: /game/
 ---
 
-# Solving Prime Climb
+# Test
 
-## What is prime climb?
+# Snakes and Ladders Game Board
 
-![heart](../assets/images/primeclimb.jpg){:width="300px" height="300px"}
+Welcome to the basic Snakes and Ladders game board. This board is designed as a 10x10 grid with a starting point labeled "0" and an ending point labeled "101". There are no snakes or ladders in this basic version, providing a simple and straightforward gaming experience.
 
-Primeclimb is a math based board game with the goal of getting 2 of your pieces from 0 to exactly 101 before everyone else. It uses arithmetic on the numbers on two dice rolls as a form of movement. These dice are numbered from 1 - 10, and operations include addition, multiplcation subtraction and division. 
+**Starting Point:** 0
 
-## Rules
+| 100 | 99  | 98  | 97  | 96  | 95  | 94  | 93  | 92  | 91  |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| 81  | 82  | 83  | 84  | 85  | 86  | 87  | 88  | 89  | 90  |
+| 80  | 79  | 78  | 77  | 76  | 75  | 74  | 73  | 72  | 71  |
+| 61  | 62  | 63  | 64  | 65  | 66  | 67  | 68  | 69  | 70  |
+| 60  | 59  | 58  | 57  | 56  | 55  | 54  | 53  | 52  | 51  |
+| 41  | 42  | 43  | 44  | 45  | 46  | 47  | 48  | 49  | 50  |
+| 40  | 39  | 38  | 37  | 36  | 35  | 34  | 33  | 32  | 31  |
+| 21  | 22  | 23  | 24  | 25  | 26  | 27  | 28  | 29  | 30  |
+| 20  | 19  | 18  | 17  | 16  | 15  | 14  | 13  | 12  | 11  |
+| 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
 
-![heart](../assets/images/primeclimb2.png){:width="300px" height="300px"}
-
-This is the  board of which the game is played. We will simplify the game's rules to only the rolling and moving aspect.
-
-<div class="iframe-wrapper">
-  <iframe src="https://www.youtube.com/embed/tWhVw3mTpPU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-[Here are the full rules if you're interested](https://mathforlove.com/2010/01/prime-climb-rules/)
-
-## Naive approach
-
-When this game is first presented to players, the typical gameplan involves each player maximizing the incraese in their piece's sum per turn. This usually involves multiplying their pieces until further multiplication is impossible due to results being above 101. They would then proceed to continuously add rolls until 101. Near 101, they may be forced to subtract due to needing to reach 101 exactly. 
-
-### Why is this ineffective?
-
-Due to the fact that half of the map requires addition (51 -> 100) to move up, it's rarely effective to enter the range of 51 -> 80. The overall flaw of the plan is that it's a greedy solution that doesn't consider how much farther one could travel on the next turn by tailoring which numbers you start the next turn on. 
-
-### Finding a solution
-
-The approach I will go with is a top down approach 
+**Ending Point:** 101
