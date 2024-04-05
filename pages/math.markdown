@@ -103,6 +103,8 @@ Venturing into the third dimension, this section elucidates the process of craft
 
 As creations grow in complexity, so too does the potential for lag. Without delving too much into it's computational complexity, as a general rule of thumb is to minimize the number of expressions, and use easily computable expressions. For now, the toolkit described before is relatively efficient. 
 
+One tip to managing lag is to minimize the use of implicit functions as they are parituclarly expensive to compute. 
+
 ## Lossy Rendering
 
 Certain expressions can lose it's ability to render accurately due to the computational restratints of rendering. For example, the graph below is not composed of countless confetti, but rather due to the inability to render such detailed and computationally heavy sections. Minimizing nested expressions can mitigate this result. However, sometimes this texture is desired.

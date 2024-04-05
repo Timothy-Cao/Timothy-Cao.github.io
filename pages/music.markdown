@@ -127,6 +127,6 @@ The thing with music is that once experienced, it loses the element of surprise.
 
 <br>
 
-~ insert music generation content ~
+Work in progress...
 
-<br><br><br><br>
+<br><br><br>
