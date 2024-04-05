@@ -121,8 +121,7 @@ document.getElementById('compositionSelect').addEventListener('change', function
 
 ## A fresh listening experience
 
-The thing with music is that once experienced, it loses the element of surprise. To create music that always leave the listener curious, we would need to write music that continously evolves but how can we achieve that? Let's start off by delving into the world of generative AI for music. 
-
+The essence of music changes sheds its element of surprise once it's been heard. To craft music that perpetually keeps the listener engaged and curious, it must be a creation that continually evolves. But what's the best approach to achieve this? One intriguing avenue is exploring the potential of generative AI in the music-making process.
 
 <br>
 
