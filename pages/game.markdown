@@ -6,21 +6,68 @@ permalink: /game/
 # Test
 
 # Snakes and Ladders Game Board
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snakes and Ladders Board</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  .board {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+    gap: 5px;
+  }
+  .cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #000;
+  }
+  .start, .end {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+  }
+</style>
+</head>
+<body>
 
-Welcome to the basic Snakes and Ladders game board. This board is designed as a 10x10 grid with a starting point labeled "0" and an ending point labeled "101". There are no snakes or ladders in this basic version, providing a simple and straightforward gaming experience.
+<div class="start">Start: 0</div>
+<div class="board">
+  <!-- JavaScript will populate this -->
+</div>
+<div class="end">End: 101</div>
 
-**Starting Point:** 0
+<script>
+  const boardContainer = document.querySelector('.board');
 
-| 100 | 99  | 98  | 97  | 96  | 95  | 94  | 93  | 92  | 91  |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| 81  | 82  | 83  | 84  | 85  | 86  | 87  | 88  | 89  | 90  |
-| 80  | 79  | 78  | 77  | 76  | 75  | 74  | 73  | 72  | 71  |
-| 61  | 62  | 63  | 64  | 65  | 66  | 67  | 68  | 69  | 70  |
-| 60  | 59  | 58  | 57  | 56  | 55  | 54  | 53  | 52  | 51  |
-| 41  | 42  | 43  | 44  | 45  | 46  | 47  | 48  | 49  | 50  |
-| 40  | 39  | 38  | 37  | 36  | 35  | 34  | 33  | 32  | 31  |
-| 21  | 22  | 23  | 24  | 25  | 26  | 27  | 28  | 29  | 30  |
-| 20  | 19  | 18  | 17  | 16  | 15  | 14  | 13  | 12  | 11  |
-| 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
+  function populateBoard() {
+    let cells = [];
+    for (let i = 100; i >= 1; i--) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.textContent = i;
+      cells.push(cell);
+    }
+    cells.forEach(cell => boardContainer.appendChild(cell));
+  }
 
-**Ending Point:** 101
+  populateBoard();
+</script>
+
+</body>
+</html>
