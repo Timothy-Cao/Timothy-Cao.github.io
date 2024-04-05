@@ -4,13 +4,12 @@ title: Music & AI
 permalink: /music/
 ---
 
-# Music & AI
+# Musical Composition
 <hr class="star-light" />
 
 ![alt text](../assets/images/musescore.png){:width="1000px" height="400px"}
 
-I have written music on and off since elementary school. These projects can often take dozens of hours, and if progress slows down, they may never be touched again. 
-
+Welcome to the music corner of my website! This space is dedicated to showcasing some of my compositions. While my background in music theory is minimal, having taken just a few courses, I hope you'll find joy in exploring my creations. The tool that powers my work is [Musescore](https://musescore.org/en/)-a fantastic, free software that I highly recommend you experiment with, regardless of your musical expertise. Don't worry if you're new to music; sometimes, all it takes is pressing notes at random and seeing where the melody takes you.
 <br>
 
 ## Dodoman's Theme
