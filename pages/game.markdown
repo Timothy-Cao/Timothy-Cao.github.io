@@ -6,7 +6,6 @@ permalink: /game/
 # Test
 
 # Snakes and Ladders Game Board
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
