@@ -34,3 +34,18 @@ Due to the fact that half of the map requires addition (51 -> 100) to move up, i
 ### Finding a solution
 
 The approach I will go with is a top down approach 
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.js"></script>
+<script type="text/python">
+# Your Python code here
+def say_hello():
+    print("Hello from Python!")
+say_hello()
+</script>
+<script>
+window.onload = function() {
+    brython();
+}
+</script>
