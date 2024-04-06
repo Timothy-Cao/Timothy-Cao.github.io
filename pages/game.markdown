@@ -3,151 +3,34 @@ layout: page
 permalink: /game/
 ---
 
-# Test
+# Solving Prime Climb
 
-# Snakes and Ladders Game Board
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive Snakes and Ladders with Dice</title>
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-  }
-  .board {
-    display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-template-rows: repeat(10, 50px);
-    gap: 5px;
-  }
-  .cell {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    background-color: #fff;
-    border: 1px solid #000;
-    position: relative;
-    font-size: 10px;
-    justify-content: center;
-    align-items: center;
-  }
-  .pawn {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin: 2px;
-    cursor: pointer;
-    position: absolute;
-  }
-  .red { background-color: red; }
-  .purple { background-color: purple; }
-  .highlight { border: 2px solid red; }
-</style>
-</head>
-<body>
+## What is prime climb?
 
-<div class="start">Start: 1</div>
-<div class="board">
-  <!-- JavaScript will populate this -->
+![heart](../assets/images/primeclimb.jpg){:width="300px" height="300px"}
+
+Primeclimb is a math based board game with the goal of getting 2 of your pieces from 0 to exactly 101 before everyone else. It uses arithmetic on the numbers on two dice rolls as a form of movement. These dice are numbered from 1 - 10, and operations include addition, multiplcation subtraction and division. 
+
+## Rules
+
+![heart](../assets/images/primeclimb2.png){:width="300px" height="300px"}
+
+This is the  board of which the game is played. We will simplify the game's rules to only the rolling and moving aspect.
+
+<div class="iframe-wrapper">
+  <iframe src="https://www.youtube.com/embed/tWhVw3mTpPU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class="end">End: 100</div>
-<div id="dice"></div>
 
-<script>
-  const boardContainer = document.querySelector('.board');
-  let selectedPawn = null;
-  let diceValues = [];
+[Here are the full rules if you're interested](https://mathforlove.com/2010/01/prime-climb-rules/)
 
-  function populateBoard() {
-    for (let i = 1; i <= 100; i++) {
-      const cell = document.createElement('div');
-      cell.classList.add('cell');
-      cell.setAttribute('data-cell', i);
-      cell.textContent = i;
-      boardContainer.appendChild(cell);
-    }
-  }
+## Naive approach
 
-  function addPawns() {
-    const colors = ['red', 'red', 'purple', 'purple'];
-    colors.forEach(color => {
-      const pawn = document.createElement('div');
-      pawn.classList.add('pawn', color);
-      pawn.setAttribute('data-color', color);
-      pawn.addEventListener('click', selectPawn);
-      document.querySelector('[data-cell="1"]').appendChild(pawn);
-    });
-  }
+When this game is first presented to players, the typical gameplan involves each player maximizing the incraese in their piece's sum per turn. This usually involves multiplying their pieces until further multiplication is impossible due to results being above 101. They would then proceed to continuously add rolls until 101. Near 101, they may be forced to subtract due to needing to reach 101 exactly. 
 
-  function selectPawn(event) {
-    event.stopPropagation();
-    clearHighlights();
-    if (selectedPawn) {
-      selectedPawn.classList.remove('selected');
-    }
-    selectedPawn = event.target;
-    selectedPawn.classList.add('selected');
-    showAvailableMoves();
-  }
+### Why is this ineffective?
 
-  function showAvailableMoves() {
-    if (!selectedPawn) return;
-    const currentPos = parseInt(selectedPawn.parentNode.getAttribute('data-cell'), 10);
-    diceValues.forEach(dice => {
-      highlightMove(currentPos + dice);
-      highlightMove(currentPos - dice);
-      if (currentPos % dice === 0) highlightMove(currentPos / dice);
-      highlightMove(currentPos * dice);
-    });
-  }
+Due to the fact that half of the map requires addition (51 -> 100) to move up, it's rarely effective to enter the range of 51 -> 80. The overall flaw of the plan is that it's a greedy solution that doesn't consider how much farther one could travel on the next turn by tailoring which numbers you start the next turn on. 
 
-  function highlightMove(position) {
-    if (position >= 1 && position <= 100) {
-      document.querySelector(`[data-cell="${position}"]`).classList.add('highlight');
-    }
-  }
+### Finding a solution
 
-  function clearHighlights() {
-    document.querySelectorAll('.cell').forEach(cell => cell.classList.remove('highlight'));
-  }
-
-  function movePawn(event) {
-    if (!selectedPawn || !event.target.classList.contains('highlight')) return;
-    event.target.appendChild(selectedPawn);
-    selectedPawn.classList.remove('selected');
-    selectedPawn = null;
-    clearHighlights();
-    consumeDice();
-  }
-
-  function rollDice() {
-    diceValues = [Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 10) + 1];
-    document.getElementById('dice').textContent = `Dice rolls: ${diceValues.join(', ')}`;
-  }
-
-  function consumeDice() {
-    diceValues.shift();
-    if (diceValues.length === 0) rollDice();
-    document.getElementById('dice').textContent = `Dice rolls: ${diceValues.join(', ')}`;
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    populateBoard();
-    addPawns();
-    rollDice();
-    document.querySelectorAll('.cell').forEach(cell => {
-      cell.addEventListener('click', movePawn);
-      cell.style.position = 'relative'; // Ensure pawn positioning works correctly.
-    });
-  });
-</
+The approach I will go with is a top down approach 
