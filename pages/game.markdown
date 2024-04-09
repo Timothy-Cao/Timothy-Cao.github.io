@@ -36,7 +36,11 @@ Similar to the principle of lookahead in games such as chess, the disadvantage i
 
 An intuitive example of this, is that since half of the map requires addition (51 -> 100) to increase up, it's rarely effective to enter the range of 51 -> 80. The overall flaw of the plan is that it's a greedy solution that doesn't consider how much farther one could travel on the next turn by tailoring which numbers you start the next turn on. 
 
-To show this more rigourously, consider the expected number of moves to go from 51 to a value above 90. Rolling two 10-sided dice nets an average sum of 10. This means it will take 4 turns to go to 90+. Alternatively, if we consider the hypothetical strategy of having a pawn hover around 30 and another pawn hovering around 50, each dice has a 2/10 chance to roll either a 2 or a 3. When this happens, one of the pawns can go straight to 90s. The probability one of two dice rolls either a 2 or 3 is $$ 1 - (8/10)^2 = 0.36% $$. This has an expected value of 1.553 rolls, compared to the expected 4 rolls from sums. 
+To show this more rigourously, consider the expected number of moves to go from 51 to a value above 90. Rolling two 10-sided dice nets an average sum of 10. This means it will take 4 turns to go past 90 on average. Alternatively, if we consider the hypothetical strategy of having a pawn hover around 30 and another pawn hovering around 50, each dice has a 2/10 chance to roll either a 2 or a 3. When this happens, one of the pawns can go straight to 90s. The probability one of two dice rolls either a 2 or 3 is 
+
+$$ 1 - (8/10)^2 = 0.36% $$. 
+
+When we solve for $$ (1-0.36)^x = 0.5 $$, we get an expected value of 1.553 rolls, compared to the expected 4 rolls from sums. Not only is it over twice as efficient, the excess rolls can be used to perform further actions. 
 
 ## Naive approach 2: Lookahead sum-max
 
