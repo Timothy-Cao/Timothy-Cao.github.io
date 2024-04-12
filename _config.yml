@@ -53,7 +53,10 @@ social:
 address:
   - line: Markham
   - line: Ontario, Canada
-  
+
+# Credits content
+credits: 'Jekyll inspired theme'
+
 # Build settings
 markdown: kramdown
 permalink: pretty
