@@ -53,10 +53,7 @@ social:
 address:
   - line: Markham
   - line: Ontario, Canada
-
-# Credits content
-credits: 'Jekyll Themes used for UI/UX'
-
+  
 # Build settings
 markdown: kramdown
 permalink: pretty
