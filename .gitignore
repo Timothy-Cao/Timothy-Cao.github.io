@@ -1,1 +1,93 @@
+# Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build output
+build/
+dist/
+
+# Logs
+logs/
+*.log
+yarn-error.log
+*.log.*
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# Tailwind CSS cache
+tailwind.config.js.bak
+tailwind-cache
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Coverage directory for testing
+coverage/
+
+# Test files
+__tests__/
+__mocks__/
+jest.*
+setupTests.js
+
+# Generated files
+*.iml
+*.pyc
+*.gz
+*.zip
+*.7z
+*.tar
+*.lock
+
+# Miscellaneous
+.debug/
+debug.log
+*.cache
+
+# React-specific files
+src/*.test.js
+src/setupTests.js
+
+# ESLint cache
+.eslintcache
+
+# Webpack cache
+.cache/
+webpack/
+*.cache
+
+# IntelliJ/WebStorm
+.idea/
+out/
+
+# VSCode settings
+.vscode/
+
+# MacOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
