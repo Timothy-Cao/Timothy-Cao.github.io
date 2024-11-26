@@ -1,6 +1,6 @@
 import React from "react";
 import { FiHome, FiUser, FiBook, FiMail } from "react-icons/fi";
-import { FaMusic, FaPuzzlePiece, FaStar, FaGamepad, FaImages } from "react-icons/fa";
+import { FaMusic, FaPuzzlePiece, FaStar, FaGamepad, FaImages, FaKeyboard, FaComputerMouse   } from "react-icons/fa";
 
 const navItems = [
     { label: "Home", icon: <FiHome />, href: "/" },
@@ -17,12 +17,13 @@ const blogItems = [
   { label: "Puzzles", icon: <FaPuzzlePiece />, href: "#" },
   { label: "Game Theory", icon: <FaGamepad />, href: "#" },
   { label: "Gallery", icon: <FaImages />, href: "#" },
+  { label: "SpeedTyping", icon: <FaKeyboard />, href: "#" },
 ];
 
 const Sidebar = () => {
   return (
     <div className="w-64 bg-gray-800 h-full flex flex-col p-6 space-y-6">
-      <h1 className="text-3xl font-bold mb-6">My Portfolio</h1>
+      <h1 className="text-3xl font-bold mb-6">Tim Cao</h1>
       <nav className="flex flex-col space-y-4 w-full">
         {navItems.map((item) => (
           <a
