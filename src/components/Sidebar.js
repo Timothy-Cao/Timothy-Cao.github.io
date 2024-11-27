@@ -11,14 +11,14 @@ const navItems = [
   
 
 const blogItems = [
-  { label: "Music", icon: <FaMusic />, href: "#" },
-  { label: "Math Art", icon: <FiBook />, href: "#" },
-  { label: "Astronomy", icon: <FaStar />, href: "#" },
-  { label: "Puzzles", icon: <FaPuzzlePiece />, href: "#" },
-  { label: "Game Theory", icon: <FaGamepad />, href: "#" },
-  { label: "Gallery", icon: <FaImages />, href: "#" },
-  { label: "SpeedTyping", icon: <FaKeyboard />, href: "#" },
+  { label: "Music", icon: <FaMusic />, href: "/blogs/music" },
+  { label: "Math Art", icon: <FiBook />, href: "/blogs/math-art" },
+  { label: "Astronomy", icon: <FaStar />, href: "/blogs/astronomy" },
+  { label: "Puzzles", icon: <FaPuzzlePiece />, href: "/blogs/puzzles" },
+  { label: "Game Theory", icon: <FaGamepad />, href: "/blogs/game-theory" },
+  { label: "Gallery", icon: <FaImages />, href: "/blogs/gallery" },
 ];
+
 
 const Sidebar = () => {
   return (

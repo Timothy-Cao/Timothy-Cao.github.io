@@ -1,49 +1,55 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const rotatingRoles = ["Fullstack Developer", "Technical Lead", "Designer"];
 
 const blogs = [
   {
-    title: "Musical Composition",
-    subtitle: "Music Theory and Practice",
-    href: "#",
+  title: "Gallery",
+  subtitle: "A year in the life of Tim Cao",
+  href: "/blogs/gallery",
+  image: "/assets/media/blog_covers/me_1.jpg",
+  },
+  {
+    title: "Music",
+    subtitle: "Sample some of my past works!",
+    href: "/blogs/music",
     image: "/assets/media/blog_covers/music.png",
   },
   {
-    title: "Math Art with Desmos",
-    subtitle: "Exploring Mathematical Creativity",
-    href: "#",
+    title: "Math Art",
+    subtitle: "How bored have you've gotten in math class?",
+    href: "/blogs/math-art",
     image: "/assets/media/blog_covers/math.png",
   },
   {
-    title: "Daily Dose of NASA",
-    subtitle: "Space Science and Exploration",
-    href: "#",
+    title: "Brain Teasers",
+    subtitle: "For those with itchy brains.",
+    href: "/blogs/puzzles",
+    image: "/assets/media/blog_covers/puzzle.gif",
+  },
+  {
+    title: "Astronomy",
+    subtitle: "Welcome to your daily dose of NASA.",
+    href: "/blogs/astronomy",
     image: "/assets/media/blog_covers/nasa.png",
   },
   {
-    title: "Brain Teasers",
-    subtitle: "Sharpen Your Thinking",
-    href: "#",
-    image: "/assets/media/blog_covers/puzzle.png",
-  },
-  {
-    title: "Case Study: Prime Climb",
-    subtitle: "Gamified Learning",
-    href: "#",
+    title: "Game Theory",
+    subtitle: "A guide to ruining boardgame night.",
+    href: "/blogs/game-theory",
     image: "/assets/media/blog_covers/game.png",
-  },
-  {
-    title: "Photo Gallery: My Past Year",
-    subtitle: "Visual Storytelling",
-    href: "#",
-    image: "/assets/media/blog_covers/gallery.png",
-  },
+  }
 ];
+
+const getRandomImage = () => {
+  const randomNumber = Math.floor(Math.random() * 62) + 1; // Random number between 1 and 62
+  return `/assets/media/Photo Gallery/${randomNumber}.jpg`;
+};
 
 const Home = () => {
   const textRef = useRef(null);
   const cursorRef = useRef(null);
+  const [randomImage, setRandomImage] = useState(getRandomImage());
 
   useEffect(() => {
     let charIndex = 0;
@@ -81,12 +87,19 @@ const Home = () => {
       }
     }, 500);
 
-    return () => clearInterval(blinkCursor);
+    const imageInterval = setInterval(() => {
+      setRandomImage(getRandomImage());
+    }, 2000); 
+
+    return () => {
+      clearInterval(blinkCursor);
+      clearInterval(imageInterval);
+    };
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white ">
-      <div className="w-full max-w-5xl ">
+    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+      <div className="w-full max-w-5xl">
         <div className="space-y-4 text-left mb-12 mt-24">
           <h1 className="text-5xl font-bold mb-12">
             Hello, I'm Timothy
@@ -95,9 +108,7 @@ const Home = () => {
               A{" "}
               <span>
                 <span ref={textRef} className="text-gray-500"></span>
-                <span ref={cursorRef} className="text-gray-500">
-                  |
-                </span>
+                <span ref={cursorRef} className="text-gray-500">|</span>
               </span>
             </span>
           </h1>
@@ -107,9 +118,7 @@ const Home = () => {
             holistic, practical solutions.
           </p>
         </div>
-        <h2 className="text-3xl font-bold mb-12">
-        Explore
-        </h2>
+        <h2 className="text-3xl font-bold mb-12">Explore</h2>
         <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl">
           {blogs.map((blog, index) => (
             <a
@@ -119,13 +128,15 @@ const Home = () => {
             >
               <div className="relative w-full h-48">
                 <img
-                  src={blog.image}
+                  src={blog.title === "Gallery" ? getRandomImage() : blog.image}
                   alt={blog.title}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full transition-opacity duration-1000 ease-in-out"
                 />
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold text-white">{blog.title}</h3>
+                <h3 className="text-lg font-semibold text-white">
+                  {blog.title}
+                </h3>
                 <p className="text-sm text-gray-400 mt-1">{blog.subtitle}</p>
               </div>
             </a>

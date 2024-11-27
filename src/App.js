@@ -6,6 +6,13 @@ import Experience from "./pages/Experience";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
+import Music from "./pages/blogs/Music";
+import MathArt from "./pages/blogs/MathArt";
+import Astronomy from "./pages/blogs/Astronomy";
+import Puzzles from "./pages/blogs/Puzzles";
+import GameTheory from "./pages/blogs/GameTheory";
+import Gallery from "./pages/blogs/Gallery";
+
 function App() {
   return (
     <Router>
@@ -17,6 +24,12 @@ function App() {
             <Route path="/experience" element={<Experience />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blogs/music" element={<Music />} />
+            <Route path="/blogs/math-art" element={<MathArt />} />
+            <Route path="/blogs/astronomy" element={<Astronomy />} />
+            <Route path="/blogs/puzzles" element={<Puzzles />} />
+            <Route path="/blogs/game-theory" element={<GameTheory />} />
+            <Route path="/blogs/gallery" element={<Gallery />} />
           </Routes>
         </div>
       </div>
