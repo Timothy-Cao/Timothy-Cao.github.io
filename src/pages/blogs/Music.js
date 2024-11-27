@@ -1,14 +1,160 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
-const Music = () => {
+const compositions = [
+    {
+      title: "Dodoman's Theme",
+      description:
+        "Written in 2021 for symphonic orchestra with a choir. Inspired by Schubert's Ständchen.",
+      type: "video",
+      src: "https://www.youtube.com/embed/8N39upFgpts",
+    },
+    {
+      title: "March Challenge",
+      description: "Written in 2024, featuring piano and harp.",
+      type: "audio",
+      src: "/assets/media/audio/MarchRemixChallenge.mp3",
+    },
+    {
+      title: "My September",
+      description: "Written in 2023, for solo piano.",
+      type: "audio",
+      src: "/assets/media/audio/myseptember.mp3",
+    },
+    {
+      title: "8 Bit Nostalgia",
+      description: "Written in 2021, for solo piano (synth).",
+      type: "audio",
+      src: "/assets/media/audio/8_bit_nostalgia.mp3",
+    },
+    {
+      title: "Three Hands",
+      description: "Written in 2022, for piano duet. Unknown inspiration.",
+      type: "audio",
+      src: "/assets/media/audio/4hand_remix.mp3",
+    },
+    {
+      title: "Game OST 4",
+      description: "Written in 2020, for orchestra. Inspiration from Sonny.",
+      type: "audio",
+      src: "/assets/media/audio/Game_OST_4.mp3",
+    },
+    {
+      title: "Sadge in C",
+      description: "Written in 2019, for solo piano (synth).",
+      type: "audio",
+      src: "/assets/media/audio/sadgeC.mp3",
+    },
+    {
+      title: "Pudding's Day Off",
+      description: "Written in 2022, for solo piano.",
+      type: "audio",
+      src: "/assets/media/audio/Puddings_day_off.mp3",
+    },
+    {
+      title: "Game OST 2",
+      description: "Written in 2019, for orchestra.",
+      type: "audio",
+      src: "/assets/media/audio/Game_OST_3.mp3",
+    },
+    {
+      title: "Violin Nostalgia",
+      description: "Written in 2018, for violin and piano.",
+      type: "audio",
+      src: "/assets/media/audio/violin_nostalgia.mp3",
+    },
+    {
+      title: "Autumn Leaves Variations",
+      description: "Written in 2023, for piano, guitar, and trumpet.",
+      type: "audio",
+      src: "/assets/media/audio/Tim's Leaves.mp3",
+    },
+    {
+      title: "March of the Clowns",
+      description: "Written in 2014, for wind quintet",
+      type: "audio",
+      src: "/assets/media/audio/March_of_the_clowns.mp3",
+    },
+  ];
+  
+const MusicPage = () => {
+  const [open, setOpen] = useState(false);
+  const [activeComposition, setActiveComposition] = useState(null);
+
+  const handleOpen = (composition) => {
+    setActiveComposition(composition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setActiveComposition(null);
+  };
+
   return (
-    <div>
-      <h1 className="text-4xl font-bold mb-4">Music</h1>
-      <p className="text-lg text-gray-300">
-        Welcome to the Music blog! This is where we explore topics about music theory, composition, and more.
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
+      <div className="w-full max-w-5xl">
+        <h1 className="text-5xl font-bold mb-8">Musical Composition</h1>
+        <p className="text-lg text-gray-300 mb-12 leading-relaxed">
+          Welcome to the musical corner. This space is dedicated to
+          showcasing some of my compositions. 
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {compositions.map((comp, index) => (
+            <div
+              key={index}
+              onClick={() => handleOpen(comp)}
+              className="cursor-pointer bg-gray-800 rounded-lg p-4 shadow-lg hover:shadow-xl transition-transform hover:scale-105"
+            >
+              <h3 className="text-lg font-semibold text-white mb-2">
+                {comp.title}
+              </h3>
+              <p className="text-sm text-gray-400">{comp.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {activeComposition && (
+        <Modal open={open} onClose={handleClose}>
+          <Box
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-6 rounded-lg shadow-lg"
+            style={{
+                maxWidth: "200%",
+                maxHeight: "auto%",
+                minWidth: "400px", // Minimum width
+                minHeight: "auto", // Minimum height
+                overflow: "auto",
+            }}
+            >  
+            <h2 className="text-xl font-bold text-white mb-4">
+              {activeComposition.title}
+            </h2>
+            <p className="text-sm text-gray-400 mb-6">
+              {activeComposition.description}
+            </p>
+            {activeComposition.type === "audio" ? (
+              <audio
+                controls
+                src={activeComposition.src}
+                className="w-full"
+                autoPlay
+              />
+            ) : (
+              <iframe
+                src={activeComposition.src}
+                title={activeComposition.title}
+                className="w-full h-64 md:h-96"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
+          </Box>
+        </Modal>
+      )}
     </div>
   );
 };
 
-export default Music;
+export default MusicPage;

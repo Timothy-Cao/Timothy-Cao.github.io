@@ -99,7 +99,15 @@ const Home = () => {
   }, [hoverSpeed]);
 
   const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`; 
-
+  
+  useEffect(() => {
+    const imagePaths = Array.from({ length: 62 }, (_, i) => `/assets/media/Photo Gallery/${i + 1}.jpg`);
+    imagePaths.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="w-full max-w-5xl">
@@ -138,7 +146,7 @@ const Home = () => {
                   alignItems: blog.title === "Game Theory" ? "center" : undefined,
                   justifyContent: blog.title === "Game Theory" ? "center" : undefined,
                 }}
-                onMouseEnter={() => blog.title === "Gallery" && setHoverSpeed(250)} 
+                onMouseEnter={() => blog.title === "Gallery" && setHoverSpeed(300)} 
                 onMouseLeave={() => blog.title === "Gallery" && setHoverSpeed(1000)} 
               >
                 <img
