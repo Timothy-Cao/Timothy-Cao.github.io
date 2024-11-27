@@ -4,10 +4,10 @@ const rotatingRoles = ["Fullstack Developer", "Technical Lead", "Designer"];
 
 const blogs = [
   {
-  title: "Gallery",
-  subtitle: "A year in the life of Tim Cao",
-  href: "/blogs/gallery",
-  image: "/assets/media/blog_covers/me_1.jpg",
+    title: "Gallery",
+    subtitle: "A year in the life of Tim Cao",
+    href: "/blogs/gallery",
+    image: "/assets/media/blog_covers/me_1.jpg",
   },
   {
     title: "Music",
@@ -38,19 +38,16 @@ const blogs = [
     subtitle: "A guide to ruining boardgame night.",
     href: "/blogs/game-theory",
     image: "/assets/media/blog_covers/game.png",
-  }
+  },
 ];
-
-const getRandomImage = () => {
-  const randomNumber = Math.floor(Math.random() * 62) + 1; // Random number between 1 and 62
-  return `/assets/media/Photo Gallery/${randomNumber}.jpg`;
-};
 
 const Home = () => {
   const textRef = useRef(null);
   const cursorRef = useRef(null);
-  const [randomImage, setRandomImage] = useState(getRandomImage());
+  const [currentIndex, setCurrentIndex] = useState(0); // Tracks the current image index
+  const [hoverSpeed, setHoverSpeed] = useState(3000); // Default speed: 3 seconds
 
+  // Typing Effect
   useEffect(() => {
     let charIndex = 0;
     let roleIndex = 0;
@@ -61,21 +58,23 @@ const Home = () => {
     const pauseBeforeDelete = 500;
 
     const type = () => {
-      const currentRole = rotatingRoles[roleIndex];
-      if (isDeleting) {
-        textRef.current.textContent = currentRole.substring(0, charIndex--);
-      } else {
-        textRef.current.textContent = currentRole.substring(0, charIndex++);
-      }
+      if (textRef.current) {
+        const currentRole = rotatingRoles[roleIndex];
+        if (isDeleting) {
+          textRef.current.textContent = currentRole.substring(0, charIndex--);
+        } else {
+          textRef.current.textContent = currentRole.substring(0, charIndex++);
+        }
 
-      if (!isDeleting && charIndex === currentRole.length) {
-        setTimeout(() => (isDeleting = true), pauseBeforeDelete);
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % rotatingRoles.length;
-      }
+        if (!isDeleting && charIndex === currentRole.length) {
+          setTimeout(() => (isDeleting = true), pauseBeforeDelete);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % rotatingRoles.length;
+        }
 
-      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+        setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+      }
     };
 
     type();
@@ -87,15 +86,20 @@ const Home = () => {
       }
     }, 500);
 
-    const imageInterval = setInterval(() => {
-      setRandomImage(getRandomImage());
-    }, 2000); 
-
     return () => {
       clearInterval(blinkCursor);
-      clearInterval(imageInterval);
     };
   }, []);
+
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % 62);
+    }, hoverSpeed);
+
+    return () => clearInterval(imageInterval);
+  }, [hoverSpeed]);
+
+  const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`; 
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
@@ -126,9 +130,17 @@ const Home = () => {
               href={blog.href}
               className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-700"
             >
-              <div className="relative w-full h-48">
+              <div
+                className="relative w-full h-48"
+                onMouseEnter={() => setHoverSpeed(300)} // Speed up on hover
+                onMouseLeave={() => setHoverSpeed(1000)} // Reset speed to normal
+              >
                 <img
-                  src={blog.title === "Gallery" ? getRandomImage() : blog.image}
+                  src={
+                    blog.title === "Gallery"
+                      ? getImagePath(currentIndex) // Sequential cycling for Gallery
+                      : blog.image
+                  }
                   alt={blog.title}
                   className="object-cover w-full h-full transition-opacity duration-1000 ease-in-out"
                 />
