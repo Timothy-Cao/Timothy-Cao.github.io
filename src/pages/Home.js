@@ -16,6 +16,12 @@ const blogs = [
     image: "/assets/media/blog_covers/music.png",
   },
   {
+    title: "Game Theory",
+    subtitle: "A guide to ruining boardgame night.",
+    href: "/blogs/game-theory",
+    image: "/assets/media/blog_covers/game.png",
+  },
+  {
     title: "Math Art",
     subtitle: "How bored have you've gotten in math class?",
     href: "/blogs/math-art",
@@ -33,21 +39,14 @@ const blogs = [
     href: "/blogs/astronomy",
     image: "/assets/media/blog_covers/nasa.png",
   },
-  {
-    title: "Game Theory",
-    subtitle: "A guide to ruining boardgame night.",
-    href: "/blogs/game-theory",
-    image: "/assets/media/blog_covers/game.png",
-  },
 ];
 
 const Home = () => {
   const textRef = useRef(null);
   const cursorRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0); // Tracks the current image index
-  const [hoverSpeed, setHoverSpeed] = useState(3000); // Default speed: 3 seconds
+  const [currentIndex, setCurrentIndex] = useState(0); 
+  const [hoverSpeed, setHoverSpeed] = useState(1000); 
 
-  // Typing Effect
   useEffect(() => {
     let charIndex = 0;
     let roleIndex = 0;
@@ -93,7 +92,7 @@ const Home = () => {
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % 62);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % 64);
     }, hoverSpeed);
 
     return () => clearInterval(imageInterval);
@@ -131,24 +130,39 @@ const Home = () => {
               className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-700"
             >
               <div
-                className="relative w-full h-48"
-                onMouseEnter={() => setHoverSpeed(300)} // Speed up on hover
-                onMouseLeave={() => setHoverSpeed(1000)} // Reset speed to normal
+                className={`relative w-full h-48 overflow-hidden ${
+                  blog.title === "Game Theory" ? "group" : ""
+                }`}
+                style={{
+                  display: blog.title === "Game Theory" ? "flex" : undefined,
+                  alignItems: blog.title === "Game Theory" ? "center" : undefined,
+                  justifyContent: blog.title === "Game Theory" ? "center" : undefined,
+                }}
+                onMouseEnter={() => blog.title === "Gallery" && setHoverSpeed(250)} 
+                onMouseLeave={() => blog.title === "Gallery" && setHoverSpeed(1000)} 
               >
                 <img
                   src={
                     blog.title === "Gallery"
-                      ? getImagePath(currentIndex) // Sequential cycling for Gallery
+                      ? getImagePath(currentIndex)
                       : blog.image
                   }
                   alt={blog.title}
-                  className="object-cover w-full h-full transition-opacity duration-1000 ease-in-out"
+                  className={`${
+                    blog.title === "Game Theory"
+                      ? "transition-transform group-hover:rotate-180 group-hover:scale-125 duration-700"
+                      : "w-full h-full object-cover"
+                  }`}
+                  style={{
+                    width: blog.title === "Game Theory" ? "auto" : "100%",
+                    height: blog.title === "Game Theory" ? "auto" : "100%",
+                    maxHeight: blog.title === "Game Theory" ? "300%" : undefined,
+                    transformOrigin: blog.title === "Game Theory" ? "center center" : undefined,
+                  }}
                 />
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold text-white">
-                  {blog.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-white">{blog.title}</h3>
                 <p className="text-sm text-gray-400 mt-1">{blog.subtitle}</p>
               </div>
             </a>
