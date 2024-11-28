@@ -45,8 +45,8 @@ const puzzles = [
   {
     title: "Handshake Puzzle",
     description:
-      <>Jim and his wife Pam met with 4 other couples at a bar. Some people shook hands with each other. No one shook hands with their own spouse. 
-      Jim asks everyone else how many hands they shook and gets nine different answers. <br /> <br /> How many hands did Pam shake?</>,
+      <>Jim and Pam met with 4 other couples at a bar. Some people shook hands with each other. No one shook hands with their own partner. 
+      Jim asks everyone else how many hands they shook and gets 9 different answers. <br /> <br /> How many hands did Pam shake?</>,
     type: "text",
   },
   {

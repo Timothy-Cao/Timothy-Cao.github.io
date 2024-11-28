@@ -26,11 +26,15 @@ const FermiQuestions = () => {
         const questionArray = [];
         for (const source in rawQuestions) {
           for (const q in rawQuestions[source]) {
-            questionArray.push({
-              question: q,
-              answer: rawQuestions[source][q],
-              source: source,
-            });
+            const answer = rawQuestions[source][q];
+            // filter questions w answers outside slider range
+            if (answer >= -30 && answer <= 30) {
+              questionArray.push({
+                question: q,
+                answer: answer,
+                source: source,
+              });
+            }
           }
         }
         shuffleArray(questionArray);
@@ -42,9 +46,10 @@ const FermiQuestions = () => {
         console.error("Error fetching Fermi questions:", error);
       }
     };
-
+  
     fetchQuestions();
   }, []);
+  
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
