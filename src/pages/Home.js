@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const rotatingRoles = ["Fullstack Developer", "Technical Lead", "Designer"];
 
@@ -159,9 +160,9 @@ const Home = () => {
         <h2 className="text-3xl font-bold mb-12">Explore</h2>
         <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl">
           {blogs.map((blog, index) => (
-            <a
+            <Link
               key={index}
-              href={blog.href}
+              to={blog.href}
               className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-700"
             >
               <div
@@ -212,11 +213,11 @@ const Home = () => {
                 <h3 className="text-lg font-semibold text-white">{blog.title}</h3>
                 <p className="text-sm text-gray-400 mt-1">{blog.subtitle}</p>
               </div>
-            </a>
+            </Link>
           ))}
+        </div>;
         </div>
       </div>
-    </div>
   );
 };
 
