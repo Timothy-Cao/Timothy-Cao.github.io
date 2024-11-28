@@ -1,6 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "homepage": "https://Timothy-Cao.github.io/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.5",
@@ -13,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
     "framer-motion": "^11.11.17",
+    "gh-pages": "^6.2.0",
     "katex": "^0.16.11",
     "lucide-react": "^0.460.0",
     "next": "^15.0.3",
@@ -30,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
