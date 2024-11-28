@@ -215,7 +215,7 @@ const Home = () => {
               </div>
             </Link>
           ))}
-        </div>;
+        </div>
         </div>
       </div>
   );
