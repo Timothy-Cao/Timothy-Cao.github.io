@@ -44,17 +44,36 @@ const blogs = [
 const Home = () => {
   const textRef = useRef(null);
   const cursorRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0); 
-  const [hoverSpeed, setHoverSpeed] = useState(1000); 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoverSpeed, setHoverSpeed] = useState(1000);
+  const audioRef = useRef(null);
+
+  // Preload images and audio
+  useEffect(() => {
+    const imagePaths = Array.from(
+      { length: 64 },
+      (_, i) => `/assets/media/Photo Gallery/${i + 1}.jpg`
+    );
+    imagePaths.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    audioRef.current = new Audio("/assets/media/audio/hover_sound.mp3");
+    audioRef.current.preload = "auto";
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let charIndex = 0;
     let roleIndex = 0;
     let isDeleting = false;
-
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const pauseBeforeDelete = 500;
 
     const type = () => {
       if (textRef.current) {
@@ -66,13 +85,13 @@ const Home = () => {
         }
 
         if (!isDeleting && charIndex === currentRole.length) {
-          setTimeout(() => (isDeleting = true), pauseBeforeDelete);
+          setTimeout(() => (isDeleting = true), 500);
         } else if (isDeleting && charIndex === 0) {
           isDeleting = false;
           roleIndex = (roleIndex + 1) % rotatingRoles.length;
         }
 
-        setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+        setTimeout(type, isDeleting ? 50 : 100);
       }
     };
 
@@ -85,9 +104,7 @@ const Home = () => {
       }
     }, 500);
 
-    return () => {
-      clearInterval(blinkCursor);
-    };
+    return () => clearInterval(blinkCursor);
   }, []);
 
   useEffect(() => {
@@ -98,16 +115,26 @@ const Home = () => {
     return () => clearInterval(imageInterval);
   }, [hoverSpeed]);
 
-  const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`; 
-  
-  useEffect(() => {
-    const imagePaths = Array.from({ length: 62 }, (_, i) => `/assets/media/Photo Gallery/${i + 1}.jpg`);
-    imagePaths.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-  
+  const handleGalleryHover = (isHovering) => {
+    setHoverSpeed(isHovering ? 300 : 1000);
+  };
+
+  const handleMusicHover = (isHovering) => {
+    if (audioRef.current) {
+      if (isHovering) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(() => {
+          console.warn("Audio play was prevented.");
+        });
+      } else {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    }
+  };
+
+  const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="w-full max-w-5xl">
@@ -146,8 +173,20 @@ const Home = () => {
                   alignItems: blog.title === "Game Theory" ? "center" : undefined,
                   justifyContent: blog.title === "Game Theory" ? "center" : undefined,
                 }}
-                onMouseEnter={() => blog.title === "Gallery" && setHoverSpeed(300)} 
-                onMouseLeave={() => blog.title === "Gallery" && setHoverSpeed(1000)} 
+                onMouseEnter={() =>
+                  blog.title === "Gallery"
+                    ? handleGalleryHover(true)
+                    : blog.title === "Music"
+                    ? handleMusicHover(true)
+                    : null
+                }
+                onMouseLeave={() =>
+                  blog.title === "Gallery"
+                    ? handleGalleryHover(false)
+                    : blog.title === "Music"
+                    ? handleMusicHover(false)
+                    : null
+                }
               >
                 <img
                   src={

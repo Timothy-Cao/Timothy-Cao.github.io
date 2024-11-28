@@ -97,8 +97,7 @@ const MusicPage = () => {
       <div className="w-full max-w-5xl">
         <h1 className="text-5xl font-bold mb-8">Musical Composition</h1>
         <p className="text-lg text-gray-300 mb-12 leading-relaxed">
-          Welcome to the musical corner. This space is dedicated to
-          showcasing some of my compositions. 
+          Welcome to the musical corner. Sometimes I vibrate the air pleasantly. 
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {compositions.map((comp, index) => (
@@ -109,6 +108,11 @@ const MusicPage = () => {
             >
               <h3 className="text-lg font-semibold text-white mb-2">
                 {comp.title}
+                {(comp.title === "Dodoman's Theme" || comp.title === "March Challenge" || comp.title === "My September") && (
+                  <span className="ml-2 text-yellow-400" title="Favourite">
+                    ★
+                  </span>
+                )}
               </h3>
               <p className="text-sm text-gray-400">{comp.description}</p>
             </div>
@@ -122,8 +126,8 @@ const MusicPage = () => {
             style={{
                 maxWidth: "200%",
                 maxHeight: "auto%",
-                minWidth: "400px", // Minimum width
-                minHeight: "auto", // Minimum height
+                minWidth: "400px", 
+                minHeight: "auto", 
                 overflow: "auto",
             }}
             >  
