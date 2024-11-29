@@ -135,13 +135,7 @@ const GameTheoryPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
       <div className="w-full max-w-5xl">
-        <Typography
-          variant="h3"
-          className="mb-6 text-gray-100"
-          style={{ marginBottom: "24px" }}
-        >
-          Solving Prime Climb (WIP)
-        </Typography>
+      <h1 className="text-5xl font-bold mb-8 mt-6">Solving Prime Climb (WIP)</h1>
         <Typography
           variant="subtitle1"
           className="mb-8 text-gray-300"

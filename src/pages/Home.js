@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const rotatingRoles = ["Fullstack Developer", "Technical Lead", "Designer"];
+const rotatingRoles = ["Fullstack Dev", "Technical Lead", "Designer"];
 
 const blogs = [
   {
@@ -137,10 +137,28 @@ const Home = () => {
   const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div
+      className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
+      style={{
+        paddingLeft: "16px",
+        paddingRight: "16px",
+      }}
+    >
       <div className="w-full max-w-5xl">
-        <div className="space-y-4 text-left mb-12 mt-24">
-          <h1 className="text-5xl font-bold mb-12">
+        <div
+          className="space-y-4 text-left mb-12 mt-24"
+          style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          <h1
+            className="text-5xl font-bold mb-12"
+            style={{
+              paddingLeft: "16px",
+              paddingRight: "16px",
+            }}
+          >
             Hello, I'm Timothy
             <br />
             <span className="text-gray-400 text-4xl">
@@ -151,19 +169,43 @@ const Home = () => {
               </span>
             </span>
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl leading-relaxed">
+          <p
+            className="text-lg text-gray-300 max-w-2xl leading-relaxed"
+            style={{
+              paddingLeft: "16px",
+              paddingRight: "16px",
+            }}
+          >
             Chronically curious with a results-driven mindset. I'm someone who
-            values problem definition, discussing theory, and delivering
-            holistic, practical solutions.
+            values problem definition, discussing theory, and delivering holistic,
+            practical solutions.
           </p>
         </div>
-        <h2 className="text-3xl font-bold mb-12">Explore</h2>
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-4xl">
+        <h2
+          className="text-3xl font-bold mb-12"
+          style={{
+            paddingLeft: "16px",
+            paddingRight: "16px",
+          }}
+        >
+          Explore
+        </h2>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto"
+          style={{
+            maxWidth: "1024px",
+          }}
+        >
           {blogs.map((blog, index) => (
             <Link
               key={index}
               to={blog.href}
               className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-700"
+              style={{
+                width: "100%",
+                maxWidth: "512px",
+                margin: "0 auto",
+              }}
             >
               <div
                 className={`relative w-full h-48 overflow-hidden ${
@@ -216,8 +258,10 @@ const Home = () => {
             </Link>
           ))}
         </div>
-        </div>
       </div>
+      
+    </div>
+
   );
 };
 

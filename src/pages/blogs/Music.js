@@ -95,7 +95,7 @@ const MusicPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
       <div className="w-full max-w-5xl">
-        <h1 className="text-5xl font-bold mb-8">Musical Composition</h1>
+        <h1 className="text-5xl font-bold mb-8 mt-6">Musical Composition</h1>
         <p className="text-lg text-gray-300 mb-12 leading-relaxed">
           Welcome to the musical corner. Sometimes I vibrate the air pleasantly. 
         </p>
