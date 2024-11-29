@@ -33,7 +33,7 @@ const TopNavMenu = () => {
       className="fixed top-0 left-0 w-full bg-gray-800 z-50 shadow-md"
       style={{ height: menuOpen ? "100%" : "auto" }}
     >
-      <div className="flex items-center justify-between px-6 py-4 mt-8">
+      <div className="flex items-center justify-between px-6 py-4 mt-2">
         <h1 className="text-xl font-bold text-white">Tim Cao</h1>
         <button
           className="text-white text-2xl focus:outline-none"
@@ -43,7 +43,7 @@ const TopNavMenu = () => {
         </button>
       </div>
       {menuOpen && (
-        <div className="flex flex-col space-y-4 px-6 mt-8">
+        <div className="flex flex-col space-y-4 px-6">
           <nav className="flex flex-col space-y-3">
             {menuItems.map((item, index) =>
               item.isDivider ? (
