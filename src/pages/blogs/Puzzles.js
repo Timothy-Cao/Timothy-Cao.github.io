@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import FermiQuestions from "../../utils/FermiQuestions";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import "../../styles/CardGlow.css";
 
 const puzzles = [
   {
@@ -13,15 +14,21 @@ const puzzles = [
     description: (
       <>
         Fermi Questions are about estimating with limited info. <br /> <br />
-        Provide answers in powers of 10. Aim to be within one order of magnitude of the correct value.
+        Provide answers in powers of 10. Aim to be within one order of magnitude
+        of the correct value.
       </>
     ),
     type: "fermi",
   },
   {
     title: "Tetris Puzzle",
-    description:
-      <>A Perfect Clear (PC) is when a player fully eliminates all squares on the board.  <br /> <br />Can you visualize a solution?</>,
+    description: (
+      <>
+        A Perfect Clear (PC) is when a player fully eliminates all squares on
+        the board. <br /> <br />
+        Can you visualize a solution?
+      </>
+    ),
     type: "image",
     puzzle: "/assets/media/puzzles/tetris_puzzle1.png",
     solution: "/assets/media/puzzles/tetris_solution.gif",
@@ -29,33 +36,44 @@ const puzzles = [
   },
   {
     title: "Chess Puzzle",
-    description: <>Black to move.  <br /> <br /> Hint: Backrank Mate</>,
+    description: <>Black to move. <br /> <br /> Hint: Backrank Mate</>,
     type: "image",
     puzzle: "/assets/media/puzzles/chess_puzzle1.png",
     solution: "/assets/media/puzzles/chess_solution.gif",
-    tryItUrl: "https://www.chess.com/analysis/game/pgn/2a6hN7ka86?tab=analysis",
+    tryItUrl:
+      "https://www.chess.com/analysis/game/pgn/2a6hN7ka86?tab=analysis",
   },
   {
     title: "Chameleon Puzzle",
-    description:
-      <>There are 13 Red, 15 Green, and 17 Blue Chameleons. If two chameleons of different colors meet, both change to the third color.  <br /> <br />
-      Is it ever possible for all chameleons to become the same color? </>,
+    description: (
+      <>
+        There are 13 Red, 15 Green, and 17 Blue Chameleons. If two chameleons of
+        different colors meet, both change to the third color. <br /> <br />
+        Is it ever possible for all chameleons to become the same color?
+      </>
+    ),
     type: "text",
   },
   {
     title: "Handshake Puzzle",
-    description:
-      <>Jim and Pam met with 4 other couples at a bar. Some people shook hands with each other. No one shook hands with their own partner. 
-      Jim asks everyone else how many hands they shook and gets 9 different answers. <br /> <br /> How many hands did Pam shake?</>,
+    description: (
+      <>
+        Jim and Pam met with 4 other couples at a bar. Some people shook hands
+        with each other. No one shook hands with their own partner. Jim asks
+        everyone else how many hands they shook and gets 9 different answers.{" "}
+        <br /> <br /> How many hands did Pam shake?
+      </>
+    ),
     type: "text",
   },
   {
-    title: "One of Every digit",
+    title: "One of Every Digit",
     description: (
       <>
         Find an integer <InlineMath>N</InlineMath> such that{" "}
-        <InlineMath>N^2</InlineMath> and <InlineMath>N^3</InlineMath> collectively contain
-        exactly one copy of every digit (in base 10).  <br />  <br /> Bonus: Which bases do not have a solution?
+        <InlineMath>N^2</InlineMath> and <InlineMath>N^3</InlineMath>{" "}
+        collectively contain exactly one copy of every digit (in base 10).{" "}
+        <br /> <br /> Bonus: Which bases do not have a solution?
       </>
     ),
     type: "text",
@@ -79,24 +97,32 @@ const PuzzlesPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
       <div className="w-full max-w-5xl">
-      <h1 className="text-5xl font-bold mb-8 mt-6">Brain Teasers</h1>
-        <Typography variant="subtitle1" className="mb-8 text-gray-300">
-          For those with itchy brains. 
+        <h1 className="text-5xl font-bold mb-8 mt-6 text-center">Brain Teasers</h1>
+        <Typography variant="subtitle1" className="mb-8 text-gray-300 text-center">
+          For those with itchy brains.
         </Typography>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           {puzzles.map((puzzle, index) => (
             <div
               key={index}
-              className="cursor-pointer bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-transform hover:scale-105"
-              style={{ aspectRatio: "1 / 1" }}
+              className="card"
+              style={{ aspectRatio: "1 / 1", cursor: "pointer" }}
               onClick={() => handleOpen(puzzle)}
             >
-              <Typography variant="h6" className="text-gray-100 mb-2">
-                {puzzle.title}
-              </Typography>
-              <Typography variant="body2" className="text-gray-400">
-                {puzzle.description}
-              </Typography>
+              <div className="card2 flex flex-col justify-center items-center p-4 h-full">
+                <Typography
+                  variant="h6"
+                  className="text-gray-100 mb-2 text-center"
+                >
+                  {puzzle.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  className="text-gray-400 text-center"
+                >
+                  {puzzle.description}
+                </Typography>
+              </div>
             </div>
           ))}
         </div>

@@ -13,6 +13,7 @@ import Puzzles from "./pages/blogs/Puzzles";
 import GameTheory from "./pages/blogs/GameTheory";
 import Gallery from "./pages/blogs/Gallery";
 
+
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
