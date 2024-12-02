@@ -14,8 +14,7 @@ const puzzles = [
     description: (
       <>
         Fermi Questions are about estimating with limited info. <br /> <br />
-        Provide answers in powers of 10. Aim to be within one order of magnitude
-        of the correct value.
+        Provide answers in powers of 10. Aim to be within one order of magnitude of the correct value.
       </>
     ),
     type: "fermi",
@@ -40,15 +39,14 @@ const puzzles = [
     type: "image",
     puzzle: "/assets/media/puzzles/chess_puzzle1.png",
     solution: "/assets/media/puzzles/chess_solution.gif",
-    tryItUrl:
-      "https://www.chess.com/analysis/game/pgn/2a6hN7ka86?tab=analysis",
+    tryItUrl: "https://www.chess.com/analysis/game/pgn/2a6hN7ka86?tab=analysis",
   },
   {
     title: "Chameleon Puzzle",
     description: (
       <>
-        There are 13 Red, 15 Green, and 17 Blue Chameleons. If two chameleons of
-        different colors meet, both change to the third color. <br /> <br />
+        There are 13 Red, 15 Green, and 17 Blue Chameleons. If two chameleons
+        of different colors meet, both change to the third color. <br /> <br />
         Is it ever possible for all chameleons to become the same color?
       </>
     ),
@@ -67,7 +65,7 @@ const puzzles = [
     type: "text",
   },
   {
-    title: "One of Every Digit",
+    title: "One of Every digit",
     description: (
       <>
         Find an integer <InlineMath>N</InlineMath> such that{" "}
@@ -97,8 +95,8 @@ const PuzzlesPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
       <div className="w-full max-w-5xl">
-        <h1 className="text-5xl font-bold mb-8 mt-6 text-center">Brain Teasers</h1>
-        <Typography variant="subtitle1" className="mb-8 text-gray-300 text-center">
+        <h1 className="text-5xl font-bold mb-8 mt-6">Brain Teasers</h1>
+        <Typography variant="subtitle1" className="mb-8 text-gray-300">
           For those with itchy brains.
         </Typography>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -106,20 +104,16 @@ const PuzzlesPage = () => {
             <div
               key={index}
               className="card"
-              style={{ aspectRatio: "1 / 1", cursor: "pointer" }}
               onClick={() => handleOpen(puzzle)}
+              style={{ cursor: "pointer", aspectRatio: "1 / 1" }}
             >
-              <div className="card2 flex flex-col justify-center items-center p-4 h-full">
-                <Typography
-                  variant="h6"
-                  className="text-gray-100 mb-2 text-center"
-                >
+              <div className="card2 p-4">
+              <div style={{ margin: "10px 0" }}></div>
+                <Typography variant="h6" className="text-gray-100 mb-2">
                   {puzzle.title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  className="text-gray-400 text-center"
-                >
+                <div style={{ margin: "10px 0" }}></div>
+                <Typography variant="body2" className="text-gray-400">
                   {puzzle.description}
                 </Typography>
               </div>
@@ -140,12 +134,7 @@ const PuzzlesPage = () => {
               color: "white",
             }}
           >
-            <Typography
-              variant="h5"
-              style={{
-                marginBottom: "10px",
-              }}
-            >
+            <Typography variant="h5" style={{ marginBottom: "10px" }}>
               {activePuzzle.title}
             </Typography>
             {activePuzzle.type === "text" ? (
