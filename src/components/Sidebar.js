@@ -5,19 +5,18 @@ import { FaMusic, FaPuzzlePiece, FaStar, FaGamepad, FaImages } from "react-icons
 import "../styles/ButtonShimmer.css";
 
 const navItems = [
-  { label: "Home", icon: <FiHome />, href: "/" },
-  { label: "Experience", icon: <FiUser />, href: "/experience" },
-  { label: "About", icon: <FiBook />, href: "/about" },
-  { label: "Contact", icon: <FiMail />, href: "/contact" },
+  { label: "Home", icon: <FiHome className="icon-white" />, href: "/" },
+  { label: "About", icon: <FiBook className="icon-white" />, href: "/about" },
+  { label: "Contact", icon: <FiMail className="icon-white" />, href: "/contact" },
 ];
 
 const blogItems = [
-  { label: "Gallery", icon: <FaImages />, href: "/blogs/gallery" },
-  { label: "Music", icon: <FaMusic />, href: "/blogs/music" },
-  { label: "Math Art", icon: <FiBook />, href: "/blogs/math-art" },
-  { label: "Astronomy", icon: <FaStar />, href: "/blogs/astronomy" },
-  { label: "Puzzles", icon: <FaPuzzlePiece />, href: "/blogs/puzzles" },
-  { label: "Game Theory", icon: <FaGamepad />, href: "/blogs/game-theory" },
+  { label: "Gallery", icon: <FaImages className="icon-white" />, href: "/blogs/gallery" },
+  { label: "Music", icon: <FaMusic className="icon-white" />, href: "/blogs/music" },
+  { label: "Math Art", icon: <FiBook className="icon-white" />, href: "/blogs/math-art" },
+  { label: "Astronomy", icon: <FaStar className="icon-white" />, href: "/blogs/astronomy" },
+  { label: "Puzzles", icon: <FaPuzzlePiece className="icon-white" />, href: "/blogs/puzzles" },
+  { label: "Game Theory", icon: <FaGamepad className="icon-white" />, href: "/blogs/game-theory" },
 ];
 
 const Sidebar = () => {

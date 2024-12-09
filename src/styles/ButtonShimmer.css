@@ -26,5 +26,9 @@
 }
 
 .button:hover span {
-  color: black; /* Text color transition */
+  color: black; 
+}
+
+.icon-white {
+  color: white;
 }
