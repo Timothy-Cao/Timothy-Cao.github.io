@@ -7,6 +7,16 @@
     {
       "source": "/api/numbers/random",
       "destination": "http://numbersapi.com/random"
-    }
+    },
+    {
+        "redirects": [
+          {
+            "source": "https://timcao.com/(.*)",
+            "destination": "https://www.timcao.com/$1",
+            "permanent": true
+          }
+        ]
+      }
+      
   ]
 }
