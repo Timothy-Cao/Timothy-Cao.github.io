@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/xkcd/:num",
+      "destination": "https://xkcd.com/:num/info.0.json"
+    },
+    {
+      "source": "/api/numbers/random",
+      "destination": "http://numbersapi.com/random"
+    }
+  ]
+}

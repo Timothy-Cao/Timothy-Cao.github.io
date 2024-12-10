@@ -14,12 +14,12 @@ const About = () => {
     const fetchXKCDAndNumberFact = async () => {
       try {
         const comicNumber = Math.floor(Math.random() * 3000) + 1;
-        const xkcdResponse = await fetch(`https://xkcd.com/${comicNumber}/info.0.json`);
+        const xkcdResponse = await fetch(`/api/xkcd/${comicNumber}`);
         if (!xkcdResponse.ok) throw new Error("Failed to fetch XKCD comic");
         const xkcdData = await xkcdResponse.json();
         setXkcdComic(xkcdData);
 
-        const numberResponse = await fetch("http://numbersapi.com/random");
+        const numberResponse = await fetch("/api/numbers/random");
         if (!numberResponse.ok) throw new Error("Failed to fetch number fact");
         const numberData = await numberResponse.text();
         setNumberFact(numberData);
