@@ -11,18 +11,15 @@ const About = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchXKCDAndNumberFact = async () => {
       try {
         const comicNumber = Math.floor(Math.random() * 3000) + 1;
-        
-        // XKCD API fetch
         const xkcdResponse = await fetch(`https://xkcd.com/${comicNumber}/info.0.json`);
-        if (!xkcdResponse.ok) throw new Error("Failed to fetch XKCD data");
+        if (!xkcdResponse.ok) throw new Error("Failed to fetch XKCD comic");
         const xkcdData = await xkcdResponse.json();
         setXkcdComic(xkcdData);
-  
-        // Numbers API fetch
-        const numberResponse = await fetch("https://numbersapi.com/random");
+
+        const numberResponse = await fetch("http://numbersapi.com/random");
         if (!numberResponse.ok) throw new Error("Failed to fetch number fact");
         const numberData = await numberResponse.text();
         setNumberFact(numberData);
@@ -30,10 +27,9 @@ const About = () => {
         console.error("Error fetching data:", error);
       }
     };
-  
-    fetchData();
+
+    fetchXKCDAndNumberFact();
   }, []);
-  
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
@@ -45,6 +41,7 @@ const About = () => {
             <Tab label="Test" />
           </Tabs>
         </Box>
+
         {value === 0 && (
           <Box p={3}>
             <h1 className="text-2xl font-bold">Experience</h1>
@@ -53,27 +50,34 @@ const About = () => {
         )}
         {value === 1 && (
           <Box p={3}>
-            <h1 className="text-2xl font-bold">test</h1>
-            <p> test.</p>
+            <h1 className="text-2xl font-bold">Hobbies</h1>
+            <p>I enjoy coding, reading, and playing strategy games in my free time.</p>
           </Box>
         )}
         {value === 2 && (
           <Box p={3}>
             <h1 className="text-2xl font-bold">Test</h1>
-            <p>test.</p>
+            <p>This is a test tab for demonstrating functionality.</p>
           </Box>
         )}
+
         <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
           <h2 className="text-xl font-bold mb-4">Random XKCD Comic</h2>
           {xkcdComic ? (
             <div className="space-y-4">
-              <img src={xkcdComic.img} alt={xkcdComic.alt} className="rounded-md" />
+              <img
+                src={xkcdComic.img}
+                alt={xkcdComic.alt}
+                className="rounded-md"
+              />
               <p className="italic">{xkcdComic.title}</p>
+              <p>{xkcdComic.alt}</p>
             </div>
           ) : (
             <p>Loading comic...</p>
           )}
         </div>
+
         <div className="bg-gray-800 rounded-lg p-6 shadow-lg mt-8">
           <h2 className="text-xl font-bold mb-4">Random Number Fact</h2>
           {numberFact ? <p>{numberFact}</p> : <p>Loading fact...</p>}
