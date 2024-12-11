@@ -30,7 +30,6 @@ const About = () => {
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="text-left">
           <h1 className="text-5xl font-bold mb-4">About Me</h1>
-          <p className="text-gray-400 text-lg mb-6">Timothy Cao</p>
         </div>
 
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -78,7 +77,7 @@ const About = () => {
               </p>
               <br />
               <p>I believe you can learn a lot about someone by how they approach
-                 learning, so here are a few quotes that reflect the values I hold</p>
+                 learning, so here are a few quotes that reflect my approach.</p>
                 <br />
               <blockquote className="italic mt-2">
                 "The man who asks a question is a fool for a minute, the man who
