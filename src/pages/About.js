@@ -28,8 +28,8 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <div className="max-w-5xl mx-auto space-y-8">
+      <h1 className="text-5xl font-bold mb-4 ml-4">About Me</h1>
         <div className="text-left">
-          <h1 className="text-5xl font-bold mb-4">About Me</h1>
         </div>
 
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
