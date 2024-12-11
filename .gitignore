@@ -91,3 +91,5 @@ out/
 
 # Windows specific
 Thumbs.db
+
+.vercel
