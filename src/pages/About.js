@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
 
 const About = () => {
-  const [value, setValue] = useState(1); // Default to Professional Experience
+  const [value, setValue] = useState(1); 
   const [xkcdComic, setXkcdComic] = useState(null);
 
   const handleTabChange = (event, newValue) => {
@@ -40,8 +40,8 @@ const About = () => {
             textColor="inherit"
             TabIndicatorProps={{ style: { backgroundColor: "white" } }}
           >
-            <Tab label="Personal Life" style={{ color: "white" }} />
-            <Tab label="Professional Experience" style={{ color: "white" }} />
+            <Tab label="Personal" style={{ color: "white" }} />
+            <Tab label="Experiences" style={{ color: "white" }} />
           </Tabs>
         </Box>
 
