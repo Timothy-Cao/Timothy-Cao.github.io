@@ -77,9 +77,8 @@ const About = () => {
                 pet rabbit named Pudding. She loves apples and hates vacuums.
               </p>
               <br />
-              <p>I always thought that you could learn a lot about someone by 
-                how they approach learning so here are a few quotes that I think 
-                best reflect my values.</p>
+              <p>I believe you can learn a lot about someone by how they approach
+                 learning, so here are a few quotes that reflect the values I hold</p>
                 <br />
               <blockquote className="italic mt-2">
                 "The man who asks a question is a fool for a minute, the man who
