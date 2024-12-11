@@ -30,6 +30,7 @@ const About = () => {
       <div className="max-w-5xl mx-auto space-y-8">
         <div className="text-left">
           <h1 className="text-5xl font-bold mb-4">About Me</h1>
+          <p className="text-gray-400 text-lg mb-6">Timothy Cao</p>
         </div>
 
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

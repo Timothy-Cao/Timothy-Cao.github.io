@@ -16,7 +16,7 @@ const blogItems = [
   { label: "Math Art", icon: <FiBook className="icon-white" />, href: "/blogs/math-art" },
   { label: "Astronomy", icon: <FaStar className="icon-white" />, href: "/blogs/astronomy" },
   { label: "Puzzles", icon: <FaPuzzlePiece className="icon-white" />, href: "/blogs/puzzles" },
-  { label: "Board Games", icon: <FaGamepad className="icon-white" />, href: "/blogs/game-theory" },
+  //{ label: "Board Games", icon: <FaGamepad className="icon-white" />, href: "/blogs/game-theory" },
 ];
 
 const Sidebar = () => {
