@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaInstagram, FaLinkedin, FaYoutube, FaGithub } from "react-icons/fa";
+import { useForm, ValidationError } from "@formspree/react";
 
 const Contact = () => {
   const [showPopup, setShowPopup] = useState(false);
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setShowPopup(true);
-  };
+  const [state, handleSubmit] = useForm("myzyavkz");
 
   const closePopup = () => {
     setShowPopup(false);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    await handleSubmit(e);
+    setShowPopup(true);
   };
 
   useEffect(() => {
@@ -32,10 +35,11 @@ const Contact = () => {
         <div className="text-left">
           <h1 className="text-5xl font-bold mb-4">Contact</h1>
           <p className="text-gray-400 text-lg">
-            I enjoy discussing just about anything. Ring me up if you dare.
+            There's not much I wouldn't chat about. Ring me up for anything.
           </p>
         </div>
 
+        {/* Social Media Links */}
         <div className="flex justify-start space-x-6">
           <a
             href="mailto:tctctc888@gmail.com"
@@ -81,81 +85,76 @@ const Contact = () => {
 
         <div className="bg-gray-800 rounded-lg p-8 shadow-lg">
           <h2 className="text-2xl font-bold mb-6">Shoot me a message</h2>
-          <form onSubmit={handleFormSubmit} className="space-y-6">
-            <div className="flex flex-col md:flex-row md:space-x-4">
-              <div className="flex-1">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-300"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div className="flex-1">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-300"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-                  required
-                  pattern="^[^@]+@[^@]+\.[^@]+$"
-                  title="Please enter a valid email address."
-                />
-              </div>
+
+          {/* Conditional rendering for message content */}
+          {state.succeeded ? (
+            <div className="p-6 bg-green-500 rounded-lg shadow-lg text-center">
+              <p className="text-2xl font-bold mb-2">Message Delivered</p>
+              <p className="mt-2 text-lg">Thanks for reaching out!</p>
             </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-300"
-              >
-                Message
+          ) : (
+            <form onSubmit={handleFormSubmit} className="space-y-6">
+              <div className="flex flex-col md:flex-row md:space-x-4">
+                <div className="flex-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+                <div className="flex-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
+                    required
+                    pattern="^[^@]+@[^@]+\.[^@]+$"
+                    title="Enter a valid email address"
+                  />
+                </div>
+              </div>
+
+              <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                Your Message
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows="5"
-                className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+                rows="4"
+                className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
+                placeholder="Type your message here"
                 required
               ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-md transition"
-            >
-              Send Message
-            </button>
-          </form>
+
+              <button
+                type="submit"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-md"
+                disabled={state.submitting}
+              >
+                {state.submitting ? "Sending..." : "Submit"}
+              </button>
+
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+              />
+            </form>
+          )}
         </div>
       </div>
 
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-center relative">
-            <button
-              onClick={closePopup}
-              className="absolute top-2 right-2 text-gray-400 hover:text-white"
-            >
-              &#x2715;
-            </button>
-            <p className="text-white mb-4">
-              Timothy has temporarily disabled this message feature. Please use another form of communication.
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
