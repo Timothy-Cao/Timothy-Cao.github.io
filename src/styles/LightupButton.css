@@ -1,0 +1,73 @@
+
+.light-button button.bt {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  outline: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.light-button button.bt .button-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  background-color: #0a0a0a;
+  border-radius: 5px;
+  color: #292929;
+  font-weight: 700;
+  transition: 300ms ease;
+  outline: #0f0f0f 2px solid;
+  outline-offset: 20;
+}
+
+.light-button button.bt:hover .button-holder {
+  color: rgb(63, 95, 240);
+  outline: rgba(63, 95, 240, 1) 2px solid;
+  outline-offset: 0px;
+}
+
+.light-button button.bt:hover .button-holder svg {
+  fill: rgba(63, 95, 240, 1);
+}
+
+.light-button button.bt:hover .light-holder .light {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+      180deg,
+      rgba(63, 95, 240, 1) 0%,
+      rgba(255, 255, 255, 0) 75%,
+      rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes subtle-glow {
+  0% {
+      box-shadow: 0 0 10px rgba(63, 95, 240, 0.1);
+  }
+  50% {
+      box-shadow: 0 0 20px rgba(63, 95, 240, 0.4);
+  }
+  100% {
+      box-shadow: 0 0 10px rgba(63, 95, 240, 0.1);
+  }
+}
+
+.light-button button.bt {
+  animation: subtle-glow 3s ease-in-out infinite;
+}
+
+.light-button button.bt:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.light-button button.bt:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.light-button button.bt:nth-child(3) {
+  animation-delay: 0.6s;
+}

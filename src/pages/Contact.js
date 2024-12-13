@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaInstagram, FaLinkedin, FaYoutube, FaGithub } from "react-icons/fa";
 import { useForm, ValidationError } from "@formspree/react";
+import "./../styles/LightupButton.css";
+
+const icons = [
+  { name: "", url: "mailto:tctctc888@gmail.com", icon: <FaEnvelope size={50} /> },
+  { name: "", url: "https://www.linkedin.com/in/timothyc767", icon: <FaLinkedin size={50} /> },
+  { name: "", url: "https://github.com/Timothy-Cao", icon: <FaGithub size={50} /> },
+  { name: "", url: "https://youtube.com/@dodoman767", icon: <FaYoutube size={50} /> },
+  { name: "", url: "https://www.instagram.com/timothy_cao/", icon: <FaInstagram size={50} /> },
+];
 
 const Contact = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [state, handleSubmit] = useForm("myzyavkz");
+  const [activeButton, setActiveButton] = useState(0);
 
   const closePopup = () => {
     setShowPopup(false);
@@ -16,7 +26,32 @@ const Contact = () => {
     setShowPopup(true);
   };
 
+  const triggerShimmerEffect = async () => {
+    const buttons = document.querySelectorAll('.light-button button.bt');
+
+    for (let i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+
+      button.classList.add('shimmer');
+
+      await new Promise((resolve) => setTimeout(resolve, 100)); 
+
+      button.classList.remove('shimmer');
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000)); 
+  };
+
+
   useEffect(() => {
+    const intervalHover = setInterval(() => {
+      setActiveButton((prev) => {
+        const nextIndex = (prev + 1) % icons.length;
+        return nextIndex;
+      });
+      triggerShimmerEffect();
+    }, 2000);
+
     const handleKeyPress = (e) => {
       if (e.key === "Escape") {
         closePopup();
@@ -24,10 +59,12 @@ const Contact = () => {
     };
 
     window.addEventListener("keydown", handleKeyPress);
+
     return () => {
+      clearInterval(intervalHover);
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [activeButton]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
@@ -35,58 +72,34 @@ const Contact = () => {
         <div className="text-left">
           <h1 className="text-5xl font-bold mb-4">Contact</h1>
           <p className="text-gray-400 text-lg">
-            Hiring? Song recommendation? Project Collab? Hit me up for anything!
+            Hiring? Got a joke? Project Collab? Got a cat pic? <br></br> Shoot me a message.
           </p>
         </div>
 
-        {/* Social Media Links */}
         <div className="flex justify-start space-x-6">
-          <a
-            href="mailto:tctctc888@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white text-4xl"
-          >
-            <FaEnvelope />
-          </a>
-          <a
-            href="https://instagram.com/timothy_cao"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white text-4xl"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/timothyc767/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white text-4xl"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://youtube.com/@dodoman767"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white text-4xl"
-          >
-            <FaYoutube />
-          </a>
-          <a
-            href="https://github.com/Timothy-Cao"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white text-4xl"
-          >
-            <FaGithub />
-          </a>
+          {icons.map((icon, index) => (
+            <div
+              key={index}
+              className={`light-button ${index === activeButton ? "hover" : ""}`}
+              onClick={() => window.open(icon.url)}
+            >
+              <button className="bt">
+                <div className="light-holder">
+                  <div className="dot"></div>
+                  <div className="light"></div>
+                </div>
+                <div className="button-holder">
+                  {icon.icon}
+                  <p>{icon.name}</p>
+                </div>
+              </button>
+            </div>
+          ))}
         </div>
 
         <div className="bg-gray-800 rounded-lg p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6">Shoot me a message</h2>
+          <h2 className="text-2xl font-bold mb-6">Directly Message</h2>
 
-          {/* Conditional rendering for message content */}
           {state.succeeded ? (
             <div className="p-6 bg-green-500 rounded-lg shadow-lg text-center">
               <p className="text-2xl font-bold mb-2">Message Delivered</p>
@@ -104,10 +117,11 @@ const Contact = () => {
                     id="name"
                     name="name"
                     className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
-                    placeholder="Enter your name"
+                    placeholder="Name"
                     required
                   />
                 </div>
+
                 <div className="flex-1">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                     Email Address
@@ -116,24 +130,23 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="Enter your email"
                     className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
+                    placeholder="Email"
                     required
-                    pattern="^[^@]+@[^@]+\.[^@]+$"
-                    title="Enter a valid email address"
                   />
                 </div>
               </div>
 
               <label htmlFor="message" className="block text-sm font-medium text-gray-300">
-                Your Message
+                Message
               </label>
+
               <textarea
                 id="message"
                 name="message"
                 rows="4"
                 className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
-                placeholder="Type your message here"
+                placeholder="Message"
                 required
               ></textarea>
 
@@ -145,16 +158,11 @@ const Contact = () => {
                 {state.submitting ? "Sending..." : "Submit"}
               </button>
 
-              <ValidationError
-                prefix="Message"
-                field="message"
-                errors={state.errors}
-              />
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
             </form>
           )}
         </div>
       </div>
-
     </div>
   );
 };
