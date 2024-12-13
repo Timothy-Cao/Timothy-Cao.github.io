@@ -35,7 +35,7 @@ const Contact = () => {
         <div className="text-left">
           <h1 className="text-5xl font-bold mb-4">Contact</h1>
           <p className="text-gray-400 text-lg">
-            There's not much I wouldn't chat about. Ring me up for anything.
+            Hiring? Song recommendation? Project Collab? Hit me up for anything!
           </p>
         </div>
 

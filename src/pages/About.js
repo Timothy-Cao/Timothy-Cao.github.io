@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
 
 const About = () => {
-  const [value, setValue] = useState(1); 
+  const [value, setValue] = useState(0); 
   const [xkcdComic, setXkcdComic] = useState(null);
 
   const handleTabChange = (event, newValue) => {
@@ -28,7 +28,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <div className="max-w-5xl mx-auto space-y-8">
-      <h1 className="text-5xl font-bold mb-4 ml-4">About Me</h1>
+      <h1 className="text-5xl font-bold mb-4 ml-4">About</h1>
         <div className="text-left">
         </div>
 
@@ -41,7 +41,8 @@ const About = () => {
             TabIndicatorProps={{ style: { backgroundColor: "white" } }}
           >
             <Tab label="Personal" style={{ color: "white" }} />
-            <Tab label="Experiences" style={{ color: "white" }} />
+            <Tab label="Professional" style={{ color: "white" }} />
+            <Tab label="Website" style={{ color: "white" }} />
           </Tabs>
         </Box>
 
@@ -76,8 +77,7 @@ const About = () => {
                 pet rabbit named Pudding. She loves apples and hates vacuums.
               </p>
               <br />
-              <p>I believe you can learn a lot about someone by how they approach
-                 learning, so here are a few quotes that reflect my approach.</p>
+              <p>Here's a few quotes that resonate with me and offer a glimpse into who I am.</p>
                 <br />
               <blockquote className="italic mt-2">
                 "The man who asks a question is a fool for a minute, the man who
@@ -86,6 +86,10 @@ const About = () => {
               <br />
               <blockquote className="italic mt-2">
                 "Mistakes are proof that you are trying." — Unknown
+              </blockquote>
+              <br />
+              <blockquote className="italic mt-2">
+                "We don't see things as they are, we see them as we are." —  Anaïs Nin
               </blockquote>
             </div>
           </Box>
@@ -146,6 +150,23 @@ const About = () => {
                 tutor, which provided me with transferable people skills that
                 have improved my technical communication with customers and
                 colleagues in a professional setting.
+              </p>
+            </div>
+          </Box>
+        )}
+
+        {value === 2 && (
+          <Box p={3}>
+            <div>
+              <p>
+              This site was built using React and styled with Tailwind. It's hosted on Vercel, with DNS managed through Cloudflare.
+              The contact form is powered by Formspree for service and management and NASA's API is used for their photos. The design and UI are my own.
+              </p>
+              <br />
+              <p>
+              I have no affiliation with Desmos, Prime Climb, Musescore, SpongeBob, NASA, JStris, or Chess.com. 
+              All references, resources, or materials related to these entities are used for informational or 
+              personal purposes only. No copyright infringement is intended, and all rights remain with their respective owners.
               </p>
             </div>
           </Box>
