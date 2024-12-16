@@ -159,7 +159,7 @@ const About = () => {
           <Box p={3}>
             <div>
               <p>
-              This site was built using React and styled with Tailwind. It's hosted on Vercel, with DNS managed through Cloudflare.
+              This site was built using React and styled with Tailwind and MUI. It's hosted on Vercel, with DNS managed through Cloudflare.
               The contact form is powered by Formspree for service and management and NASA's API is used for their photos. The design and UI are my own.
               </p>
               <br />
