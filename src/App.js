@@ -10,8 +10,12 @@ import Music from "./pages/blogs/Music";
 import MathArt from "./pages/blogs/MathArt";
 import Astronomy from "./pages/blogs/Astronomy";
 import Puzzles from "./pages/blogs/Puzzles";
-import GameTheory from "./pages/blogs/GameTheory";
+import GameTheory from "./pages/blogs/PrimeClimb";
 import Gallery from "./pages/blogs/Gallery";
+import BoardGamesPage from "./pages/blogs/BoardGamesPage";
+import Scrabble from "./pages/blogs/Scrabble";
+import TwentyFour from "./pages/blogs/TwentyFour";
+import Othello from "./pages/blogs/Othello";
 
 
 function App() {
@@ -44,8 +48,12 @@ function App() {
             <Route path="/blogs/math-art" element={<MathArt />} />
             <Route path="/blogs/astronomy" element={<Astronomy />} />
             <Route path="/blogs/puzzles" element={<Puzzles />} />
-            <Route path="/blogs/game-theory" element={<GameTheory />} />
+            <Route path="/blogs/prime-climb" element={<GameTheory />} />
             <Route path="/blogs/gallery" element={<Gallery />} />
+            <Route path="/blogs/board-games" element={<BoardGamesPage />} />
+            <Route path="/blogs/scrabble" element={<Scrabble />} />
+            <Route path="/blogs/twenty-four" element={<TwentyFour />} />
+            <Route path="/blogs/othello" element={<Othello />} />
           </Routes>
         </div>
       </div>

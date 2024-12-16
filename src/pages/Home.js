@@ -19,8 +19,8 @@ const blogs = [
   {
     title: "Game Theory",
     subtitle: "A guide to ruining boardgame night.",
-    href: "/blogs/game-theory",
-    image: "/assets/media/blog_covers/game.png",
+    href: "/blogs/board-games",
+    image: "/assets/media/games/primeclimb.png",
   },
   {
     title: "Math Art",
