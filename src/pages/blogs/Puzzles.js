@@ -10,7 +10,12 @@ import "../../styles/CardGlow.css";
 
 const puzzles = [
   {
-    title: "Fermi Questions",
+    title: (
+    <>Fermi Questions
+    <span className="ml-2 text-yellow-400" title="Favourite">
+      ★
+    </span> 
+    </>),
     description: (
       <>
         Fermi Questions are about estimating with limited info. <br /> <br />
