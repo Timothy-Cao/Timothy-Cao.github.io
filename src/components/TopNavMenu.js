@@ -5,7 +5,6 @@ import { FiMenu, FiX } from "react-icons/fi";
 const menuItems = [
   { label: "Home", href: "/" },
   { isDivider: true },
-  { label: "Experience", href: "/experience" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { isDivider: true },
@@ -14,7 +13,7 @@ const menuItems = [
   { label: "Math Art", href: "/blogs/math-art" },
   { label: "Astronomy", href: "/blogs/astronomy" },
   { label: "Puzzles", href: "/blogs/puzzles" },
-  { label: "Game Theory", href: "/blogs/game-theory" },
+  { label: "Board Games", href: "/blogs/board-games" },
 ];
 
 const TopNavMenu = () => {
