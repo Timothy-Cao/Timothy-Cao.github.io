@@ -170,7 +170,7 @@ const Scrabble = () => {
               {validWords.map((word, index) => (
                 <li key={index}>
                   <a
-                    href={`https://www.dictionary.com/browse/${word}`}
+                    href={`https://www.thefreedictionary.com/${word}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
