@@ -84,6 +84,7 @@ const Scrabble = () => {
   const handleGuess = () => {
     if (validWords.includes(userInput.toLowerCase())) {
       setFeedback("Correct!");
+      setShowAnswers(true);
     } else {
       setFeedback("Incorrect.");
     }
