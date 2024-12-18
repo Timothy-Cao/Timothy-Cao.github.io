@@ -26,7 +26,13 @@ const Sidebar = () => {
 
   return (
     <div className="w-64 bg-gray-800 h-full flex flex-col p-6 space-y-4">
-      <h1 className="text-3xl font-bold mb-6">Tim Cao</h1>
+      <Link
+        to="/"
+        className="text-3xl font-bold mb-6 text-white hover:text-gray-400"
+      >
+        Tim Cao
+      </Link>
+
       <nav className="flex flex-col space-y-3 w-full">
         {navItems.map((item) => (
           <div className="button-wrapper" key={item.label}>
@@ -42,6 +48,7 @@ const Sidebar = () => {
           </div>
         ))}
       </nav>
+
       <div className="border-t border-gray-700 pt-4">
         <h2 className="text-lg font-bold mb-3 text-gray-300">Blogs</h2>
         <div className="flex flex-col space-y-4">

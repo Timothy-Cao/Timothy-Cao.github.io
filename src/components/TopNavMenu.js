@@ -33,7 +33,10 @@ const TopNavMenu = () => {
       style={{ height: menuOpen ? "100%" : "auto" }}
     >
       <div className="flex items-center justify-between px-6 py-4 mt-2">
-        <h1 className="text-xl font-bold text-white">Tim Cao</h1>
+        <Link to="/" className="text-xl font-bold text-white hover:text-gray-400">
+          Tim Cao
+        </Link>
+
         <button
           className="text-white text-2xl focus:outline-none"
           onClick={toggleMenu}
@@ -41,8 +44,9 @@ const TopNavMenu = () => {
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
       </div>
+
       {menuOpen && (
-        <div className="flex flex-col space-y-4 px-6">
+        <div className="flex flex-col space-y-4 px-6"> <br></br>
           <nav className="flex flex-col space-y-3">
             {menuItems.map((item, index) =>
               item.isDivider ? (
