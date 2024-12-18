@@ -28,7 +28,7 @@ const FermiQuestions = () => {
           for (const q in rawQuestions[source]) {
             const answer = rawQuestions[source][q];
             // filter questions w answers outside slider range
-            if (answer >= -30 && answer <= 30) {
+            if (answer >= -40 && answer <= 40) {
               questionArray.push({
                 question: q,
                 answer: answer,
@@ -138,8 +138,8 @@ const FermiQuestions = () => {
       className="flex flex-col items-center justify-center bg-gray-800 text-white rounded-lg p-6"
       style={{
         width: "calc(100vw - 20vw)",
-        height: "calc(100vh - 20vh)",
-        maxHeight: "calc(100vh - 20vh)",
+        height: "calc(100vh - 30vh)",
+        maxHeight: "calc(100vh - 30vh)",
         maxWidth: "700px",
         margin: "0 auto",
       }}
@@ -183,13 +183,13 @@ const FermiQuestions = () => {
               onChange={handleSliderChange}
               step={1}
               marks
-              min={-30}
-              max={30}
+              min={-40}
+              max={40}
               valueLabelDisplay="off"
               style={{
                 color: "#53d8fb",
                 marginTop: "15px",
-                width: "90%",
+                width: "110%",
               }}
             />
           </Box>
