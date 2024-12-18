@@ -133,12 +133,13 @@ const FermiQuestions = () => {
   const handleSliderChange = (event, value) => {
     setSliderValue(value);
   };
-
   return (
     <Box
       className="flex flex-col items-center justify-center bg-gray-800 text-white rounded-lg p-6"
       style={{
-        width: "100%",
+        width: "calc(100vw - 20vw)",
+        height: "calc(100vh - 20vh)",
+        maxHeight: "calc(100vh - 20vh)",
         maxWidth: "700px",
         margin: "0 auto",
       }}
@@ -148,6 +149,7 @@ const FermiQuestions = () => {
           <Typography variant="h5" className="mb-4 text-center">
             {renderQuestion(currentQuestion.question)}
           </Typography>
+  
           <Box
             className="flex items-center justify-center mt-6"
             style={{
@@ -159,9 +161,23 @@ const FermiQuestions = () => {
             <Typography variant="h5" style={{ marginBottom: "8px" }}>
               <InlineMath>{`10^{${sliderValue}}`}</InlineMath>
             </Typography>
-            <Typography variant="h6" style={{ marginBottom: "16px" }}>
-              {formatDecimalValue(sliderValue)}
-            </Typography>
+  
+            <Box
+              style={{
+                minHeight: "80px", 
+                lineHeight: "24px",
+                wordBreak: "break-word",
+                whiteSpace: "normal",
+                textAlign: "center",
+                paddingTop: "8px",
+                paddingBottom: "8px",
+              }}
+            >
+              <Typography variant="h6">
+                {formatDecimalValue(sliderValue)}
+              </Typography>
+            </Box>
+  
             <Slider
               value={sliderValue}
               onChange={handleSliderChange}
@@ -177,6 +193,7 @@ const FermiQuestions = () => {
               }}
             />
           </Box>
+  
           <Button
             variant="contained"
             color="primary"
@@ -187,11 +204,12 @@ const FermiQuestions = () => {
               marginTop: "24px",
               padding: "12px 24px",
               fontSize: "16px",
-              marginBottom: "24px"
+              marginBottom: "24px",
             }}
           >
             Submit
           </Button>
+  
           <Typography variant="body2" className="mt-8 text-center">
             {resultMessage}
           </Typography>
@@ -209,6 +227,7 @@ const FermiQuestions = () => {
       )}
     </Box>
   );
+  
 };
 
 export default FermiQuestions;
