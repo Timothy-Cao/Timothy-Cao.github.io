@@ -18,45 +18,46 @@ const TwentyFour = () => {
   const validateExpression = () => {
     const { numbers, solution } = currentEntry;
     const sanitizedInput = userExpression.replace(/\s+/g, ""); 
-
-    if (!/^[0-9+\-*/()]+$/.test(sanitizedInput)) {
+    
+    if (!/^[0-9+\-*/()]+$/.test(sanitizedInput) || sanitizedInput.includes("**")|| sanitizedInput.includes("//")) {
       setMessage("Invalid characters in expression.");
       return;
     }
-
+  
     const inputNumbers = sanitizedInput.match(/[0-9]+/g) || [];
+  
     const inputNumbersCount = inputNumbers.reduce((acc, num) => {
       acc[num] = (acc[num] || 0) + 1;
       return acc;
     }, {});
-
+  
     const providedNumbersCount = numbers.reduce((acc, num) => {
       acc[num] = (acc[num] || 0) + 1;
       return acc;
     }, {});
-
+  
     const isValidCount = Object.keys(providedNumbersCount).every((num) => {
       return providedNumbersCount[num] === inputNumbersCount[num];
     });
-
-    if (!isValidCount) {
-      setMessage("You can only use each number exactly once.");
+  
+    if (!isValidCount || Object.keys(inputNumbersCount).length !== Object.keys(providedNumbersCount).length) {
+      setMessage("You muse use each number exactly once");
       return;
     }
-
+  
     try {
-      const result = eval(sanitizedInput);
-
+      const result = eval(sanitizedInput); 
+  
       if (result === 24) {
         setMessage("Correct! Good job!");
       } else {
-        setMessage(`Incorrect expression. Yours evaluates to ${result}`);
+        setMessage(`Incorrect expression. Yours evaluates to ${result}.`);
       }
     } catch (err) {
-      setMessage("Invalid expression.");
+      setMessage("Invalid mathematical expression.");
     }
   };
-
+  
   const handleNext = () => {
     setCurrentEntry(getRandomEntry());
     setUserExpression("");
