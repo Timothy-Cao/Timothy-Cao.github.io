@@ -134,19 +134,19 @@ const Scrabble = () => {
             onChange={(e) => setUserInput(e.target.value)}
           />
           <button
-            className="p-2 bg-blue-600 rounded hover:bg-blue-500"
+            className="bg-blue-600 px-6 py-2 rounded-lg shadow"
             onClick={handleGuess}
           >
             Submit
           </button>
           <button
-            className="p-2 bg-yellow-600 rounded hover:bg-yellow-500"
+            className="bg-yellow-600 px-6 py-2 rounded-lg shadow"
             onClick={() => setShowAnswers(true)}
           >
             Check Answers
           </button>
           <button
-            className="p-2 bg-green-600 rounded hover:bg-green-500"
+            className="bg-green-600 px-6 py-2 rounded-lg shadow"
             onClick={handleNext}
           >
             Next

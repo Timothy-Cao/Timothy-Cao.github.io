@@ -101,7 +101,7 @@ const TwentyFour = () => {
             onClick={handleShowAnswer}
             className="bg-yellow-600 px-6 py-2 rounded-lg shadow"
           >
-            Show Answer
+            Check Answer
           </button>
           <button
             onClick={handleNext}

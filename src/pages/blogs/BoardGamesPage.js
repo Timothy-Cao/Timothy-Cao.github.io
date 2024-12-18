@@ -3,12 +3,6 @@ import { Link } from "react-router-dom";
 
 const boardGames = [
     {
-        title: "Prime Climb Algorithms",
-        subtitle: "Statistical comparison of heuristic and strategic efficiency",
-        href: "/blogs/prime-climb",
-        image: "/assets/media/games/primeclimb.png",
-    },
-    {
         title: "Scrabble Trainer",
         subtitle: "Train your scrabble vision with the 1000 most likely scrabbles.",
         href: "/blogs/scrabble",
@@ -19,6 +13,12 @@ const boardGames = [
         subtitle: "Test your math speed with the card game 24 and its variants.",
         href: "/blogs/twenty-four",
         image: "/assets/media/games/24.png",
+    },
+    {
+        title: "Prime Climb Algorithms",
+        subtitle: "Statistical comparison of heuristic and strategic efficiency",
+        href: "/blogs/prime-climb",
+        image: "/assets/media/games/primeclimb.png",
     },
     {
         title: "Solvability of Othello",
