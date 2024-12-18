@@ -19,23 +19,28 @@ const TwentyFour = () => {
     const { numbers, solution } = currentEntry;
     const sanitizedInput = userExpression.replace(/\s+/g, ""); 
 
-    // valid characters check
     if (!/^[0-9+\-*/()]+$/.test(sanitizedInput)) {
       setMessage("Invalid characters in expression.");
       return;
     }
 
-    // all numbers are present check
-    const numPresenceCheck = numbers.every((num) => sanitizedInput.includes(num.toString()));
-    if (!numPresenceCheck) {
-      setMessage("All numbers must be present in the expression.");
-      return;
-    }
+    const inputNumbers = sanitizedInput.match(/[0-9]+/g) || [];
+    const inputNumbersCount = inputNumbers.reduce((acc, num) => {
+      acc[num] = (acc[num] || 0) + 1;
+      return acc;
+    }, {});
 
-    // concatenation check
-    const invalidConcatRegex = numbers.map(num => `(?<=\\d)${num}(?=\\d)`).join("|");
-    if (new RegExp(invalidConcatRegex).test(sanitizedInput)) {
-      setMessage("Numbers cannot be concatenated");
+    const providedNumbersCount = numbers.reduce((acc, num) => {
+      acc[num] = (acc[num] || 0) + 1;
+      return acc;
+    }, {});
+
+    const isValidCount = Object.keys(providedNumbersCount).every((num) => {
+      return providedNumbersCount[num] === inputNumbersCount[num];
+    });
+
+    if (!isValidCount) {
+      setMessage("You can only use each number exactly once.");
       return;
     }
 
@@ -43,9 +48,9 @@ const TwentyFour = () => {
       const result = eval(sanitizedInput);
 
       if (result === 24) {
-        setMessage("Correct!");
+        setMessage("Correct! Good job!");
       } else {
-        setMessage(`Incorrect expression. Evaluates to ${result}`);
+        setMessage(`Incorrect expression. Yours evaluates to ${result}`);
       }
     } catch (err) {
       setMessage("Invalid expression.");
@@ -63,7 +68,7 @@ const TwentyFour = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white pr-2 pl-2">
+    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="w-full max-w-5xl p-8 bg-gray-800 rounded-lg shadow-lg">
         <h1 className="text-5xl font-bold mb-4 text-center">Math Game 24</h1>
 
@@ -86,23 +91,23 @@ const TwentyFour = () => {
         <div className="flex justify-center gap-4 mt-4">
           <button
             onClick={validateExpression}
-            className="bg-blue-500 px-6 py-2 rounded-lg shadow"
+            className="bg-blue-600 px-6 py-2 rounded-lg shadow"
           >
             Submit
           </button>
 
-          <button
-            onClick={handleNext}
-            className="bg-green-500 px-6 py-2 rounded-lg shadow"
-          >
-            Next
-          </button>
 
           <button
             onClick={handleShowAnswer}
-            className="bg-red-500 px-6 py-2 rounded-lg shadow"
+            className="bg-yellow-600 px-6 py-2 rounded-lg shadow"
           >
             Show Answer
+          </button>
+          <button
+            onClick={handleNext}
+            className="bg-green-600 px-6 py-2 rounded-lg shadow"
+          >
+            Next
           </button>
         </div>
 
