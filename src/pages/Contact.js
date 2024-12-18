@@ -34,7 +34,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="flex justify-left space-x-6">
+        {/* <div className="flex justify-left space-x-6">
           {icons.map((icon, index) => (
             <div
               key={index}
@@ -45,7 +45,7 @@ const Contact = () => {
               <p className="mt-2 text-sm">{icon.name}</p>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div className="bg-gray-800 rounded-lg p-8 shadow-lg">
           <h2 className="text-2xl font-bold mb-6">Directly Message</h2>
