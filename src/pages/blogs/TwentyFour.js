@@ -77,11 +77,11 @@ const TwentyFour = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="w-full max-w-5xl p-8 bg-gray-800 rounded-lg shadow-lg relative">
         <h1 className="text-5xl font-bold mb-4 text-center flex items-center justify-center gap-2">
-          Math Game 24
+          Math Game
         </h1>
 
         <p className="text-lg mb-4 text-center flex items-center justify-center">
-          Use the expression below with operations (+, -, *, /).
+          Make 24 with the numbers with basic operations.
           <button
             className="ml-2 bg-gray-900 text-white rounded-full w-7 h-7 flex items-center justify-center text-m font-bold"
             onClick={toggleInfo}
@@ -130,10 +130,15 @@ const TwentyFour = () => {
             <div className="p-8 bg-gray-800 rounded-lg mt-20 mx-auto max-w-md">
               <h2 className="text-2xl font-bold mb-4">How to play</h2>
               <p>
-                Use each of the given numbers exactly once to form a math expression that evaluates to 24.
+                1. Make an expression that evaluates to 24 exactly.
                 <br></br><br></br>
-                You can use any of the 4 basic operations and parentheses. 
-                <br></br><br></br>For example, if you were given 2, 3, 9, 10, you could submit (10-2)(9/3).
+                2. You can only use each number once. 
+                <br></br><br></br>
+                3. You can only use the basic 4 operations (+ - / *)
+                <br></br><br></br>
+                4. You can use any number of brackets.
+                <br></br><br></br>
+                E.g. (10-2)(9/3).
               </p>
               <button
                 className="mt-6 p-2 bg-gray-600 rounded hover:bg-gray-500"
