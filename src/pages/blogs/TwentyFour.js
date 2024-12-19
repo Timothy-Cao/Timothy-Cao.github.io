@@ -5,6 +5,7 @@ const TwentyFour = () => {
   const [currentEntry, setCurrentEntry] = useState(getRandomEntry());
   const [userExpression, setUserExpression] = useState("");
   const [message, setMessage] = useState("");
+  const [showInfo, setShowInfo] = useState(false);
 
   function getRandomEntry() {
     const randomIndex = Math.floor(Math.random() * data.length);
@@ -18,36 +19,36 @@ const TwentyFour = () => {
   const validateExpression = () => {
     const { numbers, solution } = currentEntry;
     const sanitizedInput = userExpression.replace(/\s+/g, ""); 
-    
-    if (!/^[0-9+\-*/()]+$/.test(sanitizedInput) || sanitizedInput.includes("**")|| sanitizedInput.includes("//")) {
+
+    if (!/^[0-9+\-*/()]+$/.test(sanitizedInput) || sanitizedInput.includes("**") || sanitizedInput.includes("//")) {
       setMessage("Invalid characters in expression.");
       return;
     }
-  
+
     const inputNumbers = sanitizedInput.match(/[0-9]+/g) || [];
-  
+
     const inputNumbersCount = inputNumbers.reduce((acc, num) => {
       acc[num] = (acc[num] || 0) + 1;
       return acc;
     }, {});
-  
+
     const providedNumbersCount = numbers.reduce((acc, num) => {
       acc[num] = (acc[num] || 0) + 1;
       return acc;
     }, {});
-  
+
     const isValidCount = Object.keys(providedNumbersCount).every((num) => {
       return providedNumbersCount[num] === inputNumbersCount[num];
     });
-  
+
     if (!isValidCount || Object.keys(inputNumbersCount).length !== Object.keys(providedNumbersCount).length) {
-      setMessage("You muse use each number exactly once");
+      setMessage("You must use each number exactly once");
       return;
     }
-  
+
     try {
       const result = eval(sanitizedInput); 
-  
+
       if (result === 24) {
         setMessage("Correct! Good job!");
       } else {
@@ -57,7 +58,7 @@ const TwentyFour = () => {
       setMessage("Invalid mathematical expression.");
     }
   };
-  
+
   const handleNext = () => {
     setCurrentEntry(getRandomEntry());
     setUserExpression("");
@@ -68,13 +69,25 @@ const TwentyFour = () => {
     setMessage(`Correct Answer: ${currentEntry.solution}`);
   };
 
+  const toggleInfo = () => {
+    setShowInfo((prev) => !prev);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="w-full max-w-5xl p-8 bg-gray-800 rounded-lg shadow-lg">
-        <h1 className="text-5xl font-bold mb-4 text-center">Math Game 24</h1>
+      <div className="w-full max-w-5xl p-8 bg-gray-800 rounded-lg shadow-lg relative">
+        <h1 className="text-5xl font-bold mb-4 text-center flex items-center justify-center gap-2">
+          Math Game 24
+        </h1>
 
-        <p className="text-lg mb-4 text-center">
+        <p className="text-lg mb-4 text-center flex items-center justify-center">
           Use the expression below with operations (+, -, *, /).
+          <button
+            className="ml-2 bg-gray-900 text-white rounded-full w-7 h-7 flex items-center justify-center text-m font-bold"
+            onClick={toggleInfo}
+          >
+            ?
+          </button>
         </p>
 
         <p className="text-center mt-4 mb-4">
@@ -96,8 +109,6 @@ const TwentyFour = () => {
           >
             Submit
           </button>
-
-
           <button
             onClick={handleShowAnswer}
             className="bg-yellow-600 px-6 py-2 rounded-lg shadow"
@@ -113,6 +124,26 @@ const TwentyFour = () => {
         </div>
 
         <p className="mt-6 text-center text-yellow-400">{message}</p>
+
+        {showInfo && (
+          <div className="fixed inset-0 bg-black bg-opacity-80 z-50 overflow-auto">
+            <div className="p-8 bg-gray-800 rounded-lg mt-20 mx-auto max-w-md">
+              <h2 className="text-2xl font-bold mb-4">How to play</h2>
+              <p>
+                Use each of the given numbers exactly once to form a math expression that evaluates to 24.
+                <br></br><br></br>
+                You can use any of the 4 basic operations and parentheses. 
+                <br></br><br></br>For example, if you were given 2, 3, 9, 10, you could submit (10-2)(9/3).
+              </p>
+              <button
+                className="mt-6 p-2 bg-gray-600 rounded hover:bg-gray-500"
+                onClick={toggleInfo}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
