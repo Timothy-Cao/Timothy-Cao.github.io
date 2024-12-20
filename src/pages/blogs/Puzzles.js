@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FermiQuestions from "../../utils/FermiQuestions";
+import MathWho from "../../utils/MathWho";  
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import "../../styles/CardGlow.css";
@@ -11,11 +12,12 @@ import "../../styles/CardGlow.css";
 const puzzles = [
   {
     title: (
-    <>Fermi Questions
-    <span className="ml-2 text-yellow-400" title="Favourite">
-      ★
-    </span> 
-    </>),
+      <>Fermi Questions
+        <span className="ml-2 text-yellow-400" title="Favourite">
+          ★
+        </span>
+      </>
+    ),
     description: (
       <>
         Fermi Questions are about estimating with limited info. <br /> <br />
@@ -47,15 +49,14 @@ const puzzles = [
     tryItUrl: "https://www.chess.com/analysis/game/pgn/2a6hN7ka86?tab=analysis",
   },
   {
-    title: "Chameleon Puzzle",
+    title: "Math Who",  
     description: (
       <>
-        There are 13 Red, 15 Green, and 17 Blue Chameleons. If two chameleons
-        of different colors meet, both change to the third color. <br /> <br />
-        Is it ever possible for all chameleons to become the same color?
+        Guess a number that shares the properties of the mystery number in 7 guesses or less. <br></br><br></br>
+        
       </>
     ),
-    type: "text",
+    type: "mathwho", 
   },
   {
     title: "Handshake Puzzle",
@@ -113,7 +114,7 @@ const PuzzlesPage = () => {
               style={{ cursor: "pointer", aspectRatio: "1 / 1" }}
             >
               <div className="card2 p-4">
-              <div style={{ margin: "10px 0" }}></div>
+                <div style={{ margin: "10px 0" }}></div>
                 <Typography variant="h6" className="text-gray-100 mb-2">
                   {puzzle.title}
                 </Typography>
@@ -148,6 +149,8 @@ const PuzzlesPage = () => {
               </Typography>
             ) : activePuzzle.type === "fermi" ? (
               <FermiQuestions />
+            ) : activePuzzle.type === "mathwho" ? (  // Handling MathWho puzzle
+              <MathWho />
             ) : activePuzzle.type === "image" && (
               <>
                 <img
