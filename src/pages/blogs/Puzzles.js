@@ -49,7 +49,10 @@ const puzzles = [
     tryItUrl: "https://www.chess.com/analysis/game/pgn/2a6hN7ka86?tab=analysis",
   },
   {
-    title: "Math Who",  
+    title: <>Math Who
+            <span className="ml-2 text-yellow-400" title="Favourite">
+          ★
+        </span></>,  
     description: (
       <>
         Guess a number that shares the properties of the mystery number in 7 guesses or less. <br></br><br></br>

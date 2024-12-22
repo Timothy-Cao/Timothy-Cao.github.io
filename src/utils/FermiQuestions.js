@@ -189,7 +189,7 @@ const FermiQuestions = () => {
               style={{
                 color: "#53d8fb",
                 marginTop: "15px",
-                width: "110%",
+                width: "100%",
               }}
             />
           </Box>
@@ -200,7 +200,7 @@ const FermiQuestions = () => {
             onClick={checkAnswer}
             style={{
               backgroundColor: "#53d8fb",
-              color: "#fff",
+              color: "#000",
               marginTop: "24px",
               padding: "12px 24px",
               fontSize: "16px",
