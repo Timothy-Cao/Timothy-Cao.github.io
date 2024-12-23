@@ -27,7 +27,6 @@ const FermiQuestions = () => {
         for (const source in rawQuestions) {
           for (const q in rawQuestions[source]) {
             const answer = rawQuestions[source][q];
-            // filter questions w answers outside slider range
             if (answer >= -40 && answer <= 40) {
               questionArray.push({
                 question: q,
