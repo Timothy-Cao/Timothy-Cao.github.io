@@ -78,27 +78,29 @@ const MathWho = () => {
 
   return (
     <Box
-      className="flex flex-col items-center justify-center bg-gray-800 text-white rounded-lg p-6"
+      className="flex flex-col items-center bg-gray-800 text-white rounded-lg p-6"
       style={{
         width: "calc(100vw - 20vw)",
-        height: "calc(100vh - 30vh)",
+        height: "calc(100vh - 35vh)",
         maxHeight: "calc(100vh - 30vh)",
         maxWidth: "700px",
-        margin: "0 auto",
+        margin: "20px auto 0 auto", 
+        alignItems: "center", 
       }}
     >
+
       <Typography variant="h5" className="mb-4 text-center">
         Guess the Mystery Number
       </Typography>
       <br></br>
 
       <Typography variant="body2" className="text-center mb-4">
-        Try get all green in 7 guesses. Green means your guess and number agrees on the property.
+        Try get all green in 7 guesses. Green means your guess and number agrees on the property. Guess a number from 1 - 100
       </Typography>
 
       {!gameOver && (
         <Box className="flex items-center justify-center mt-6">
-          <Typography variant="h6" className="mr-2">Enter a guess (1-100) : &nbsp;</Typography>
+          <Typography variant="h6" className="mr-2">Guess : &nbsp;</Typography>
           <input
             type="number"
             value={guess}
@@ -110,7 +112,7 @@ const MathWho = () => {
               padding: "10px",
               fontSize: "16px",
               textAlign: "center",
-              width: "150px",
+              width: "50px",
               backgroundColor: "black",
               color: "white",
               marginRight: "10px",
@@ -127,7 +129,7 @@ const MathWho = () => {
               fontSize: "16px",
             }}
           >
-            Submit Guess
+            Submit
           </Button>
         </Box>
       )}

@@ -134,18 +134,27 @@ const FermiQuestions = () => {
   };
   return (
     <Box
-      className="flex flex-col items-center justify-center bg-gray-800 text-white rounded-lg p-6"
+      className="flex flex-col items-center bg-gray-800 text-white rounded-lg p-6"
       style={{
         width: "calc(100vw - 20vw)",
-        height: "calc(100vh - 30vh)",
         maxHeight: "calc(100vh - 30vh)",
         maxWidth: "700px",
         margin: "0 auto",
+        justifyContent: "flex-start",
+        paddingTop: "20px",
       }}
     >
       {currentQuestion ? (
         <>
-          <Typography variant="h5" className="mb-4 text-center">
+          <Typography
+            variant="h5"
+            className="mb-4 text-center"
+            style={{
+              fontSize: "1.125rem", 
+              textAlign: "left",
+              marginLeft: "-18px", 
+            }}
+          >
             {renderQuestion(currentQuestion.question)}
           </Typography>
   
@@ -157,13 +166,13 @@ const FermiQuestions = () => {
               alignItems: "center",
             }}
           >
-            <Typography variant="h5" style={{ marginBottom: "8px" }}>
+            <Typography variant="h5" style={{ fontSize: "1.25rem", marginBottom: "8px" }}>
               <InlineMath>{`10^{${sliderValue}}`}</InlineMath>
             </Typography>
   
             <Box
               style={{
-                minHeight: "80px", 
+                minHeight: "80px",
                 lineHeight: "24px",
                 wordBreak: "break-word",
                 whiteSpace: "normal",
@@ -172,7 +181,7 @@ const FermiQuestions = () => {
                 paddingBottom: "8px",
               }}
             >
-              <Typography variant="h6">
+              <Typography variant="h6" style={{ fontSize: "1rem"}}>
                 {formatDecimalValue(sliderValue)}
               </Typography>
             </Box>
@@ -187,7 +196,7 @@ const FermiQuestions = () => {
               valueLabelDisplay="off"
               style={{
                 color: "#53d8fb",
-                marginTop: "15px",
+                marginTop: "4px",
                 width: "100%",
               }}
             />
@@ -201,7 +210,7 @@ const FermiQuestions = () => {
               backgroundColor: "#53d8fb",
               color: "#000",
               marginTop: "24px",
-              padding: "12px 24px",
+              padding: "8px 24px",
               fontSize: "16px",
               marginBottom: "24px",
             }}
@@ -226,6 +235,7 @@ const FermiQuestions = () => {
       )}
     </Box>
   );
+  
   
 };
 
