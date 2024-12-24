@@ -50,7 +50,10 @@ const MathWho = () => {
   };
 
   const handleGuessChange = (event) => {
-    setGuess(event.target.value);
+    const value = event.target.value;
+    if (value === "" || (Number(value) >= 1 && Number(value) <= 100)) {
+      setGuess(value);
+    }
   };
 
   const handleSubmit = () => {
@@ -69,7 +72,7 @@ const MathWho = () => {
   const handlePlayAgain = () => {
     setGameOver(false);
     setGuesses([]);
-    setRemainingGuesses(10);
+    setRemainingGuesses(7);
     setResultMessage("");
     const randomIndex = Math.floor(Math.random() * 100) + 1;
     setMysteryNumber(randomIndex);
@@ -92,7 +95,7 @@ const MathWho = () => {
       <Typography variant="h5" className="mb-4 text-center">
         Guess the Mystery Number
       </Typography>
-      <br></br>
+      <br />
 
       <Typography variant="body2" className="text-center mb-4">
         Try get all green in 7 guesses. Green means your guess and number agrees on the property. Guess a number from 1 - 100
@@ -158,10 +161,11 @@ const MathWho = () => {
           gap: "10px",
           width: "100%",
           marginTop: "20px",
+          overflowX: "auto",
         }}
       >
         {guesses.length > 0 && (
-            <>
+          <>
             <Typography variant="body2" style={{ textAlign: "center" }}>Guess</Typography>
             <Typography variant="body2" style={{ textAlign: "center" }}>Prime</Typography>
             <Typography variant="body2" style={{ textAlign: "center" }}>Divisible by 3</Typography>
@@ -172,10 +176,10 @@ const MathWho = () => {
             <Typography variant="body2" style={{ textAlign: "center" }}>Fibonacci Number</Typography>
             <Typography variant="body2" style={{ textAlign: "center" }}>Triangle Number</Typography>
             <Typography variant="body2" style={{ textAlign: "center" }}>100 - N is Prime</Typography>
-            </>
+          </>
         )}
 
-        {guesses.map((guessData, index) => (
+        {guesses.map((guessData) => (
           <>
             <Typography variant="body2" style={{ textAlign: "center" }}>{guessData.guess}</Typography>
             {guessData.feedback.map((feedback) => (
@@ -190,9 +194,7 @@ const MathWho = () => {
                   alignItems: "center",
                   color: "white",
                 }}
-              >
-                {feedback.isCorrect ? "" : ""}
-              </div>
+              />
             ))}
           </>
         ))}
