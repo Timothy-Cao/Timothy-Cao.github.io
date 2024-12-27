@@ -123,7 +123,7 @@ const FermiQuestions = () => {
       setSliderValue(0);
     } else {
       setResultMessage(
-        "You've gone through all the Fermi questions! Refresh the page to play again."
+        "Good job! You've gone through all the Fermi questions! "
       );
       setCurrentQuestion(null);
     }
