@@ -98,7 +98,7 @@ const MathWho = () => {
       <br />
 
       <Typography variant="body2" className="text-center mb-4">
-        Try get all green in 7 guesses. Green means your guess and number agrees on the property. Guess a number from 1 - 100
+        Guess the number (1-100) in 7 guesses! Green means your guess and number agrees on the property. 
       </Typography>
 
       {!gameOver && (
