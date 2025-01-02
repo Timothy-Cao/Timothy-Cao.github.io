@@ -1,7 +1,7 @@
 
 export default async function handler(req, res) {
   try {
-    const comicNumber = Math.floor(Math.random() * 3000) + 1;
+    const comicNumber = Math.floor(Math.random() * 2800) + 1;
     const response = await fetch(`https://xkcd.com/${comicNumber}/info.0.json`);
     const data = await response.json();
     res.status(200).json(data);
