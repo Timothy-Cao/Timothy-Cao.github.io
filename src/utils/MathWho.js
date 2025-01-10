@@ -51,11 +51,12 @@ const MathWho = () => {
 
   const handleGuessChange = (event) => {
     const value = event.target.value;
-    if (value === "" || (Number(value) >= 1 && Number(value) <= 100)) {
+  
+    if (value === "" || (/^\d+$/.test(value) && Number(value) >= 1 && Number(value) <= 100)) {
       setGuess(value);
     }
   };
-
+  
   const handleSubmit = () => {
     if (guess) {
       checkGuess(Number(guess));
@@ -105,12 +106,10 @@ const MathWho = () => {
         <Box className="flex items-center justify-center mt-6">
           <Typography variant="h6" className="mr-2">Guess : &nbsp;</Typography>
           <input
-            type="number"
+            type="text"
             value={guess}
             onChange={handleGuessChange}
             onKeyPress={handleKeyPress}
-            min="1"
-            max="100"
             style={{
               padding: "10px",
               fontSize: "16px",
