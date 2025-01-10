@@ -133,13 +133,13 @@ const PuzzlesPage = () => {
   <Box
     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-8 rounded-lg shadow-lg"
     style={{
-      width: "calc(100% - 20px)", // 10px padding on both sides
-      maxWidth: "1200px", // Limit max width for larger screens
-      maxHeight: "90vh", // Limit max height to fit within viewport
-      overflow: "auto", // Enable scrolling if content exceeds height
+      width: "calc(100% - 20px)", 
+      maxWidth: "1200px", 
+      maxHeight: "90vh", 
+      overflow: "auto", 
       padding: "24px",
       color: "white",
-      boxSizing: "border-box", // Ensure padding is included in width calculation
+      boxSizing: "border-box", 
     }}
   >
     <Typography variant="h5" style={{ marginBottom: "10px" }}>
