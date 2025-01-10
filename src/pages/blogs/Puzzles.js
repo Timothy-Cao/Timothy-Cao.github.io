@@ -130,67 +130,70 @@ const PuzzlesPage = () => {
 
       {activePuzzle && (
         <Modal open={open} onClose={handleClose}>
-          <Box
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-8 rounded-lg shadow-lg"
-            style={{
-              maxWidth: "90%",
-              maxHeight: "80%",
-              overflow: "auto",
-              padding: "24px",
-              color: "white",
-            }}
+  <Box
+    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-8 rounded-lg shadow-lg"
+    style={{
+      width: "calc(100% - 20px)", // 10px padding on both sides
+      maxWidth: "1200px", // Limit max width for larger screens
+      maxHeight: "90vh", // Limit max height to fit within viewport
+      overflow: "auto", // Enable scrolling if content exceeds height
+      padding: "24px",
+      color: "white",
+      boxSizing: "border-box", // Ensure padding is included in width calculation
+    }}
+  >
+    <Typography variant="h5" style={{ marginBottom: "10px" }}>
+      {activePuzzle.title}
+    </Typography>
+    {activePuzzle.type === "text" ? (
+      <Typography variant="body2" className="text-gray-300 mb-6">
+        {activePuzzle.description}
+      </Typography>
+    ) : activePuzzle.type === "fermi" ? (
+      <FermiQuestions />
+    ) : activePuzzle.type === "mathwho" ? (
+      <MathWho />
+    ) : activePuzzle.type === "image" && (
+      <>
+        <img
+          src={activePuzzle.puzzle}
+          alt={activePuzzle.title}
+          className="w-full max-w-md mx-auto mb-6"
+        />
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() =>
+            setActivePuzzle((prev) => ({
+              ...prev,
+              puzzle:
+                prev.puzzle === activePuzzle.puzzle
+                  ? activePuzzle.solution
+                  : activePuzzle.puzzle,
+            }))
+          }
+          style={{ marginRight: "8px" }}
+        >
+          {activePuzzle.puzzle === activePuzzle.solution
+            ? "Hide Solution"
+            : "Show Solution"}
+        </Button>
+        {activePuzzle.tryItUrl && (
+          <Button
+            variant="contained"
+            color="primary"
+            href={activePuzzle.tryItUrl}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Typography variant="h5" style={{ marginBottom: "10px" }}>
-              {activePuzzle.title}
-            </Typography>
-            {activePuzzle.type === "text" ? (
-              <Typography variant="body2" className="text-gray-300 mb-6">
-                {activePuzzle.description}
-              </Typography>
-            ) : activePuzzle.type === "fermi" ? (
-              <FermiQuestions />
-            ) : activePuzzle.type === "mathwho" ? (  // Handling MathWho puzzle
-              <MathWho />
-            ) : activePuzzle.type === "image" && (
-              <>
-                <img
-                  src={activePuzzle.puzzle}
-                  alt={activePuzzle.title}
-                  className="w-full max-w-md mx-auto mb-6"
-                />
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={() =>
-                    setActivePuzzle((prev) => ({
-                      ...prev,
-                      puzzle:
-                        prev.puzzle === activePuzzle.puzzle
-                          ? activePuzzle.solution
-                          : activePuzzle.puzzle,
-                    }))
-                  }
-                  style={{ marginRight: "8px" }}
-                >
-                  {activePuzzle.puzzle === activePuzzle.solution
-                    ? "Hide Solution"
-                    : "Show Solution"}
-                </Button>
-                {activePuzzle.tryItUrl && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    href={activePuzzle.tryItUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Try it Yourself
-                  </Button>
-                )}
-              </>
-            )}
-          </Box>
-        </Modal>
+            Try it Yourself
+          </Button>
+        )}
+      </>
+    )}
+  </Box>
+</Modal>
+
       )}
     </div>
   );
