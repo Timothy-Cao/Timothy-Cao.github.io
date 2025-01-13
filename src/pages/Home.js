@@ -39,6 +39,18 @@ const blogs = [
     subtitle: "Welcome to your daily dose of NASA.",
     href: "/blogs/astronomy",
     image: "/assets/media/blog_covers/nasa.png",
+  },  
+  {
+    title: "The Thinker",
+    subtitle: "Visualizing how cognitive attributes affect thinking",
+    href: "https://thinker-omega.vercel.app/",
+    image: "/assets/media/blog_covers/thought_visualizer.png",
+  },
+  {
+    title: "Real Estate Demo",
+    subtitle: "A simplified real estate demo dashboard with fake data",
+    href: "https://real-estate-demo-one.vercel.app/",
+    image: "/assets/media/blog_covers/realestate_demo.png",
   },
 ];
 
