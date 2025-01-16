@@ -15,11 +15,18 @@ const boardGames = [
         image: "/assets/media/games/24.png",
     },
     {
+        title: "Chinese Checkers AI",
+        subtitle: "Try your luck against my AI on this niche house rule version of the game",
+        href: "https://chinese-checkers.vercel.app/",
+        image: "/assets/media/blog_covers/checkers.jpg",
+    },
+    {
         title: "Prime Climb Algorithms",
         subtitle: "Statistical comparison of heuristic and strategic efficiency",
         href: "/blogs/prime-climb",
         image: "/assets/media/games/primeclimb.png",
     },
+
     {
         title: "Solvability of Othello",
         subtitle: "Analysis of the game-tree complexity and PSPACE-complete decision problems",
