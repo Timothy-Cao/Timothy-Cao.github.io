@@ -29,6 +29,12 @@ const blogs = [
     image: "/assets/media/blog_covers/math.png",
   },
   {
+    title: "Long Jump Checkers AI",
+    subtitle: "A twist on chinese checkers. Beat the AI.",
+    href: "https://chinese-checkers.vercel.app/",
+    image: "/assets/media/blog_covers/checkers.jpg",
+  },  
+  {
     title: "Brain Teasers",
     subtitle: "For those with itchy brains.",
     href: "/blogs/puzzles",
@@ -40,12 +46,12 @@ const blogs = [
     href: "/blogs/astronomy",
     image: "/assets/media/blog_covers/nasa.png",
   },  
-  // {
-  //   title: "The Thinker",
-  //   subtitle: "Visualizing how cognitive attributes affect thinking",
-  //   href: "https://thinker-omega.vercel.app/",
-  //   image: "/assets/media/blog_covers/thought_visualizer.png",
-  // },
+  {
+    title: "The Thinker",
+    subtitle: "Visualizing how cognitive attributes affect thinking",
+    href: "https://thinker-omega.vercel.app/",
+    image: "/assets/media/blog_covers/thinker.jpg",
+  },
   // {
   //   title: "Real Estate Demo",
   //   subtitle: "A simplified real estate demo dashboard with fake data",
