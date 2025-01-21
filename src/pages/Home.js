@@ -47,17 +47,23 @@ const blogs = [
     image: "/assets/media/blog_covers/nasa.png",
   },  
   {
+    title: "Music Sheets Database",
+    subtitle: "A collction of easy to access free upload sheets",
+    href: "https://music-sheets-app-6315a.web.app/",
+    image: "/assets/media/blog_covers/sheets.jpg",
+  },
+  {
     title: "The Thinker",
     subtitle: "Visualizing how cognitive attributes affect thinking",
     href: "https://thinker-omega.vercel.app/",
     image: "/assets/media/blog_covers/thinker.jpg",
   },
-  // {
-  //   title: "Real Estate Demo",
-  //   subtitle: "A simplified real estate demo dashboard with fake data",
-  //   href: "https://real-estate-demo-one.vercel.app/",
-  //   image: "/assets/media/blog_covers/realestate_demo.png",
-  // },
+  {
+    title: "Real Estate Demo",
+    subtitle: "A simplified real estate demo dashboard with fake data",
+    href: "https://real-estate-demo-one.vercel.app/",
+    image: "/assets/media/blog_covers/house.jpg",
+  },
 ];
 
 const Home = () => {
