@@ -23,6 +23,18 @@ const compositions = [
       src: "/assets/media/audio/myseptember.mp3",
     },
     {
+      title: "Ringtone challenge",
+      description: "A little ms ost inspired ringtone challenge",
+      type: "audio",
+      src: "/assets/media/audio/ms_ringtone.mp3",
+    },
+    {
+      title: "Bongo first",
+      description: "Music was written around the bongo line",
+      type: "audio",
+      src: "/assets/media/audio/1hr_challenge.mp3", 
+    },
+    {
       title: "8 Bit Nostalgia",
       description: "Written in 2021, for solo piano (synth).",
       type: "audio",
@@ -30,7 +42,7 @@ const compositions = [
     },
     {
       title: "Three Hands",
-      description: "Written in 2022, for piano duet. Unknown inspiration.",
+      description: "Written in 2022, for piano (1.5) duet.",
       type: "audio",
       src: "/assets/media/audio/4hand_remix.mp3",
     },
