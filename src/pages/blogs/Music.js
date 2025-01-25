@@ -126,7 +126,7 @@ const MusicPage = () => {
             >
               <h3 className="text-lg font-semibold text-white mb-2">
                 {comp.title}
-                {(comp.title === "Dodoman's Theme" || comp.title === "March Challenge" || comp.title === "My September") && (
+                {(comp.title === "Dodoman's Theme" || comp.title === "March Challenge" || comp.title === "My September" || comp.title === "Journey of the Dodo") && (
                   <span className="ml-2 text-yellow-400" title="Favourite">
                     ★
                   </span>
