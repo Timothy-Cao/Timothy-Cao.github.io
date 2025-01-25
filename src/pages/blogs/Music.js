@@ -11,6 +11,12 @@ const compositions = [
       src: "https://www.youtube.com/embed/8N39upFgpts",
     },
     {
+      title: "Journey of the Dodo",
+      description: "Written in 2025, written like a duet concerto for Horn and Oboe",
+      type: "audio",
+      src: "/assets/media/audio/journey_of_the_dodo.mp3",
+    },
+    {
       title: "March Challenge",
       description: "Written in 2024, featuring piano and harp.",
       type: "audio",
