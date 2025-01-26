@@ -12,7 +12,7 @@ const compositions = [
     },
     {
       title: "Journey of the Dodo",
-      description: "Written in 2025, written like a duet concerto for Horn and Oboe",
+      description: "2025, this symphonic choral adventure is a conversation between the oboes and horns",
       type: "audio",
       src: "/assets/media/audio/journey_of_the_dodo.mp3",
     },
