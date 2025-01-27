@@ -16,6 +16,7 @@ import BoardGamesPage from "./pages/blogs/BoardGamesPage";
 import Scrabble from "./pages/blogs/Scrabble";
 import TwentyFour from "./pages/blogs/TwentyFour";
 import Othello from "./pages/blogs/Othello";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
             <Route path="/blogs/twenty-four" element={<TwentyFour />} />
             <Route path="/blogs/othello" element={<Othello />} />
           </Routes>
+          <SpeedInsights />
         </div>
       </div>
     </Router>

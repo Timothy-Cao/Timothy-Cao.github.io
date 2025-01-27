@@ -12,7 +12,7 @@ const compositions = [
     },
     {
       title: "Journey of the Dodo",
-      description: "2025, this symphonic choral adventure is a conversation between the oboes and horns",
+      description: "2025, this symphonic choral piece is a conversation between the oboes and horns",
       type: "audio",
       src: "/assets/media/audio/journey_of_the_dodo.mp3",
     },
