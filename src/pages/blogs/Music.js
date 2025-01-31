@@ -6,7 +6,7 @@ const compositions = [
     {
       title: "Dodoman's Theme",
       description:
-        "Written in 2021 for symphonic orchestra with a choir. Inspired by Schubert's Ständchen.",
+        "Written in 2021 for symphonic orchestra. Inspired by Schubert's Ständchen.",
       type: "video",
       src: "https://www.youtube.com/embed/8N39upFgpts",
     },
