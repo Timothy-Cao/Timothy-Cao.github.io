@@ -29,6 +29,12 @@ const compositions = [
       src: "/assets/media/audio/myseptember.mp3",
     },
     {
+      title: "Test song (First taste of FL Studio",
+      description: "Written in 2025.",
+      type: "audio",
+      src: "/assets/media/audio/First taste of FL Studio.mp3",
+    },
+    {
       title: "Ringtone challenge",
       description: "A little ms ost inspired ringtone challenge",
       type: "audio",
@@ -81,12 +87,6 @@ const compositions = [
       description: "Written in 2018, for violin and piano.",
       type: "audio",
       src: "/assets/media/audio/violin_nostalgia.mp3",
-    },
-    {
-      title: "Autumn Leaves Variations",
-      description: "Written in 2023, for piano, guitar, and trumpet.",
-      type: "audio",
-      src: "/assets/media/audio/Tim's Leaves.mp3",
     },
     {
       title: "March of the Clowns",
