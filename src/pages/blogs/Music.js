@@ -29,8 +29,8 @@ const compositions = [
       src: "/assets/media/audio/myseptember.mp3",
     },
     {
-      title: "Test song (First taste of FL Studio",
-      description: "Written in 2025.",
+      title: "Test song (First taste of FL Studio)",
+      description: "Written in 2025. Royal Road Progression.",
       type: "audio",
       src: "/assets/media/audio/First taste of FL Studio.mp3",
     },
