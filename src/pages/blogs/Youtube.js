@@ -1,111 +1,65 @@
-import { useState } from "react";
-import {
-  Grid,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  Box,
-} from "@mui/material";
+import React, { useState } from "react";
 
 const videoData = [
   {
     id: "1",
     title: "Why Math is Beautiful",
-    author: "Veritasium",
-    description: "A thoughtful dive into how math explains the world around us.",
+    subtitle: "Veritasium",
     youtubeId: "sXpbONjV1Jc",
-    thumbnail: "https://img.youtube.com/vi/sXpbONjV1Jc/hqdefault.jpg",
+    description: "A thoughtful dive into how math explains the world around us.",
   },
   {
     id: "2",
     title: "The Most Satisfying Video",
-    author: "SmarterEveryDay",
-    description: "Why symmetry and physics bring joy to our senses.",
+    subtitle: "SmarterEveryDay",
     youtubeId: "5GWhB1eAW4c",
-    thumbnail: "https://img.youtube.com/vi/5GWhB1eAW4c/hqdefault.jpg",
+    description: "Why symmetry and physics bring joy to our senses.",
   },
-  // Add more videos here
+  // Add more videos as needed
 ];
 
 const YoutubePage = () => {
-  const [openVideo, setOpenVideo] = useState(null);
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
-      <div className="w-full max-w-6xl">
-        <h1 className="text-5xl font-bold mb-8 mt-6">Thoughtful Videos</h1>
-        <Typography
-          variant="subtitle1"
-          className="mb-8 text-gray-300"
-        >
-          A curated gallery of videos I found thoughtful.
-        </Typography>
+    <div
+      className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
+      style={{ paddingLeft: "16px", paddingRight: "16px" }}
+    >
+      <div className="w-full max-w-5xl">
+        <div className="space-y-4 text-left mb-12 mt-24">
+          <h1 className="text-5xl font-bold mb-12 px-4">Thoughtful Videos</h1>
+          <p className="text-lg text-gray-300 max-w-2xl leading-relaxed px-4">
+            A curated collection of video essays and discussions that I find thought-provoking and worth revisiting.
+          </p>
+        </div>
 
-        <Grid container spacing={4}>
-          {videoData.map((video) => (
-            <Grid item xs={12} sm={6} md={4} key={video.id}>
-              <Card className="bg-gray-800 text-white">
-                <CardActionArea onClick={() => setOpenVideo(video)}>
-                  <CardMedia
-                    component="img"
-                    height="180"
-                    image={video.thumbnail}
-                    alt={video.title}
-                  />
-                  <CardContent>
-                    <Typography variant="h6">{video.title}</Typography>
-                    <Typography variant="body2" className="text-gray-400">
-                      {video.author}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      className="mt-2 text-gray-300"
-                      noWrap
-                    >
-                      {video.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto"
+          style={{ maxWidth: "1024px" }}
+        >
+          {videoData.map((video, index) => (
+            <div
+              key={index}
+              className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-800"
+              style={{ width: "100%", maxWidth: "512px", margin: "0 auto" }}
+            >
+              <div className="w-full aspect-video bg-black">
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  title={video.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-white">{video.title}</h3>
+                <p className="text-sm text-gray-400">{video.subtitle}</p>
+                <p className="text-sm text-gray-300 mt-2">{video.description}</p>
+              </div>
+            </div>
           ))}
-        </Grid>
-
-        {/* Modal for playing video */}
-        <Dialog
-          open={Boolean(openVideo)}
-          onClose={() => setOpenVideo(null)}
-          maxWidth="md"
-          fullWidth
-        >
-          {openVideo && (
-            <>
-              <DialogTitle>{openVideo.title}</DialogTitle>
-              <DialogContent>
-                <Box mb={2}>
-                  <iframe
-                    width="100%"
-                    height="400"
-                    src={`https://www.youtube.com/embed/${openVideo.youtubeId}`}
-                    title={openVideo.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </Box>
-                <Typography variant="subtitle2" gutterBottom>
-                  By {openVideo.author}
-                </Typography>
-                <Typography variant="body1">{openVideo.description}</Typography>
-              </DialogContent>
-            </>
-          )}
-        </Dialog>
+        </div>
       </div>
     </div>
   );
