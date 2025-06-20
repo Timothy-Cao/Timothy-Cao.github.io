@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import { FiHome, FaFilm, FiBook, FiMail } from "react-icons/fi";
-import { FaMusic, FaPuzzlePiece, FaStar, FaGamepad, FaImages } from "react-icons/fa";
+import { FiHome, FiBook, FiMail } from "react-icons/fi";
+import { FaMusic, FaPuzzlePiece, FaFilm, FaStar, FaGamepad, FaImages } from "react-icons/fa";
 import "../styles/ButtonShimmer.css";
 
 const navItems = [
