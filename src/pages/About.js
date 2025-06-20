@@ -60,37 +60,19 @@ const About = () => {
                 }}
               />
               <p>
-                Hi! I'm Timothy Cao. I’m 24 years old and grew up in the
-                Greater Toronto Area. I've always been a STEM-oriented person,
-                but I first got hands-on experience working on a real project
-                during the international robotics competition at FRC. However,
-                the moment that solidified my path into computer science was in
-                2016, when I saw AlphaGo beat Lee Sedol in Go.
-              </p>
-              <br />
-              <p>
-                I’d describe myself as an easygoing guy, but friends often say
-                I’m analytical and eccentric. I enjoy staying connected with
-                friends through sports, video games, and board games. My
-                hobbies tend to come and go, but recently, I've been enjoying
-                Scrabble, piano, badminton, and rock climbing. I also have a 
-                pet rabbit named Pudding. She loves apples and hates vacuums.
-              </p>
-              <br />
-              <p>Here's a few quotes that resonate with me and offer a glimpse into who I am.</p>
+                Hi! I'm Timothy Cao. I’m 25 years old and grew up in Toronto, 
+                Canada. My MBTI flip flops between INTP and ENFP. I'm often recognized
+                in the crowd by the bounciness of my walk and the persistent presence of 
+                a backpack. 
+                
                 <br />
-              <blockquote className="italic mt-2">
-                "The man who asks a question is a fool for a minute, the man who
-                does not ask is a fool for life." — Confucius
-              </blockquote>
+
+                To stay fit I usually gravitate towards raquet sports and rock climbing although I enjoy all sports. My hobbies also include composition, piano, boardgames and videogames. I love a good discussion in philosophy, STEM or anything related to my hobbies but I most of all I love to learn about other's experiences and mastery. 
+                
               <br />
-              <blockquote className="italic mt-2">
-                "Mistakes are proof that you are trying." — Unknown
-              </blockquote>
+                Oh yeah, and back in Canada, I have a pet rabbit. Shes a lil chonker. (4 kg)
+              </p>
               <br />
-              <blockquote className="italic mt-2">
-                "We don't see things as they are, we see them as we are." —  Anaïs Nin
-              </blockquote>
             </div>
           </Box>
         )}
