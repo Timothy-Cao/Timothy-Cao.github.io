@@ -105,7 +105,7 @@ const YoutubePage = () => {
         <div className="space-y-4 text-left mb-12 mt-24">
           <h1 className="text-5xl font-bold mb-12 px-4">Videos that changed my perspective.</h1>
           <p className="text-lg text-gray-300 max-w-2xl leading-relaxed px-4">
-            In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. Most of these videos I'd highly recommend to almost anyone. These are videos that either have been influencial in my view of the world, or videos that I believe everyone should watch at least once. 
+            In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. These are videos that either have been influencial in my view of the world, or videos that I believe everyone should watch at least once. 
           </p>
         </div>
 
