@@ -41,6 +41,12 @@ const blogs = [
     image: "/assets/media/blog_covers/puzzle.gif",
   },
   {
+    title: "Video Recommendations",
+    subtitle: "A collections of thought provoking video essays and discussion",
+    href: "/blogs/youtube",
+    image: "/assets/media/blog_covers/thinker.jpg",
+  },
+  {
     title: "Astronomy",
     subtitle: "Welcome to your daily dose of NASA.",
     href: "/blogs/astronomy",
@@ -51,12 +57,6 @@ const blogs = [
     subtitle: "A collction of easy to access free upload sheets",
     href: "https://music-sheets-app-6315a.web.app/",
     image: "/assets/media/blog_covers/sheets.jpg",
-  },
-  {
-    title: "The Thinker",
-    subtitle: "Visualizing how cognitive attributes affect thinking",
-    href: "https://thinker-omega.vercel.app/",
-    image: "/assets/media/blog_covers/thinker.jpg",
   },
   {
     title: "Real Estate Demo",
