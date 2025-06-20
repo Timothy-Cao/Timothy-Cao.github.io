@@ -54,7 +54,7 @@ const blogs = [
   },  
   {
     title: "Music Sheets Database",
-    subtitle: "A collction of easy to access free upload sheets",
+    subtitle: "A collection of easy to access free upload sheets",
     href: "https://music-sheets-app-6315a.web.app/",
     image: "/assets/media/blog_covers/sheets.jpg",
   },
