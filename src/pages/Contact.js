@@ -28,7 +28,7 @@ return (
   <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white px-4">
     <div className="w-full max-w-5xl">
       <div className="space-y-4 text-left mb-12 mt-24">
-        <h1 className="text-5xl font-bold mb-12 px-4">Contact</h1>
+        <h1 className="text-5xl font-bold mb-12">Contact</h1>
         <p className="text-lg text-gray-300 max-w-2xl leading-relaxed px-4">
           Hiring? Got a joke? Project Collab? Got a cat pic? Shoot me a message.
           </p>

@@ -160,133 +160,83 @@ const Home = () => {
 
   const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
 
-  return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
-      style={{
-        paddingLeft: "16px",
-        paddingRight: "16px",
-      }}
-    >
-      <div className="w-full max-w-5xl">
-        <div
-          className="space-y-4 text-left mb-12 mt-24"
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
-          <h1
-            className="text-5xl font-bold mb-12"
-            style={{
-              paddingLeft: "16px",
-              paddingRight: "16px",
-            }}
-          >
-            Hello, I'm Timothy
-            <br />
-            <span className="text-gray-400 text-4xl">
-              {" "}
-              <span>
-                <span ref={textRef} className="text-gray-500"></span>
-                <span ref={cursorRef} className="text-gray-500">|</span>
-              </span>
+return (
+  <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white px-4">
+    <div className="w-full max-w-5xl">
+      <div className="space-y-4 text-left mb-12 mt-24">
+        <h1 className="text-5xl font-bold mb-12">
+          Hello, I'm Timothy
+          <br />
+          <span className="text-gray-400 text-4xl">
+            <span>
+              <span ref={textRef} className="text-gray-500"></span>
+              <span ref={cursorRef} className="text-gray-500">|</span>
             </span>
-          </h1>
-          <p
-            className="text-lg text-gray-300 max-w-2xl leading-relaxed"
-            style={{
-              paddingLeft: "16px",
-              paddingRight: "16px",
-            }}
+          </span>
+        </h1>
+        <p className="text-lg text-gray-300 max-w-2xl leading-relaxed">
+          Chronically curious with a results-driven mindset. I'm someone who
+          values problem definition, discussing theory, and delivering holistic,
+          practical solutions.
+        </p>
+      </div>
+
+      <h2 className="text-3xl font-bold mb-12">Explore</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-5xl">
+        {blogs.map((blog, index) => (
+          <Link
+            key={index}
+            to={blog.href}
+            className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-700 w-full max-w-md mx-auto"
           >
-            Chronically curious with a results-driven mindset. I'm someone who
-            values problem definition, discussing theory, and delivering holistic,
-            practical solutions.
-          </p>
-        </div>
-        <h2
-          className="text-3xl font-bold mb-12"
-          style={{
-            paddingLeft: "16px",
-            paddingRight: "16px",
-          }}
-        >
-          Explore
-        </h2>
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto"
-          style={{
-            maxWidth: "1024px",
-          }}
-        >
-          {blogs.map((blog, index) => (
-            <Link
-              key={index}
-              to={blog.href}
-              className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-700"
-              style={{
-                width: "100%",
-                maxWidth: "512px",
-                margin: "0 auto",
-              }}
+            <div
+              className={`relative w-full h-48 overflow-hidden ${
+                blog.title === "Game Theory" ? "group flex items-center justify-center" : ""
+              }`}
+              onMouseEnter={() =>
+                blog.title === "Gallery"
+                  ? handleGalleryHover(true)
+                  : blog.title === "Music"
+                  ? handleMusicHover(true)
+                  : null
+              }
+              onMouseLeave={() =>
+                blog.title === "Gallery"
+                  ? handleGalleryHover(false)
+                  : blog.title === "Music"
+                  ? handleMusicHover(false)
+                  : null
+              }
             >
-              <div
-                className={`relative w-full h-48 overflow-hidden ${
-                  blog.title === "Game Theory" ? "group" : ""
+              <img
+                src={
+                  blog.title === "Gallery"
+                    ? getImagePath(currentIndex)
+                    : blog.image
+                }
+                alt={blog.title}
+                className={`${
+                  blog.title === "Game Theory"
+                    ? "transition-transform group-hover:rotate-180 group-hover:scale-125 duration-700"
+                    : "w-full h-full object-cover"
                 }`}
                 style={{
-                  display: blog.title === "Game Theory" ? "flex" : undefined,
-                  alignItems: blog.title === "Game Theory" ? "center" : undefined,
-                  justifyContent: blog.title === "Game Theory" ? "center" : undefined,
+                  maxHeight: blog.title === "Game Theory" ? "300%" : undefined,
+                  transformOrigin: blog.title === "Game Theory" ? "center center" : undefined,
                 }}
-                onMouseEnter={() =>
-                  blog.title === "Gallery"
-                    ? handleGalleryHover(true)
-                    : blog.title === "Music"
-                    ? handleMusicHover(true)
-                    : null
-                }
-                onMouseLeave={() =>
-                  blog.title === "Gallery"
-                    ? handleGalleryHover(false)
-                    : blog.title === "Music"
-                    ? handleMusicHover(false)
-                    : null
-                }
-              >
-                <img
-                  src={
-                    blog.title === "Gallery"
-                      ? getImagePath(currentIndex)
-                      : blog.image
-                  }
-                  alt={blog.title}
-                  className={`${
-                    blog.title === "Game Theory"
-                      ? "transition-transform group-hover:rotate-180 group-hover:scale-125 duration-700"
-                      : "w-full h-full object-cover"
-                  }`}
-                  style={{
-                    width: blog.title === "Game Theory" ? "auto" : "100%",
-                    height: blog.title === "Game Theory" ? "auto" : "100%",
-                    maxHeight: blog.title === "Game Theory" ? "300%" : undefined,
-                    transformOrigin: blog.title === "Game Theory" ? "center center" : undefined,
-                  }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-white">{blog.title}</h3>
-                <p className="text-sm text-gray-400 mt-1">{blog.subtitle}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-white">{blog.title}</h3>
+              <p className="text-sm text-gray-400 mt-1">{blog.subtitle}</p>
+            </div>
+          </Link>
+        ))}
       </div>
-      
     </div>
-
-  );
+  </div>
+);
 };
 
 export default Home;
