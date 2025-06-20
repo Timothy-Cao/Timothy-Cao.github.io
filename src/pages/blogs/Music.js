@@ -111,8 +111,8 @@ const MusicPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
-      <div className="w-full max-w-5xl">
+  <div className="min-h-screen bg-gray-900 text-white px-4">
+    <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-8 mt-6">Musical Composition</h1>
         <p className="text-lg text-gray-300 mb-12 leading-relaxed">
           Welcome to the musical corner. Sometimes I vibrate the air pleasantly. 

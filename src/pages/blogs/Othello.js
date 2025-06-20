@@ -4,8 +4,8 @@ const letters = ["C", "O", "M", "I", "N", "G", "S", "O", "O", "N"];
 
 const Othello = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="w-full max-w-5xl p-8 bg-gray-800 rounded-lg shadow-lg">
+  <div className="min-h-screen bg-gray-900 text-white px-4">
+    <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-4 text-center">Othello - Under Construction</h1>
         <p className="text-lg text-gray-400 text-center mb-6">
          Game-tree complexity and PSPACE challenges.

@@ -99,8 +99,8 @@ const PuzzlesPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
-      <div className="w-full max-w-5xl">
+  <div className="min-h-screen bg-gray-900 text-white px-4">
+    <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-8 mt-6">Brain Teasers</h1>
         <Typography variant="subtitle1" className="mb-8 text-gray-300">
           For those with itchy brains.
