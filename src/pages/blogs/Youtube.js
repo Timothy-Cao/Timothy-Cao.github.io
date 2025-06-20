@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 const videoData = [
   {
     id: "1",
@@ -17,7 +18,7 @@ const videoData = [
   {
     id: "3",
     title: "Why You Will Marry the Wrong Person",
-    subtitle: "The School of Life / Alain de Botton",
+    subtitle: "The School of Life",
     youtubeId: "-EvvPZFdjyk",
     description: "",
   },
@@ -31,7 +32,7 @@ const videoData = [
   {
     id: "5",
     title: "What “Follow Your Dreams” Misses | Harvey Mudd Commencement Speech 2024",
-    subtitle: "3Blue1Brown (Grant Sanderson)",
+    subtitle: "3Blue1Brown",
     youtubeId: "W3I3kAg2J7w",
     description: "",
   },
@@ -45,7 +46,7 @@ const videoData = [
   {
     id: "7",
     title: "In Search of a Flat Earth",
-    subtitle: "Folding Ideas (Dan Olson)",
+    subtitle: "Folding Ideas",
     youtubeId: "JTfhYyTuT44",
     description: "",
   },
@@ -60,38 +61,39 @@ const videoData = [
     id: "9",
     title: "The Power of Suggestion",
     subtitle: "Vsauce",
-    youtubeId: "", // Need to confirm
+    youtubeId: "QDCcuCHOIyY",
     description: "",
   },
   {
     id: "10",
-    title: "Who’s Afraid of Modern Art?",
+    title: "Who’s Afraid of Modern Art: Vandalism, Video Games, and Fascism",
     subtitle: "Jacob Geller",
-    youtubeId: "", // Need to confirm
+    youtubeId: "v5DqmTtCPiQ",
     description: "",
   },
   {
     id: "11",
     title: "The Danger of a Single Story",
     subtitle: "Chimamanda Ngozi Adichie",
-    youtubeId: "", // Need to confirm
+    youtubeId: "D9Ihs241zeg",
     description: "",
   },
   {
     id: "12",
-    title: "The Last Lecture",
+    title: "Really Achieving Your Childhood Dreams (The Last Lecture)",
     subtitle: "Randy Pausch",
-    youtubeId: "", // Need to confirm
+    youtubeId: "ji5_MqicxSo",
     description: "",
   },
   {
     id: "13",
-    title: "This Is Water",
+    title: "This is Water",
     subtitle: "David Foster Wallace",
-    youtubeId: "", // Need to confirm
+    youtubeId: "DCbGM4mqEVw",
     description: "",
   },
 ];
+
 
 const YoutubePage = () => {
   return (
