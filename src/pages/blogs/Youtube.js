@@ -1,21 +1,96 @@
 import React, { useState } from "react";
-
 const videoData = [
   {
     id: "1",
-    title: "Why Math is Beautiful",
-    subtitle: "Veritasium",
-    youtubeId: "sXpbONjV1Jc",
-    description: "A thoughtful dive into how math explains the world around us.",
+    title: "When Will I Ever Use Math? How to Actually Answer This Question",
+    subtitle: "Math The World",
+    youtubeId: "i7qoq3KQiaw",
+    description: "",
   },
   {
     id: "2",
-    title: "The Most Satisfying Video",
-    subtitle: "SmarterEveryDay",
-    youtubeId: "5GWhB1eAW4c",
-    description: "Why symmetry and physics bring joy to our senses.",
+    title: "Wealth Inequality in America",
+    subtitle: "Politizane",
+    youtubeId: "QPKKQnijnsM",
+    description: "",
   },
-  // Add more videos as needed
+  {
+    id: "3",
+    title: "Why You Will Marry the Wrong Person",
+    subtitle: "The School of Life / Alain de Botton",
+    youtubeId: "-EvvPZFdjyk",
+    description: "",
+  },
+  {
+    id: "4",
+    title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
+    subtitle: "PocketGamer.biz",
+    youtubeId: "xNjI03CGkb4",
+    description: "",
+  },
+  {
+    id: "5",
+    title: "What “Follow Your Dreams” Misses | Harvey Mudd Commencement Speech 2024",
+    subtitle: "3Blue1Brown (Grant Sanderson)",
+    youtubeId: "W3I3kAg2J7w",
+    description: "",
+  },
+  {
+    id: "6",
+    title: "The Egg – A Short Story (Animated by Kurzgesagt)",
+    subtitle: "Kurzgesagt – In a Nutshell",
+    youtubeId: "h6fcK_fRYaI",
+    description: "",
+  },
+  {
+    id: "7",
+    title: "In Search of a Flat Earth",
+    subtitle: "Folding Ideas (Dan Olson)",
+    youtubeId: "JTfhYyTuT44",
+    description: "",
+  },
+  {
+    id: "8",
+    title: "AlphaGo – The Movie | Full award‑winning documentary",
+    subtitle: "DeepMind",
+    youtubeId: "WXuK6gekU1Y",
+    description: "",
+  },
+  {
+    id: "9",
+    title: "The Power of Suggestion",
+    subtitle: "Vsauce",
+    youtubeId: "", // Need to confirm
+    description: "",
+  },
+  {
+    id: "10",
+    title: "Who’s Afraid of Modern Art?",
+    subtitle: "Jacob Geller",
+    youtubeId: "", // Need to confirm
+    description: "",
+  },
+  {
+    id: "11",
+    title: "The Danger of a Single Story",
+    subtitle: "Chimamanda Ngozi Adichie",
+    youtubeId: "", // Need to confirm
+    description: "",
+  },
+  {
+    id: "12",
+    title: "The Last Lecture",
+    subtitle: "Randy Pausch",
+    youtubeId: "", // Need to confirm
+    description: "",
+  },
+  {
+    id: "13",
+    title: "This Is Water",
+    subtitle: "David Foster Wallace",
+    youtubeId: "", // Need to confirm
+    description: "",
+  },
 ];
 
 const YoutubePage = () => {
@@ -26,9 +101,9 @@ const YoutubePage = () => {
     >
       <div className="w-full max-w-5xl">
         <div className="space-y-4 text-left mb-12 mt-24">
-          <h1 className="text-5xl font-bold mb-12 px-4">Thoughtful Videos</h1>
+          <h1 className="text-5xl font-bold mb-12 px-4">Videos that changed my perspective.</h1>
           <p className="text-lg text-gray-300 max-w-2xl leading-relaxed px-4">
-            A curated collection of video essays and discussions that I find thought-provoking and worth revisiting.
+            In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. Most of these videos I'd highly recommend to almost anyone. These are videos that either have been influencial in my view of the world, or videos that I believe everyone should watch at least once. 
           </p>
         </div>
 
