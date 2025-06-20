@@ -97,21 +97,21 @@ const videoData = [
     title: "Is success Luck or Hard work?",
     subtitle: "Veritasium",
     youtubeId: "3LopI4YeC4I",
-    description: "",
+    description: "Bad luck is much easier to spot than good luck.",
   },
   {
     id: "16",
     title: "The Evolution Of Intelligence",
     subtitle: "Art of the Problem",
     youtubeId: "5EcQ1IcEMFQ",
-    description: "",
+    description: "Human intelligence ended with language, while llms begin with language.",
   },
   {
-    id: "4",
+    id: "17",
     title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
-    description: "This one is niche. If you've ever spent money on a mobile game, watch this.",
+    description: "This one is niche. Watch if you've ever spent on a mobile game.",
   },
 ];
 
