@@ -3,7 +3,6 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import TopNavMenu from "./components/TopNavMenu";
 import Home from "./pages/Home";
-import Experience from "./pages/Experience";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Music from "./pages/blogs/Music";
@@ -42,7 +41,6 @@ function App() {
         <div className={`${isMobile ? "mt-16" : "flex-1 p-6"} overflow-y-auto`}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/experience" element={<Experience />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blogs/music" element={<Music />} />

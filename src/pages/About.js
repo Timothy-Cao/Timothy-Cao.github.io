@@ -3,27 +3,10 @@ import { Tabs, Tab, Box } from "@mui/material";
 
 const About = () => {
   const [value, setValue] = useState(0); 
-  const [xkcdComic, setXkcdComic] = useState(null);
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    const fetchXKCDComic = async () => {
-      try {
-        const comicNumber = Math.floor(Math.random() * 3000) + 1;
-        const xkcdResponse = await fetch(`/api/xkcd/${comicNumber}`);
-        if (!xkcdResponse.ok) throw new Error("Failed to fetch XKCD comic");
-        const xkcdData = await xkcdResponse.json();
-        setXkcdComic(xkcdData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchXKCDComic();
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
