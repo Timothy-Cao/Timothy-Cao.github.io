@@ -17,6 +17,12 @@ const blogs = [
     image: "/assets/media/blog_covers/music.png",
   },
   {
+    title: "Video Recommendations",
+    subtitle: "A collections of thought provoking video essays and discussion",
+    href: "/blogs/youtube",
+    image: "/assets/media/blog_covers/thinker.jpg",
+  },
+  {
     title: "Game Theory",
     subtitle: "A guide to ruining boardgame night.",
     href: "/blogs/board-games",
@@ -39,12 +45,6 @@ const blogs = [
     subtitle: "For those with itchy brains.",
     href: "/blogs/puzzles",
     image: "/assets/media/blog_covers/puzzle.gif",
-  },
-  {
-    title: "Video Recommendations",
-    subtitle: "A collections of thought provoking video essays and discussion",
-    href: "/blogs/youtube",
-    image: "/assets/media/blog_covers/thinker.jpg",
   },
   {
     title: "Astronomy",

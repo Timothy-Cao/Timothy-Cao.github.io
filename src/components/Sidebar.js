@@ -14,6 +14,7 @@ const blogItems = [
   { label: "Gallery", icon: <FaImages className="icon-white" />, href: "/blogs/gallery" },
   { label: "Music", icon: <FaMusic className="icon-white" />, href: "/blogs/music" },
   { label: "Math Art", icon: <FiBook className="icon-white" />, href: "/blogs/math-art" },
+  { label: "Video Recs", icon: <VideoFrame className="icon-white" />, href: "/blogs/youtube" },
   { label: "Astronomy", icon: <FaStar className="icon-white" />, href: "/blogs/astronomy" },
   { label: "Puzzles", icon: <FaPuzzlePiece className="icon-white" />, href: "/blogs/puzzles" },
   { label: "Board Games", icon: <FaGamepad className="icon-white" />, href: "/blogs/board-games" },
