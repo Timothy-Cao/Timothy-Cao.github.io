@@ -11,9 +11,9 @@ const navItems = [
 ];
 
 const blogItems = [
+  { label: "Video Recs", icon: <FaFilm className="icon-white" />, href: "/blogs/youtube" },
   { label: "Gallery", icon: <FaImages className="icon-white" />, href: "/blogs/gallery" },
   { label: "Music", icon: <FaMusic className="icon-white" />, href: "/blogs/music" },
-  { label: "Video Recs", icon: <FaFilm className="icon-white" />, href: "/blogs/youtube" },
   { label: "Puzzles", icon: <FaPuzzlePiece className="icon-white" />, href: "/blogs/puzzles" },
   { label: "Board Games", icon: <FaGamepad className="icon-white" />, href: "/blogs/board-games" },
   { label: "Math Art", icon: <FiBook className="icon-white" />, href: "/blogs/math-art" },
