@@ -24,13 +24,13 @@ const Contact = () => {
     setShowPopup(true);
   };
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
-      <div className="w-full max-w-5xl space-y-8">
-        <div className="text-left">
-          <h1 className="text-5xl font-bold mb-4">Contact</h1>
-          <p className="text-gray-400 text-lg">
-            Hiring? Got a joke? Project Collab? Got a cat pic? Shoot me a message.
+return (
+  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white px-4">
+    <div className="w-full max-w-5xl space-y-8 mt-24 mb-12">
+      <div className="text-left">
+        <h1 className="text-5xl font-bold mb-12 px-4">Contact</h1>
+        <p className="text-gray-300 text-lg leading-relaxed max-w-2xl px-4">
+          Message me about anything except my car's extended warranty.
           </p>
         </div>
 
