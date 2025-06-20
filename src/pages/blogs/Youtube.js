@@ -6,14 +6,7 @@ const videoData = [
     title: "When Will I Ever Use Math? How to Actually Answer This Question",
     subtitle: "Math The World",
     youtubeId: "i7qoq3KQiaw",
-    description: "",
-  },
-  {
-    id: "2",
-    title: "Wealth Inequality in America",
-    subtitle: "Politizane",
-    youtubeId: "QPKKQnijnsM",
-    description: "",
+    description: "This is what I show all my students.",
   },
   {
     id: "3",
@@ -41,7 +34,7 @@ const videoData = [
     title: "In Search of a Flat Earth",
     subtitle: "Folding Ideas",
     youtubeId: "JTfhYyTuT44",
-    description: "",
+    description: "The facts are just game pieces you rearrange to justify actions.",
   },
   {
     id: "8",
@@ -62,7 +55,7 @@ const videoData = [
     title: "Who’s Afraid of Modern Art: Vandalism, Video Games, and Fascism",
     subtitle: "Jacob Geller",
     youtubeId: "v5DqmTtCPiQ",
-    description: "",
+    description: "This will change your perspective on art",
   },
   {
     id: "11",
@@ -83,21 +76,21 @@ const videoData = [
     title: "This is Water",
     subtitle: "David Foster Wallace",
     youtubeId: "DCbGM4mqEVw",
-    description: "",
+    description: "Incredible perspective of the world and the human condition.",
   },
   {
     id: "14",
     title: "The overview effect",
     subtitle: "Crosspollinate",
     youtubeId: "CHMIfOecrlo",
-    description: "It's a wonderful way to see our planet.",
+    description: "A wonderful way to see our planet.",
   },
   {
     id: "15",
     title: "Is success Luck or Hard work?",
     subtitle: "Veritasium",
     youtubeId: "3LopI4YeC4I",
-    description: "Bad luck is far easier to spot than good luck.",
+    description: "Bad luck is easier to spot than good luck.",
   },
   {
     id: "16",
@@ -108,10 +101,17 @@ const videoData = [
   },
   {
     id: "17",
+    title: "Wealth Inequality in America",
+    subtitle: "Politizane",
+    youtubeId: "QPKKQnijnsM",
+    description: "",
+  },
+  {
+    id: "18",
     title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
-    description: "This one is niche. If you've ever spent money on a mobile game, this is for you.",
+    description: "Watch this if you spend money on mobile games.",
   },
 ];
 
