@@ -95,28 +95,16 @@ const compositions = [
       src: "/assets/media/audio/March_of_the_clowns.mp3",
     },
   ];
-  
+
 const MusicPage = () => {
-  const [open, setOpen] = useState(false);
-  const [activeComposition, setActiveComposition] = useState(null);
-
-  const handleOpen = (composition) => {
-    setActiveComposition(composition);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setActiveComposition(null);
-  };
-
   return (
-  <div className="min-h-screen bg-gray-900 text-white px-4">
-    <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
+    <div className="min-h-screen bg-gray-900 text-white px-4">
+      <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-8 mt-6">Musical Composition</h1>
         <p className="text-lg text-gray-300 mb-12 leading-relaxed">
           Welcome to the musical corner. Sometimes I vibrate the air pleasantly. 
         </p>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {compositions.map((comp, index) => (
             <div
@@ -126,7 +114,10 @@ const MusicPage = () => {
             >
               <h3 className="text-lg font-semibold text-white mb-2">
                 {comp.title}
-                {(comp.title === "Dodoman's Theme" || comp.title === "March Challenge" || comp.title === "My September" || comp.title === "Journey of the Dodo") && (
+                {(comp.title === "Dodoman's Theme" ||
+                  comp.title === "March Challenge" ||
+                  comp.title === "My September" ||
+                  comp.title === "Journey of the Dodo") && (
                   <span className="ml-2 text-yellow-400" title="Favourite">
                     ★
                   </span>
@@ -137,18 +128,19 @@ const MusicPage = () => {
           ))}
         </div>
       </div>
+
       {activeComposition && (
         <Modal open={open} onClose={handleClose}>
           <Box
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-6 rounded-lg shadow-lg"
             style={{
-                maxWidth: "200%",
-                maxHeight: "auto%",
-                minWidth: "400px", 
-                minHeight: "auto", 
-                overflow: "auto",
+              maxWidth: "200%",
+              maxHeight: "auto%",
+              minWidth: "400px",
+              minHeight: "auto",
+              overflow: "auto",
             }}
-            >  
+          >
             <h2 className="text-xl font-bold text-white mb-4">
               {activeComposition.title}
             </h2>
