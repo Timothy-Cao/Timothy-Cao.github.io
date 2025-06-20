@@ -48,7 +48,7 @@ const videoData = [
     title: "AlphaGo – The Movie | Full award‑winning documentary",
     subtitle: "DeepMind",
     youtubeId: "WXuK6gekU1Y",
-    description: "",
+    description: "This is the documentary that influenced my career trajectory. Surprisingly moving.",
   },
   {
     id: "9",
@@ -90,14 +90,14 @@ const videoData = [
     title: "The overview effect",
     subtitle: "Crosspollinate",
     youtubeId: "CHMIfOecrlo",
-    description: "",
+    description: "It's a wonderful way to see our planet.",
   },
   {
     id: "15",
     title: "Is success Luck or Hard work?",
     subtitle: "Veritasium",
     youtubeId: "3LopI4YeC4I",
-    description: "Bad luck is much easier to spot than good luck.",
+    description: "Bad luck is far easier to spot than good luck.",
   },
   {
     id: "16",
@@ -111,7 +111,7 @@ const videoData = [
     title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
-    description: "This one is niche. Watch if you've ever spent on a mobile game.",
+    description: "This one is niche. If you've ever spent money on a mobile game, this is for you.",
   },
 ];
 
