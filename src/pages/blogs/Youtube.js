@@ -101,9 +101,9 @@ const videoData = [
   },
   {
     id: "15",
-    title: "What makes an expert?",
+    title: "Is success Luck or Hard work?",
     subtitle: "Veritasium",
-    youtubeId: "5eW6Eagr9XA",
+    youtubeId: "3LopI4YeC4I",
     description: "",
   },
 ];
@@ -119,7 +119,7 @@ const YoutubePage = () => {
         <div className="space-y-4 text-left mb-12 mt-24">
           <h1 className="text-5xl font-bold mb-12 px-4">Videos that changed my perspective.</h1>
           <p className="text-lg text-gray-300 max-w-2xl leading-relaxed px-4">
-            In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. These are videos that either have been influencial in my view of the world, or videos that I believe many could benifit from watching.
+            In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. These are videos that either have been influencial in my view of the world, or videos that I believe many could benefit from watching.
           </p>
         </div>
 

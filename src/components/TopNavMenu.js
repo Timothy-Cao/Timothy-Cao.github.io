@@ -9,6 +9,7 @@ const menuItems = [
   { label: "Contact", href: "/contact" },
   { isDivider: true },
   { label: "Gallery", href: "/blogs/gallery" },
+  { label: "Youtube Recs", href: "/blogs/youtube" },
   { label: "Music", href: "/blogs/music" },
   { label: "Math Art", href: "/blogs/math-art" },
   { label: "Astronomy", href: "/blogs/astronomy" },
