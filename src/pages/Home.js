@@ -186,7 +186,7 @@ const Home = () => {
             Hello, I'm Timothy
             <br />
             <span className="text-gray-400 text-4xl">
-              A{" "}
+              {" "}
               <span>
                 <span ref={textRef} className="text-gray-500"></span>
                 <span ref={cursorRef} className="text-gray-500">|</span>
