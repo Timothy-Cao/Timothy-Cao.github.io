@@ -20,14 +20,15 @@ const Gallery = () => {
   const handleClose = () => setSelectedImage(null);
 
   return (
-  <div className="min-h-screen bg-gray-900 text-white px-4">
-    <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
-        <div className="space-y-4 text-left mb-12 mt-12 ml-4">
-          <h1 className="text-5xl font-bold">Gallery</h1>
-          <p className="text-lg text-gray-300 max-w-2xl leading-relaxed">
-            Looking back on 2024
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-900 text-white px-4">
+      <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
+        <h1 className="text-5xl font-bold mb-4 text-center flex items-center justify-center gap-2">
+          Gallery
+        </h1>
+
+        <p className="text-lg text-gray-300 max-w-2xl leading-relaxed mx-auto text-center">
+          Looking back on 2024
+        </p>
 
         <Box sx={{ mt: 4, p: 2 }}>
           <ImageList variant="masonry" cols={4} gap={12}>

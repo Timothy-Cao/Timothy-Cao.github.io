@@ -115,29 +115,23 @@ const videoData = [
   },
 ];
 
-
 const YoutubePage = () => {
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-gray-900 text-white"
-      style={{ paddingLeft: "16px", paddingRight: "16px" }}>
-      <div className="w-full max-w-5xl">
-        <div className="text-left mb-12 mt-24">
-          <h1 className="text-5xl font-bold mb-12 px-4">Videos that changed my perspective.</h1>
-          <p className="text-lg text-gray-300 max-w-2xl leading-relaxed px-4">
-            In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. These are videos that either have been influencial in my view of the world, or videos that I believe many could benefit from watching.
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-900 text-white px-4">
+      <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
+        <h1 className="text-5xl font-bold mb-4 text-center flex items-center justify-center gap-2">
+          Videos that changed my perspective.
+        </h1>
 
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto"
-          style={{ maxWidth: "1024px" }}
-        >
+        <p className="text-lg text-gray-300 max-w-2xl leading-relaxed mx-auto text-center">
+          In the age of the internet, we don't need to go through a lifetime of hardship to be able to attain transformative wisdom. These are videos that either have been influential in my view of the world, or videos that I believe many could benefit from watching.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-5xl">
           {videoData.map((video, index) => (
             <div
               key={index}
-              className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-800"
-              style={{ width: "100%", maxWidth: "512px", margin: "0 auto" }}
+              className="flex flex-col rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform transition-transform hover:scale-105 bg-gray-800 w-full max-w-md mx-auto"
             >
               <div className="w-full aspect-video bg-black">
                 <iframe
