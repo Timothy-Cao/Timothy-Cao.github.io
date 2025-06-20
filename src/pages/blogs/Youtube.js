@@ -23,13 +23,6 @@ const videoData = [
     description: "",
   },
   {
-    id: "4",
-    title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
-    subtitle: "PocketGamer.biz",
-    youtubeId: "xNjI03CGkb4",
-    description: "",
-  },
-  {
     id: "5",
     title: "What “Follow Your Dreams” Misses | Harvey Mudd Commencement Speech 2024",
     subtitle: "3Blue1Brown",
@@ -112,6 +105,13 @@ const videoData = [
     subtitle: "Art of the Problem",
     youtubeId: "5EcQ1IcEMFQ",
     description: "",
+  },
+  {
+    id: "4",
+    title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
+    subtitle: "PocketGamer.biz",
+    youtubeId: "xNjI03CGkb4",
+    description: "This one is niche. If you've ever spent money on a mobile game, watch this.",
   },
 ];
 
