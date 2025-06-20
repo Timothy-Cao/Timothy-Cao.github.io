@@ -99,6 +99,13 @@ const videoData = [
     youtubeId: "CHMIfOecrlo",
     description: "",
   },
+  {
+    id: "15",
+    title: "What makes an expert?",
+    subtitle: "Veritasium",
+    youtubeId: "5eW6Eagr9XA",
+    description: "",
+  },
 ];
 
 
