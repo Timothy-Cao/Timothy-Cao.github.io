@@ -91,47 +91,15 @@ const About = () => {
                 }}
               />
               <p>
-                I attended the University of Waterloo and received my BCS in
-                2023. During my university years, I've interned at various
-                companies in technical positions.
+                My professional journey started in highschool where I worked in a pharmacy and as a math tutor. I graduated from the University of Waterloo and received my BCS in 2023. During my university internships, I've worked as a software engineer in the government, pre-seed startups, big tech companies and augmented reality companies.
               </p>
               <br />
               <p>
-                In 2019, I interned in Quality Assurance for the government,
-                where I performed regression and load tests. Later, I entered
-                the field of software engineering for the first time at eSight,
-                an AR company focused on assisting the visually impaired, where
-                I worked on low-level programming with embedded systems.
+                After graduation I've joined a Canadian Startup for a few years, then freelanced for a Real Estate Platform. Today I'm working at Bytedance in California in security engineering. 
               </p>
               <br />
               <p>
-                I also gained experience working on software at scale for a
-                fleet management company and created dev tools for a
-                safety-critical graphics company.
-              </p>
-              <br />
-              <p>
-                After graduation, I returned to an internship at a startup as a
-                Technical Lead. Here, I led the development and aided the design
-                of Tandem Experiences' App. Subsequently, I worked as a
-                contractor and freelancer in fields as data annotation and real
-                estate dashboard development.
-              </p>
-              <br />
-              <p>
-                My experiences across a range of company sizes have taught me to
-                understand how code impacts systems at scale while also taking
-                ownership of proportionally large deliverables through multiple
-                rounds of feedback. My backend work sharpened my skills in
-                creating API endpoints, and my frontend roles enhanced my React
-                proficiency and attention to design.
-              </p>
-              <br />
-              <p>
-                Before university, I had worked in a pharmacy and as a math
-                tutor, which provided me with transferable people skills that
-                have improved my technical communication with customers and
-                colleagues in a professional setting.
+                
               </p>
             </div>
           </Box>
