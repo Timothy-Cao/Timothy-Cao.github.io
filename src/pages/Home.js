@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const rotatingRoles = ["Software Eng", "Cyber Sec", "Fullstack Dev"];
+const rotatingRoles = ["Software Engineer", "Cyber Security", "Fullstack Developer"];
 
 const blogs = [
   {
