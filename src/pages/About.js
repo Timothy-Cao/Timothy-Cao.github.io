@@ -47,13 +47,12 @@ const About = () => {
                 Canada. My MBTI flip flops between INTP and ENFP. I'm often recognized
                 in the crowd by the bounciness of my walk and the persistent presence of 
                 a backpack. 
-                
+              </p>
                 <br />
-
+              <p>
                 To stay fit I usually gravitate towards raquet sports and rock climbing although I enjoy all sports. My hobbies also include composition, piano, boardgames and videogames. I love a good discussion in philosophy, STEM or anything related to my hobbies but I most of all I love to learn about other's experiences and mastery. 
-                
-              <br />
-                Oh yeah, and back in Canada, I have a pet rabbit. Shes a lil chonker. (4 kg)
+                <br />
+                Oh yeah, and back in Canada, I have a pet rabbit. Pudding is of unknown age but she hates vacuums and she's a lil chonker. (4 kg)
               </p>
               <br />
             </div>
