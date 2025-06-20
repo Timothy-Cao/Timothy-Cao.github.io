@@ -95,8 +95,21 @@ const compositions = [
       src: "/assets/media/audio/March_of_the_clowns.mp3",
     },
   ];
-
+  
 const MusicPage = () => {
+  const [open, setOpen] = useState(false);
+  const [activeComposition, setActiveComposition] = useState(null);
+
+  const handleOpen = (composition) => {
+    setActiveComposition(composition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setActiveComposition(null);
+  };
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white px-4">
       <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
