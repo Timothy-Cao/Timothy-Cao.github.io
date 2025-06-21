@@ -9,6 +9,13 @@ const videoData = [
     description: "This is what I show all my students.",
   },
   {
+    id: "2",
+    title: "State of The Dead Internet",
+    subtitle: "Jules",
+    youtubeId: "GELgKl_Wow8",
+    description: "",
+  },
+  {
     id: "3",
     title: "Why You Will Marry the Wrong Person",
     subtitle: "The School of Life",
