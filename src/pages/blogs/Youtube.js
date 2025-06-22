@@ -119,28 +119,26 @@ const videoData = [
     subtitle: "Politizane",
     youtubeId: "QPKKQnijnsM",
     description: "",
+  },{
+    id: "18",
+    title: "The Self-Improvement Trap",
+    subtitle: "Joe Delaney",
+    youtubeId: "QFiBl0HNmqM",
+    description: "",
   },
   {
-    id: "18",
+    id: "19",
     title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
     description: "Watch this if you spend money on mobile games.",
   },
   {
-    id: "19",
+    id: "20",
     title: "AI 2027: A Realistic Scenario of AI Takeover",
     subtitle: "Documenting AGI",
     youtubeId: "k_onqn68GHY",
     description: "This one is almost entirely speculative but an interesting watch.",
-  },
-
-  {
-    id: "20",
-    title: "The Self-Improvement Trap",
-    subtitle: "Joe Delaney",
-    youtubeId: "QFiBl0HNmqM",
-    description: "",
   },
 ];
 
