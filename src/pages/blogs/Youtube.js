@@ -24,14 +24,14 @@ const videoData = [
   },
   {
     id: "5",
-    title: "What “Follow Your Dreams” Misses | Harvey Mudd Commencement Speech 2024",
+    title: "What “Follow Your Dreams” Misses",
     subtitle: "3Blue1Brown",
     youtubeId: "W3I3kAg2J7w",
     description: "",
   },
   {
     id: "6",
-    title: "The Egg – A Short Story (Animated by Kurzgesagt)",
+    title: "The Egg – A Short Story",
     subtitle: "Kurzgesagt – In a Nutshell",
     youtubeId: "h6fcK_fRYaI",
     description: "",
@@ -41,7 +41,7 @@ const videoData = [
     title: "In Search of a Flat Earth",
     subtitle: "Folding Ideas",
     youtubeId: "JTfhYyTuT44",
-    description: "The facts are just game pieces you rearrange to justify actions.",
+    description: "This video delves into the pyschology and motivations behind flat earth.",
   },
   {
     id: "8",
