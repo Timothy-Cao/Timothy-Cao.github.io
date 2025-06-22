@@ -80,7 +80,7 @@ const videoData = [
   },
   {
     id: "12",
-    title: "Really Achieving Your Childhood Dreams (The Last Lecture)",
+    title: "Really Achieving Your Childhood Dreams",
     subtitle: "Randy Pausch",
     youtubeId: "ji5_MqicxSo",
     description: "",
