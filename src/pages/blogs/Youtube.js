@@ -137,10 +137,10 @@ const videoData = [
 
   {
     id: "20",
-    title: "Camping in Arctic Circle with No Tent",
-    subtitle: "Outdoor Boys",
-    youtubeId: "uSuEdw6HAFE",
-    description: "This one is here only to honor his legacy and retirement from youtube.",
+    title: "The Self-Improvement Trap",
+    subtitle: "Joe Delaney",
+    youtubeId: "QFiBl0HNmqM",
+    description: "",
   },
 ];
 
