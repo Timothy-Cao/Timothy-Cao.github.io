@@ -73,9 +73,9 @@ const videoData = [
   },
   {
     id: "11",
-    title: "The Danger of a Single Story",
-    subtitle: "Chimamanda Ngozi Adichie",
-    youtubeId: "D9Ihs241zeg",
+    title: "Witnessing the Death of American Capitalism",
+    subtitle: "Benn Jordan",
+    youtubeId: "gqtrNXdlraM",
     description: "",
   },
   {
