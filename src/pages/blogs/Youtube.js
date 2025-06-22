@@ -31,8 +31,8 @@ const videoData = [
   },
   {
     id: "6",
-    title: "The Egg – A Short Story",
-    subtitle: "Kurzgesagt – In a Nutshell",
+    title: "The Egg - A Short Story",
+    subtitle: "Kurzgesagt - In a Nutshell",
     youtubeId: "h6fcK_fRYaI",
     description: "",
   },
@@ -45,7 +45,7 @@ const videoData = [
   },
   {
     id: "8",
-    title: "AlphaGo – The Movie | Full award‑winning documentary",
+    title: "AlphaGo - The Movie | Full award-winning documentary",
     subtitle: "DeepMind",
     youtubeId: "WXuK6gekU1Y",
     description: "This is the documentary that influenced my career trajectory. Surprisingly moving.",
@@ -59,7 +59,7 @@ const videoData = [
   },
   {
     id: "10",
-    title: "Who’s Afraid of Modern Art: Vandalism, Video Games, and Fascism",
+    title: "Who's Afraid of Modern Art: Vandalism, Video Games, and Fascism",
     subtitle: "Jacob Geller",
     youtubeId: "v5DqmTtCPiQ",
     description: "This will change your perspective on art",
