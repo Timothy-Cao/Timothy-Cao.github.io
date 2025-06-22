@@ -23,6 +23,13 @@ const videoData = [
     description: "",
   },
   {
+    id: "4",
+    title: "The Debt Paradox",
+    subtitle: "Art of the Problem",
+    youtubeId: "bZ6HodKDxJE",
+    description: "Very informative for those without economic backgrounds",
+  },
+  {
     id: "5",
     title: "What “Follow Your Dreams” Misses",
     subtitle: "3Blue1Brown",
@@ -41,7 +48,7 @@ const videoData = [
     title: "In Search of a Flat Earth",
     subtitle: "Folding Ideas",
     youtubeId: "JTfhYyTuT44",
-    description: "This video delves into the pyschology and motivations behind flat earth.",
+    description: "This video delves into the psychology and motivations behind flat earth.",
   },
   {
     id: "8",
@@ -104,7 +111,7 @@ const videoData = [
     title: "The Evolution Of Intelligence",
     subtitle: "Art of the Problem",
     youtubeId: "5EcQ1IcEMFQ",
-    description: "Human intelligence ended with language, while llms begin with language.",
+    description: "Human intelligence ended with language, while LLMs begin with language.",
   },
   {
     id: "17",
@@ -119,6 +126,21 @@ const videoData = [
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
     description: "Watch this if you spend money on mobile games.",
+  },
+  {
+    id: "19",
+    title: "AI 2027: A Realistic Scenario of AI Takeover",
+    subtitle: "Documenting AGI",
+    youtubeId: "k_onqn68GHY",
+    description: "This one is almost entirely speculative but an interesting watch.",
+  },
+
+  {
+    id: "20",
+    title: "Egoistic Altruism",
+    subtitle: "Kurzgesagt",
+    youtubeId: "rvskMHn0sqQ",
+    description: "",
   },
 ];
 
