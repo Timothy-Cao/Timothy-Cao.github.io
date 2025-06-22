@@ -41,7 +41,7 @@ const videoData = [
     title: "In Search of a Flat Earth",
     subtitle: "Folding Ideas",
     youtubeId: "JTfhYyTuT44",
-    description: "The facts are just game pieces you rearrange to justify actions.",
+    description: "A great video delving into the pyschology and behavior of flat earthers.",
   },
   {
     id: "8",
