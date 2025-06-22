@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const videoData = [
   {
     id: "1",
-    title: "When Will I Ever Use Math? How to Actually Answer This Question",
+    title: "When Will I Ever Use Math?",
     subtitle: "Math The World",
     youtubeId: "RqQlXG__vGs",
     description: "This is what I show all my students.",
@@ -13,7 +13,7 @@ const videoData = [
     title: "State of The Dead Internet",
     subtitle: "Jules",
     youtubeId: "GELgKl_Wow8",
-    description: "",
+    description: "The golden age of the internet is behind us.",
   },
   {
     id: "3",
@@ -41,7 +41,7 @@ const videoData = [
     title: "In Search of a Flat Earth",
     subtitle: "Folding Ideas",
     youtubeId: "JTfhYyTuT44",
-    description: "A great video delving into the pyschology and behavior of flat earthers.",
+    description: "The facts are just game pieces you rearrange to justify actions.",
   },
   {
     id: "8",
