@@ -128,14 +128,14 @@ const videoData = [
     description: "",
   },
   {
-    id: "19",
+    id: "18",
     title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
     description: "Watch this if you spend money on mobile games.",
   },
   {
-    id: "20",
+    id: "19",
     title: "AI 2027: A Realistic Scenario of AI Takeover",
     subtitle: "Documenting AGI",
     youtubeId: "k_onqn68GHY",
