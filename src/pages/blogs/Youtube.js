@@ -126,12 +126,6 @@ const videoData = [
     subtitle: "Politizane",
     youtubeId: "QPKKQnijnsM",
     description: "",
-  },{
-    id: "18",
-    title: "The Toxic World of Self Help",
-    subtitle: "James Jani",
-    youtubeId: "dmLTLkCBSN8",
-    description: "A patient healed is a customer lost.",
   },
   {
     id: "19",
