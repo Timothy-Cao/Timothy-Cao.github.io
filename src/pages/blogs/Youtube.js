@@ -2,6 +2,13 @@ import React, { useState } from "react";
 
 const videoData = [
   {
+    id: "0",
+    title: "Why the Modern World Promotes Mental Illness",
+    subtitle: "Pursuit of Wonder",
+    youtubeId: "-1FU04Hc8qg",
+    description: "How should success be defined?",
+  },
+  {
     id: "1",
     title: "When Will I Ever Use Math?",
     subtitle: "Math The World",
