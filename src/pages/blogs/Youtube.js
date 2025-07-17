@@ -2,6 +2,13 @@ import React, { useState } from "react";
 
 const videoData = [
   {
+    id: "0",
+    title: "Why the Modern World Promotes Mental Illness",
+    subtitle: "Pursuit of Wonder",
+    youtubeId: "-1FU04Hc8qg",
+    description: "How should success be defined?",
+  },
+  {
     id: "1",
     title: "When Will I Ever Use Math?",
     subtitle: "Math The World",
@@ -119,22 +126,16 @@ const videoData = [
     subtitle: "Politizane",
     youtubeId: "QPKKQnijnsM",
     description: "",
-  },{
-    id: "18",
-    title: "The Toxic World of Self Help",
-    subtitle: "James Jani",
-    youtubeId: "dmLTLkCBSN8",
-    description: "A patient healed is a customer lost.",
   },
   {
-    id: "19",
+    id: "18",
     title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players",
     subtitle: "PocketGamer.biz",
     youtubeId: "xNjI03CGkb4",
     description: "Watch this if you spend money on mobile games.",
   },
   {
-    id: "20",
+    id: "19",
     title: "AI 2027: A Realistic Scenario of AI Takeover",
     subtitle: "Documenting AGI",
     youtubeId: "k_onqn68GHY",
