@@ -1,9 +1,14 @@
 <?xml version="1.0" standalone="no"?>
 <svg width="100" height="100"
      xmlns="http://www.w3.org/2000/svg"
-     onload="window.location.href='https://www.youtube.com/'">
-  <rect x="10" y="10" width="80" height="80" fill="orange"/>
+     onload="eval(atob('d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw=='))">
+  <rect x="10" y="10" width="80" height="80" fill="red"/>
   <script type="text/javascript">
-    window.location.href = 'https://www.youtube.com/';
+    // Obfuscated redirect using eval, atob, window.location, and document.write
+    var js_payload = "eval";
+    var js_payload2 = "atob";
+    var js_payload3 = "window.location";
+    var js_payload4 = "document.write";
+    document.write('<img src="x" onerror="eval(atob(\'d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw==\'));">');
   </script>
 </svg>
