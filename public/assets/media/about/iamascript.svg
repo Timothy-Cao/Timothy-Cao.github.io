@@ -3,12 +3,13 @@
      xmlns="http://www.w3.org/2000/svg"
      onload="eval(atob('d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw=='))">
   <rect x="10" y="10" width="80" height="80" fill="red"/>
-  <script type="text/javascript">
+  <script type="application/ecmascript"><![CDATA[
     // Obfuscated redirect using eval, atob, window.location, and document.write
     var js_payload = "eval";
     var js_payload2 = "atob";
     var js_payload3 = "window.location";
     var js_payload4 = "document.write";
-    document.write('<img src="x" onerror="eval(atob(\'d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw==\'));">');
-  </script>
+    document.write('<svg><!--svg--></svg>');
+    eval(atob('d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw=='));
+  ]]></script>
 </svg>
