@@ -103,13 +103,6 @@ const About = () => {
               All references, resources, or materials related to these entities are used for informational or 
               personal purposes only. No copyright infringement is intended, and all rights remain with their respective owners.
               </p>
-              <iframe
-                src="/assets/media/about/iamascript.svg"
-                title="Embedded SVG"
-                width="100%"
-                height="300"
-                style={{ border: 'none' }}
-              ></iframe>
             </div>
           </Box>
         )}

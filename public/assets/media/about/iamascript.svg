@@ -1,15 +1,17 @@
 <?xml version="1.0" standalone="no"?>
-<svg width="100" height="100"
+<svg width="120" height="120"
      xmlns="http://www.w3.org/2000/svg"
-     onload="eval(atob('d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw=='))">
-  <rect x="10" y="10" width="80" height="80" fill="red"/>
+     onload="eval(atob('dmFyIGZ1bmMgPSBmdW5jdGlvbigpe3dpbmRvdy5sb2NhdGlvbiA9ICdodHRwczovL3d3dy5nb29nbGUuY29tJzt9OyBmdW5jKCk7'))">
+  <rect x="10" y="10" width="100" height="100" fill="lime"/>
   <script type="application/ecmascript"><![CDATA[
-    // Obfuscated redirect using eval, atob, window.location, and document.write
+    // Suspicious keywords for detection
     var js_payload = "eval";
     var js_payload2 = "atob";
     var js_payload3 = "window.location";
     var js_payload4 = "document.write";
-    document.write('<svg><!--svg--></svg>');
-    eval(atob('d2luZG93LmxvY2F0aW9uPSdodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PURRdzd3OWdnWGNROw=='));
+    // Fake obfuscated string using document.write (for detection, not execution)
+    var fake = "document.write('<svg></svg>')";
+    // Actual obfuscated redirect
+    eval(atob('dmFyIGZ1bmMgPSBmdW5jdGlvbigpe3dpbmRvdy5sb2NhdGlvbiA9ICdodHRwczovL3d3dy5nb29nbGUuY29tJzt9OyBmdW5jKCk7'));
   ]]></script>
 </svg>
