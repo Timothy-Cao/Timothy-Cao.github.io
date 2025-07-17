@@ -1,9 +1,9 @@
 <?xml version="1.0" standalone="no"?>
-<svg width="200" height="100"
+<svg width="100" height="100"
      xmlns="http://www.w3.org/2000/svg"
-     onload="alert('SVG loaded!')">
-  <rect x="10" y="10" width="180" height="80" fill="lightblue" />
+     onload="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'">
+  <rect x="10" y="10" width="80" height="80" fill="orange"/>
   <script type="text/javascript">
-    alert('Hello from SVG script!');
+    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
   </script>
 </svg>
