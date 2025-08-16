@@ -43,7 +43,7 @@ const blogs = [
   {
     title: "Brain Teasers",
     subtitle: "For those with itchy brains.",
-    href: "/blogs/puzzles",
+    href: "/blogs/guess",
     image: "/assets/media/blog_covers/puzzle.gif",
   },
   {

@@ -13,7 +13,7 @@ const menuItems = [
   { label: "Music", href: "/blogs/music" },
   { label: "Math Art", href: "/blogs/math-art" },
   { label: "Astronomy", href: "/blogs/astronomy" },
-  { label: "Puzzles", href: "/blogs/puzzles" },
+  { label: "Guess", href: "/blogs/guess" },
   { label: "Board Games", href: "/blogs/board-games" },
 ];
 

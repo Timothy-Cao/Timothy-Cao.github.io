@@ -9,7 +9,7 @@ import Music from "./pages/blogs/Music";
 import MathArt from "./pages/blogs/MathArt";
 import Youtube from "./pages/blogs/Youtube";
 import Astronomy from "./pages/blogs/Astronomy";
-import Puzzles from "./pages/blogs/Puzzles";
+import Guess from "./pages/blogs/Guess";
 import GameTheory from "./pages/blogs/PrimeClimb";
 import Gallery from "./pages/blogs/Gallery";
 import BoardGamesPage from "./pages/blogs/BoardGamesPage";
@@ -47,7 +47,7 @@ function App() {
             <Route path="/blogs/math-art" element={<MathArt />} />
             <Route path="/blogs/youtube" element={<Youtube />} />
             <Route path="/blogs/astronomy" element={<Astronomy />} />
-            <Route path="/blogs/puzzles" element={<Puzzles />} />
+            <Route path="/blogs/guess" element={<Guess />} />
             <Route path="/blogs/prime-climb" element={<GameTheory />} />
             <Route path="/blogs/gallery" element={<Gallery />} />
             <Route path="/blogs/board-games" element={<BoardGamesPage />} />
