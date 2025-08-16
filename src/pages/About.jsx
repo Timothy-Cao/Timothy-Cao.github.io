@@ -44,7 +44,7 @@ const About = () => {
                 }}
               />
               <p>
-                Hi! I'm Timothy Cao. I’m 25 years old and grew up in Toronto, 
+                Hi! I'm Timothy Cao. I’m 25 years old and grew up in Markham, 
                 Canada. My MBTI flip flops between INTP and ENFP. I'm often recognized
                 in the crowd by the bounciness of my walk and the persistent presence of 
                 a backpack. 
