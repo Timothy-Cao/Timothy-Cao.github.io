@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import TopNavMenu from "./components/TopNavMenu";
 import Home from "./pages/Home";
@@ -18,7 +18,6 @@ import TwentyFour from "./pages/blogs/TwentyFour";
 import Othello from "./pages/blogs/Othello";
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
-
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -32,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/"> {}
       <div className="flex h-screen bg-gray-900 text-white">
         {isMobile ? (
           <TopNavMenu />
