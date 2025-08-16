@@ -37,7 +37,7 @@ const boardGames = [
 
 const BoardGamesPage = () => {
   return (
-  <div className="min-h-screen bg-gray-900 text-white px-4">
+  <div className="bg-gray-900 text-white px-4">
     <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <div className="space-y-4 text-left mb-12 mt-24">
           <h1 className="text-5xl font-bold mb-12">Board Games</h1>

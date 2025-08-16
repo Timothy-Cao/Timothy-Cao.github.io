@@ -103,7 +103,7 @@ const Scrabble = () => {
   };
 
   return (
-  <div className="min-h-screen bg-gray-900 text-white px-4">
+  <div className="bg-gray-900 text-white px-4">
     <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-4 text-center flex items-center justify-center gap-2">
           Scrabble Trainer
