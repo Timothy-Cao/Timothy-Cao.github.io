@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  base: '/',
   plugins: [react()],
   css: {
     postcss: {
@@ -14,5 +15,16 @@ export default defineConfig({
         require('autoprefixer'),
       ],
     },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          gallery: ['./src/components/Gallery'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
   },
 });

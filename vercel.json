@@ -1,9 +1,24 @@
 {
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/src/api/$1"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "distDir": "dist"
       }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/Timothy-Cao.github.io/(.*)",
+      "destination": "/$1",
+      "permanent": true
+    }
+  ]
+}
