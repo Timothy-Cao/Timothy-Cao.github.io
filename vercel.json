@@ -1,24 +1,29 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "distDir": "dist"
-      }
+      "builds": [
+        {
+          "src": "package.json",
+          "use": "@vercel/node",
+          "config": {
+            "distDir": "dist"
+          }
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/(.*)",
+          "destination": "/index.html"
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/Timothy-Cao.github.io",
+          "destination": "https://timcao.com",
+          "permanent": true
+        },
+        {
+          "source": "/Timothy-Cao.github.io/(.*)",
+          "destination": "https://timcao.com/$1",
+          "permanent": true
+        }
+      ]
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/Timothy-Cao.github.io/(.*)",
-      "destination": "/$1",
-      "permanent": true
-    }
-  ]
-}
