@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import { Analytics } from '@vercel/analytics/react';
 
 // unregister existing service workers
 if ("serviceWorker" in navigator) {
@@ -39,6 +40,7 @@ root.render(
   <React.StrictMode>
     <ErrorBoundary>
       <App />
+      <Analytics />
     </ErrorBoundary>
   </React.StrictMode>
 );
