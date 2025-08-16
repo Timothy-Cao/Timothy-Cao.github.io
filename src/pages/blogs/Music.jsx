@@ -30,7 +30,7 @@ const compositions = [
     },
     {
       title: "Test song (First taste of FL Studio)",
-      description: "Written in 2025. Royal Road Progression.",
+      description: "Written in 2025.",
       type: "audio",
       src: "/assets/media/audio/First taste of FL Studio.mp3",
     },
@@ -115,7 +115,7 @@ const MusicPage = () => {
       <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-8 mt-6">Musical Composition</h1>
         <p className="text-lg text-gray-300 mb-12 leading-relaxed">
-          Welcome to the musical corner. Sometimes I vibrate the air pleasantly. 
+           Disclaimer: I am not liable to headaches induced by my songs
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
