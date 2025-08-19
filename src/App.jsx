@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Music from "./pages/blogs/Music";
 import MathArt from "./pages/blogs/MathArt";
 import Youtube from "./pages/blogs/Youtube";
+import Piano from "./pages/blogs/Piano";
 import Astronomy from "./pages/blogs/Astronomy";
 import Guess from "./pages/blogs/Guess";
 import GameTheory from "./pages/blogs/PrimeClimb";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/blogs/music" element={<Music />} />
             <Route path="/blogs/math-art" element={<MathArt />} />
             <Route path="/blogs/youtube" element={<Youtube />} />
+            <Route path="/blogs/piano" element={<Piano />} />
             <Route path="/blogs/astronomy" element={<Astronomy />} />
             <Route path="/blogs/guess" element={<Guess />} />
             <Route path="/blogs/prime-climb" element={<GameTheory />} />
