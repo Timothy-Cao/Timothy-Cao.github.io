@@ -345,19 +345,34 @@ export default function ParticleBackground() {
     };
 
     // ── Cyber Particles ──
-    // Color interpolation: life 0 = cyan (#00e5ff), life 1 = purple (#b388ff), life >1 = fade out
+    // Color gradient: blue → purple → red → orange → yellow → white
+    // life goes from 0 to 5 (each merge adds ~0.08), reaching white triggers pop
+    const colorStops = [
+      { at: 0, r: 0, g: 229, b: 255 },     // cyan
+      { at: 1, r: 179, g: 136, b: 255 },    // purple
+      { at: 2, r: 255, g: 23, b: 68 },      // red
+      { at: 3, r: 255, g: 152, b: 0 },      // orange
+      { at: 4, r: 255, g: 235, b: 59 },     // yellow
+      { at: 5, r: 255, g: 255, b: 255 },    // white
+    ];
+
     const getParticleColor = (life: number, baseOpacity: number) => {
-      if (life > 1) {
-        // Fading out — purple going transparent
-        const fadeAlpha = Math.max(0, baseOpacity * (2 - life));
-        return { r: 179, g: 136, b: 255, a: fadeAlpha };
-      }
-      const t = Math.min(life, 1);
-      const r = Math.round(0 + t * 179);
-      const g = Math.round(229 - t * 93);
-      const b = Math.round(255);
-      return { r, g, b, a: baseOpacity };
+      const t = Math.min(Math.max(life, 0), 5);
+      let i = 0;
+      while (i < colorStops.length - 2 && colorStops[i + 1].at < t) i++;
+      const a = colorStops[i];
+      const b2 = colorStops[i + 1];
+      const frac = (t - a.at) / (b2.at - a.at);
+      return {
+        r: Math.round(a.r + (b2.r - a.r) * frac),
+        g: Math.round(a.g + (b2.g - a.g) * frac),
+        b: Math.round(a.b + (b2.b - a.b) * frac),
+        a: baseOpacity,
+      };
     };
+
+    // Pop effects — expanding bright rings where particles die
+    const pops: { x: number; y: number; time: number; r: number; g: number; b: number }[] = [];
 
     const spawnFreshParticle = (): Particle => ({
       x: Math.random() * canvas.width,
@@ -376,7 +391,6 @@ export default function ParticleBackground() {
       const mouse = mouseRef.current;
       const direction = cyberAttractRef.current ? 1 : -1;
 
-      // Update cursor color indicator
       document.documentElement.setAttribute(
         "data-cyber-mode",
         cyberAttractRef.current ? "attract" : "repel"
@@ -384,18 +398,34 @@ export default function ParticleBackground() {
 
       const mergeRadius = 6;
 
+      // Draw + update pop effects first (behind particles)
+      for (let i = pops.length - 1; i >= 0; i--) {
+        const pop = pops[i];
+        pop.time += 0.016;
+        const progress = pop.time / 0.4; // 0.4s total duration
+        if (progress >= 1) {
+          pops.splice(i, 1);
+          continue;
+        }
+        const radius = 4 + progress * 25;
+        const alpha = (1 - progress) * 0.6;
+        ctx.beginPath();
+        ctx.arc(pop.x, pop.y, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${pop.r}, ${pop.g}, ${pop.b}, ${alpha})`;
+        ctx.lineWidth = 2 * (1 - progress);
+        ctx.stroke();
+        // Inner flash
+        if (progress < 0.3) {
+          ctx.beginPath();
+          ctx.arc(pop.x, pop.y, radius * 0.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${(0.3 - progress) * 2})`;
+          ctx.fill();
+        }
+      }
+
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         if (p.dead) continue;
-
-        // Fading particles continue fading
-        if (p.life > 1) {
-          p.life += 0.02;
-          if (p.life >= 2) {
-            p.dead = true;
-            continue;
-          }
-        }
 
         // Mouse force
         const dx = mouse.x - p.x;
@@ -407,7 +437,6 @@ export default function ParticleBackground() {
           p.vy += (dy / dist) * force * 0.06 * direction;
         }
 
-        // Lower friction — particles coast longer
         p.vx *= 0.995;
         p.vy *= 0.995;
         p.x += p.vx;
@@ -418,12 +447,28 @@ export default function ParticleBackground() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
+        // Pop when reaching white (life >= 5)
+        if (p.life >= 5) {
+          const c = getParticleColor(p.life, 1);
+          pops.push({ x: p.x, y: p.y, time: 0, r: c.r, g: c.g, b: c.b });
+          p.dead = true;
+          continue;
+        }
+
         // Draw particle
         const color = getParticleColor(p.life, p.opacity);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
         ctx.fill();
+
+        // Glow halo for hot particles
+        if (p.life > 2) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${(p.life / 5) * 0.12})`;
+          ctx.fill();
+        }
 
         // Pair check: connections + merge
         for (let j = i + 1; j < particles.length; j++) {
@@ -435,18 +480,12 @@ export default function ParticleBackground() {
           const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
 
           // Merge if touching
-          if (cdist < mergeRadius && p.life <= 1 && p2.life <= 1) {
-            // Absorb p2 into p
-            p.size = Math.min(p.size + p2.size * 0.3, 8);
-            p.life = Math.min(p.life + 0.15, 1.01); // nudge past 1 to start fade
+          if (cdist < mergeRadius) {
+            p.size = Math.min(p.size + p2.size * 0.2, 8);
+            p.life += 0.6;
             p.vx = (p.vx + p2.vx) * 0.5;
             p.vy = (p.vy + p2.vy) * 0.5;
             p2.dead = true;
-
-            // If life just crossed 1, start the fade
-            if (p.life > 1) {
-              p.life = 1.01;
-            }
           }
 
           // Connection lines
