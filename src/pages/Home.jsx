@@ -57,18 +57,6 @@ const blogs = [
     href: "/blogs/astronomy",
     image: "/assets/media/blog_covers/nasa.png",
   },
-  {
-    title: "Music Sheets Database",
-    subtitle: "A collection of easy to access free upload sheets",
-    href: "https://music-sheets-app-6315a.web.app/",
-    image: "/assets/media/blog_covers/sheets.jpg",
-  },
-  {
-    title: "Real Estate Demo",
-    subtitle: "A simplified real estate demo dashboard with fake data",
-    href: "https://real-estate-demo-one.vercel.app/",
-    image: "/assets/media/blog_covers/house.jpg",
-  },
 ];
 
 const getImagePath = (index) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
