@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { playgroundCards, GALLERY_IMAGE_COUNT } from "@/data/playground";
+import { ExternalLink } from "lucide-react";
 
 const getImagePath = (index: number) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
 
@@ -75,9 +76,7 @@ export default function PlaygroundPage() {
             const isGallery = card.hoverEffect === "gallery";
             const isSpin = card.hoverEffect === "spin";
 
-            return (
-              <ScrollReveal key={card.title} delay={i * 0.05}>
-                <Link href={card.href}>
+            const cardContent = (
                   <motion.div
                     whileHover={{ scale: 1.03, y: -4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -117,6 +116,11 @@ export default function PlaygroundPage() {
                       {card.hoverEffect === "grain" && (
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%20200%20200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22noise%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.65%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23noise)%22%2F%3E%3C%2Fsvg%3E')]" />
                       )}
+                      {card.external && (
+                        <div className="absolute top-2 right-2">
+                          <ExternalLink className="w-4 h-4 text-white/70" />
+                        </div>
+                      )}
                     </div>
                     <div className="p-4">
                       <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -125,7 +129,15 @@ export default function PlaygroundPage() {
                       <p className="text-sm text-muted mt-1">{card.subtitle}</p>
                     </div>
                   </motion.div>
-                </Link>
+            );
+
+            return (
+              <ScrollReveal key={card.title} delay={i * 0.05}>
+                {card.external ? (
+                  <a href={card.href} target="_blank" rel="noopener noreferrer">{cardContent}</a>
+                ) : (
+                  <Link href={card.href}>{cardContent}</Link>
+                )}
               </ScrollReveal>
             );
           })}
