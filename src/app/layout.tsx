@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import CustomCursor from "@/components/cursor";
 import KonamiEasterEgg from "@/components/konami";
-import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
@@ -38,7 +37,6 @@ export default function RootLayout({
           <KonamiEasterEgg />
           <Navbar />
           <main className="flex-1 pt-16">{children}</main>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

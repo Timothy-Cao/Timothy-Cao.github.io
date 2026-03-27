@@ -10,7 +10,7 @@ interface Meteor {
   opacity: number;
 }
 
-export default function Meteors({ count = 12 }: { count?: number }) {
+export default function Meteors({ count = 15 }: { count?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const meteorsRef = useRef<Meteor[]>([]);
   const animationRef = useRef<number>(0);
@@ -28,24 +28,20 @@ export default function Meteors({ count = 12 }: { count?: number }) {
     resize();
     window.addEventListener("resize", resize);
 
-    // Spawn a meteor offscreen, already moving
     const spawnMeteor = (initialSpread = false): Meteor => {
-      // Angle is 215deg — meteors move down-left
-      // Start from top-right area, off screen
-      const x = canvas.width * (0.3 + Math.random() * 0.9);
+      const x = canvas.width * (0.2 + Math.random() * 1.0);
       const y = initialSpread
-        ? Math.random() * -canvas.height * 0.5 // spread out initially so they don't all start at once
-        : Math.random() * -100 - 50; // always start above viewport
+        ? Math.random() * -canvas.height * 0.8
+        : Math.random() * -150 - 50;
       return {
         x,
         y,
-        speed: Math.random() * 3 + 2,
-        length: Math.random() * 80 + 40,
-        opacity: Math.random() * 0.6 + 0.3,
+        speed: Math.random() * 4 + 3,
+        length: Math.random() * 120 + 60,
+        opacity: Math.random() * 0.7 + 0.3,
       };
     };
 
-    // Initialize with spread-out positions so they trickle in naturally
     meteorsRef.current = Array.from({ length: count }, () => spawnMeteor(true));
 
     const getAccent = () => {
@@ -56,7 +52,6 @@ export default function Meteors({ count = 12 }: { count?: number }) {
       return { r, g, b };
     };
 
-    // Direction vector for 215deg
     const angle = (215 * Math.PI) / 180;
     const dx = Math.cos(angle);
     const dy = Math.sin(angle);
@@ -68,32 +63,36 @@ export default function Meteors({ count = 12 }: { count?: number }) {
       for (let i = 0; i < meteorsRef.current.length; i++) {
         const m = meteorsRef.current[i];
 
-        // Move
         m.x += dx * m.speed;
         m.y += dy * m.speed;
 
-        // Draw tail
         const tailX = m.x - dx * m.length;
         const tailY = m.y - dy * m.length;
 
         const gradient = ctx.createLinearGradient(tailX, tailY, m.x, m.y);
         gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0)`);
+        gradient.addColorStop(0.7, `rgba(${r}, ${g}, ${b}, ${m.opacity * 0.5})`);
         gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, ${m.opacity})`);
 
         ctx.beginPath();
         ctx.moveTo(tailX, tailY);
         ctx.lineTo(m.x, m.y);
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Head glow
+        // Brighter head glow
         ctx.beginPath();
-        ctx.arc(m.x, m.y, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${m.opacity})`;
+        ctx.arc(m.x, m.y, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${Math.min(r + 80, 255)}, ${Math.min(g + 80, 255)}, ${Math.min(b + 80, 255)}, ${m.opacity})`;
         ctx.fill();
 
-        // Respawn if off screen
+        // Soft glow around head
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${m.opacity * 0.15})`;
+        ctx.fill();
+
         if (m.x < -200 || m.y > canvas.height + 200) {
           meteorsRef.current[i] = spawnMeteor(false);
         }
@@ -113,7 +112,7 @@ export default function Meteors({ count = 12 }: { count?: number }) {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-0 pointer-events-none"
+      className="absolute inset-0 z-[1] pointer-events-none"
       style={{ background: "transparent" }}
     />
   );

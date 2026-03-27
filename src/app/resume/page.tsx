@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
+import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import BorderBeam from "@/components/ui/border-beam";
 
@@ -38,6 +39,7 @@ export default function ResumePage() {
           </div>
         </ScrollReveal>
       </div>
+      <Footer />
     </PageTransition>
   );
 }

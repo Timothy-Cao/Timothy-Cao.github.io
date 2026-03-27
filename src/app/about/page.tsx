@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
+import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { bio, hobbies, currentInterests, timeline, websiteCredits } from "@/data/about";
 
@@ -127,6 +128,7 @@ export default function AboutPage() {
           </div>
         </ScrollReveal>
       </div>
+      <Footer />
     </PageTransition>
   );
 }

@@ -41,29 +41,31 @@ export default function ParticleBackground() {
   const animationRef = useRef<number>(0);
   const pulseTimeRef = useRef(0);
   const wavesRef = useRef<{ ox: number; oy: number; time: number }[]>([]);
+  const nextAutoPulseRef = useRef(0);
 
   const initParticles = useCallback((width: number, height: number) => {
-    const count = Math.min(Math.floor((width * height) / 12000), 120);
+    // More particles — denser field
+    const count = Math.min(Math.floor((width * height) / 7000), 200);
     const particles: Particle[] = [];
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: Math.random() * 2.5 + 0.5,
+        opacity: Math.random() * 0.6 + 0.2,
       });
     }
     particlesRef.current = particles;
   }, []);
 
   const initMatrixDrops = useCallback((width: number, height: number) => {
-    const fontSize = 14;
+    const fontSize = 18;
     const columns = Math.floor(width / fontSize);
     const drops: MatrixDrop[] = [];
     for (let i = 0; i < columns; i++) {
-      const length = Math.floor(Math.random() * 15) + 5;
+      const length = Math.floor(Math.random() * 20) + 5;
       const chars: string[] = [];
       for (let j = 0; j < length; j++) {
         chars.push(Math.random() > 0.5 ? "1" : "0");
@@ -71,10 +73,10 @@ export default function ParticleBackground() {
       drops.push({
         x: i * fontSize,
         y: Math.random() * -height,
-        speed: Math.random() * 1.5 + 0.5,
+        speed: Math.random() * 2.0 + 0.5,
         chars,
         length,
-        opacity: Math.random() * 0.5 + 0.2,
+        opacity: Math.random() * 0.6 + 0.3,
       });
     }
     matrixDropsRef.current = drops;
@@ -82,22 +84,20 @@ export default function ParticleBackground() {
 
   const initHexGrid = useCallback((width: number, height: number) => {
     const nodes: HexNode[] = [];
-    const hexSize = 80;
+    const hexSize = 70;
     const hexH = hexSize * Math.sqrt(3);
-    const cols = Math.ceil(width / (hexSize * 1.5)) + 2;
-    const rows = Math.ceil(height / hexH) + 2;
+    const cols = Math.ceil(width / (hexSize * 1.5)) + 3;
+    const rows = Math.ceil(height / hexH) + 3;
 
-    // Create nodes with organic randomization
-    for (let row = -1; row < rows; row++) {
-      for (let col = -1; col < cols; col++) {
+    for (let row = -2; row < rows; row++) {
+      for (let col = -2; col < cols; col++) {
         const offsetX = row % 2 === 0 ? 0 : hexSize * 0.75;
-        const x = col * hexSize * 1.5 + offsetX + (Math.random() - 0.5) * hexSize * 0.4;
-        const y = row * hexH * 0.5 + (Math.random() - 0.5) * hexSize * 0.4;
+        const x = col * hexSize * 1.5 + offsetX + (Math.random() - 0.5) * hexSize * 0.3;
+        const y = row * hexH * 0.5 + (Math.random() - 0.5) * hexSize * 0.3;
         nodes.push({ x, y, baseX: x, baseY: y, neighbors: [], pulseTime: -1 });
       }
     }
 
-    // Find neighbors
     const neighborDist = hexSize * 1.6;
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
@@ -158,10 +158,14 @@ export default function ParticleBackground() {
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouse);
 
-    const fontSize = 16;
+    // Schedule first auto-pulse
+    nextAutoPulseRef.current = 5 + Math.random() * 5;
 
+    const fontSize = 18;
+
+    // ── Matrix Rain ──
     const animateMatrix = () => {
-      ctx.fillStyle = "rgba(10, 10, 10, 0.08)";
+      ctx.fillStyle = "rgba(10, 10, 10, 0.06)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `bold ${fontSize}px monospace`;
@@ -179,26 +183,36 @@ export default function ParticleBackground() {
           const alpha = drop.opacity * fade;
 
           if (j === 0) {
-            ctx.fillStyle = `rgba(180, 255, 180, ${alpha})`;
+            // Lead character — bright white-green
+            ctx.fillStyle = `rgba(200, 255, 200, ${Math.min(alpha * 1.2, 1)})`;
+            ctx.font = `bold ${fontSize}px monospace`;
+          } else if (j < 3) {
+            // Near-head — bright green
+            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.9})`;
+            ctx.font = `bold ${fontSize}px monospace`;
           } else {
-            ctx.fillStyle = `rgba(0, 255, 65, ${alpha})`;
+            // Trail — standard green
+            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.7})`;
+            ctx.font = `${fontSize}px monospace`;
           }
 
           ctx.fillText(drop.chars[j], drop.x, charY);
 
-          if (Math.random() < 0.01) {
+          // Occasionally mutate characters
+          if (Math.random() < 0.02) {
             drop.chars[j] = Math.random() > 0.5 ? "1" : "0";
           }
         }
 
         if (drop.y - drop.length * fontSize > canvas.height) {
-          drop.y = Math.random() * -200;
-          drop.speed = Math.random() * 1.5 + 0.5;
-          drop.opacity = Math.random() * 0.4 + 0.1;
+          drop.y = Math.random() * -300;
+          drop.speed = Math.random() * 2.0 + 0.5;
+          drop.opacity = Math.random() * 0.6 + 0.3;
         }
       }
     };
 
+    // ── Crimson Hex Network ──
     const animateHex = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const nodes = hexNodesRef.current;
@@ -206,22 +220,28 @@ export default function ParticleBackground() {
       pulseTimeRef.current += 0.016;
       const now = pulseTimeRef.current;
 
-      // Spawn a new ripple wave when mouse moves, max once per 1s
-      if (mouseMovingRef.current && now - lastPulseRef.current > 1.0) {
+      // Mouse-triggered ripple wave (max once per 0.8s)
+      if (mouseMovingRef.current && now - lastPulseRef.current > 0.8) {
         wavesRef.current.push({ ox: mouse.x, oy: mouse.y, time: now });
         lastPulseRef.current = now;
       }
 
-      // Ripple wave settings
-      const waveSpeed = 200; // pixels per second
-      const waveWidth = 80; // width of the bright ring
-      const waveDuration = 3; // seconds until wave fully fades
+      // Random auto-pulse every 5-10s
+      if (now >= nextAutoPulseRef.current) {
+        const rx = Math.random() * canvas.width;
+        const ry = Math.random() * canvas.height;
+        wavesRef.current.push({ ox: rx, oy: ry, time: now });
+        nextAutoPulseRef.current = now + 5 + Math.random() * 5;
+      }
 
-      // Remove expired waves
+      const waveSpeed = 250;
+      const waveWidth = 120;
+      const waveDuration = 3.5;
+
       wavesRef.current = wavesRef.current.filter(w => now - w.time < waveDuration);
 
-      // Mouse influence — shift nodes slightly toward mouse
-      const mouseInfluenceRadius = 250;
+      // Mouse influence
+      const mouseInfluenceRadius = 280;
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         const dx = mouse.x - n.baseX;
@@ -230,15 +250,14 @@ export default function ParticleBackground() {
 
         if (dist < mouseInfluenceRadius && dist > 0) {
           const force = (mouseInfluenceRadius - dist) / mouseInfluenceRadius;
-          n.x = n.baseX + (dx / dist) * force * 12;
-          n.y = n.baseY + (dy / dist) * force * 12;
+          n.x = n.baseX + (dx / dist) * force * 15;
+          n.y = n.baseY + (dy / dist) * force * 15;
         } else {
           n.x += (n.baseX - n.x) * 0.03;
           n.y += (n.baseY - n.y) * 0.03;
         }
       }
 
-      // Helper: compute wave brightness for a point
       const getWaveBrightness = (px: number, py: number) => {
         let brightness = 0;
         for (const wave of wavesRef.current) {
@@ -256,30 +275,29 @@ export default function ParticleBackground() {
       };
 
       // Draw connections
-      ctx.lineWidth = 0.8;
+      ctx.lineWidth = 1;
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         for (const ni of n.neighbors) {
           if (ni <= i) continue;
           const n2 = nodes[ni];
 
-          let alpha = 0.06;
+          let alpha = 0.04;
 
-          // Wave ripple brightness
           const midX = (n.x + n2.x) / 2;
           const midY = (n.y + n2.y) / 2;
-          alpha += getWaveBrightness(midX, midY) * 0.7;
+          const waveBright = getWaveBrightness(midX, midY);
+          alpha += waveBright * 0.8;
 
-          // Mouse proximity glow
           const mouseDist = Math.sqrt((mouse.x - midX) ** 2 + (mouse.y - midY) ** 2);
           if (mouseDist < mouseInfluenceRadius) {
-            alpha += (1 - mouseDist / mouseInfluenceRadius) * 0.15;
+            alpha += (1 - mouseDist / mouseInfluenceRadius) * 0.2;
           }
 
           ctx.beginPath();
           ctx.moveTo(n.x, n.y);
           ctx.lineTo(n2.x, n2.y);
-          ctx.strokeStyle = `rgba(255, 23, 68, ${Math.min(alpha, 0.6)})`;
+          ctx.strokeStyle = `rgba(255, 23, 68, ${Math.min(alpha, 0.75)})`;
           ctx.stroke();
         }
       }
@@ -287,27 +305,36 @@ export default function ParticleBackground() {
       // Draw nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
-        let alpha = 0.08;
+        let alpha = 0.06;
         let size = 1.5;
 
         const wavePulse = getWaveBrightness(n.x, n.y);
-        alpha += wavePulse * 0.9;
-        size += wavePulse * 3;
+        alpha += wavePulse * 1.0;
+        size += wavePulse * 4;
 
         const mouseDist = Math.sqrt((mouse.x - n.x) ** 2 + (mouse.y - n.y) ** 2);
         if (mouseDist < mouseInfluenceRadius) {
           const proximity = 1 - mouseDist / mouseInfluenceRadius;
-          alpha += proximity * 0.3;
-          size += proximity * 1.5;
+          alpha += proximity * 0.4;
+          size += proximity * 2;
+        }
+
+        // Glow for bright nodes
+        if (alpha > 0.3) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, size * 3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 23, 68, ${alpha * 0.15})`;
+          ctx.fill();
         }
 
         ctx.beginPath();
         ctx.arc(n.x, n.y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 23, 68, ${Math.min(alpha, 0.9)})`;
+        ctx.fillStyle = `rgba(255, 23, 68, ${Math.min(alpha, 1.0)})`;
         ctx.fill();
       }
     };
 
+    // ── Cyber Particles ──
     const animateParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const particles = particlesRef.current;
@@ -318,17 +345,18 @@ export default function ParticleBackground() {
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
+        // Stronger gravitational attraction toward mouse
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 200) {
-          const force = (200 - dist) / 200;
-          p.vx += (dx / dist) * force * 0.02;
-          p.vy += (dy / dist) * force * 0.02;
+        if (dist < 300 && dist > 0) {
+          const force = (300 - dist) / 300;
+          p.vx += (dx / dist) * force * 0.06;
+          p.vy += (dy / dist) * force * 0.06;
         }
 
-        p.vx *= 0.99;
-        p.vy *= 0.99;
+        p.vx *= 0.98;
+        p.vy *= 0.98;
         p.x += p.vx;
         p.y += p.vy;
 
@@ -342,17 +370,18 @@ export default function ParticleBackground() {
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
         ctx.fill();
 
+        // Connection lines — slightly longer range
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const cdx = p.x - p2.x;
           const cdy = p.y - p2.y;
           const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
-          if (cdist < 120) {
+          if (cdist < 150) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.15 * (1 - cdist / 120)})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.18 * (1 - cdist / 150)})`;
+            ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }

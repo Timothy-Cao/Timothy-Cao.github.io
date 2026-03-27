@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
+import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { Mail, Send, Check } from "lucide-react";
 
@@ -191,6 +192,7 @@ export default function ContactPage() {
           </ScrollReveal>
         </div>
       </div>
+      <Footer />
     </PageTransition>
   );
 }
