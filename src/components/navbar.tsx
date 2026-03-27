@@ -40,7 +40,7 @@ function ThemeToggle() {
         aria-label="Change theme"
       >
         <div
-          className="w-3.5 h-3.5 rounded-full border border-white/20 transition-transform duration-200 hover:scale-[2]"
+          className="w-3.5 h-3.5 rounded-full border border-white/20 transition-transform duration-200 hover:scale-[2] animate-pulse"
           style={{ background: theme.accent }}
         />
       </button>

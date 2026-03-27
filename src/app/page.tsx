@@ -105,7 +105,7 @@ export default function Home() {
               href="/about"
               className="group relative inline-flex items-center gap-2 px-8 py-3 rounded-full border border-accent/30 text-accent font-medium transition-all duration-300 hover:border-accent hover:shadow-[0_0_20px_var(--color-accent-glow)] hover:bg-accent/5"
             >
-              Explore My Work
+              Explore
               <svg
                 className="w-4 h-4 transition-transform group-hover:translate-x-1"
                 fill="none"
