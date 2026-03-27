@@ -42,6 +42,8 @@ export default function ParticleBackground() {
   const pulseTimeRef = useRef(0);
   const wavesRef = useRef<{ ox: number; oy: number; time: number }[]>([]);
   const nextAutoPulseRef = useRef(0);
+  const cyberAttractRef = useRef(true);
+  const cyberToggleTimeRef = useRef(0);
 
   const initParticles = useCallback((width: number, height: number) => {
     // More particles — denser field
@@ -84,13 +86,13 @@ export default function ParticleBackground() {
 
   const initHexGrid = useCallback((width: number, height: number) => {
     const nodes: HexNode[] = [];
-    const hexSize = 70;
+    const hexSize = 60;
     const hexH = hexSize * Math.sqrt(3);
-    const cols = Math.ceil(width / (hexSize * 1.5)) + 3;
-    const rows = Math.ceil(height / hexH) + 3;
+    const cols = Math.ceil(width / (hexSize * 1.5)) + 5;
+    const rows = Math.ceil(height / hexH) + 5;
 
-    for (let row = -2; row < rows; row++) {
-      for (let col = -2; col < cols; col++) {
+    for (let row = -3; row < rows; row++) {
+      for (let col = -3; col < cols; col++) {
         const offsetX = row % 2 === 0 ? 0 : hexSize * 0.75;
         const x = col * hexSize * 1.5 + offsetX + (Math.random() - 0.5) * hexSize * 0.3;
         const y = row * hexH * 0.5 + (Math.random() - 0.5) * hexSize * 0.3;
@@ -98,7 +100,7 @@ export default function ParticleBackground() {
       }
     }
 
-    const neighborDist = hexSize * 1.6;
+    const neighborDist = hexSize * 1.7;
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].baseX - nodes[j].baseX;
@@ -342,17 +344,25 @@ export default function ParticleBackground() {
       const hex = getAccentHex();
       const { r, g, b } = getAccentRGB(hex);
 
+      // Toggle attract/repel every 10 seconds
+      cyberToggleTimeRef.current += 0.016;
+      if (cyberToggleTimeRef.current >= 10) {
+        cyberAttractRef.current = !cyberAttractRef.current;
+        cyberToggleTimeRef.current = 0;
+      }
+      const direction = cyberAttractRef.current ? 1 : -1;
+
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Stronger gravitational attraction toward mouse
+        // Gravitational force — alternates between attract and repel
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 300 && dist > 0) {
           const force = (300 - dist) / 300;
-          p.vx += (dx / dist) * force * 0.06;
-          p.vy += (dy / dist) * force * 0.06;
+          p.vx += (dx / dist) * force * 0.06 * direction;
+          p.vy += (dy / dist) * force * 0.06 * direction;
         }
 
         p.vx *= 0.98;
