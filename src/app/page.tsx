@@ -12,7 +12,7 @@ import { useTheme } from "@/components/theme-provider";
 
 export default function Home() {
   const { theme } = useTheme();
-  const isCyan = theme.name === "cyber-cyan";
+  const isCyan = theme.name === "cyber";
 
   return (
     <PageTransition>

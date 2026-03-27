@@ -11,9 +11,9 @@ export interface Theme {
 }
 
 export const themes: Theme[] = [
-  { name: "cyber-cyan", label: "Cyber Cyan", accent: "#00e5ff", accentGlow: "rgba(0, 229, 255, 0.15)", accentDim: "rgba(0, 229, 255, 0.6)" },
-  { name: "matrix-green", label: "Matrix Green", accent: "#00ff41", accentGlow: "rgba(0, 255, 65, 0.15)", accentDim: "rgba(0, 255, 65, 0.6)" },
-  { name: "deep-red", label: "Deep Red", accent: "#ff1744", accentGlow: "rgba(255, 23, 68, 0.15)", accentDim: "rgba(255, 23, 68, 0.6)" },
+  { name: "cyber", label: "Cyber", accent: "#00e5ff", accentGlow: "rgba(0, 229, 255, 0.15)", accentDim: "rgba(0, 229, 255, 0.6)" },
+  { name: "matrix", label: "Matrix", accent: "#00ff41", accentGlow: "rgba(0, 255, 65, 0.15)", accentDim: "rgba(0, 255, 65, 0.6)" },
+  { name: "crimson", label: "Crimson", accent: "#ff1744", accentGlow: "rgba(255, 23, 68, 0.15)", accentDim: "rgba(255, 23, 68, 0.6)" },
 ];
 
 interface ThemeContextValue {
