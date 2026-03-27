@@ -9,13 +9,6 @@ export interface PlaygroundCard {
 
 export const playgroundCards: PlaygroundCard[] = [
   {
-    title: "Gallery",
-    subtitle: "A year in the life of Tim Cao",
-    href: "/playground/gallery",
-    coverImage: "/assets/media/blog_covers/me_1.jpg",
-    hoverEffect: "gallery",
-  },
-  {
     title: "Music",
     subtitle: "Sample some of my past works!",
     href: "/playground/music",
@@ -30,6 +23,13 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "grain",
   },
   {
+    title: "Fermi Estimations",
+    subtitle: "For those with itchy brains",
+    href: "/playground/fermi",
+    coverImage: "/assets/media/puzzles/fermi.jpg",
+    hoverEffect: "dial",
+  },
+  {
     title: "Prime Climb",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
     href: "https://web-lake-ten-27.vercel.app/",
@@ -38,18 +38,37 @@ export const playgroundCards: PlaygroundCard[] = [
     external: true,
   },
   {
+    title: "Chinese Checkers AI",
+    subtitle: "Try your luck against my AI on this niche house rule version",
+    href: "https://chinese-checkers.vercel.app/",
+    coverImage: "/assets/media/blog_covers/checkers.jpg",
+    external: true,
+  },
+  {
+    title: "Scrabble Trainer",
+    subtitle: "Train your scrabble vision with the 1000 most likely scrabbles",
+    href: "/playground/games/scrabble",
+    coverImage: "/assets/media/games/scrabble.png",
+  },
+  {
+    title: "Math Game 24",
+    subtitle: "Test your math speed with the card game 24 and its variants",
+    href: "/playground/games/24",
+    coverImage: "/assets/media/games/24.png",
+  },
+  {
+    title: "Gallery",
+    subtitle: "A year in the life of Tim Cao",
+    href: "/playground/gallery",
+    coverImage: "/assets/media/blog_covers/me_1.jpg",
+    hoverEffect: "gallery",
+  },
+  {
     title: "Math Art",
     subtitle: "How bored have you gotten in math class?",
     href: "/playground/math-art",
     coverImage: "/assets/media/blog_covers/math.png",
     hoverEffect: "parallax",
-  },
-  {
-    title: "Fermi Estimations",
-    subtitle: "For those with itchy brains",
-    href: "/playground/fermi",
-    coverImage: "/assets/media/puzzles/fermi.jpg",
-    hoverEffect: "dial",
   },
   {
     title: "Piano YouTubers",
@@ -70,25 +89,6 @@ export const playgroundCards: PlaygroundCard[] = [
     subtitle: "Guess the MapleStory OST",
     href: "/playground/mapledle",
     coverImage: "/assets/media/blog_covers/mushroom.svg",
-  },
-  {
-    title: "Scrabble Trainer",
-    subtitle: "Train your scrabble vision with the 1000 most likely scrabbles",
-    href: "/playground/games/scrabble",
-    coverImage: "/assets/media/games/scrabble.png",
-  },
-  {
-    title: "Math Game 24",
-    subtitle: "Test your math speed with the card game 24 and its variants",
-    href: "/playground/games/24",
-    coverImage: "/assets/media/games/24.png",
-  },
-  {
-    title: "Chinese Checkers AI",
-    subtitle: "Try your luck against my AI on this niche house rule version",
-    href: "https://chinese-checkers.vercel.app/",
-    coverImage: "/assets/media/blog_covers/checkers.jpg",
-    external: true,
   },
 ];
 
