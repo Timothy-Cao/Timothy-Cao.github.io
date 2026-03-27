@@ -5,6 +5,7 @@ export interface PlaygroundCard {
   coverImage: string;
   hoverEffect?: "gallery" | "music" | "spin" | "parallax" | "dial" | "keys" | "twinkle" | "grain";
   external?: boolean;
+  comingSoon?: boolean;
 }
 
 export const playgroundCards: PlaygroundCard[] = [
@@ -88,7 +89,22 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Mapledle",
     subtitle: "Guess the MapleStory OST",
     href: "/playground/mapledle",
-    coverImage: "/assets/media/blog_covers/mushroom.svg",
+    coverImage: "",
+    comingSoon: true,
+  },
+  {
+    title: "GeoGuessr Trainer",
+    subtitle: "Bollards, languages, road sides — train your geo memory",
+    href: "/playground/geoguessr",
+    coverImage: "",
+    comingSoon: true,
+  },
+  {
+    title: "Tim's Beats",
+    subtitle: "Toggle-beat maker with chord generation and melody improv",
+    href: "/playground/beats",
+    coverImage: "",
+    comingSoon: true,
   },
 ];
 

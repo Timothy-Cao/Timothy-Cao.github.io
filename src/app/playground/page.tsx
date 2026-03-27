@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { playgroundCards, GALLERY_IMAGE_COUNT } from "@/data/playground";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Construction } from "lucide-react";
 
 const getImagePath = (index: number) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
 
@@ -75,17 +75,25 @@ export default function PlaygroundPage() {
           {playgroundCards.map((card, i) => {
             const isGallery = card.hoverEffect === "gallery";
             const isSpin = card.hoverEffect === "spin";
+            const isComingSoon = card.comingSoon;
 
             const cardContent = (
                   <motion.div
-                    whileHover={{ scale: 1.03, y: -4 }}
+                    whileHover={isComingSoon ? {} : { scale: 1.03, y: -4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="group flex flex-col rounded-xl overflow-hidden bg-surface border border-border hover:border-accent/30 hover:shadow-[0_0_30px_var(--color-accent-glow)] transition-all duration-300"
+                    className={`group flex flex-col rounded-xl overflow-hidden bg-surface border border-border transition-all duration-300 ${
+                      isComingSoon ? "opacity-60 cursor-default" : "hover:border-accent/30 hover:shadow-[0_0_30px_var(--color-accent-glow)]"
+                    }`}
                     onMouseEnter={() => handleHover(card.hoverEffect, true)}
                     onMouseLeave={() => handleHover(card.hoverEffect, false)}
                   >
                     <div className={`relative w-full h-44 overflow-hidden ${isSpin ? "flex items-center justify-center" : ""}`}>
-                      {isSpin ? (
+                      {isComingSoon ? (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface/80">
+                          <Construction className="w-8 h-8 text-muted mb-2" />
+                          <span className="text-xs font-medium text-muted uppercase tracking-wider">Coming Soon</span>
+                        </div>
+                      ) : isSpin ? (
                         /* eslint-disable-next-line @next/next/no-img-element */
                         <img
                           src={card.coverImage}
@@ -123,7 +131,7 @@ export default function PlaygroundPage() {
                       )}
                     </div>
                     <div className="p-4">
-                      <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <h3 className={`font-semibold transition-colors ${isComingSoon ? "text-muted" : "text-foreground group-hover:text-accent"}`}>
                         {card.title}
                       </h3>
                       <p className="text-sm text-muted mt-1">{card.subtitle}</p>
@@ -133,7 +141,9 @@ export default function PlaygroundPage() {
 
             return (
               <ScrollReveal key={card.title} delay={i * 0.05}>
-                {card.external ? (
+                {isComingSoon ? (
+                  <div>{cardContent}</div>
+                ) : card.external ? (
                   <a href={card.href} target="_blank" rel="noopener noreferrer">{cardContent}</a>
                 ) : (
                   <Link href={card.href}>{cardContent}</Link>
