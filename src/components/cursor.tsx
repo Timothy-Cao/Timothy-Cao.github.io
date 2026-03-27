@@ -7,6 +7,7 @@ import { useTheme } from "@/components/theme-provider";
 export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [isRepel, setIsRepel] = useState(false);
   const { theme } = useTheme();
 
   const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
@@ -59,6 +60,16 @@ export default function CustomCursor() {
     document.documentElement.setAttribute("data-custom-cursor", isCyan ? "true" : "false");
   }, [theme]);
 
+  // Watch attract/repel mode changes from particles
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const mode = document.documentElement.getAttribute("data-cyber-mode");
+      setIsRepel(mode === "repel");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-cyber-mode"] });
+    return () => observer.disconnect();
+  }, []);
+
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
     return null;
   }
@@ -67,6 +78,11 @@ export default function CustomCursor() {
   if (theme.name !== "cyber") {
     return null;
   }
+
+  const dotColor = isRepel ? "#b388ff" : "#00e5ff";
+  const glowColor = isRepel ? "rgba(179,136,255,0.4)" : "var(--color-accent-glow)";
+  const dimColor = isRepel ? "rgba(179,136,255,0.2)" : "var(--color-accent-dim)";
+  const borderColor = isRepel ? "rgba(179,136,255,0.5)" : "rgba(0,229,255,0.5)";
 
   return (
     <>
@@ -81,13 +97,14 @@ export default function CustomCursor() {
         }}
       >
         <div
-          className="rounded-full bg-accent transition-transform duration-150"
+          className="rounded-full transition-all duration-300"
           style={{
             width: hovering ? 12 : 8,
             height: hovering ? 12 : 8,
+            backgroundColor: dotColor,
             boxShadow: hovering
-              ? "0 0 20px var(--color-accent-dim), 0 0 40px var(--color-accent-glow)"
-              : "0 0 10px var(--color-accent-dim)",
+              ? `0 0 20px ${dimColor}, 0 0 40px ${glowColor}`
+              : `0 0 10px ${dimColor}`,
           }}
         />
       </motion.div>
@@ -102,13 +119,12 @@ export default function CustomCursor() {
         }}
       >
         <div
-          className="rounded-full border border-accent/50 transition-all duration-200"
+          className="rounded-full transition-all duration-300"
           style={{
             width: hovering ? 48 : 32,
             height: hovering ? 48 : 32,
-            boxShadow: hovering
-              ? "0 0 15px var(--color-accent-glow)"
-              : "none",
+            border: `1px solid ${borderColor}`,
+            boxShadow: hovering ? `0 0 15px ${glowColor}` : "none",
           }}
         />
       </motion.div>

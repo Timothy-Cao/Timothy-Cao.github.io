@@ -9,6 +9,8 @@ interface Particle {
   vy: number;
   size: number;
   opacity: number;
+  life: number; // 0 = fresh (blue), 0→1 = blue→purple, >1 = fading out
+  dead: boolean;
 }
 
 interface MatrixDrop {
@@ -43,7 +45,6 @@ export default function ParticleBackground() {
   const wavesRef = useRef<{ ox: number; oy: number; time: number }[]>([]);
   const nextAutoPulseRef = useRef(0);
   const cyberAttractRef = useRef(true);
-  const cyberToggleTimeRef = useRef(0);
 
   const initParticles = useCallback((width: number, height: number) => {
     // More particles — denser field
@@ -57,6 +58,8 @@ export default function ParticleBackground() {
         vy: (Math.random() - 0.5) * 0.4,
         size: Math.random() * 2.5 + 0.5,
         opacity: Math.random() * 0.6 + 0.2,
+        life: 0,
+        dead: false,
       });
     }
     particlesRef.current = particles;
@@ -156,9 +159,14 @@ export default function ParticleBackground() {
       }, 100);
     };
 
+    const onClick = () => {
+      cyberAttractRef.current = !cyberAttractRef.current;
+    };
+
     resize();
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouse);
+    window.addEventListener("click", onClick);
 
     // Schedule first auto-pulse
     nextAutoPulseRef.current = 5 + Math.random() * 5;
@@ -337,25 +345,59 @@ export default function ParticleBackground() {
     };
 
     // ── Cyber Particles ──
+    // Color interpolation: life 0 = cyan (#00e5ff), life 1 = purple (#b388ff), life >1 = fade out
+    const getParticleColor = (life: number, baseOpacity: number) => {
+      if (life > 1) {
+        // Fading out — purple going transparent
+        const fadeAlpha = Math.max(0, baseOpacity * (2 - life));
+        return { r: 179, g: 136, b: 255, a: fadeAlpha };
+      }
+      const t = Math.min(life, 1);
+      const r = Math.round(0 + t * 179);
+      const g = Math.round(229 - t * 93);
+      const b = Math.round(255);
+      return { r, g, b, a: baseOpacity };
+    };
+
+    const spawnFreshParticle = (): Particle => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      size: Math.random() * 2.5 + 0.5,
+      opacity: Math.random() * 0.6 + 0.2,
+      life: 0,
+      dead: false,
+    });
+
     const animateParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const particles = particlesRef.current;
       const mouse = mouseRef.current;
-      const hex = getAccentHex();
-      const { r, g, b } = getAccentRGB(hex);
-
-      // Toggle attract/repel every 10 seconds
-      cyberToggleTimeRef.current += 0.016;
-      if (cyberToggleTimeRef.current >= 10) {
-        cyberAttractRef.current = !cyberAttractRef.current;
-        cyberToggleTimeRef.current = 0;
-      }
       const direction = cyberAttractRef.current ? 1 : -1;
+
+      // Update cursor color indicator
+      document.documentElement.setAttribute(
+        "data-cyber-mode",
+        cyberAttractRef.current ? "attract" : "repel"
+      );
+
+      const mergeRadius = 6;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
+        if (p.dead) continue;
 
-        // Gravitational force — alternates between attract and repel
+        // Fading particles continue fading
+        if (p.life > 1) {
+          p.life += 0.02;
+          if (p.life >= 2) {
+            p.dead = true;
+            continue;
+          }
+        }
+
+        // Mouse force
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -365,8 +407,9 @@ export default function ParticleBackground() {
           p.vy += (dy / dist) * force * 0.06 * direction;
         }
 
-        p.vx *= 0.98;
-        p.vy *= 0.98;
+        // Lower friction — particles coast longer
+        p.vx *= 0.995;
+        p.vy *= 0.995;
         p.x += p.vx;
         p.y += p.vy;
 
@@ -375,26 +418,55 @@ export default function ParticleBackground() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
+        // Draw particle
+        const color = getParticleColor(p.life, p.opacity);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
+        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
         ctx.fill();
 
-        // Connection lines — slightly longer range
+        // Pair check: connections + merge
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
+          if (p2.dead) continue;
+
           const cdx = p.x - p2.x;
           const cdy = p.y - p2.y;
           const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+
+          // Merge if touching
+          if (cdist < mergeRadius && p.life <= 1 && p2.life <= 1) {
+            // Absorb p2 into p
+            p.size = Math.min(p.size + p2.size * 0.3, 8);
+            p.life = Math.min(p.life + 0.15, 1.01); // nudge past 1 to start fade
+            p.vx = (p.vx + p2.vx) * 0.5;
+            p.vy = (p.vy + p2.vy) * 0.5;
+            p2.dead = true;
+
+            // If life just crossed 1, start the fade
+            if (p.life > 1) {
+              p.life = 1.01;
+            }
+          }
+
+          // Connection lines
           if (cdist < 150) {
+            const lineColor = getParticleColor(Math.max(p.life, p2.life), 0.18 * (1 - cdist / 150));
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.18 * (1 - cdist / 150)})`;
+            ctx.strokeStyle = `rgba(${lineColor.r}, ${lineColor.g}, ${lineColor.b}, ${lineColor.a})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }
+      }
+
+      // Remove dead particles and spawn replacements
+      const deadCount = particles.filter(p => p.dead).length;
+      particlesRef.current = particles.filter(p => !p.dead);
+      for (let i = 0; i < deadCount; i++) {
+        particlesRef.current.push(spawnFreshParticle());
       }
     };
 
@@ -425,6 +497,7 @@ export default function ParticleBackground() {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouse);
+      window.removeEventListener("click", onClick);
       if (mouseMoveTimerRef.current) clearTimeout(mouseMoveTimerRef.current);
     };
   }, [initParticles, initMatrixDrops, initHexGrid]);
