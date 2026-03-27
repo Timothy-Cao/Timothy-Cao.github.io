@@ -1,132 +1,26 @@
-# Portfolio — Agent Development Guide
+@AGENTS.md
 
-## Project Overview
+<!-- VERCEL BEST PRACTICES START -->
+## Best practices for developing on Vercel
 
-Personal portfolio website for Timothy Cao. React SPA with interactive games, music compositions, photo gallery, blog content, and external project links. Deployed on Vercel.
+These defaults are optimized for AI coding agents (and humans) working on apps that deploy to Vercel.
 
-## Tech Stack
-
-- **Framework**: React 18 + Vite 7
-- **Styling**: Tailwind CSS 3 (primary) + MUI 6 (complex components only)
-- **Routing**: React Router 7 with lazy-loaded routes
-- **Deployment**: Vercel (see `vercel.json`)
-- **Forms**: Formspree (`@formspree/react`)
-- **Analytics**: `@vercel/analytics` + `@vercel/speed-insights`
-
-## Commands
-
-- `npm run dev` — Start dev server on port 3000
-- `npm run build` — Production build to `dist/`
-- `npm run preview` — Preview production build locally
-
-## Project Structure
-
-```
-src/
-├── main.jsx                    # Entry point + ErrorBoundary
-├── App.jsx                     # Router + lazy route definitions
-├── index.css                   # Tailwind directives + global styles
-├── components/                 # Shared UI components
-│   ├── Sidebar.jsx             # Desktop nav (>768px)
-│   └── TopNavMenu.jsx          # Mobile nav (≤768px)
-├── pages/                      # Route-level page components
-│   ├── Home.jsx                # Landing page with blog grid
-│   ├── About.jsx               # Tabbed about section
-│   ├── Contact.jsx             # Formspree contact form
-│   └── blogs/                  # Content pages
-│       ├── Music.jsx           # Audio/video compositions
-│       ├── Gallery.jsx         # Photo masonry grid + lightbox
-│       ├── Astronomy.jsx       # NASA APOD integration
-│       ├── Youtube.jsx         # Video recommendations
-│       ├── Piano.jsx           # Piano YouTuber accordions
-│       ├── Guess.jsx           # Fermi estimation game wrapper
-│       ├── Scrabble.jsx        # Scrabble word trainer
-│       ├── TwentyFour.jsx      # Make-24 math game
-│       ├── Othello.jsx         # Placeholder page
-│       ├── BoardGamesPage.jsx  # Game hub with cards
-│       ├── MathArt.jsx         # Desmos art blog
-│       ├── MathArt/            # MathArt sub-components
-│       │   ├── MathArtSection.jsx
-│       │   └── mathArtTopics.jsx    # Data file (camelCase)
-│       ├── PrimeClimb.jsx      # Game theory article
-│       └── PrimeClimb/         # PrimeClimb sub-components
-│           ├── PrimeClimbGame.jsx
-│           ├── GameTheorySection.jsx
-│           └── GameTheoryTopics.jsx  # Data file
-├── utils/                      # Utilities and data
-│   ├── FermiQuestions.jsx      # Interactive dial game component
-│   ├── 24table.json            # Make-24 puzzle data
-│   ├── num_properties.json     # PrimeClimb number data
-│   └── property_nums.json      # PrimeClimb lookup data
-└── styles/
-    └── ButtonShimmer.css       # Sidebar hover animation
-```
-
-## Conventions
-
-### File Naming
-- **Components**: PascalCase (`MathArtSection.jsx`)
-- **Data files**: camelCase (`mathArtTopics.jsx`)
-- **JSON data**: camelCase (`24table.json`)
-
-### Component Patterns
-- Arrow function components: `const MyComponent = () => { ... };`
-- `export default` at file bottom
-- Imports ordered: React → external libs → local components → styles
-
-### Styling Priority
-1. **Tailwind classes** — default for all layout, spacing, color, typography
-2. **MUI `sx` prop** — only for MUI-specific components (Accordion, Tabs, Modal)
-3. **Inline `style`** — only for truly dynamic values or iframe borders
-4. Never use deprecated HTML attributes (`frameBorder` → `style={{ border: "none" }}`)
-
-### Data & Keys
-- Use unique string keys for `.map()` rendering (titles, IDs) — never array index
-- Static data arrays live at module scope above the component
-- External links use `<a>` with `target="_blank" rel="noopener noreferrer"`
-- Internal links use React Router's `<Link to={...}>`
-
-### State
-- All state management via `useState` / `useEffect` hooks
-- No global state management library — keep state local
-- Clean up intervals/timeouts/event listeners in `useEffect` return
-
-### Environment Variables
-- Prefix with `VITE_` for client access (Vite convention)
-- Store secrets in `.env` (gitignored), use fallback for public APIs
-- Example: `const key = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY";`
-
-## Adding a New Page
-
-1. Create `src/pages/blogs/NewPage.jsx`
-2. Add lazy import in `App.jsx`: `const NewPage = lazy(() => import("./pages/blogs/NewPage"));`
-3. Add route: `<Route path="/blogs/new-page" element={<NewPage />} />`
-4. Add to `Sidebar.jsx` blogItems and `TopNavMenu.jsx` menuItems
-5. Optionally add a card to `Home.jsx` blogs array
-
-## Adding a New Blog Card on Home
-
-Add an entry to the `blogs` array in `Home.jsx`:
-```js
-{
-  title: "My New Thing",
-  subtitle: "Description here",
-  href: "/blogs/new-page",         // or "https://external.com"
-  image: "/assets/media/blog_covers/image.jpg",
-  hoverEffect: undefined,          // optional: "gallery" | "music" | "spin"
-}
-```
-External `href` values automatically render as `<a>` tags with `target="_blank"`.
-
-## Security Notes
-- Never hardcode API keys in source — use `VITE_*` env vars
-- Never use `eval()` — use safe parsers (see `safeEvaluate` in TwentyFour.jsx)
-- Always use `rel="noopener noreferrer"` on external links
-- Validate/sanitize user input before processing
-
-## Testing
-
-No test suite currently configured. When adding tests:
-- Use Vitest (already in devDependencies)
-- Place test files next to source: `Component.test.jsx`
-- Run with `npx vitest`
+- Treat Vercel Functions as stateless + ephemeral (no durable RAM/FS, no background daemons), use Blob or marketplace integrations for preserving state
+- Edge Functions (standalone) are deprecated; prefer Vercel Functions
+- Don't start new projects on Vercel KV/Postgres (both discontinued); use Marketplace Redis/Postgres instead
+- Store secrets in Vercel Env Variables; not in git or `NEXT_PUBLIC_*`
+- Provision Marketplace native integrations with `vercel integration add` (CI/agent-friendly)
+- Sync env + project settings with `vercel env pull` / `vercel pull` when you need local/offline parity
+- Use `waitUntil` for post-response work; avoid the deprecated Function `context` parameter
+- Set Function regions near your primary data source; avoid cross-region DB/service roundtrips
+- Tune Fluid Compute knobs (e.g., `maxDuration`, memory/CPU) for long I/O-heavy calls (LLMs, APIs)
+- Use Runtime Cache for fast **regional** caching + tag invalidation (don't treat it as global KV)
+- Use Cron Jobs for schedules; cron runs in UTC and triggers your production URL via HTTP GET
+- Use Vercel Blob for uploads/media; Use Edge Config for small, globally-read config
+- If Enable Deployment Protection is enabled, use a bypass secret to directly access them
+- Add OpenTelemetry via `@vercel/otel` on Node; don't expect OTEL support on the Edge runtime
+- Enable Web Analytics + Speed Insights early
+- Use AI Gateway for model routing, set AI_GATEWAY_API_KEY, using a model string (e.g. 'anthropic/claude-sonnet-4.6'), Gateway is already default in AI SDK
+  needed. Always curl https://ai-gateway.vercel.sh/v1/models first; never trust model IDs from memory
+- For durable agent loops or untrusted code: use Workflow (pause/resume/state) + Sandbox; use Vercel MCP for secure infra access
+<!-- VERCEL BEST PRACTICES END -->

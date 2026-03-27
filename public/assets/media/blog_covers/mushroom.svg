@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect width="400" height="300" fill="#111111"/>
+  <g transform="translate(200, 120)">
+    <!-- Cap -->
+    <ellipse cx="0" cy="0" rx="80" ry="55" fill="#e84040"/>
+    <ellipse cx="0" cy="0" rx="80" ry="55" fill="none" stroke="#cc2020" stroke-width="2"/>
+    <!-- Spots -->
+    <circle cx="-30" cy="-20" r="14" fill="#fff" opacity="0.85"/>
+    <circle cx="25" cy="-30" r="18" fill="#fff" opacity="0.85"/>
+    <circle cx="45" cy="5" r="11" fill="#fff" opacity="0.85"/>
+    <circle cx="-55" cy="5" r="10" fill="#fff" opacity="0.85"/>
+    <circle cx="0" cy="10" r="8" fill="#fff" opacity="0.7"/>
+    <!-- Stem -->
+    <rect x="-22" y="40" width="44" height="50" rx="8" fill="#f0e6d3"/>
+    <rect x="-22" y="40" width="44" height="50" rx="8" fill="none" stroke="#d4c4a8" stroke-width="2"/>
+    <!-- Eyes -->
+    <circle cx="-12" cy="58" r="4" fill="#222"/>
+    <circle cx="12" cy="58" r="4" fill="#222"/>
+    <!-- Mouth -->
+    <path d="M-6 68 Q0 74 6 68" stroke="#222" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="200" y="260" text-anchor="middle" font-size="18" fill="#666" font-family="monospace" letter-spacing="3">COMING SOON</text>
+</svg>

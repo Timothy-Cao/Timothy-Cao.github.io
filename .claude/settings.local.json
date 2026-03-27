@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api:*)",
+      "Bash(curl -s https://raw.githubusercontent.com/obra/superpowers/main/skills/brainstorming/SKILL.md)",
+      "WebSearch",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(printf 'No\\\\nYes\\\\n')",
+      "Bash(yes)",
+      "Bash(npm install:*)",
+      "Bash(find /tmp -name *.png -o -name *.jpg -o -name *.jpeg -o -name *.webp)",
+      "Bash(xargs ls:*)",
+      "Bash(node -e \":*)",
+      "Bash(npx next:*)",
+      "Bash(node -e \"const m = require\\(''lucide-react''\\); const names = Object.keys\\(m\\).filter\\(k => /github|linkedin|twitter|globe/i.test\\(k\\)\\); console.log\\(names\\);\")",
+      "Bash(node -e \"const m = require\\(''lucide-react''\\); console.log\\([''Shield'',''Search'',''Zap'',''FileCheck'',''Download''].map\\(n => n + '': '' + \\(n in m\\)\\)\\);\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(taskkill //F //IM node.exe)",
+      "mcp__76a3e37b-c43d-4eeb-8b15-7ebe44572595__deploy_to_vercel",
+      "Bash(npx vercel:*)",
+      "Bash(grep -E \"\\\\.\\(html|jsx|tsx|js|json|yaml|yml|md\\)$\")",
+      "WebFetch(domain:pixabay.com)",
+      "Bash(npm run:*)",
+      "Bash(vercel deploy:*)"
+    ]
+  }
+}
