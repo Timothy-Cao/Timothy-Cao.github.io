@@ -20,19 +20,7 @@ const wordSets = {
   aenortu: ["outearn"],
   aeeilnr: ["aliener"],
   eeiorst: ["erotise"],
-  aeinrst: [
-    "anestri",
-    "antsier",
-    "nastier",
-    "ratines",
-    "resiant",
-    "retains",
-    "retinas",
-    "retsina",
-    "stainer",
-    "starnie",
-    "stearin",
-  ],
+  aeinrst: ["anestri", "antsier", "nastier", "ratines", "resiant", "retains", "retinas", "retsina", "stainer", "starnie", "stearin"],
   aeginrt: ["granite", "gratine", "ingrate", "tangier", "tearing"],
   aadeior: ["aeradio"],
   aeinrtu: ["ruinate", "taurine", "uranite", "urinate"],
@@ -65,6 +53,8 @@ const wordSets = {
   adeinor: ["aneroid"],
 };
 
+const allKeys = Object.keys(wordSets);
+
 const Scrabble = () => {
   const [keys, setKeys] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -74,12 +64,11 @@ const Scrabble = () => {
   const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
-    const shuffledKeys = Object.keys(wordSets).sort(() => Math.random() - 0.5);
-    setKeys(shuffledKeys);
+    setKeys([...allKeys].sort(() => Math.random() - 0.5));
   }, []);
 
   const currentKey = keys[currentIndex];
-  const validWords = wordSets[currentKey];
+  const validWords = wordSets[currentKey] || [];
 
   const handleGuess = () => {
     if (validWords.includes(userInput.toLowerCase())) {
@@ -98,31 +87,28 @@ const Scrabble = () => {
     setShowAnswers(false);
   };
 
-  const toggleInfo = () => {
-    setShowInfo((prev) => !prev);
-  };
-
   return (
-  <div className="bg-gray-900 text-white px-4">
-    <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
-        <h1 className="text-5xl font-bold mb-4 text-center flex items-center justify-center gap-2">
-          Scrabble Trainer
-        </h1>
+    <div className="bg-gray-900 text-white px-4">
+      <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
+        <h1 className="text-5xl font-bold mb-4 text-center">Scrabble Trainer</h1>
+
         <p className="text-lg text-gray-400 text-center mb-6 flex items-center justify-center">
           Unscramble letters to find valid words!
           <button
-            className="ml-2 bg-gray-900 text-white rounded-full w-7 h-7 flex items-center justify-center text-m font-bold"
-            onClick={toggleInfo}
+            className="ml-2 bg-gray-700 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold hover:bg-gray-600"
+            onClick={() => setShowInfo((prev) => !prev)}
+            aria-label="About this game"
           >
             ?
           </button>
         </p>
+
         <p className="text-center mb-4">
           <strong>Question {currentIndex + 1} of {keys.length}</strong>
         </p>
 
         <div className="text-center mb-6">
-          <h2 className="text-4xl font-mono">{currentKey}</h2>
+          <h2 className="text-4xl font-mono tracking-widest">{currentKey}</h2>
         </div>
 
         <div className="flex justify-center gap-4 mb-6 flex-wrap">
@@ -132,33 +118,21 @@ const Scrabble = () => {
             placeholder="Enter your guess"
             className="p-2 rounded bg-gray-700 text-white"
             onChange={(e) => setUserInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleGuess()}
           />
-          <button
-            className="bg-blue-600 px-6 py-2 rounded-lg shadow"
-            onClick={handleGuess}
-          >
+          <button className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg shadow transition-colors" onClick={handleGuess}>
             Submit
           </button>
-          <button
-            className="bg-yellow-600 px-6 py-2 rounded-lg shadow"
-            onClick={() => setShowAnswers(true)}
-          >
+          <button className="bg-yellow-600 hover:bg-yellow-700 px-6 py-2 rounded-lg shadow transition-colors" onClick={() => setShowAnswers(true)}>
             Check Answers
           </button>
-          <button
-            className="bg-green-600 px-6 py-2 rounded-lg shadow"
-            onClick={handleNext}
-          >
+          <button className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg shadow transition-colors" onClick={handleNext}>
             Next
           </button>
         </div>
 
         {feedback && (
-          <div
-            className={`text-2xl font-bold text-center mb-6 ${
-              feedback === "Correct!" ? "text-green-500" : "text-red-500"
-            }`}
-          >
+          <div className={`text-2xl font-bold text-center mb-6 ${feedback === "Correct!" ? "text-green-500" : "text-red-500"}`}>
             {feedback}
           </div>
         )}
@@ -167,8 +141,8 @@ const Scrabble = () => {
           <div className="mt-6">
             <h3 className="text-xl font-bold mb-2">Valid Answers:</h3>
             <ul className="list-disc list-inside">
-              {validWords.map((word, index) => (
-                <li key={index}>
+              {validWords.map((word) => (
+                <li key={word}>
                   <a
                     href={`https://www.thefreedictionary.com/${word}`}
                     target="_blank"
@@ -184,23 +158,23 @@ const Scrabble = () => {
         )}
 
         {showInfo && (
-          <div className="fixed inset-0 bg-black bg-opacity-80 z-50 overflow-auto">
-            <div className="p-8 bg-gray-800 rounded-lg mt-20 mx-auto max-w-md">
+          <div className="fixed inset-0 bg-black/80 z-50 flex items-start justify-center pt-20">
+            <div className="p-8 bg-gray-800 rounded-lg max-w-md">
               <h2 className="text-2xl font-bold mb-4">About Scrabble Trainer</h2>
               <p>
-                These are the top 50 most likely arrangements of letters that form valid Scrabble words. 
-                The letters are sorted alphabetically, so when you sort your tiles in the game, you can recognize these words more easily.
+                These are the top 50 most likely arrangements of letters that form valid
+                Scrabble words. The letters are sorted alphabetically, so when you sort your
+                tiles in the game, you can recognize these words more easily.
               </p>
               <button
-                className="mt-6 p-2 bg-gray-600 rounded hover:bg-gray-500"
-                onClick={toggleInfo}
+                className="mt-6 px-4 py-2 bg-gray-600 rounded hover:bg-gray-500 transition-colors"
+                onClick={() => setShowInfo(false)}
               >
                 Close
               </button>
             </div>
           </div>
         )}
-        
       </div>
     </div>
   );

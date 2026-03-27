@@ -1,51 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { FaEnvelope, FaInstagram, FaLinkedin, FaYoutube, FaGithub } from "react-icons/fa";
+import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
 
-const icons = [
-  { name: "Email", url: "mailto:tctctc888@gmail.com", icon: <FaEnvelope size={30} /> },
-  { name: "LinkedIn", url: "https://www.linkedin.com/in/timothyc767", icon: <FaLinkedin size={30} /> },
-  { name: "GitHub", url: "https://github.com/Timothy-Cao", icon: <FaGithub size={30} /> },
-  { name: "YouTube", url: "https://youtube.com/@dodoman767", icon: <FaYoutube size={30} /> },
-  { name: "Instagram", url: "https://www.instagram.com/timothy_cao/", icon: <FaInstagram size={30} /> },
-];
-
 const Contact = () => {
-  const [showPopup, setShowPopup] = useState(false);
   const [state, handleSubmit] = useForm("myzyavkz");
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     await handleSubmit(e);
-    setShowPopup(true);
   };
 
-return (
-  <div className="flex items-center justify-center bg-gray-900 text-white px-4">
-    <div className="w-full max-w-5xl">
-      <div className="space-y-4 text-left mb-12 mt-24">
-        <h1 className="text-5xl font-bold mb-12">Contact</h1>
-        <p className="text-lg text-gray-300 max-w-2xl leading-relaxed">
-          Message me about anything except my car's extended warranty. 
+  return (
+    <div className="flex items-center justify-center bg-gray-900 text-white px-4">
+      <div className="w-full max-w-5xl">
+        <div className="space-y-4 text-left mb-12 mt-24">
+          <h1 className="text-5xl font-bold mb-12">Contact</h1>
+          <p className="text-lg text-gray-300 max-w-2xl leading-relaxed">
+            Message me about anything except my car's extended warranty.
           </p>
         </div>
-
-        {/* <div className="flex justify-left space-x-6">
-          {icons.map((icon, index) => (
-            <div
-              key={index}
-              className="cursor-pointer flex flex-col items-center"
-              onClick={() => window.open(icon.url)}
-            >
-              {icon.icon}
-              <p className="mt-2 text-sm">{icon.name}</p>
-            </div>
-          ))}
-        </div> */}
 
         <div className="bg-gray-800 rounded-lg p-8 shadow-lg">
           <h2 className="text-2xl font-bold mb-6">Directly Message</h2>
@@ -71,7 +43,6 @@ return (
                     required
                   />
                 </div>
-
                 <div className="flex-1">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                     Email Address
@@ -87,22 +58,23 @@ return (
                 </div>
               </div>
 
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300">
-                Message
-              </label>
-
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
-                placeholder="Message"
-                required
-              ></textarea>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  className="w-full mt-2 p-3 bg-gray-700 text-white rounded-md"
+                  placeholder="Message"
+                  required
+                />
+              </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-md"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-md transition-colors"
                 disabled={state.submitting}
               >
                 {state.submitting ? "Sending..." : "Submit"}

@@ -1,25 +1,17 @@
 import React, { useState } from "react";
-import {
-  Box,
-  ImageList,
-  ImageListItem,
-  Modal,
-  Backdrop,
-  Fade,
-} from "@mui/material";
+import { Box, ImageList, ImageListItem, Modal, Backdrop, Fade } from "@mui/material";
 
-const images = Array.from({ length: 64 }, (_, index) => ({
-  src: `/assets/media/Photo Gallery/${index + 1}.jpg`,
-  title: `Image ${index + 1}`,
+const GALLERY_IMAGE_COUNT = 64;
+
+const images = Array.from({ length: GALLERY_IMAGE_COUNT }, (_, i) => ({
+  src: `/assets/media/Photo Gallery/${i + 1}.jpg`,
+  title: `Image ${i + 1}`,
 }));
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleOpen = (image) => setSelectedImage(image);
-  const handleClose = () => setSelectedImage(null);
-
-return (
+  return (
     <div className="bg-gray-900 text-white px-4">
       <div className="max-w-5xl mx-auto space-y-8 mt-24 mb-12">
         <h1 className="text-5xl font-bold mb-8 mt-6">Gallery</h1>
@@ -35,13 +27,9 @@ return (
                   src={image.src}
                   alt={image.title}
                   loading="lazy"
-                  style={{
-                    cursor: "pointer",
-                    objectFit: "cover",
-                    aspectRatio: "1/1",
-                    borderRadius: "8px",
-                  }}
-                  onClick={() => handleOpen(image.src)}
+                  className="cursor-pointer object-cover rounded-lg"
+                  style={{ aspectRatio: "1/1" }}
+                  onClick={() => setSelectedImage(image.src)}
                 />
               </ImageListItem>
             ))}
@@ -50,12 +38,10 @@ return (
 
         <Modal
           open={!!selectedImage}
-          onClose={handleClose}
+          onClose={() => setSelectedImage(null)}
           closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
+          slots={{ backdrop: Backdrop }}
+          slotProps={{ backdrop: { timeout: 500 } }}
         >
           <Fade in={!!selectedImage}>
             <Box

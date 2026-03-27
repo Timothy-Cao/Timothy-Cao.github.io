@@ -20,14 +20,6 @@ const menuItems = [
 const TopNavMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
   return (
     <div
       className="fixed top-0 left-0 w-full bg-gray-800 z-50 shadow-md"
@@ -37,37 +29,32 @@ const TopNavMenu = () => {
         <Link to="/" className="text-xl font-bold text-white hover:text-gray-400">
           Tim Cao
         </Link>
-
         <button
           className="text-white text-2xl focus:outline-none"
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? <FiX /> : <FiMenu />}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="flex flex-col space-y-4 px-6"> <br></br>
-          <nav className="flex flex-col space-y-3">
-            {menuItems.map((item, index) =>
-              item.isDivider ? (
-                <div
-                  key={`divider-${index}`}
-                  className="border-t border-gray-700 my-4"
-                />
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="text-gray-400 hover:text-white p-2 rounded-md"
-                  onClick={closeMenu}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-          </nav>
-        </div>
+        <nav className="flex flex-col space-y-3 px-6 pt-2">
+          {menuItems.map((item, index) =>
+            item.isDivider ? (
+              <div key={`divider-${index}`} className="border-t border-gray-700 my-4" />
+            ) : (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="text-gray-400 hover:text-white p-2 rounded-md"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
+        </nav>
       )}
     </div>
   );

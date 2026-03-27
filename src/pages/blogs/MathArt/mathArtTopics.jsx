@@ -5,7 +5,6 @@ const mathArtTopics = [
       <>
         Desmos is a graphing calculator founded in 2010. They uniquely offer a large variety of tools for visually communicating math. 
         It was because of their growing emphasis on visuals and performance, many creative math enthusiasts have turned to Desmos to artistically express themselves. 
-        <br></br><br></br>
       </>
     ),
     type: "iframe",

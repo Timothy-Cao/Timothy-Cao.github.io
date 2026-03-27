@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { random } from "lodash";
@@ -150,7 +150,7 @@ const PrimeClimb = () => {
         <Typography variant="h5">Game Board</Typography>
         <Grid container spacing={0} justifyContent="center">
           {board.map((value, index) => (
-            <Grid item xs={1} key={index}>
+            <Grid size={1} key={index}>
               <Paper
                 elevation={3}
                 style={{
