@@ -7,7 +7,7 @@ export interface Composition {
 }
 
 export const compositions: Composition[] = [
-  { title: "Dodoman's Theme", description: "Written in 2021 for symphonic orchestra. Inspired by Schubert's Ständchen.", type: "video", src: "https://www.youtube.com/embed/8N39upFgpts", isFavorite: true },
+  { title: "Dodoman's Theme", description: "Written in 2021 for symphonic orchestra. Inspired by Schubert's Ständchen.", type: "audio", src: "/assets/media/audio/dodomans_theme.mp3", isFavorite: true },
   { title: "Journey of the Dodo", description: "2025, this symphonic piece features a horn and oboe-led melody", type: "audio", src: "/assets/media/audio/journey_of_the_dodo.mp3", isFavorite: true },
   { title: "March Challenge", description: "Written in 2024, featuring piano and harp.", type: "audio", src: "/assets/media/audio/MarchRemixChallenge.mp3", isFavorite: true },
   { title: "My September", description: "Written in 2023, for solo piano.", type: "audio", src: "/assets/media/audio/myseptember.mp3", isFavorite: true },
