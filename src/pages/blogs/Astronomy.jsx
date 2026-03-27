@@ -10,7 +10,9 @@ const Astronomy = () => {
     const fetchAPOD = async () => {
       try {
         const apiKey = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY";
-        const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`);
+        const response = await fetch(
+          `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&thumbs=true`
+        );
         if (!response.ok) throw new Error("Failed to fetch APOD data");
         setApodData(await response.json());
       } catch (err) {
@@ -22,28 +24,9 @@ const Astronomy = () => {
     fetchAPOD();
   }, []);
 
-  const MediaContent = ({ url, title, mediaType, maxHeight }) => {
-    if (mediaType === "image") {
-      return (
-        <img
-          src={url}
-          alt={title}
-          className="object-cover w-full h-auto rounded-lg"
-          style={{ maxHeight, margin: "0 auto" }}
-        />
-      );
-    }
-    return (
-      <iframe
-        src={url}
-        title={title}
-        className="w-full h-64 md:h-96 rounded-lg"
-        style={{ border: "none" }}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    );
-  };
+  // Use standard-res url for display, hdurl only exists for images
+  const displayUrl = apodData?.url;
+  const isVideo = apodData?.media_type === "video";
 
   return (
     <div className="bg-gray-900 text-white px-4">
@@ -62,12 +45,24 @@ const Astronomy = () => {
         ) : (
           <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
             <div className="relative w-full mb-4">
-              <MediaContent
-                url={apodData.url}
-                title={apodData.title}
-                mediaType={apodData.media_type}
-                maxHeight="400px"
-              />
+              {isVideo ? (
+                <iframe
+                  src={displayUrl}
+                  title={apodData.title}
+                  className="w-full h-64 md:h-96 rounded-lg"
+                  style={{ border: "none" }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <img
+                  src={displayUrl}
+                  alt={apodData.title}
+                  className="w-full h-auto rounded-lg mx-auto object-contain"
+                  style={{ maxHeight: "500px" }}
+                  loading="lazy"
+                />
+              )}
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">{apodData.title}</h3>
             <p className="text-sm text-gray-400">{apodData.explanation}</p>
