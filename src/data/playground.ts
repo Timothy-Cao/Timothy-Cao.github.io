@@ -106,6 +106,27 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "",
     comingSoon: true,
   },
+  {
+    title: "The Shelf",
+    subtitle: "Books, shows, and films I recommend with short takes",
+    href: "/playground/shelf",
+    coverImage: "",
+    comingSoon: true,
+  },
+  {
+    title: "GenZ Typeracer",
+    subtitle: "How fast can you type no cap fr fr ong?",
+    href: "/playground/typeracer",
+    coverImage: "",
+    comingSoon: true,
+  },
+  {
+    title: "Multitasker",
+    subtitle: "How many things can you juggle at once?",
+    href: "/playground/multitasker",
+    coverImage: "",
+    comingSoon: true,
+  },
 ];
 
 export const GALLERY_IMAGE_COUNT = 64;
