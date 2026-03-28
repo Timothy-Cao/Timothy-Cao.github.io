@@ -91,8 +91,10 @@ export default function ParticleBackground() {
     const nodes: HexNode[] = [];
     const hexSize = 60;
     const hexH = hexSize * Math.sqrt(3);
-    const cols = Math.ceil(width / (hexSize * 1.5)) + 5;
-    const rows = Math.ceil(height / hexH) + 5;
+    const rowSpacing = hexH * 0.5;
+    const colSpacing = hexSize * 1.5;
+    const cols = Math.ceil(width / colSpacing) + 6;
+    const rows = Math.ceil(height / rowSpacing) + 6;
 
     for (let row = -3; row < rows; row++) {
       for (let col = -3; col < cols; col++) {
