@@ -56,7 +56,7 @@ export default function CustomCursor() {
 
   // Toggle cursor: none based on theme
   useEffect(() => {
-    const isCyan = theme.name === "cyber";
+    const isCyan = theme.name === "limitless";
     document.documentElement.setAttribute("data-custom-cursor", isCyan ? "true" : "false");
   }, [theme]);
 
@@ -75,7 +75,7 @@ export default function CustomCursor() {
   }
 
   // Only render custom cursor for Cyber Cyan
-  if (theme.name !== "cyber") {
+  if (theme.name !== "limitless") {
     return null;
   }
 

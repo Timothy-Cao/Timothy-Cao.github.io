@@ -9,14 +9,14 @@ import { useTheme } from "@/components/theme-provider";
 import { bio, hobbies, currentInterests, timeline, websiteCredits } from "@/data/about";
 
 const profileImage: Record<string, string> = {
-  cyber: "/assets/media/profile/cyber.jpg",
+  limitless: "/assets/media/profile/cyber.jpg",
   matrix: "/assets/media/profile/matrix.png",
   crimson: "/assets/media/profile/crimson.png",
 };
 
 export default function AboutPage() {
   const { theme } = useTheme();
-  const currentProfile = profileImage[theme.name] ?? "/assets/media/profile/cyber.jpg";
+  const currentProfile = profileImage[theme.name] ?? "/assets/media/profile/cyber.jpg" /* limitless fallback */;
 
   return (
     <PageTransition>
