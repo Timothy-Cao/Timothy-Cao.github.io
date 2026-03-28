@@ -89,14 +89,14 @@ export const playgroundCards: PlaygroundCard[] = [
   {
     title: "GenZ Typeracer",
     subtitle: "How fast can you skibidi type?",
-    href: "https://genztyper-8yrpcocpd-timothycaos-projects.vercel.app",
+    href: "https://genztyper.vercel.app/",
     coverImage: "/assets/media/games/typeracer.svg",
     external: true,
   },
   {
     title: "Multitasker",
     subtitle: "How many things can you juggle at once?",
-    href: "https://multitasker-r2a858u3c-timothycaos-projects.vercel.app/",
+    href: "https://multitasker-pi.vercel.app/",
     coverImage: "/assets/media/games/multitasker.svg",
     external: true,
   },
