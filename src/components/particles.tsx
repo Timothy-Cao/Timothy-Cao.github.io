@@ -45,6 +45,7 @@ export default function ParticleBackground() {
   const wavesRef = useRef<{ ox: number; oy: number; time: number }[]>([]);
   const nextAutoPulseRef = useRef(0);
   const cyberAttractRef = useRef(true);
+  const matrixTrailRef = useRef<{ x: number; y: number; vx: number; vy: number; char: string; life: number; fadeSpeed: number; size: number; isExplosion: boolean }[]>([]);
 
   const initParticles = useCallback((width: number, height: number) => {
     // More particles — denser field
@@ -165,6 +166,22 @@ export default function ParticleBackground() {
       cyberAttractRef.current = !cyberAttractRef.current;
       // Crimson hex: trigger a ripple wave on click
       wavesRef.current.push({ ox: e.clientX, oy: e.clientY, time: pulseTimeRef.current });
+      // Matrix: explosion of 0s and 1s from click point
+      for (let i = 0; i < 30; i++) {
+        const angle = (Math.PI * 2 * i) / 30 + (Math.random() - 0.5) * 0.4;
+        const speed = Math.random() * 6 + 2;
+        matrixTrailRef.current.push({
+          x: e.clientX + (Math.random() - 0.5) * 8,
+          y: e.clientY + (Math.random() - 0.5) * 8,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          char: Math.random() > 0.5 ? "1" : "0",
+          life: 0,
+          fadeSpeed: 0.012 + Math.random() * 0.008,
+          size: Math.random() * 10 + 12,
+          isExplosion: true,
+        });
+      }
     };
 
     resize();
@@ -177,16 +194,6 @@ export default function ParticleBackground() {
 
     const fontSize = 18;
 
-    // Matrix cursor trail particles
-    interface TrailChar {
-      x: number;
-      y: number;
-      vy: number;
-      char: string;
-      life: number; // 0→1, dies at 1
-      size: number;
-    }
-    const trailChars: TrailChar[] = [];
     let lastTrailX = -1000;
     let lastTrailY = -1000;
 
@@ -199,21 +206,25 @@ export default function ParticleBackground() {
       const drops = matrixDropsRef.current;
       const mouse = mouseRef.current;
 
-      // Spawn trail characters as mouse moves
+      // Spawn trail characters as mouse moves (stationary, just fade)
       if (mouseMovingRef.current) {
         const dx = mouse.x - lastTrailX;
         const dy = mouse.y - lastTrailY;
         const moveDist = Math.sqrt(dx * dx + dy * dy);
-        if (moveDist > 12) {
-          const count = Math.min(Math.floor(moveDist / 12), 4);
+        if (moveDist > 10) {
+          const count = Math.min(Math.floor(moveDist / 10), 3);
           for (let t = 0; t < count; t++) {
-            trailChars.push({
-              x: mouse.x + (Math.random() - 0.5) * 24,
-              y: mouse.y + (Math.random() - 0.5) * 24,
-              vy: Math.random() * 1.5 + 0.8,
+            const frac = (t + 1) / count;
+            matrixTrailRef.current.push({
+              x: lastTrailX + dx * frac + (Math.random() - 0.5) * 14,
+              y: lastTrailY + dy * frac + (Math.random() - 0.5) * 14,
+              vx: 0,
+              vy: 0,
               char: Math.random() > 0.5 ? "1" : "0",
               life: 0,
-              size: Math.random() * 8 + 16,
+              fadeSpeed: 0.018,
+              size: Math.random() * 6 + 14,
+              isExplosion: false,
             });
           }
           lastTrailX = mouse.x;
@@ -221,40 +232,43 @@ export default function ParticleBackground() {
         }
       }
 
-      // Draw & update trail characters
-      for (let t = trailChars.length - 1; t >= 0; t--) {
-        const tc = trailChars[t];
-        tc.life += 0.025;
+      // Draw & update trail + explosion characters
+      for (let t = matrixTrailRef.current.length - 1; t >= 0; t--) {
+        const tc = matrixTrailRef.current[t];
+        tc.life += tc.fadeSpeed;
+        tc.x += tc.vx;
         tc.y += tc.vy;
-        tc.vy += 0.03; // slight gravity
+        if (tc.isExplosion) {
+          tc.vx *= 0.96;
+          tc.vy *= 0.96;
+        }
 
         if (tc.life >= 1) {
-          trailChars.splice(t, 1);
+          matrixTrailRef.current.splice(t, 1);
           continue;
         }
 
         // Scramble occasionally
-        if (Math.random() < 0.08) {
+        if (Math.random() < 0.06) {
           tc.char = Math.random() > 0.5 ? "1" : "0";
         }
 
-        const fadeIn = Math.min(tc.life * 8, 1); // quick fade in
+        const fadeIn = Math.min(tc.life * 10, 1);
         const fadeOut = 1 - tc.life;
         const alpha = fadeIn * fadeOut;
 
         // Bright glow
         ctx.font = `bold ${tc.size}px monospace`;
-        ctx.shadowColor = "rgba(0, 255, 65, 0.8)";
-        ctx.shadowBlur = 12 * alpha;
-        ctx.fillStyle = `rgba(180, 255, 180, ${alpha * 0.9})`;
+        ctx.shadowColor = tc.isExplosion
+          ? `rgba(0, 255, 65, ${alpha})`
+          : "rgba(0, 255, 65, 0.6)";
+        ctx.shadowBlur = tc.isExplosion ? 18 * alpha : 10 * alpha;
+        ctx.fillStyle = tc.isExplosion
+          ? `rgba(200, 255, 200, ${alpha})`
+          : `rgba(150, 255, 150, ${alpha * 0.85})`;
         ctx.fillText(tc.char, tc.x, tc.y);
-
-        // Dimmer echo underneath
         ctx.shadowBlur = 0;
-        ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.4})`;
-        ctx.fillText(tc.char, tc.x + 1, tc.y + 1);
       }
-      ctx.shadowBlur = 0;
 
       // Draw rain drops
       for (let i = 0; i < drops.length; i++) {
