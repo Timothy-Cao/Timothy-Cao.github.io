@@ -6,10 +6,6 @@ import ScrollReveal from "@/components/ui/scroll-reveal";
 
 const QUESTION_BANK_URL =
   "https://raw.githubusercontent.com/EricAndrechek/FermiQuestions/main/question-bank.json";
-const DIAL_SIZE = 160;
-const DIAL_CENTER = DIAL_SIZE / 2;
-const DIAL_RADIUS = 60;
-const DEGREES_PER_UNIT = 14.4;
 
 interface Question {
   question: string;
@@ -23,17 +19,15 @@ interface PreviousResult {
   pointsAwarded: number;
 }
 
+
 function renderQuestion(text: string) {
   return text.replace(/<sup>(.*?)<\/sup>/g, "^$1").replace(/<sub>(.*?)<\/sub>/g, "_$1");
 }
 
 function formatDecimal(exp: number) {
-  if (exp >= 0) return Number(10 ** exp).toLocaleString("en-US");
-  return (10 ** exp).toFixed(Math.abs(exp));
-}
-
-function getAngle(cx: number, cy: number, px: number, py: number) {
-  return ((Math.atan2(py - cy, px - cx) * 180) / Math.PI + 360) % 360;
+  if (exp >= 0 && exp <= 15) return Number(10 ** exp).toLocaleString("en-US");
+  if (exp < 0 && exp >= -6) return (10 ** exp).toFixed(Math.abs(exp));
+  return `10^${exp}`;
 }
 
 export default function FermiPage() {
@@ -43,12 +37,16 @@ export default function FermiPage() {
   const [qNum, setQNum] = useState(0);
   const [points, setPoints] = useState(0);
   const [maxPoints, setMaxPoints] = useState(0);
-  const [dialValue, setDialValue] = useState(0);
+  const [value, setValue] = useState(0);
   const [result, setResult] = useState("");
   const [prev, setPrev] = useState<PreviousResult | null>(null);
-  const [dragging, setDragging] = useState(false);
-  const dialRef = useRef<SVGSVGElement>(null);
-  const lastAngle = useRef(0);
+  const [editing, setEditing] = useState(false);
+  const [editText, setEditText] = useState("0");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Slider drag state
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
 
   useEffect(() => {
     (async () => {
@@ -73,76 +71,83 @@ export default function FermiPage() {
     })();
   }, []);
 
-  const startDrag = (e: React.MouseEvent | React.TouchEvent) => {
-    setDragging(true);
-    const rect = dialRef.current!.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const isTouch = "touches" in e;
-    const px = isTouch ? (e as React.TouchEvent).touches[0].clientX : (e as React.MouseEvent).clientX;
-    const py = isTouch ? (e as React.TouchEvent).touches[0].clientY : (e as React.MouseEvent).clientY;
-    lastAngle.current = getAngle(cx, cy, px, py);
-  };
+  const clamp = (v: number) => Math.max(-50, Math.min(50, v));
 
-  const onMove = useCallback(
-    (e: MouseEvent | TouchEvent) => {
-      if (!dragging || !dialRef.current) return;
-      e.preventDefault();
-      const rect = dialRef.current.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const isTouch = "touches" in e;
-      const px = isTouch ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
-      const py = isTouch ? (e as TouchEvent).touches[0].clientY : (e as MouseEvent).clientY;
-      const angle = getAngle(cx, cy, px, py);
-      let diff = angle - lastAngle.current;
-      if (diff > 180) diff -= 360;
-      if (diff < -180) diff += 360;
-      const change = Math.round(diff / DEGREES_PER_UNIT);
-      if (change !== 0) {
-        setDialValue((v) => Math.max(-50, Math.min(50, v + change)));
-        lastAngle.current = angle;
-      }
-    },
-    [dragging]
-  );
+  const posFromValue = (v: number) => ((v + 50) / 100) * 100;
+
+  const valueFromPos = useCallback((clientX: number) => {
+    if (!sliderRef.current) return 0;
+    const rect = sliderRef.current.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    return clamp(Math.round(pct * 100 - 50));
+  }, []);
+
+  const handleSliderDown = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    dragging.current = true;
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    setValue(valueFromPos(clientX));
+  }, [valueFromPos]);
 
   useEffect(() => {
-    if (!dragging) return;
-    const end = () => setDragging(false);
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      if (!dragging.current) return;
+      e.preventDefault();
+      const clientX = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+      setValue(valueFromPos(clientX));
+    };
+    const onUp = () => { dragging.current = false; };
+
     document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", end);
+    document.addEventListener("mouseup", onUp);
     document.addEventListener("touchmove", onMove, { passive: false });
-    document.addEventListener("touchend", end);
+    document.addEventListener("touchend", onUp);
     return () => {
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseup", end);
+      document.removeEventListener("mouseup", onUp);
       document.removeEventListener("touchmove", onMove);
-      document.removeEventListener("touchend", end);
+      document.removeEventListener("touchend", onUp);
     };
-  }, [dragging, onMove]);
+  }, [valueFromPos]);
+
+  const startEditing = () => {
+    setEditing(true);
+    setEditText(String(value));
+    setTimeout(() => inputRef.current?.select(), 10);
+  };
+
+  const commitEdit = () => {
+    const parsed = parseInt(editText, 10);
+    if (!isNaN(parsed)) setValue(clamp(parsed));
+    setEditing(false);
+  };
 
   const submit = () => {
     if (!current) return;
-    const diff = Math.abs(current.answer - dialValue);
+    const diff = Math.abs(current.answer - value);
     const awarded = diff === 0 ? 5 : diff === 1 ? 3 : diff === 2 ? 1 : 0;
     setMaxPoints((p) => p + 5);
     setPoints((p) => p + awarded);
-    setPrev({ question: current.question, userAnswer: dialValue, correctAnswer: current.answer, pointsAwarded: awarded });
+    setPrev({ question: current.question, userAnswer: value, correctAnswer: current.answer, pointsAwarded: awarded });
     const msgs: Record<number, string> = { 0: "Perfect! 5 points!", 1: "Close! 3 points!", 2: "Not bad! 1 point!" };
     setResult(msgs[diff] || "Keep trying!");
     if (qIndex < questions.length) {
       setCurrent(questions[qIndex]);
       setQIndex((i) => i + 1);
       setQNum((n) => n + 1);
-      setDialValue(0);
+      setValue(0);
     } else {
       setCurrent(null);
     }
   };
 
-  const rotation = (dialValue / 100) * 1440;
-  const toRad = (deg: number) => ((deg - 90) * Math.PI) / 180;
+  // Color based on distance from 0 for visual feedback
+  const thumbColor = Math.abs(value) > 30
+    ? "bg-red-500"
+    : Math.abs(value) > 15
+    ? "bg-orange-400"
+    : Math.abs(value) > 5
+    ? "bg-yellow-400"
+    : "bg-accent";
 
   return (
     <PageTransition>
@@ -150,7 +155,7 @@ export default function FermiPage() {
         <ScrollReveal>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Fermi Estimations</h1>
           <p className="text-muted mb-8">
-            Try to guess to the nearest order of magnitude! Turn the dial to adjust your estimation.
+            Guess to the nearest order of magnitude! Use the slider, buttons, or tap the number to type directly.
           </p>
         </ScrollReveal>
 
@@ -187,57 +192,113 @@ export default function FermiPage() {
           <div className="flex-1 rounded-xl bg-surface border border-border p-6 flex flex-col items-center">
             {current ? (
               <>
-                <svg
-                  ref={dialRef}
-                  width={DIAL_SIZE}
-                  height={DIAL_SIZE}
-                  className="select-none mb-4"
-                  onMouseDown={startDrag}
-                  onTouchStart={startDrag}
-                  style={{ touchAction: "none" }}
-                >
-                  <circle cx={DIAL_CENTER} cy={DIAL_CENTER} r={DIAL_RADIUS} fill="#1a1a1a" stroke="var(--color-border, #333)" strokeWidth="2" />
-                  {Array.from({ length: 20 }, (_, i) => {
-                    const a = (i / 20) * 360;
-                    const main = i % 5 === 0;
-                    const len = main ? 12 : 6;
-                    return (
-                      <line key={i}
-                        x1={DIAL_CENTER + Math.cos(toRad(a)) * (DIAL_RADIUS - len)}
-                        y1={DIAL_CENTER + Math.sin(toRad(a)) * (DIAL_RADIUS - len)}
-                        x2={DIAL_CENTER + Math.cos(toRad(a)) * DIAL_RADIUS}
-                        y2={DIAL_CENTER + Math.sin(toRad(a)) * DIAL_RADIUS}
-                        stroke="#666" strokeWidth={main ? "2" : "1"} />
-                    );
-                  })}
-                  <line
-                    x1={DIAL_CENTER} y1={DIAL_CENTER}
-                    x2={DIAL_CENTER + Math.cos(toRad(rotation)) * 45}
-                    y2={DIAL_CENTER + Math.sin(toRad(rotation)) * 45}
-                    stroke="var(--color-accent, #00e5ff)" strokeWidth="4" strokeLinecap="round"
-                  />
-                  <circle cx={DIAL_CENTER} cy={DIAL_CENTER} r="6" fill="var(--color-accent, #00e5ff)" />
-                </svg>
+                {/* Question at the top */}
+                <div className="text-center text-muted text-sm leading-relaxed max-w-lg mb-8">
+                  {renderQuestion(current.question)}
+                </div>
 
-                <div className="text-center mb-4">
-                  <div className="text-xl font-bold">10<sup>{dialValue}</sup></div>
-                  <div className="text-sm text-muted h-8 flex items-center justify-center break-all px-2">
-                    {formatDecimal(dialValue)}
+                {/* Value display — tap to edit */}
+                <div className="flex items-center gap-4 mb-2">
+                  <button
+                    onClick={() => setValue((v) => clamp(v - 1))}
+                    className="w-10 h-10 rounded-lg bg-surface border border-border hover:border-accent/50 text-lg font-bold transition-colors flex items-center justify-center select-none"
+                    aria-label="Decrease"
+                  >
+                    −
+                  </button>
+
+                  {editing ? (
+                    <input
+                      ref={inputRef}
+                      type="number"
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value)}
+                      onBlur={commitEdit}
+                      onKeyDown={(e) => e.key === "Enter" && commitEdit()}
+                      className="w-24 text-center text-3xl font-bold bg-transparent border-b-2 border-accent outline-none"
+                      min={-50}
+                      max={50}
+                      autoFocus
+                    />
+                  ) : (
+                    <button
+                      onClick={startEditing}
+                      className="group cursor-text"
+                      title="Click to type a value"
+                    >
+                      <div className="text-3xl font-bold group-hover:text-accent transition-colors">
+                        10<sup className="text-xl">{value}</sup>
+                      </div>
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => setValue((v) => clamp(v + 1))}
+                    className="w-10 h-10 rounded-lg bg-surface border border-border hover:border-accent/50 text-lg font-bold transition-colors flex items-center justify-center select-none"
+                    aria-label="Increase"
+                  >
+                    +
+                  </button>
+                </div>
+
+                {/* Decimal representation */}
+                <div className="text-sm text-muted mb-6 h-6">
+                  {formatDecimal(value)}
+                </div>
+
+                {/* Slider */}
+                <div className="w-full max-w-md mb-2 px-2">
+                  <div
+                    ref={sliderRef}
+                    className="relative h-10 cursor-pointer select-none touch-none"
+                    onMouseDown={handleSliderDown}
+                    onTouchStart={handleSliderDown}
+                  >
+                    {/* Track */}
+                    <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-1.5 rounded-full bg-border" />
+
+                    {/* Active fill */}
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 h-1.5 rounded-full bg-accent/40"
+                      style={{
+                        left: `${Math.min(posFromValue(0), posFromValue(value))}%`,
+                        width: `${Math.abs(posFromValue(value) - posFromValue(0))}%`,
+                      }}
+                    />
+
+                    {/* Zero mark */}
+                    <div
+                      className="absolute top-1/2 -translate-y-1/2 w-0.5 h-4 bg-muted/40"
+                      style={{ left: `${posFromValue(0)}%` }}
+                    />
+
+                    {/* Tick marks every 10 */}
+                    {[-50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50].map((tick) => (
+                      <div
+                        key={tick}
+                        className="absolute top-full mt-1 -translate-x-1/2 text-[10px] text-muted/50"
+                        style={{ left: `${posFromValue(tick)}%` }}
+                      >
+                        {tick}
+                      </div>
+                    ))}
+
+                    {/* Thumb */}
+                    <div
+                      className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full ${thumbColor} shadow-lg shadow-accent/20 transition-colors border-2 border-white/20`}
+                      style={{ left: `${posFromValue(value)}%` }}
+                    />
                   </div>
                 </div>
 
                 <button
                   onClick={submit}
-                  className="bg-accent/20 hover:bg-accent/30 text-accent px-6 py-2 rounded-lg font-semibold transition-colors border border-accent/30 mb-4"
+                  className="bg-accent/20 hover:bg-accent/30 text-accent px-8 py-2.5 rounded-lg font-semibold transition-colors border border-accent/30"
                 >
                   Submit Answer
                 </button>
 
-                {result && <div className="font-semibold mb-4">{result}</div>}
-
-                <div className="text-center text-muted text-sm leading-relaxed max-w-lg">
-                  {renderQuestion(current.question)}
-                </div>
+                {result && <div className="font-semibold mt-4">{result}</div>}
               </>
             ) : (
               <div className="text-center py-10">
