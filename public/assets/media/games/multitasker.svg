@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  <!-- spinning plates / juggling arcs -->
+  <ellipse cx="200" cy="160" rx="140" ry="60" stroke="#e94560" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.4"/>
+  <ellipse cx="200" cy="160" rx="100" ry="40" stroke="#0f3460" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+  <ellipse cx="200" cy="160" rx="60" ry="22" stroke="#e94560" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+  <!-- juggled objects -->
+  <!-- math -->
+  <circle cx="100" cy="100" r="24" fill="#0f3460" stroke="#e94560" stroke-width="1.5"/>
+  <text x="100" y="106" text-anchor="middle" fill="#e94560" font-family="monospace" font-size="18" font-weight="bold">+%</text>
+  <!-- clock -->
+  <circle cx="300" cy="100" r="24" fill="#0f3460" stroke="#53d8fb" stroke-width="1.5"/>
+  <line x1="300" y1="100" x2="300" y2="86" stroke="#53d8fb" stroke-width="2" stroke-linecap="round"/>
+  <line x1="300" y1="100" x2="310" y2="100" stroke="#53d8fb" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="300" cy="100" r="2" fill="#53d8fb"/>
+  <!-- target -->
+  <circle cx="160" cy="70" r="20" fill="#0f3460" stroke="#ff6b6b" stroke-width="1.5"/>
+  <circle cx="160" cy="70" r="12" stroke="#ff6b6b" stroke-width="1"/>
+  <circle cx="160" cy="70" r="4" fill="#ff6b6b"/>
+  <!-- gear -->
+  <circle cx="240" cy="70" r="20" fill="#0f3460" stroke="#ffd93d" stroke-width="1.5"/>
+  <text x="240" y="77" text-anchor="middle" fill="#ffd93d" font-size="22">⚙</text>
+  <!-- keyboard -->
+  <circle cx="72" cy="170" r="20" fill="#0f3460" stroke="#6bcb77" stroke-width="1.5"/>
+  <text x="72" y="176" text-anchor="middle" fill="#6bcb77" font-family="monospace" font-size="11" font-weight="bold">TAB</text>
+  <!-- eye -->
+  <circle cx="328" cy="170" r="20" fill="#0f3460" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="328" y="178" text-anchor="middle" fill="#c084fc" font-size="20">👁</text>
+  <!-- central brain icon -->
+  <circle cx="200" cy="160" r="30" fill="#16213e" stroke="#e94560" stroke-width="2"/>
+  <text x="200" y="170" text-anchor="middle" fill="#e0e0e0" font-size="28">🧠</text>
+  <!-- title -->
+  <text x="200" y="240" text-anchor="middle" fill="#e94560" font-family="monospace" font-size="24" font-weight="bold">MULTITASKER</text>
+  <text x="200" y="262" text-anchor="middle" fill="#e0e0e0" font-family="monospace" font-size="11">how long can you keep up?</text>
+</svg>

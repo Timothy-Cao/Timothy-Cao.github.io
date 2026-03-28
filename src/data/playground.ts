@@ -9,6 +9,7 @@ export interface PlaygroundCard {
 }
 
 export const playgroundCards: PlaygroundCard[] = [
+  // --- Active cards ---
   {
     title: "Music",
     subtitle: "Sample some of my past works!",
@@ -86,6 +87,21 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "twinkle",
   },
   {
+    title: "GenZ Typeracer",
+    subtitle: "How fast can you skibidi type?",
+    href: "https://genztyper-8yrpcocpd-timothycaos-projects.vercel.app",
+    coverImage: "/assets/media/games/typeracer.svg",
+    external: true,
+  },
+  {
+    title: "Multitasker",
+    subtitle: "How many things can you juggle at once?",
+    href: "https://multitasker-r2a858u3c-timothycaos-projects.vercel.app/",
+    coverImage: "/assets/media/games/multitasker.svg",
+    external: true,
+  },
+  // --- Coming soon ---
+  {
     title: "Mapledle",
     subtitle: "Guess the MapleStory OST",
     href: "/playground/mapledle",
@@ -110,20 +126,6 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "The Shelf",
     subtitle: "Books, shows, and films I recommend with short takes",
     href: "/playground/shelf",
-    coverImage: "",
-    comingSoon: true,
-  },
-  {
-    title: "GenZ Typeracer",
-    subtitle: "How fast can you skibidi type?",
-    href: "https://genztyper-8yrpcocpd-timothycaos-projects.vercel.app",
-    coverImage: "/assets/media/games/typeracer.svg",
-    external: true,
-  },
-  {
-    title: "Multitasker",
-    subtitle: "How many things can you juggle at once?",
-    href: "/playground/multitasker",
     coverImage: "",
     comingSoon: true,
   },
