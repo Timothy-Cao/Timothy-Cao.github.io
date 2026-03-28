@@ -159,8 +159,10 @@ export default function ParticleBackground() {
       }, 100);
     };
 
-    const onClick = () => {
+    const onClick = (e: MouseEvent) => {
       cyberAttractRef.current = !cyberAttractRef.current;
+      // Crimson hex: trigger a ripple wave on click
+      wavesRef.current.push({ ox: e.clientX, oy: e.clientY, time: pulseTimeRef.current });
     };
 
     resize();
