@@ -44,8 +44,9 @@ function ThemeToggle() {
           style={{ background: theme.accent }}
         />
         {/* Hint label — desktop only, always visible */}
-        <span className="hidden md:flex items-center gap-1 text-xs text-white z-[9999] ml-3">
+        <span className="hidden md:flex items-center gap-1 text-xs text-white/90 z-[9999] ml-3 pointer-events-none select-none">
           <motion.span
+            key="theme-arrow"
             animate={{ x: [0, -4, 0] }}
             transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
           >
