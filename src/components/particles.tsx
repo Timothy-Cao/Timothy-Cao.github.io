@@ -165,6 +165,20 @@ export default function ParticleBackground() {
       cyberAttractRef.current = !cyberAttractRef.current;
       // Crimson hex: trigger a ripple wave on click
       wavesRef.current.push({ ox: e.clientX, oy: e.clientY, time: pulseTimeRef.current });
+      // Matrix: spawn a new drop chain at click position
+      const length = Math.floor(Math.random() * 20) + 8;
+      const chars: string[] = [];
+      for (let j = 0; j < length; j++) {
+        chars.push(Math.random() > 0.5 ? "1" : "0");
+      }
+      matrixDropsRef.current.push({
+        x: e.clientX,
+        y: e.clientY,
+        speed: Math.random() * 2.0 + 1.0,
+        chars,
+        length,
+        opacity: Math.random() * 0.3 + 0.6,
+      });
     };
 
     resize();
