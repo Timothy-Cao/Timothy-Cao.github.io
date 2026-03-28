@@ -165,20 +165,6 @@ export default function ParticleBackground() {
       cyberAttractRef.current = !cyberAttractRef.current;
       // Crimson hex: trigger a ripple wave on click
       wavesRef.current.push({ ox: e.clientX, oy: e.clientY, time: pulseTimeRef.current });
-      // Matrix: spawn a new drop chain at click position
-      const length = Math.floor(Math.random() * 20) + 8;
-      const chars: string[] = [];
-      for (let j = 0; j < length; j++) {
-        chars.push(Math.random() > 0.5 ? "1" : "0");
-      }
-      matrixDropsRef.current.push({
-        x: e.clientX,
-        y: e.clientY,
-        speed: Math.random() * 2.0 + 1.0,
-        chars,
-        length,
-        opacity: Math.random() * 0.3 + 0.6,
-      });
     };
 
     resize();
@@ -198,36 +184,62 @@ export default function ParticleBackground() {
 
       ctx.font = `bold ${fontSize}px monospace`;
       const drops = matrixDropsRef.current;
+      const mouse = mouseRef.current;
+      const corruptionRadius = 200;
 
       for (let i = 0; i < drops.length; i++) {
         const drop = drops[i];
-        drop.y += drop.speed;
+
+        // Check if any visible part of this drop is near the cursor
+        const dx = mouse.x - drop.x;
+        const dropTop = drop.y - drop.length * fontSize;
+        const closestY = Math.max(dropTop, Math.min(mouse.y, drop.y));
+        const dy = mouse.y - closestY;
+        const distToCursor = Math.sqrt(dx * dx + dy * dy);
+        const nearCursor = distToCursor < corruptionRadius;
+        const proximity = nearCursor ? 1 - distToCursor / corruptionRadius : 0;
+
+        // Corruption zone: speed boost near cursor
+        drop.y += drop.speed + (proximity * 2.5);
 
         for (let j = 0; j < drop.chars.length; j++) {
           const charY = drop.y - j * fontSize;
           if (charY < -fontSize || charY > canvas.height + fontSize) continue;
 
+          // Per-character proximity to cursor
+          const charDx = mouse.x - drop.x;
+          const charDy = mouse.y - charY;
+          const charDist = Math.sqrt(charDx * charDx + charDy * charDy);
+          const charNear = charDist < corruptionRadius;
+          const charProx = charNear ? 1 - charDist / corruptionRadius : 0;
+
           const fade = j === 0 ? 1 : Math.max(0, 1 - j / drop.length);
-          const alpha = drop.opacity * fade;
+          const baseAlpha = drop.opacity * fade;
+          // Boost brightness near cursor
+          const alpha = Math.min(baseAlpha + charProx * 0.6, 1);
 
           if (j === 0) {
-            // Lead character — bright white-green
-            ctx.fillStyle = `rgba(200, 255, 200, ${Math.min(alpha * 1.2, 1)})`;
+            ctx.fillStyle = charNear
+              ? `rgba(255, 255, 255, ${Math.min(alpha * 1.3, 1)})`
+              : `rgba(200, 255, 200, ${Math.min(alpha * 1.2, 1)})`;
             ctx.font = `bold ${fontSize}px monospace`;
           } else if (j < 3) {
-            // Near-head — bright green
-            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.9})`;
+            ctx.fillStyle = charNear
+              ? `rgba(150, 255, 150, ${alpha})`
+              : `rgba(0, 255, 65, ${alpha * 0.9})`;
             ctx.font = `bold ${fontSize}px monospace`;
           } else {
-            // Trail — standard green
-            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.7})`;
+            ctx.fillStyle = charNear
+              ? `rgba(100, 255, 100, ${alpha * 0.9})`
+              : `rgba(0, 255, 65, ${alpha * 0.7})`;
             ctx.font = `${fontSize}px monospace`;
           }
 
           ctx.fillText(drop.chars[j], drop.x, charY);
 
-          // Occasionally mutate characters
-          if (Math.random() < 0.02) {
+          // Scramble characters faster near cursor
+          const mutateChance = charNear ? 0.02 + charProx * 0.25 : 0.02;
+          if (Math.random() < mutateChance) {
             drop.chars[j] = Math.random() > 0.5 ? "1" : "0";
           }
         }
