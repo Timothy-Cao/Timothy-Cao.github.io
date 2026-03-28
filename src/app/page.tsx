@@ -14,6 +14,13 @@ export default function Home() {
   const { theme } = useTheme();
   const isCyan = theme.name === "cyber";
 
+  const profileImage: Record<string, string> = {
+    cyber: "/assets/media/profile/cyber.jpg",
+    matrix: "/assets/media/profile/matrix.png",
+    crimson: "/assets/media/profile/crimson.png",
+  };
+  const currentProfile = profileImage[theme.name] ?? "/assets/media/profile/cyber.jpg";
+
   return (
     <PageTransition>
       <div className="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
@@ -31,7 +38,8 @@ export default function Home() {
             <div className="relative w-40 h-40 rounded-full overflow-hidden border-2 border-accent/30">
               <BorderBeam duration={6} />
               <Image
-                src="/profile.jpg"
+                key={currentProfile}
+                src={currentProfile}
                 alt="Timothy Cao"
                 fill
                 className="object-cover relative z-10"
