@@ -32,6 +32,13 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "dial",
   },
   {
+    title: "Multitasker",
+    subtitle: "How many things can you juggle at once?",
+    href: "https://multitasker-pi.vercel.app/",
+    coverImage: "/assets/media/games/multitasker.svg",
+    external: true,
+  },
+  {
     title: "Prime Climb",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
     href: "https://web-lake-ten-27.vercel.app/",
@@ -91,13 +98,6 @@ export const playgroundCards: PlaygroundCard[] = [
     subtitle: "How fast can you skibidi type?",
     href: "https://genztyper.vercel.app/",
     coverImage: "/assets/media/games/typeracer.svg",
-    external: true,
-  },
-  {
-    title: "Multitasker",
-    subtitle: "How many things can you juggle at once?",
-    href: "https://multitasker-pi.vercel.app/",
-    coverImage: "/assets/media/games/multitasker.svg",
     external: true,
   },
   // --- Coming soon ---
