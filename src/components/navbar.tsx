@@ -62,7 +62,7 @@ function ThemeToggle() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -8 }}
               transition={{ duration: 0.3 }}
-              className="hidden md:flex items-center gap-1 text-xs text-accent/70"
+              className="hidden md:flex items-center gap-1 text-xs text-white z-[9999] ml-3"
             >
               <motion.span
                 animate={{ x: [0, -4, 0] }}
