@@ -22,6 +22,7 @@ function isActive(pathname: string, href: string) {
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [hinted, setHinted] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,15 +33,45 @@ function ThemeToggle() {
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
+  // Dismiss the hint after first open or after 12s
+  useEffect(() => {
+    if (open) setHinted(false);
+  }, [open]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setHinted(false), 12000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 text-sm text-muted hover:text-foreground transition-colors"
+        className="flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors group"
         aria-label="Change theme"
       >
+        {/* Hint label — desktop only, auto-dismisses */}
+        <AnimatePresence>
+          {hinted && (
+            <motion.span
+              initial={{ opacity: 0, x: 8 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 8 }}
+              transition={{ duration: 0.3 }}
+              className="hidden md:flex items-center gap-1 text-xs text-accent/70"
+            >
+              Theme
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+              >
+                →
+              </motion.span>
+            </motion.span>
+          )}
+        </AnimatePresence>
         <div
-          className="w-3.5 h-3.5 rounded-full border border-white/20 transition-transform duration-200 hover:scale-[2] animate-pulse"
+          className="w-4 h-4 rounded-full border border-white/20 transition-all duration-200 group-hover:scale-150 group-hover:shadow-[0_0_12px_var(--color-accent-glow)]"
           style={{ background: theme.accent }}
         />
       </button>

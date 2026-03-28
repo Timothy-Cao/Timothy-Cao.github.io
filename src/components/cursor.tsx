@@ -79,10 +79,10 @@ export default function CustomCursor() {
     return null;
   }
 
-  const dotColor = isRepel ? "#ff1744" : "#00e5ff";
-  const glowColor = isRepel ? "rgba(255,23,68,0.4)" : "var(--color-accent-glow)";
-  const dimColor = isRepel ? "rgba(255,23,68,0.2)" : "var(--color-accent-dim)";
-  const borderColor = isRepel ? "rgba(255,23,68,0.5)" : "rgba(0,229,255,0.5)";
+  const dotColor = isRepel ? "#ff1744" : "#2979ff";
+  const glowColor = isRepel ? "rgba(255,23,68,0.4)" : "rgba(41,121,255,0.4)";
+  const dimColor = isRepel ? "rgba(255,23,68,0.2)" : "rgba(41,121,255,0.2)";
+  const borderColor = isRepel ? "rgba(255,23,68,0.5)" : "rgba(41,121,255,0.5)";
 
   return (
     <>
