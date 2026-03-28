@@ -177,6 +177,19 @@ export default function ParticleBackground() {
 
     const fontSize = 18;
 
+    // Matrix cursor trail particles
+    interface TrailChar {
+      x: number;
+      y: number;
+      vy: number;
+      char: string;
+      life: number; // 0→1, dies at 1
+      size: number;
+    }
+    const trailChars: TrailChar[] = [];
+    let lastTrailX = -1000;
+    let lastTrailY = -1000;
+
     // ── Matrix Rain ──
     const animateMatrix = () => {
       ctx.fillStyle = "rgba(10, 10, 10, 0.06)";
@@ -185,61 +198,90 @@ export default function ParticleBackground() {
       ctx.font = `bold ${fontSize}px monospace`;
       const drops = matrixDropsRef.current;
       const mouse = mouseRef.current;
-      const corruptionRadius = 200;
 
+      // Spawn trail characters as mouse moves
+      if (mouseMovingRef.current) {
+        const dx = mouse.x - lastTrailX;
+        const dy = mouse.y - lastTrailY;
+        const moveDist = Math.sqrt(dx * dx + dy * dy);
+        if (moveDist > 12) {
+          const count = Math.min(Math.floor(moveDist / 12), 4);
+          for (let t = 0; t < count; t++) {
+            trailChars.push({
+              x: mouse.x + (Math.random() - 0.5) * 24,
+              y: mouse.y + (Math.random() - 0.5) * 24,
+              vy: Math.random() * 1.5 + 0.8,
+              char: Math.random() > 0.5 ? "1" : "0",
+              life: 0,
+              size: Math.random() * 8 + 16,
+            });
+          }
+          lastTrailX = mouse.x;
+          lastTrailY = mouse.y;
+        }
+      }
+
+      // Draw & update trail characters
+      for (let t = trailChars.length - 1; t >= 0; t--) {
+        const tc = trailChars[t];
+        tc.life += 0.025;
+        tc.y += tc.vy;
+        tc.vy += 0.03; // slight gravity
+
+        if (tc.life >= 1) {
+          trailChars.splice(t, 1);
+          continue;
+        }
+
+        // Scramble occasionally
+        if (Math.random() < 0.08) {
+          tc.char = Math.random() > 0.5 ? "1" : "0";
+        }
+
+        const fadeIn = Math.min(tc.life * 8, 1); // quick fade in
+        const fadeOut = 1 - tc.life;
+        const alpha = fadeIn * fadeOut;
+
+        // Bright glow
+        ctx.font = `bold ${tc.size}px monospace`;
+        ctx.shadowColor = "rgba(0, 255, 65, 0.8)";
+        ctx.shadowBlur = 12 * alpha;
+        ctx.fillStyle = `rgba(180, 255, 180, ${alpha * 0.9})`;
+        ctx.fillText(tc.char, tc.x, tc.y);
+
+        // Dimmer echo underneath
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.4})`;
+        ctx.fillText(tc.char, tc.x + 1, tc.y + 1);
+      }
+      ctx.shadowBlur = 0;
+
+      // Draw rain drops
       for (let i = 0; i < drops.length; i++) {
         const drop = drops[i];
-
-        // Check if any visible part of this drop is near the cursor
-        const dx = mouse.x - drop.x;
-        const dropTop = drop.y - drop.length * fontSize;
-        const closestY = Math.max(dropTop, Math.min(mouse.y, drop.y));
-        const dy = mouse.y - closestY;
-        const distToCursor = Math.sqrt(dx * dx + dy * dy);
-        const nearCursor = distToCursor < corruptionRadius;
-        const proximity = nearCursor ? 1 - distToCursor / corruptionRadius : 0;
-
-        // Corruption zone: speed boost near cursor
-        drop.y += drop.speed + (proximity * 2.5);
+        drop.y += drop.speed;
 
         for (let j = 0; j < drop.chars.length; j++) {
           const charY = drop.y - j * fontSize;
           if (charY < -fontSize || charY > canvas.height + fontSize) continue;
 
-          // Per-character proximity to cursor
-          const charDx = mouse.x - drop.x;
-          const charDy = mouse.y - charY;
-          const charDist = Math.sqrt(charDx * charDx + charDy * charDy);
-          const charNear = charDist < corruptionRadius;
-          const charProx = charNear ? 1 - charDist / corruptionRadius : 0;
-
           const fade = j === 0 ? 1 : Math.max(0, 1 - j / drop.length);
-          const baseAlpha = drop.opacity * fade;
-          // Boost brightness near cursor
-          const alpha = Math.min(baseAlpha + charProx * 0.6, 1);
+          const alpha = drop.opacity * fade;
 
           if (j === 0) {
-            ctx.fillStyle = charNear
-              ? `rgba(255, 255, 255, ${Math.min(alpha * 1.3, 1)})`
-              : `rgba(200, 255, 200, ${Math.min(alpha * 1.2, 1)})`;
+            ctx.fillStyle = `rgba(200, 255, 200, ${Math.min(alpha * 1.2, 1)})`;
             ctx.font = `bold ${fontSize}px monospace`;
           } else if (j < 3) {
-            ctx.fillStyle = charNear
-              ? `rgba(150, 255, 150, ${alpha})`
-              : `rgba(0, 255, 65, ${alpha * 0.9})`;
+            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.9})`;
             ctx.font = `bold ${fontSize}px monospace`;
           } else {
-            ctx.fillStyle = charNear
-              ? `rgba(100, 255, 100, ${alpha * 0.9})`
-              : `rgba(0, 255, 65, ${alpha * 0.7})`;
+            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.7})`;
             ctx.font = `${fontSize}px monospace`;
           }
 
           ctx.fillText(drop.chars[j], drop.x, charY);
 
-          // Scramble characters faster near cursor
-          const mutateChance = charNear ? 0.02 + charProx * 0.25 : 0.02;
-          if (Math.random() < mutateChance) {
+          if (Math.random() < 0.02) {
             drop.chars[j] = Math.random() > 0.5 ? "1" : "0";
           }
         }
