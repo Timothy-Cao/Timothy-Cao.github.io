@@ -5,9 +5,19 @@ import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
 import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
+import { useTheme } from "@/components/theme-provider";
 import { bio, hobbies, currentInterests, timeline, websiteCredits } from "@/data/about";
 
+const profileImage: Record<string, string> = {
+  cyber: "/assets/media/profile/cyber.jpg",
+  matrix: "/assets/media/profile/matrix.png",
+  crimson: "/assets/media/profile/crimson.png",
+};
+
 export default function AboutPage() {
+  const { theme } = useTheme();
+  const currentProfile = profileImage[theme.name] ?? "/assets/media/profile/cyber.jpg";
+
   return (
     <PageTransition>
       <div className="max-w-4xl mx-auto px-6 py-20">
@@ -16,7 +26,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row items-center gap-10 mb-20">
             <div className="relative w-32 h-32 rounded-full overflow-hidden border border-accent/20 shrink-0">
               <Image
-                src="/profile.jpg"
+                src={currentProfile}
                 alt="Timothy Cao"
                 fill
                 className="object-cover"
