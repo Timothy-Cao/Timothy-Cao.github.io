@@ -115,10 +115,10 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   {
     title: "GenZ Typeracer",
-    subtitle: "How fast can you type no cap fr fr ong?",
-    href: "/playground/typeracer",
-    coverImage: "",
-    comingSoon: true,
+    subtitle: "How fast can you skibidi type?",
+    href: "https://genztyper-8yrpcocpd-timothycaos-projects.vercel.app",
+    coverImage: "/assets/media/games/typeracer.svg",
+    external: true,
   },
   {
     title: "Multitasker",
