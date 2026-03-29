@@ -26,20 +26,20 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   {
     title: "Fermi Estimations",
-    subtitle: "For those with itchy brains",
+    subtitle: "Become a master guesser",
     href: "/playground/fermi",
     coverImage: "/assets/media/puzzles/fermi.jpg",
     hoverEffect: "dial",
   },
   {
-    title: "Multitasker",
+    title: "Multitasker (Faker Game)",
     subtitle: "How many things can you juggle at once?",
     href: "https://multitasker-pi.vercel.app/",
     coverImage: "/assets/media/games/multitasker.svg",
     external: true,
   },
   {
-    title: "Prime Climb",
+    title: "Prime Climb AI",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
     href: "https://web-lake-ten-27.vercel.app/",
     coverImage: "/assets/media/games/primeclimb.png",
