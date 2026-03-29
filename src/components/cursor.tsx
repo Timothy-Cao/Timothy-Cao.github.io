@@ -13,8 +13,8 @@ export default function CustomCursor() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
-  const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
+  const cursorX = useSpring(0, { stiffness: 2000, damping: 80 });
+  const cursorY = useSpring(0, { stiffness: 2000, damping: 80 });
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
