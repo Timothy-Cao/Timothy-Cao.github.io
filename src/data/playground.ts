@@ -66,6 +66,13 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/games/24.png",
   },
   {
+    title: "Geography Trainer",
+    subtitle: "Test your world knowledge",
+    href: "https://geotrainer-beta.vercel.app/",
+    coverImage: "/assets/media/games/geotrainer.jpg",
+    external: true,
+  },
+  {
     title: "Gallery",
     subtitle: "A year in the life of Tim Cao",
     href: "/playground/gallery",
@@ -98,13 +105,6 @@ export const playgroundCards: PlaygroundCard[] = [
     subtitle: "How fast can you skibidi type?",
     href: "https://genztyper.vercel.app/",
     coverImage: "/assets/media/games/typeracer.svg",
-    external: true,
-  },
-  {
-    title: "Geography Trainer",
-    subtitle: "Test your world knowledge",
-    href: "https://geotrainer-beta.vercel.app/",
-    coverImage: "/assets/media/games/geotrainer.jpg",
     external: true,
   },
   // --- Coming soon ---
