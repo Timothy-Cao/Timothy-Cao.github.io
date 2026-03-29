@@ -40,7 +40,7 @@ export default function Home() {
               <Image
                 key={currentProfile}
                 src={currentProfile}
-                alt="Timothy Cao"
+                alt="Tim Cao"
                 fill
                 className="object-cover relative z-10"
                 priority
@@ -57,7 +57,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {"Timothy Cao".split("").map((char, i) => (
+            {"Tim Cao".split("").map((char, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
