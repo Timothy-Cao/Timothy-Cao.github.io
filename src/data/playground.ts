@@ -73,7 +73,7 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/games/24.png",
   },
   {
-    title: "Gallery",
+    title: "2024 Gallery",
     subtitle: "A year in the life of Tim Cao",
     href: "/playground/gallery",
     coverImage: "/assets/media/blog_covers/me_1.jpg",
