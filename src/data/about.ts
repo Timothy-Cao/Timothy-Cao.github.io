@@ -7,7 +7,6 @@ export const bio = {
 export const hobbies = [
   "Tennis",
   "Badminton",
-  "Pickleball",
   "Rock Climbing",
   "Music Composition",
   "Piano",
