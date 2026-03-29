@@ -11,27 +11,6 @@ export interface PlaygroundCard {
 export const playgroundCards: PlaygroundCard[] = [
   // --- Active cards ---
   {
-    title: "Music",
-    subtitle: "Sample some of my past works!",
-    href: "/playground/music",
-    coverImage: "/assets/media/blog_covers/music.png",
-    hoverEffect: "music",
-  },
-  {
-    title: "Video Recommendations",
-    subtitle: "Thought-provoking video essays",
-    href: "/playground/videos",
-    coverImage: "/assets/media/blog_covers/thinker.jpg",
-    hoverEffect: "grain",
-  },
-  {
-    title: "Fermi Estimations",
-    subtitle: "Become a master guesser",
-    href: "/playground/fermi",
-    coverImage: "/assets/media/puzzles/fermi.jpg",
-    hoverEffect: "dial",
-  },
-  {
     title: "Multitasker (Faker Game)",
     subtitle: "How many things can you juggle at once?",
     href: "https://multitasker-pi.vercel.app/",
@@ -44,6 +23,27 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://geotrainer-beta.vercel.app/",
     coverImage: "/assets/media/games/geotrainer.jpg",
     external: true,
+  },
+  {
+    title: "Fermi Estimations",
+    subtitle: "Become a master guesser",
+    href: "/playground/fermi",
+    coverImage: "/assets/media/puzzles/fermi.jpg",
+    hoverEffect: "dial",
+  },
+  {
+    title: "Music",
+    subtitle: "Sample some of my past works!",
+    href: "/playground/music",
+    coverImage: "/assets/media/blog_covers/music.png",
+    hoverEffect: "music",
+  },
+  {
+    title: "Video Recommendations",
+    subtitle: "Thought-provoking video essays",
+    href: "/playground/videos",
+    coverImage: "/assets/media/blog_covers/thinker.jpg",
+    hoverEffect: "grain",
   },
   {
     title: "Prime Climb AI",
