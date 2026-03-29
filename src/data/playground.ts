@@ -39,6 +39,13 @@ export const playgroundCards: PlaygroundCard[] = [
     external: true,
   },
   {
+    title: "Geography Trainer",
+    subtitle: "Test your world knowledge",
+    href: "https://geotrainer-beta.vercel.app/",
+    coverImage: "/assets/media/games/geotrainer.jpg",
+    external: true,
+  },
+  {
     title: "Prime Climb AI",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
     href: "https://web-lake-ten-27.vercel.app/",
@@ -64,13 +71,6 @@ export const playgroundCards: PlaygroundCard[] = [
     subtitle: "Test your math speed with the card game 24 and its variants",
     href: "/playground/games/24",
     coverImage: "/assets/media/games/24.png",
-  },
-  {
-    title: "Geography Trainer",
-    subtitle: "Test your world knowledge",
-    href: "https://geotrainer-beta.vercel.app/",
-    coverImage: "/assets/media/games/geotrainer.jpg",
-    external: true,
   },
   {
     title: "Gallery",
