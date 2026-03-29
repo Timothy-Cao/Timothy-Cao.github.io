@@ -100,18 +100,18 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/games/typeracer.svg",
     external: true,
   },
+  {
+    title: "Geography Trainer",
+    subtitle: "Bollards, languages, road sides — train your geo memory",
+    href: "https://geotrainer-beta.vercel.app/",
+    coverImage: "/assets/media/games/geotrainer.svg",
+    external: true,
+  },
   // --- Coming soon ---
   {
     title: "Mapledle",
     subtitle: "Guess the MapleStory OST",
     href: "/playground/mapledle",
-    coverImage: "",
-    comingSoon: true,
-  },
-  {
-    title: "GeoGuessr Trainer",
-    subtitle: "Bollards, languages, road sides — train your geo memory",
-    href: "/playground/geoguessr",
     coverImage: "",
     comingSoon: true,
   },

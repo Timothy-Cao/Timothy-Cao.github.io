@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="12" fill="#16213e"/>
+
+  <!-- Globe -->
+  <circle cx="200" cy="135" r="70" fill="none" stroke="#0f3460" stroke-width="2"/>
+  <circle cx="200" cy="135" r="70" fill="none" stroke="#53d8fb" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Latitude lines -->
+  <ellipse cx="200" cy="135" rx="70" ry="20" fill="none" stroke="#53d8fb" stroke-width="1" opacity="0.4"/>
+  <ellipse cx="200" cy="135" rx="70" ry="45" fill="none" stroke="#53d8fb" stroke-width="1" opacity="0.3"/>
+
+  <!-- Longitude lines -->
+  <ellipse cx="200" cy="135" rx="20" ry="70" fill="none" stroke="#53d8fb" stroke-width="1" opacity="0.4"/>
+  <ellipse cx="200" cy="135" rx="45" ry="70" fill="none" stroke="#53d8fb" stroke-width="1" opacity="0.3"/>
+
+  <!-- Continents (simplified shapes) -->
+  <!-- North America -->
+  <path d="M165 95 Q170 88 180 90 Q185 95 182 105 Q178 110 170 112 Q162 108 165 95Z" fill="#6bcb77" opacity="0.7"/>
+  <!-- South America -->
+  <path d="M178 140 Q182 135 186 140 Q188 155 184 168 Q180 172 176 165 Q174 150 178 140Z" fill="#6bcb77" opacity="0.6"/>
+  <!-- Europe/Africa -->
+  <path d="M205 95 Q210 90 215 95 Q212 100 210 98Z" fill="#6bcb77" opacity="0.65"/>
+  <path d="M208 110 Q214 105 218 112 Q220 130 216 145 Q210 150 208 140 Q206 125 208 110Z" fill="#6bcb77" opacity="0.6"/>
+  <!-- Asia -->
+  <path d="M218 88 Q235 82 248 90 Q255 100 250 110 Q240 115 230 112 Q220 105 218 95Z" fill="#6bcb77" opacity="0.65"/>
+  <!-- Australia -->
+  <path d="M240 150 Q248 148 252 155 Q250 162 242 160 Q238 156 240 150Z" fill="#6bcb77" opacity="0.55"/>
+
+  <!-- Location pins -->
+  <g opacity="0.9">
+    <circle cx="172" cy="100" r="3" fill="#e94560"/>
+    <path d="M172 97 L172 91" stroke="#e94560" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="172" cy="89" r="2" fill="#e94560"/>
+  </g>
+  <g opacity="0.9">
+    <circle cx="228" cy="95" r="3" fill="#ffd93d"/>
+    <path d="M228 92 L228 86" stroke="#ffd93d" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="228" cy="84" r="2" fill="#ffd93d"/>
+  </g>
+  <g opacity="0.9">
+    <circle cx="213" cy="130" r="3" fill="#c084fc"/>
+    <path d="M213 127 L213 121" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="213" cy="119" r="2" fill="#c084fc"/>
+  </g>
+
+  <!-- Orbit ring -->
+  <ellipse cx="200" cy="135" rx="85" ry="30" fill="none" stroke="#53d8fb" stroke-width="0.8" opacity="0.2" stroke-dasharray="4 4"/>
+
+  <!-- Title -->
+  <text x="200" y="240" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#53d8fb">Geography Trainer</text>
+  <text x="200" y="262" text-anchor="middle" font-family="monospace" font-size="11" fill="#e0e0e0" opacity="0.7">bollards  |  languages  |  road signs</text>
+</svg>
