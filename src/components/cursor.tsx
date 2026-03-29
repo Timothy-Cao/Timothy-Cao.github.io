@@ -7,7 +7,6 @@ import { useTheme } from "@/components/theme-provider";
 
 export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
-  const [hovering, setHovering] = useState(false);
   const [isRepel, setIsRepel] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const { theme } = useTheme();
@@ -26,16 +25,6 @@ export default function CustomCursor() {
       if (!visible) setVisible(true);
     };
 
-    const handleOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.closest("a, button, [role='button'], input, textarea, [data-hover]")
-      ) {
-        setHovering(true);
-      }
-    };
-
-    const handleOut = () => setHovering(false);
     const handleLeave = () => setVisible(false);
     const handleEnter = () => setVisible(true);
 
@@ -51,27 +40,22 @@ export default function CustomCursor() {
     };
 
     window.addEventListener("mousemove", move);
-    window.addEventListener("mouseover", handleOver);
-    window.addEventListener("mouseout", handleOut);
     window.addEventListener("click", handleClick);
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("mouseenter", handleEnter);
 
     return () => {
       window.removeEventListener("mousemove", move);
-      window.removeEventListener("mouseover", handleOver);
-      window.removeEventListener("mouseout", handleOut);
       window.removeEventListener("click", handleClick);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
     };
   }, [cursorX, cursorY, visible]);
 
-  // Toggle cursor: none based on theme, page, and hovering state
+  // Always keep default cursor visible
   useEffect(() => {
-    const showCustom = theme.name === "limitless" && isHome && !hovering;
-    document.documentElement.setAttribute("data-custom-cursor", showCustom ? "true" : "false");
-  }, [theme, isHome, hovering]);
+    document.documentElement.setAttribute("data-custom-cursor", "false");
+  }, [theme, isHome]);
 
   // Watch attract/repel mode changes from particles
   useEffect(() => {
@@ -87,15 +71,13 @@ export default function CustomCursor() {
     return null;
   }
 
-  // Only render custom cursor for limitless theme on home page
   if (theme.name !== "limitless" || !isHome) {
     return null;
   }
 
-  const dotColor = isRepel ? "#ff1744" : "#2979ff";
-  const glowColor = isRepel ? "rgba(255,23,68,0.4)" : "rgba(41,121,255,0.4)";
-  const dimColor = isRepel ? "rgba(255,23,68,0.2)" : "rgba(41,121,255,0.2)";
-  const dotSize = hovering ? 0 : expanded ? 24 : 8;
+  const ringColor = isRepel ? "rgba(255,23,68,0.5)" : "rgba(41,121,255,0.5)";
+  const glowColor = isRepel ? "rgba(255,23,68,0.3)" : "rgba(41,121,255,0.3)";
+  const ringSize = expanded ? 48 : 24;
 
   return (
     <motion.div
@@ -111,12 +93,12 @@ export default function CustomCursor() {
       <div
         className="rounded-full transition-all duration-200"
         style={{
-          width: dotSize,
-          height: dotSize,
-          backgroundColor: dotColor,
+          width: ringSize,
+          height: ringSize,
+          border: `1.5px solid ${ringColor}`,
           boxShadow: expanded
-            ? `0 0 30px ${glowColor}, 0 0 60px ${glowColor}`
-            : `0 0 10px ${dimColor}`,
+            ? `0 0 20px ${glowColor}, 0 0 40px ${glowColor}`
+            : `0 0 8px ${glowColor}`,
         }}
       />
     </motion.div>
