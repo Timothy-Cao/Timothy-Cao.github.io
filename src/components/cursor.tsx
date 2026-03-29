@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [isRepel, setIsRepel] = useState(false);
+  const [mouseDown, setMouseDown] = useState(false);
   const { theme } = useTheme();
 
   const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
@@ -39,9 +40,24 @@ export default function CustomCursor() {
     const handleLeave = () => setVisible(false);
     const handleEnter = () => setVisible(true);
 
+    const handleMouseDown = (e: MouseEvent) => {
+      if (e.button === 0) {
+        setMouseDown(true);
+        document.documentElement.setAttribute("data-cursor-boost", "true");
+      }
+    };
+    const handleMouseUp = (e: MouseEvent) => {
+      if (e.button === 0) {
+        setMouseDown(false);
+        document.documentElement.setAttribute("data-cursor-boost", "false");
+      }
+    };
+
     window.addEventListener("mousemove", move);
     window.addEventListener("mouseover", handleOver);
     window.addEventListener("mouseout", handleOut);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("mouseenter", handleEnter);
 
@@ -49,6 +65,8 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", handleOver);
       window.removeEventListener("mouseout", handleOut);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
     };
@@ -84,50 +102,32 @@ export default function CustomCursor() {
   const dimColor = isRepel ? "rgba(255,23,68,0.2)" : "rgba(41,121,255,0.2)";
   const borderColor = isRepel ? "rgba(255,23,68,0.5)" : "rgba(41,121,255,0.5)";
 
+  const dotSize = mouseDown ? 24 : hovering ? 12 : 8;
+
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+    <motion.div
+      className="fixed top-0 left-0 pointer-events-none z-[9999]"
+      style={{
+        x: cursorX,
+        y: cursorY,
+        translateX: "-50%",
+        translateY: "-50%",
+        opacity: visible ? 1 : 0,
+      }}
+    >
+      <div
+        className="rounded-full transition-all duration-200"
         style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-          opacity: visible ? 1 : 0,
-        }}
-      >
-        <div
-          className="rounded-full transition-all duration-300"
-          style={{
-            width: hovering ? 12 : 8,
-            height: hovering ? 12 : 8,
-            backgroundColor: dotColor,
-            boxShadow: hovering
+          width: dotSize,
+          height: dotSize,
+          backgroundColor: dotColor,
+          boxShadow: mouseDown
+            ? `0 0 30px ${glowColor}, 0 0 60px ${glowColor}`
+            : hovering
               ? `0 0 20px ${dimColor}, 0 0 40px ${glowColor}`
               : `0 0 10px ${dimColor}`,
-          }}
-        />
-      </motion.div>
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
-        style={{
-          x: ringX,
-          y: ringY,
-          translateX: "-50%",
-          translateY: "-50%",
-          opacity: visible ? 1 : 0,
         }}
-      >
-        <div
-          className="rounded-full transition-all duration-300"
-          style={{
-            width: hovering ? 48 : 32,
-            height: hovering ? 48 : 32,
-            border: `1px solid ${borderColor}`,
-            boxShadow: hovering ? `0 0 15px ${glowColor}` : "none",
-          }}
-        />
-      </motion.div>
-    </>
+      />
+    </motion.div>
   );
 }

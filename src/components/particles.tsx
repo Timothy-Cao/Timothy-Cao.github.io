@@ -517,10 +517,12 @@ export default function ParticleBackground() {
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
+        const boosted = document.documentElement.getAttribute("data-cursor-boost") === "true";
+        const forceMultiplier = boosted ? 5 : 1;
         if (dist < 300 && dist > 0) {
           const force = (300 - dist) / 300;
-          p.vx += (dx / dist) * force * 0.06 * direction;
-          p.vy += (dy / dist) * force * 0.06 * direction;
+          p.vx += (dx / dist) * force * 0.06 * direction * forceMultiplier;
+          p.vy += (dy / dist) * force * 0.06 * direction * forceMultiplier;
         }
 
         p.vx *= 0.995;
