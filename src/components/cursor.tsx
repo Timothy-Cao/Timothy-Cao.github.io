@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, useSpring } from "framer-motion";
 import { useTheme } from "@/components/theme-provider";
@@ -13,7 +13,6 @@ export default function CustomCursor() {
   const { theme } = useTheme();
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const lockedRef = useRef(false);
 
   const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
   const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
@@ -22,7 +21,6 @@ export default function CustomCursor() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const move = (e: MouseEvent) => {
-      if (lockedRef.current) return;
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
       if (!visible) setVisible(true);
@@ -41,36 +39,17 @@ export default function CustomCursor() {
     const handleLeave = () => setVisible(false);
     const handleEnter = () => setVisible(true);
 
-    const requestLock = () => {
-      if (!isHome || theme.name !== "limitless") return;
-      document.body.requestPointerLock?.();
-    };
-
     const handleMouseDown = (e: MouseEvent) => {
       if (e.button === 0) {
         setMouseDown(true);
         document.documentElement.setAttribute("data-cursor-boost", "true");
-        requestLock();
       }
     };
     const handleMouseUp = (e: MouseEvent) => {
       if (e.button === 0) {
         setMouseDown(false);
         document.documentElement.setAttribute("data-cursor-boost", "false");
-        document.exitPointerLock?.();
       }
-    };
-
-    const handleContextMenu = (e: MouseEvent) => {
-      if (isHome && theme.name === "limitless") {
-        requestLock();
-        // Release after a short delay since right click is just a toggle
-        setTimeout(() => document.exitPointerLock?.(), 100);
-      }
-    };
-
-    const handlePointerLockChange = () => {
-      lockedRef.current = !!document.pointerLockElement;
     };
 
     window.addEventListener("mousemove", move);
@@ -78,10 +57,8 @@ export default function CustomCursor() {
     window.addEventListener("mouseout", handleOut);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("contextmenu", handleContextMenu);
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("mouseenter", handleEnter);
-    document.addEventListener("pointerlockchange", handlePointerLockChange);
 
     return () => {
       window.removeEventListener("mousemove", move);
@@ -89,13 +66,10 @@ export default function CustomCursor() {
       window.removeEventListener("mouseout", handleOut);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("contextmenu", handleContextMenu);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
-      document.removeEventListener("pointerlockchange", handlePointerLockChange);
-      document.exitPointerLock?.();
     };
-  }, [cursorX, cursorY, visible, isHome, theme.name]);
+  }, [cursorX, cursorY, visible]);
 
   // Toggle cursor: none based on theme AND page
   useEffect(() => {
