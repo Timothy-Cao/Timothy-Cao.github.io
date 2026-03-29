@@ -32,7 +32,7 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "dial",
   },
   {
-    title: "Music",
+    title: "Composition",
     subtitle: "Sample some of my past works!",
     href: "/playground/music",
     coverImage: "/assets/media/blog_covers/music.png",
