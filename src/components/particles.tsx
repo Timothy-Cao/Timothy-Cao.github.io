@@ -163,7 +163,6 @@ export default function ParticleBackground() {
     };
 
     const onClick = (e: MouseEvent) => {
-      cyberAttractRef.current = !cyberAttractRef.current;
       // Crimson hex: trigger a ripple wave on click
       wavesRef.current.push({ ox: e.clientX, oy: e.clientY, time: pulseTimeRef.current });
       // Matrix: explosion of 0s and 1s from click point
@@ -184,10 +183,16 @@ export default function ParticleBackground() {
       }
     };
 
+    const onContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      cyberAttractRef.current = !cyberAttractRef.current;
+    };
+
     resize();
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouse);
     window.addEventListener("click", onClick);
+    window.addEventListener("contextmenu", onContextMenu);
 
     // Schedule first auto-pulse
     nextAutoPulseRef.current = 5 + Math.random() * 5;
@@ -625,6 +630,7 @@ export default function ParticleBackground() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("click", onClick);
+      window.removeEventListener("contextmenu", onContextMenu);
       if (mouseMoveTimerRef.current) clearTimeout(mouseMoveTimerRef.current);
     };
   }, [initParticles, initMatrixDrops, initHexGrid]);

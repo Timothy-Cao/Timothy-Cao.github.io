@@ -13,8 +13,6 @@ export default function CustomCursor() {
 
   const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
   const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
-  const ringX = useSpring(0, { stiffness: 150, damping: 20 });
-  const ringY = useSpring(0, { stiffness: 150, damping: 20 });
 
   useEffect(() => {
     if (window.matchMedia("(pointer: coarse)").matches) return;
@@ -22,8 +20,6 @@ export default function CustomCursor() {
     const move = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      ringX.set(e.clientX);
-      ringY.set(e.clientY);
       if (!visible) setVisible(true);
     };
 
@@ -70,7 +66,7 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
     };
-  }, [cursorX, cursorY, ringX, ringY, visible]);
+  }, [cursorX, cursorY, visible]);
 
   // Toggle cursor: none based on theme
   useEffect(() => {
@@ -100,8 +96,6 @@ export default function CustomCursor() {
   const dotColor = isRepel ? "#ff1744" : "#2979ff";
   const glowColor = isRepel ? "rgba(255,23,68,0.4)" : "rgba(41,121,255,0.4)";
   const dimColor = isRepel ? "rgba(255,23,68,0.2)" : "rgba(41,121,255,0.2)";
-  const borderColor = isRepel ? "rgba(255,23,68,0.5)" : "rgba(41,121,255,0.5)";
-
   const dotSize = mouseDown ? 24 : hovering ? 12 : 8;
 
   return (
