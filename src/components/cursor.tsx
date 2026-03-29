@@ -9,7 +9,7 @@ export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [isRepel, setIsRepel] = useState(false);
-  const [mouseDown, setMouseDown] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const { theme } = useTheme();
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -39,24 +39,21 @@ export default function CustomCursor() {
     const handleLeave = () => setVisible(false);
     const handleEnter = () => setVisible(true);
 
-    const handleMouseDown = (e: MouseEvent) => {
-      if (e.button === 0) {
-        setMouseDown(true);
-        document.documentElement.setAttribute("data-cursor-boost", "true");
-      }
-    };
-    const handleMouseUp = (e: MouseEvent) => {
-      if (e.button === 0) {
-        setMouseDown(false);
-        document.documentElement.setAttribute("data-cursor-boost", "false");
-      }
+    const handleClick = (e: MouseEvent) => {
+      if (e.button !== 0) return;
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [role='button'], input, textarea, [data-hover]")) return;
+      setExpanded((prev) => {
+        const next = !prev;
+        document.documentElement.setAttribute("data-cursor-boost", next ? "true" : "false");
+        return next;
+      });
     };
 
     window.addEventListener("mousemove", move);
     window.addEventListener("mouseover", handleOver);
     window.addEventListener("mouseout", handleOut);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("click", handleClick);
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("mouseenter", handleEnter);
 
@@ -64,18 +61,17 @@ export default function CustomCursor() {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", handleOver);
       window.removeEventListener("mouseout", handleOut);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("click", handleClick);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
     };
   }, [cursorX, cursorY, visible]);
 
-  // Toggle cursor: none based on theme AND page
+  // Toggle cursor: none based on theme, page, and hovering state
   useEffect(() => {
-    const showCustom = theme.name === "limitless" && isHome;
+    const showCustom = theme.name === "limitless" && isHome && !hovering;
     document.documentElement.setAttribute("data-custom-cursor", showCustom ? "true" : "false");
-  }, [theme, isHome]);
+  }, [theme, isHome, hovering]);
 
   // Watch attract/repel mode changes from particles
   useEffect(() => {
@@ -99,7 +95,7 @@ export default function CustomCursor() {
   const dotColor = isRepel ? "#ff1744" : "#2979ff";
   const glowColor = isRepel ? "rgba(255,23,68,0.4)" : "rgba(41,121,255,0.4)";
   const dimColor = isRepel ? "rgba(255,23,68,0.2)" : "rgba(41,121,255,0.2)";
-  const dotSize = mouseDown ? 24 : hovering ? 12 : 8;
+  const dotSize = hovering ? 0 : expanded ? 24 : 8;
 
   return (
     <motion.div
@@ -118,11 +114,9 @@ export default function CustomCursor() {
           width: dotSize,
           height: dotSize,
           backgroundColor: dotColor,
-          boxShadow: mouseDown
+          boxShadow: expanded
             ? `0 0 30px ${glowColor}, 0 0 60px ${glowColor}`
-            : hovering
-              ? `0 0 20px ${dimColor}, 0 0 40px ${glowColor}`
-              : `0 0 10px ${dimColor}`,
+            : `0 0 10px ${dimColor}`,
         }}
       />
     </motion.div>
