@@ -102,9 +102,9 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   {
     title: "Geography Trainer",
-    subtitle: "Bollards, languages, road sides — train your geo memory",
+    subtitle: "Test your world knowledge",
     href: "https://geotrainer-beta.vercel.app/",
-    coverImage: "/assets/media/games/geotrainer.svg",
+    coverImage: "/assets/media/games/geotrainer.jpg",
     external: true,
   },
   // --- Coming soon ---
