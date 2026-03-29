@@ -32,10 +32,10 @@ function TwitterIcon({ className }: { className?: string }) {
 }
 
 const socials = [
-  { icon: GithubIcon, label: "GitHub", href: "https://github.com/timcao" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "https://linkedin.com/in/timothycao" },
-  { icon: TwitterIcon, label: "X / Twitter", href: "https://x.com/timcao" },
-  { icon: Mail, label: "Email", href: "mailto:timothy.cao@proton.me" },
+  { icon: GithubIcon, label: "GitHub" },
+  { icon: LinkedinIcon, label: "LinkedIn" },
+  { icon: TwitterIcon, label: "X / Twitter" },
+  { icon: Mail, label: "Email" },
 ];
 
 export default function ContactPage() {
@@ -154,22 +154,19 @@ export default function ContactPage() {
                 <h2 className="text-lg font-semibold mb-6">Connect With Me</h2>
                 <div className="space-y-4">
                   {socials.map((social) => (
-                    <a
+                    <div
                       key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-4 p-3 rounded-lg transition-all hover:bg-accent/5"
+                      className="flex items-center gap-4 p-3 rounded-lg opacity-40 cursor-default"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center transition-all group-hover:border-accent/50 group-hover:shadow-[0_0_15px_var(--color-accent-glow)] group-hover:scale-110">
-                        <social.icon className="w-5 h-5 text-accent" />
+                      <div className="w-10 h-10 rounded-lg bg-muted/10 border border-muted/20 flex items-center justify-center">
+                        <social.icon className="w-5 h-5 text-muted" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium group-hover:text-accent transition-colors">
+                        <p className="text-sm font-medium text-muted">
                           {social.label}
                         </p>
                       </div>
-                    </a>
+                    </div>
                   ))}
                 </div>
               </div>
