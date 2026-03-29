@@ -110,7 +110,7 @@ export default function Home() {
             transition={{ delay: 1.3, duration: 0.5 }}
           >
             <Link
-              href="/about"
+              href="/playground"
               className="group relative inline-flex items-center gap-2 px-8 py-3 rounded-full border border-accent/30 text-accent font-medium transition-all duration-300 hover:border-accent hover:shadow-[0_0_20px_var(--color-accent-glow)] hover:bg-accent/5"
             >
               Explore
