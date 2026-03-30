@@ -14,9 +14,7 @@ export default function PianoPage() {
       <div className="max-w-5xl mx-auto px-6 py-20">
         <ScrollReveal>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Piano YouTubers</h1>
-          <p className="text-muted mb-12">
-            My secret piano page... Here&apos;s some of my favourite piano youtubers...
-          </p>
+          <p className="text-muted mb-12">My recommendations</p>
         </ScrollReveal>
 
         <div className="space-y-3">
