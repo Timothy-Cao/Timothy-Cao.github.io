@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { VideoRecommendation } from "@/data/videos";
@@ -111,6 +111,15 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
     setDirection(1);
     setCurrent((c) => c + 1);
   };
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
 
   const variants = {
     enter: { opacity: 0, scale: 0.95 },

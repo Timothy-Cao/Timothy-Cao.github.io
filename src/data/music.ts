@@ -11,7 +11,7 @@ export const compositions: Composition[] = [
   { title: "Journey of the Dodo", description: "2025, this symphonic piece features a horn and oboe-led melody", type: "audio", src: "/assets/media/audio/journey_of_the_dodo.mp3", isFavorite: true },
   { title: "March Challenge", description: "Written in 2024, featuring piano and harp.", type: "audio", src: "/assets/media/audio/MarchRemixChallenge.mp3", isFavorite: true },
   { title: "My September", description: "Written in 2023, for solo piano.", type: "audio", src: "/assets/media/audio/myseptember.mp3", isFavorite: true },
-  { title: "Test song (First taste of FL Studio)", description: "Written in 2025.", type: "audio", src: "/assets/media/audio/First taste of FL Studio.mp3", isFavorite: false },
+  { title: "FL Studio Test", description: "Written in 2025.", type: "audio", src: "/assets/media/audio/First taste of FL Studio.mp3", isFavorite: false },
   { title: "Ringtone challenge", description: "A little ms ost inspired ringtone challenge", type: "audio", src: "/assets/media/audio/ms_ringtone.mp3", isFavorite: false },
   { title: "Bongo first", description: "Music was written around the bongo line", type: "audio", src: "/assets/media/audio/1hr_challenge.mp3", isFavorite: false },
   { title: "8 Bit Nostalgia", description: "Written in 2021, for solo piano (synth).", type: "audio", src: "/assets/media/audio/8_bit_nostalgia.mp3", isFavorite: false },
