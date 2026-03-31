@@ -11,7 +11,6 @@ function formatTime(s: number) {
   return `${m}:${sec.toString().padStart(2, "0")}`;
 }
 
-// Simple deterministic color palette based on index
 const cardColors = [
   "from-indigo-500/20 to-purple-600/20",
   "from-cyan-500/20 to-blue-600/20",
@@ -41,17 +40,108 @@ interface MusicCarouselProps {
   volume: number;
 }
 
+function CardContent({
+  comp,
+  index,
+  total,
+  isCurrent,
+  playing,
+  onToggle,
+  onSeek,
+  currentTime,
+  duration,
+}: {
+  comp: Composition;
+  index: number;
+  total: number;
+  isCurrent: boolean;
+  playing: boolean;
+  onToggle: () => void;
+  onSeek: (e: React.MouseEvent<HTMLDivElement>) => void;
+  currentTime: number;
+  duration: number;
+}) {
+  const colorIdx = index % cardColors.length;
+  const progress = duration ? (currentTime / duration) * 100 : 0;
+
+  return (
+    <div
+      className={`rounded-2xl border border-border overflow-hidden bg-gradient-to-br ${cardColors[colorIdx]} backdrop-blur-sm h-full`}
+    >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <span className="absolute top-6 right-8 text-6xl opacity-[0.06] select-none">
+          {waveIcons[index % waveIcons.length]}
+        </span>
+        <span className="absolute bottom-10 left-6 text-8xl opacity-[0.04] select-none rotate-12">
+          {waveIcons[(index + 2) % waveIcons.length]}
+        </span>
+      </div>
+
+      <div className="relative p-8 md:p-12">
+        <span className={`text-sm font-mono ${cardAccents[colorIdx]} opacity-70`}>
+          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </span>
+
+        <h2 className="text-2xl md:text-3xl font-bold mt-2 flex items-center gap-3">
+          {comp.title}
+          {comp.isFavorite && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />}
+        </h2>
+
+        <p className="text-muted mt-2 text-sm md:text-base">{comp.description}</p>
+
+        {isCurrent && (
+          <div className="mt-8 flex items-center gap-4">
+            <button
+              onClick={onToggle}
+              className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${
+                playing
+                  ? "bg-accent/20 border-accent/50 text-accent"
+                  : "bg-white/5 border-white/20 text-foreground hover:border-accent/40 hover:text-accent"
+              }`}
+              aria-label={playing ? "Pause" : "Play"}
+            >
+              {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+            </button>
+
+            <div className="flex-1 space-y-1">
+              <div
+                className="h-2 bg-white/10 rounded-full overflow-hidden cursor-pointer"
+                onClick={onSeek}
+                role="slider"
+                aria-valuenow={currentTime}
+                aria-valuemax={duration}
+                tabIndex={0}
+              >
+                <div
+                  className="h-full bg-accent rounded-full transition-[width] duration-100"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-xs text-muted font-mono">
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(duration)}</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function MusicCarousel({ compositions, volume }: MusicCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [direction, setDirection] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const id = useId();
 
   const comp = compositions[current];
+  const prevIdx = current > 0 ? current - 1 : compositions.length - 1;
+  const nextIdx = current < compositions.length - 1 ? current + 1 : 0;
 
-  // Update volume when slider changes
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume;
   }, [volume]);
@@ -64,8 +154,8 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
     const onLoad = () => setDuration(audio.duration);
     const onEnd = () => {
       setPlaying(false);
-      // Auto-advance to next
       if (current < compositions.length - 1) {
+        setDirection(1);
         setCurrent((prev) => prev + 1);
       }
     };
@@ -80,7 +170,6 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
     };
   }, [current, compositions.length]);
 
-  // Reset on track change
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -112,107 +201,104 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   };
 
   const prev = () => {
+    setDirection(-1);
     setCurrent((c) => (c > 0 ? c - 1 : compositions.length - 1));
   };
   const next = () => {
+    setDirection(1);
     setCurrent((c) => (c < compositions.length - 1 ? c + 1 : 0));
   };
 
-  const progress = duration ? (currentTime / duration) * 100 : 0;
-  const colorIdx = current % cardColors.length;
+  const variants = {
+    enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0, scale: 0.9 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0, scale: 0.9 }),
+  };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto">
       <audio ref={audioRef} preload="metadata" />
 
-      {/* Card */}
-      <div className="relative">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.3 }}
-            className={`relative rounded-2xl border border-border overflow-hidden bg-gradient-to-br ${cardColors[colorIdx]} backdrop-blur-sm`}
-          >
-            {/* Background decoration */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <span className="absolute top-6 right-8 text-6xl opacity-[0.06] select-none">
-                {waveIcons[current % waveIcons.length]}
-              </span>
-              <span className="absolute bottom-10 left-6 text-8xl opacity-[0.04] select-none rotate-12">
-                {waveIcons[(current + 2) % waveIcons.length]}
-              </span>
-            </div>
-
-            <div className="relative p-8 md:p-12">
-              {/* Track number */}
-              <span className={`text-sm font-mono ${cardAccents[colorIdx]} opacity-70`}>
-                {String(current + 1).padStart(2, "0")} / {String(compositions.length).padStart(2, "0")}
-              </span>
-
-              {/* Title */}
-              <h2 className="text-2xl md:text-3xl font-bold mt-2 flex items-center gap-3">
-                {comp.title}
-                {comp.isFavorite && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />}
-              </h2>
-
-              {/* Description */}
-              <p className="text-muted mt-2 text-sm md:text-base">{comp.description}</p>
-
-              {/* Player controls */}
-              <div className="mt-8 flex items-center gap-4">
-                <button
-                  onClick={toggle}
-                  className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${
-                    playing
-                      ? "bg-accent/20 border-accent/50 text-accent"
-                      : "bg-white/5 border-white/20 text-foreground hover:border-accent/40 hover:text-accent"
-                  }`}
-                  aria-label={playing ? "Pause" : "Play"}
-                >
-                  {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
-                </button>
-
-                <div className="flex-1 space-y-1">
-                  <div
-                    className="h-2 bg-white/10 rounded-full overflow-hidden cursor-pointer group"
-                    onClick={seek}
-                    role="slider"
-                    aria-valuenow={currentTime}
-                    aria-valuemax={duration}
-                    tabIndex={0}
-                  >
-                    <div
-                      className="h-full bg-accent rounded-full transition-[width] duration-100"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
-                  <div className="flex justify-between text-xs text-muted font-mono">
-                    <span>{formatTime(currentTime)}</span>
-                    <span>{formatTime(duration)}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation arrows */}
+      <div className="relative flex items-center justify-center gap-4 md:gap-6">
+        {/* Previous card preview */}
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/30 transition-all"
+          className="hidden md:block flex-shrink-0 w-48 lg:w-56 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
           aria-label="Previous track"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <CardContent
+            comp={compositions[prevIdx]}
+            index={prevIdx}
+            total={compositions.length}
+            isCurrent={false}
+            playing={false}
+            onToggle={() => {}}
+            onSeek={() => {}}
+            currentTime={0}
+            duration={0}
+          />
         </button>
+
+        {/* Center card */}
+        <div className="flex-shrink-0 w-full md:w-[28rem] lg:w-[32rem] relative">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <CardContent
+                comp={comp}
+                index={current}
+                total={compositions.length}
+                isCurrent={true}
+                playing={playing}
+                onToggle={toggle}
+                onSeek={seek}
+                currentTime={currentTime}
+                duration={duration}
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Mobile arrows */}
+          <button
+            onClick={prev}
+            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/30 transition-all z-10"
+            aria-label="Previous track"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={next}
+            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/30 transition-all z-10"
+            aria-label="Next track"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Next card preview */}
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/30 transition-all"
+          className="hidden md:block flex-shrink-0 w-48 lg:w-56 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
           aria-label="Next track"
         >
-          <ChevronRight className="w-5 h-5" />
+          <CardContent
+            comp={compositions[nextIdx]}
+            index={nextIdx}
+            total={compositions.length}
+            isCurrent={false}
+            playing={false}
+            onToggle={() => {}}
+            onSeek={() => {}}
+            currentTime={0}
+            duration={0}
+          />
         </button>
       </div>
 
@@ -221,7 +307,10 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
         {compositions.map((_, i) => (
           <button
             key={`${id}-dot-${i}`}
-            onClick={() => setCurrent(i)}
+            onClick={() => {
+              setDirection(i > current ? 1 : -1);
+              setCurrent(i);
+            }}
             className={`rounded-full transition-all duration-300 ${
               i === current
                 ? "w-6 h-2 bg-accent"
