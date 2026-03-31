@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="12" fill="#0f1729"/>
+
+  <!-- Grid of cells - some alive, some dead -->
+  <g opacity="0.15">
+    <rect x="40" y="30" width="320" height="200" rx="4" fill="none" stroke="#4f6fff" stroke-width="0.5"/>
+    <!-- Vertical grid lines -->
+    <line x1="80" y1="30" x2="80" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="120" y1="30" x2="120" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="160" y1="30" x2="160" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="200" y1="30" x2="200" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="240" y1="30" x2="240" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="280" y1="30" x2="280" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="320" y1="30" x2="320" y2="230" stroke="#4f6fff" stroke-width="0.3"/>
+    <!-- Horizontal grid lines -->
+    <line x1="40" y1="70" x2="360" y2="70" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="40" y1="110" x2="360" y2="110" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="40" y1="150" x2="360" y2="150" stroke="#4f6fff" stroke-width="0.3"/>
+    <line x1="40" y1="190" x2="360" y2="190" stroke="#4f6fff" stroke-width="0.3"/>
+  </g>
+
+  <!-- Alive cells with musical glow -->
+  <g>
+    <rect x="122" y="72" width="36" height="36" rx="3" fill="#6366f1" opacity="0.8"/>
+    <rect x="162" y="72" width="36" height="36" rx="3" fill="#818cf8" opacity="0.6"/>
+    <rect x="202" y="112" width="36" height="36" rx="3" fill="#a78bfa" opacity="0.7"/>
+    <rect x="242" y="112" width="36" height="36" rx="3" fill="#6366f1" opacity="0.9"/>
+    <rect x="162" y="112" width="36" height="36" rx="3" fill="#c084fc" opacity="0.5"/>
+    <rect x="122" y="152" width="36" height="36" rx="3" fill="#818cf8" opacity="0.6"/>
+    <rect x="242" y="152" width="36" height="36" rx="3" fill="#a78bfa" opacity="0.7"/>
+    <rect x="282" y="72" width="36" height="36" rx="3" fill="#c084fc" opacity="0.5"/>
+    <rect x="82" y="112" width="36" height="36" rx="3" fill="#6366f1" opacity="0.6"/>
+    <rect x="202" y="152" width="36" height="36" rx="3" fill="#818cf8" opacity="0.8"/>
+  </g>
+
+  <!-- Sound wave ripples emanating from cells -->
+  <circle cx="240" cy="130" r="20" fill="none" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/>
+  <circle cx="240" cy="130" r="35" fill="none" stroke="#a78bfa" stroke-width="0.5" opacity="0.15"/>
+  <circle cx="140" cy="90" r="18" fill="none" stroke="#6366f1" stroke-width="0.8" opacity="0.25"/>
+  <circle cx="140" cy="90" r="30" fill="none" stroke="#6366f1" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- Musical note symbols -->
+  <text x="260" y="100" font-size="14" fill="#c084fc" opacity="0.5">♪</text>
+  <text x="150" y="165" font-size="12" fill="#818cf8" opacity="0.4">♫</text>
+  <text x="310" y="140" font-size="10" fill="#a78bfa" opacity="0.35">♩</text>
+
+  <!-- Title -->
+  <text x="200" y="260" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#a78bfa">Harmonic Life</text>
+  <text x="200" y="280" text-anchor="middle" font-family="monospace" font-size="11" fill="#e0e0e0" opacity="0.5">cellular automata  |  music theory</text>
+</svg>

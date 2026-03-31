@@ -101,6 +101,13 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "twinkle",
   },
   {
+    title: "Harmonic Life",
+    subtitle: "Cellular automata driven by music theory",
+    href: "https://harmonic-life-five.vercel.app/",
+    coverImage: "/assets/media/games/harmonic-life.svg",
+    external: true,
+  },
+  {
     title: "GenZ Typeracer",
     subtitle: "How fast can you skibidi type?",
     href: "https://genztyper.vercel.app/",
