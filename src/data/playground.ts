@@ -46,6 +46,13 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "grain",
   },
   {
+    title: "Harmonic Life",
+    subtitle: "Musical cellular automata",
+    href: "https://harmonic-life-five.vercel.app/",
+    coverImage: "/assets/media/games/harmonic-life.svg",
+    external: true,
+  },
+  {
     title: "Prime Climb AI",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
     href: "https://web-lake-ten-27.vercel.app/",
@@ -99,13 +106,6 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/astronomy",
     coverImage: "/assets/media/blog_covers/nasa.png",
     hoverEffect: "twinkle",
-  },
-  {
-    title: "Harmonic Life",
-    subtitle: "Cellular automata driven by music theory",
-    href: "https://harmonic-life-five.vercel.app/",
-    coverImage: "/assets/media/games/harmonic-life.svg",
-    external: true,
   },
   {
     title: "GenZ Typeracer",
