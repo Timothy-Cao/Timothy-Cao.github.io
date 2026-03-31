@@ -114,6 +114,13 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/games/typeracer.svg",
     external: true,
   },
+  {
+    title: "Polar Intuition",
+    subtitle: "Train your eye for polar functions",
+    href: "https://polar-intuition.vercel.app/",
+    coverImage: "/assets/media/games/polar-intuition.svg",
+    external: true,
+  },
   // --- Coming soon ---
   {
     title: "Mapledle",
