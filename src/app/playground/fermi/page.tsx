@@ -517,7 +517,14 @@ export default function FermiPage() {
                 </div>
 
                 {/* Slider */}
-                <div className="w-full max-w-md mb-6 px-2">
+                <div
+                  className="w-full max-w-md mb-6 px-2"
+                  onWheel={(e) => {
+                    e.preventDefault();
+                    const delta = e.deltaY < 0 ? 1 : -1;
+                    setValue((v) => clamp(v + delta * (e.shiftKey ? 5 : 1)));
+                  }}
+                >
                   <div
                     ref={sliderRef}
                     className="relative h-10 cursor-pointer select-none touch-none"

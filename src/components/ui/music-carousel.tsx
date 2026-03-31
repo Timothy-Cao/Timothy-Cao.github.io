@@ -224,6 +224,11 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
     return () => window.removeEventListener("keydown", onKey);
   });
 
+  const handleWheel = (e: React.WheelEvent) => {
+    if (e.deltaY > 0) next();
+    else if (e.deltaY < 0) prev();
+  };
+
   const variants = {
     enter: { opacity: 0, scale: 0.95 },
     center: { opacity: 1, scale: 1 },
@@ -231,7 +236,7 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto" onWheel={handleWheel}>
       <audio ref={audioRef} preload="metadata" />
 
       <div className="relative flex items-center justify-center gap-4 md:gap-6">

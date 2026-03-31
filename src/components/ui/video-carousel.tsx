@@ -121,6 +121,11 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
     return () => window.removeEventListener("keydown", onKey);
   });
 
+  const handleWheel = (e: React.WheelEvent) => {
+    if (e.deltaY > 0) next();
+    else if (e.deltaY < 0) prev();
+  };
+
   const variants = {
     enter: { opacity: 0, scale: 0.95 },
     center: { opacity: 1, scale: 1 },
@@ -128,7 +133,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <div className="w-full max-w-5xl mx-auto" onWheel={handleWheel}>
       <div className="relative flex items-center justify-center gap-4 md:gap-6">
         {/* Previous card preview */}
         {prevIdx !== null ? (
