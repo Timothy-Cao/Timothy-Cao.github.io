@@ -139,8 +139,8 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   const id = useId();
 
   const comp = compositions[current];
-  const prevIdx = current > 0 ? current - 1 : compositions.length - 1;
-  const nextIdx = current < compositions.length - 1 ? current + 1 : 0;
+  const prevIdx = current > 0 ? current - 1 : null;
+  const nextIdx = current < compositions.length - 1 ? current + 1 : null;
 
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume;
@@ -201,12 +201,14 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   };
 
   const prev = () => {
+    if (current === 0) return;
     setDirection(-1);
-    setCurrent((c) => (c > 0 ? c - 1 : compositions.length - 1));
+    setCurrent((c) => c - 1);
   };
   const next = () => {
+    if (current === compositions.length - 1) return;
     setDirection(1);
-    setCurrent((c) => (c < compositions.length - 1 ? c + 1 : 0));
+    setCurrent((c) => c + 1);
   };
 
   const variants = {
@@ -221,23 +223,27 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
 
       <div className="relative flex items-center justify-center gap-4 md:gap-6">
         {/* Previous card preview */}
-        <button
-          onClick={prev}
-          className="hidden md:block flex-shrink-0 w-48 lg:w-56 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
-          aria-label="Previous track"
-        >
-          <CardContent
-            comp={compositions[prevIdx]}
-            index={prevIdx}
-            total={compositions.length}
-            isCurrent={false}
-            playing={false}
-            onToggle={() => {}}
-            onSeek={() => {}}
-            currentTime={0}
-            duration={0}
-          />
-        </button>
+        {prevIdx !== null ? (
+          <button
+            onClick={prev}
+            className="hidden md:block flex-shrink-0 w-48 lg:w-56 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
+            aria-label="Previous track"
+          >
+            <CardContent
+              comp={compositions[prevIdx]}
+              index={prevIdx}
+              total={compositions.length}
+              isCurrent={false}
+              playing={false}
+              onToggle={() => {}}
+              onSeek={() => {}}
+              currentTime={0}
+              duration={0}
+            />
+          </button>
+        ) : (
+          <div className="hidden md:block flex-shrink-0 w-48 lg:w-56" />
+        )}
 
         {/* Center card */}
         <div className="flex-shrink-0 w-full md:w-[28rem] lg:w-[32rem] relative">
@@ -283,23 +289,27 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
         </div>
 
         {/* Next card preview */}
-        <button
-          onClick={next}
-          className="hidden md:block flex-shrink-0 w-48 lg:w-56 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
-          aria-label="Next track"
-        >
-          <CardContent
-            comp={compositions[nextIdx]}
-            index={nextIdx}
-            total={compositions.length}
-            isCurrent={false}
-            playing={false}
-            onToggle={() => {}}
-            onSeek={() => {}}
-            currentTime={0}
-            duration={0}
-          />
-        </button>
+        {nextIdx !== null ? (
+          <button
+            onClick={next}
+            className="hidden md:block flex-shrink-0 w-48 lg:w-56 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
+            aria-label="Next track"
+          >
+            <CardContent
+              comp={compositions[nextIdx]}
+              index={nextIdx}
+              total={compositions.length}
+              isCurrent={false}
+              playing={false}
+              onToggle={() => {}}
+              onSeek={() => {}}
+              currentTime={0}
+              duration={0}
+            />
+          </button>
+        ) : (
+          <div className="hidden md:block flex-shrink-0 w-48 lg:w-56" />
+        )}
       </div>
 
       {/* Track list dots */}

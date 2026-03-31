@@ -92,16 +92,18 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
   const [direction, setDirection] = useState(0);
   const id = useId();
 
-  const prevIdx = current > 0 ? current - 1 : videos.length - 1;
-  const nextIdx = current < videos.length - 1 ? current + 1 : 0;
+  const prevIdx = current > 0 ? current - 1 : null;
+  const nextIdx = current < videos.length - 1 ? current + 1 : null;
 
   const prev = () => {
+    if (current === 0) return;
     setDirection(-1);
-    setCurrent((c) => (c > 0 ? c - 1 : videos.length - 1));
+    setCurrent((c) => c - 1);
   };
   const next = () => {
+    if (current === videos.length - 1) return;
     setDirection(1);
-    setCurrent((c) => (c < videos.length - 1 ? c + 1 : 0));
+    setCurrent((c) => c + 1);
   };
 
   const variants = {
@@ -114,13 +116,17 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
     <div className="w-full max-w-5xl mx-auto">
       <div className="relative flex items-center justify-center gap-4 md:gap-6">
         {/* Previous card preview */}
-        <button
-          onClick={prev}
-          className="hidden md:block flex-shrink-0 w-44 lg:w-52 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
-          aria-label="Previous video"
-        >
-          <VideoCard video={videos[prevIdx]} index={prevIdx} total={videos.length} isCurrent={false} />
-        </button>
+        {prevIdx !== null ? (
+          <button
+            onClick={prev}
+            className="hidden md:block flex-shrink-0 w-44 lg:w-52 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
+            aria-label="Previous video"
+          >
+            <VideoCard video={videos[prevIdx]} index={prevIdx} total={videos.length} isCurrent={false} />
+          </button>
+        ) : (
+          <div className="hidden md:block flex-shrink-0 w-44 lg:w-52" />
+        )}
 
         {/* Center card */}
         <div className="flex-shrink-0 w-full md:w-[32rem] lg:w-[36rem] relative">
@@ -156,13 +162,17 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
         </div>
 
         {/* Next card preview */}
-        <button
-          onClick={next}
-          className="hidden md:block flex-shrink-0 w-44 lg:w-52 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
-          aria-label="Next video"
-        >
-          <VideoCard video={videos[nextIdx]} index={nextIdx} total={videos.length} isCurrent={false} />
-        </button>
+        {nextIdx !== null ? (
+          <button
+            onClick={next}
+            className="hidden md:block flex-shrink-0 w-44 lg:w-52 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
+            aria-label="Next video"
+          >
+            <VideoCard video={videos[nextIdx]} index={nextIdx} total={videos.length} isCurrent={false} />
+          </button>
+        ) : (
+          <div className="hidden md:block flex-shrink-0 w-44 lg:w-52" />
+        )}
       </div>
 
       {/* Track dots */}
