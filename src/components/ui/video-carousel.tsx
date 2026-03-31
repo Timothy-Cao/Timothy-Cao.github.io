@@ -55,8 +55,14 @@ function VideoCard({
 
         <h2 className="text-xl md:text-2xl font-bold mt-2">{video.title}</h2>
         <p className={`text-sm mt-1 ${cardAccents[colorIdx]}`}>{video.creator}</p>
-        {video.description && (
-          <p className="text-muted mt-2 text-sm">{video.description}</p>
+        {isCurrent ? (
+          video.description ? (
+            <p className="text-muted mt-2 text-sm line-clamp-2 min-h-[2.5rem]">{video.description}</p>
+          ) : (
+            <div className="min-h-[2.5rem]" />
+          )
+        ) : (
+          <div className="min-h-[2.5rem]" />
         )}
       </div>
 

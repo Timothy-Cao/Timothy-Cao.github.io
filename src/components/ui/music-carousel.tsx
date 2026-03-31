@@ -87,7 +87,11 @@ function CardContent({
           {comp.isFavorite && <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />}
         </h2>
 
-        <p className="text-muted mt-2 text-sm md:text-base">{comp.description}</p>
+        {isCurrent ? (
+          <p className="text-muted mt-2 text-sm md:text-base line-clamp-2 min-h-[2.5rem]">{comp.description}</p>
+        ) : (
+          <div className="min-h-[2.5rem]" />
+        )}
 
         {isCurrent && (
           <div className="mt-8 flex items-center gap-4">
