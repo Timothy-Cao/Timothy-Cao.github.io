@@ -212,9 +212,9 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   };
 
   const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0, scale: 0.9 }),
-    center: { x: 0, opacity: 1, scale: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0, scale: 0.9 }),
+    enter: { opacity: 0, scale: 0.95 },
+    center: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.95 },
   };
 
   return (
@@ -247,15 +247,14 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
 
         {/* Center card */}
         <div className="flex-shrink-0 w-full md:w-[28rem] lg:w-[32rem] relative">
-          <AnimatePresence mode="wait" custom={direction}>
+          <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              custom={direction}
               variants={variants}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.25 }}
             >
               <CardContent
                 comp={comp}
