@@ -53,6 +53,20 @@ export const playgroundCards: PlaygroundCard[] = [
     external: true,
   },
   {
+    title: "Misconfigured",
+    subtitle: "One input, four outcomes — bend your brain",
+    href: "https://misconfigured.vercel.app/",
+    coverImage: "/assets/media/blog_covers/misconfigured.jpg",
+    external: true,
+  },
+  {
+    title: "Polar Intuition",
+    subtitle: "Train your eye for polar functions",
+    href: "https://polar-intuition.vercel.app/",
+    coverImage: "/assets/media/games/polar-intuition.svg",
+    external: true,
+  },
+  {
     title: "Prime Climb AI",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
     href: "https://web-lake-ten-27.vercel.app/",
@@ -112,13 +126,6 @@ export const playgroundCards: PlaygroundCard[] = [
     subtitle: "How fast can you skibidi type?",
     href: "https://genztyper.vercel.app/",
     coverImage: "/assets/media/games/typeracer.svg",
-    external: true,
-  },
-  {
-    title: "Polar Intuition",
-    subtitle: "Train your eye for polar functions",
-    href: "https://polar-intuition.vercel.app/",
-    coverImage: "/assets/media/games/polar-intuition.svg",
     external: true,
   },
   // --- Coming soon ---
