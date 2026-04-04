@@ -18,10 +18,10 @@ export const playgroundCards: PlaygroundCard[] = [
     external: true,
   },
   {
-    title: "Geography Trainer",
-    subtitle: "Test your world knowledge",
-    href: "https://geotrainer-beta.vercel.app/",
-    coverImage: "/assets/media/games/geotrainer.jpg",
+    title: "Misconfigured",
+    subtitle: "One input, four outcomes — bend your brain",
+    href: "https://misconfigured.vercel.app/",
+    coverImage: "/assets/media/games/misconfigured.jpg",
     external: true,
   },
   {
@@ -53,17 +53,17 @@ export const playgroundCards: PlaygroundCard[] = [
     external: true,
   },
   {
-    title: "Misconfigured",
-    subtitle: "One input, four outcomes — bend your brain",
-    href: "https://misconfigured.vercel.app/",
-    coverImage: "/assets/media/blog_covers/misconfigured.jpg",
+    title: "Geography Trainer",
+    subtitle: "Test your world knowledge",
+    href: "https://geotrainer-beta.vercel.app/",
+    coverImage: "/assets/media/games/geotrainer.jpg",
     external: true,
   },
   {
     title: "Polar Intuition",
     subtitle: "Train your eye for polar functions",
     href: "https://polar-intuition.vercel.app/",
-    coverImage: "/assets/media/blog_covers/polarvision.jpg",
+    coverImage: "/assets/media/games/polarvision.jpg",
     external: true,
   },
   {
