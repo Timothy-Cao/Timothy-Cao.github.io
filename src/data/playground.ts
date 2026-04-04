@@ -19,7 +19,7 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   {
     title: "Misconfigured",
-    subtitle: "One input, four outcomes — bend your brain",
+    subtitle: "Brain blasting puzzle game",
     href: "https://misconfigured.vercel.app/",
     coverImage: "/assets/media/games/misconfigured.jpg",
     external: true,
