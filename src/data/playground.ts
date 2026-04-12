@@ -21,7 +21,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Misconfigured",
     subtitle: "Brain blasting puzzle game",
     href: "https://misconfigured.vercel.app/",
-    coverImage: "/assets/media/games/misconfigured.jpg",
+    coverImage: "/misconfigured.png",
     external: true,
   },
   {
