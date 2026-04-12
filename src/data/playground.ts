@@ -14,7 +14,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Multitasker (Faker Game)",
     subtitle: "How many things can you juggle at once?",
     href: "https://multitasker-pi.vercel.app/",
-    coverImage: "/assets/media/games/multitasker.svg",
+    coverImage: "/multitasker.png",
     external: true,
   },
   {
