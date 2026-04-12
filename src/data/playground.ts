@@ -137,22 +137,22 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   // --- Coming soon ---
   {
-    title: "Mapledle",
-    subtitle: "Guess the MapleStory OST",
+    title: "Roguelike",
+    subtitle: "Work in progress",
     href: "/playground/mapledle",
     coverImage: "",
     comingSoon: true,
   },
   {
-    title: "Tim's Beats",
-    subtitle: "Toggle-beat maker with chord generation and melody improv",
+    title: "Guess the Instruments",
+    subtitle: "A piece is played and you have to identify the instruments",
     href: "/playground/beats",
     coverImage: "",
     comingSoon: true,
   },
   {
-    title: "The Shelf",
-    subtitle: "Books, shows, and films I recommend with short takes",
+    title: "Procrastinator",
+    subtitle: "A vague work in progress",
     href: "/playground/shelf",
     coverImage: "",
     comingSoon: true,
