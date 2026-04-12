@@ -67,7 +67,7 @@ export default function PlaygroundPage() {
         <ScrollReveal>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Playground</h1>
           <p className="text-muted mb-12 max-w-lg">
-            Collection of things Tim has built over the years. Mix of my games, my music, AIs, recommendations & trainers.
+            Collection of things Tim has built over the years. Mix of my games, music, AIs, recommendations, practice tools & others
           </p>
         </ScrollReveal>
 
