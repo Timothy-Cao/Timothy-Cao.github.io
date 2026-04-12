@@ -90,13 +90,13 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   {
     title: "Scrabble Trainer",
-    subtitle: "Train your scrabble vision with the 1000 most likely scrabbles",
+    subtitle: "Train top 1000 likelihood scrabbles.",
     href: "/playground/games/scrabble",
     coverImage: "/assets/media/games/scrabble.png",
   },
   {
     title: "Math Game 24",
-    subtitle: "Test your math speed with the card game 24 and its variants",
+    subtitle: "Test your math speed.",
     href: "/playground/games/24",
     coverImage: "/assets/media/games/24.png",
   },
@@ -145,7 +145,7 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   {
     title: "Guess the Instruments",
-    subtitle: "A piece is played and you have to identify the instruments",
+    subtitle: "Identify instruments from the piece",
     href: "/playground/beats",
     coverImage: "",
     comingSoon: true,
