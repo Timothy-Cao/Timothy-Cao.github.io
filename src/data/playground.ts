@@ -32,6 +32,13 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "dial",
   },
   {
+    title: "Gabo Helper",
+    subtitle: "Tutorial & Game manager",
+    href: "https://gabo-tim.vercel.app/",
+    coverImage: "/gabo.png",
+    external: true,
+  },
+  {
     title: "Composition",
     subtitle: "Sample some of my past works!",
     href: "/playground/music",
