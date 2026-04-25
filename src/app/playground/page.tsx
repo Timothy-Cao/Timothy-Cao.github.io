@@ -17,15 +17,27 @@ export default function PlaygroundPage() {
   const musicAudioRef = useRef<HTMLAudioElement | null>(null);
   const pianoAudioRef = useRef<HTMLAudioElement | null>(null);
 
+  const getMusicAudio = () => {
+    if (!musicAudioRef.current) {
+      const audio = new Audio("/assets/media/audio/hover_sound.mp3");
+      audio.preload = "none";
+      audio.volume = 0.15;
+      musicAudioRef.current = audio;
+    }
+    return musicAudioRef.current;
+  };
+
+  const getPianoAudio = () => {
+    if (!pianoAudioRef.current) {
+      const audio = new Audio("/merry christmas mr. lawrence if hisaishi composed it.mp3");
+      audio.preload = "none";
+      audio.volume = 0.3;
+      pianoAudioRef.current = audio;
+    }
+    return pianoAudioRef.current;
+  };
+
   useEffect(() => {
-    musicAudioRef.current = new Audio("/assets/media/audio/hover_sound.mp3");
-    musicAudioRef.current.preload = "auto";
-    musicAudioRef.current.volume = 0.15;
-
-    pianoAudioRef.current = new Audio("/merry christmas mr. lawrence if hisaishi composed it.mp3");
-    pianoAudioRef.current.preload = "auto";
-    pianoAudioRef.current.volume = 0.3;
-
     return () => {
       if (musicAudioRef.current) { musicAudioRef.current.pause(); musicAudioRef.current.currentTime = 0; }
       if (pianoAudioRef.current) { pianoAudioRef.current.pause(); pianoAudioRef.current.currentTime = 0; }
@@ -42,21 +54,25 @@ export default function PlaygroundPage() {
   const handleHover = (effect: string | undefined, hovering: boolean) => {
     if (effect === "gallery") {
       setGallerySpeed(hovering ? 200 : 1000);
-    } else if (effect === "music" && musicAudioRef.current) {
+    } else if (effect === "music") {
+      const audio = hovering ? getMusicAudio() : musicAudioRef.current;
+      if (!audio) return;
       if (hovering) {
-        musicAudioRef.current.currentTime = 0;
-        musicAudioRef.current.play().catch(() => {});
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
       } else {
-        musicAudioRef.current.pause();
-        musicAudioRef.current.currentTime = 0;
+        audio.pause();
+        audio.currentTime = 0;
       }
-    } else if (effect === "keys" && pianoAudioRef.current) {
+    } else if (effect === "keys") {
+      const audio = hovering ? getPianoAudio() : pianoAudioRef.current;
+      if (!audio) return;
       if (hovering) {
-        pianoAudioRef.current.currentTime = 1;
-        pianoAudioRef.current.play().catch(() => {});
+        audio.currentTime = 1;
+        audio.play().catch(() => {});
       } else {
-        pianoAudioRef.current.pause();
-        pianoAudioRef.current.currentTime = 1;
+        audio.pause();
+        audio.currentTime = 1;
       }
     }
   };
@@ -117,6 +133,7 @@ export default function PlaygroundPage() {
                         src={isGallery ? getImagePath(galleryIndex) : card.coverImage}
                         alt={card.title}
                         fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         unoptimized={isGallery}
                       />

@@ -30,12 +30,19 @@ export default function GalleryPage() {
               role="button"
               tabIndex={0}
               aria-label={`Open image ${i + 1}`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setLightboxIndex(i);
+                }
+              }}
             >
               <Image
                 src={src}
                 alt={`Gallery photo ${i + 1}`}
                 width={400}
                 height={300}
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
                 unoptimized

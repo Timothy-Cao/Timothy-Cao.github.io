@@ -7,6 +7,7 @@ import KonamiEasterEgg from "@/components/konami";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { siteConfig, siteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +20,36 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Timothy Cao | Software Engineer & Creator",
-  description: "Personal portfolio of Timothy Cao — Software Engineer, Composer, Creator.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/assets/media/profile/cyber.jpg",
+        width: 1200,
+        height: 1200,
+        alt: siteConfig.name,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: ["/assets/media/profile/cyber.jpg"],
+  },
 };
 
 export default function RootLayout({
