@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { PianoYouTuber } from "@/data/piano";
+import LiteYouTubePlayer from "@/components/ui/lite-youtube-player";
 
 const cardColors = [
   "from-indigo-500/15 to-purple-600/15",
@@ -43,6 +44,20 @@ export default function PianoFocusCards({ youtubers }: PianoFocusCardsProps) {
   const close = () => setSelected(null);
 
   const yt = selected !== null ? youtubers[selected] : null;
+  const videoCount = yt?.videoIds.length ?? 0;
+
+  useEffect(() => {
+    if (selected === null) return;
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelected(null);
+      if (event.key === "ArrowLeft") setVideoIdx((index) => Math.max(0, index - 1));
+      if (event.key === "ArrowRight") setVideoIdx((index) => Math.min(videoCount - 1, index + 1));
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected, videoCount]);
 
   return (
     <>
@@ -54,7 +69,7 @@ export default function PianoFocusCards({ youtubers }: PianoFocusCardsProps) {
             <motion.button
               key={yt.handle}
               onClick={() => open(i)}
-              className={`text-left p-6 rounded-2xl border border-border bg-gradient-to-br ${cardColors[colorIdx]} backdrop-blur-sm transition-all hover:border-accent/30 hover:scale-[1.02] active:scale-[0.98]`}
+              className={`text-left p-6 rounded-lg border border-border bg-gradient-to-br ${cardColors[colorIdx]} backdrop-blur-sm transition-all hover:border-accent/30 hover:scale-[1.02] active:scale-[0.98]`}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
             >
@@ -95,7 +110,7 @@ export default function PianoFocusCards({ youtubers }: PianoFocusCardsProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className={`relative w-full max-w-3xl rounded-2xl border border-border bg-gradient-to-br ${cardColors[selected % cardColors.length]} bg-surface overflow-hidden`}
+              className={`relative w-full max-w-3xl rounded-lg border border-border bg-gradient-to-br ${cardColors[selected % cardColors.length]} bg-surface overflow-hidden`}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
@@ -138,16 +153,11 @@ export default function PianoFocusCards({ youtubers }: PianoFocusCardsProps) {
 
                 {/* Video player */}
                 <div className="relative">
-                  <div className="w-full aspect-video bg-black rounded-lg overflow-hidden">
-                    <iframe
-                      className="w-full h-full"
-                      src={`https://www.youtube.com/embed/${yt.videoIds[videoIdx]}`}
-                      title={`${yt.name} video ${videoIdx + 1}`}
-                      style={{ border: "none" }}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
+                  <LiteYouTubePlayer
+                    key={`${yt.handle}-${videoIdx}`}
+                    youtubeId={yt.videoIds[videoIdx]}
+                    title={`${yt.name} video ${videoIdx + 1}`}
+                  />
 
                   {/* Video nav arrows */}
                   {videoIdx > 0 && (

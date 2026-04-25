@@ -1,213 +1,117 @@
 "use client";
 
-import { useState, useEffect, useId } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search, Video } from "lucide-react";
 import type { VideoRecommendation } from "@/data/videos";
-
-const cardColors = [
-  "from-indigo-500/20 to-purple-600/20",
-  "from-cyan-500/20 to-blue-600/20",
-  "from-rose-500/20 to-pink-600/20",
-  "from-emerald-500/20 to-teal-600/20",
-  "from-amber-500/20 to-orange-600/20",
-  "from-violet-500/20 to-fuchsia-600/20",
-  "from-sky-500/20 to-indigo-600/20",
-  "from-lime-500/20 to-green-600/20",
-];
-
-const cardAccents = [
-  "text-indigo-400",
-  "text-cyan-400",
-  "text-rose-400",
-  "text-emerald-400",
-  "text-amber-400",
-  "text-violet-400",
-  "text-sky-400",
-  "text-lime-400",
-];
+import LiteYouTubePlayer from "@/components/ui/lite-youtube-player";
 
 interface VideoCarouselProps {
   videos: VideoRecommendation[];
 }
 
-function VideoCard({
-  video,
-  index,
-  total,
-  isCurrent,
-}: {
-  video: VideoRecommendation;
-  index: number;
-  total: number;
-  isCurrent: boolean;
-}) {
-  const colorIdx = index % cardColors.length;
-
-  return (
-    <div
-      className={`rounded-2xl border border-border overflow-hidden bg-gradient-to-br ${cardColors[colorIdx]} backdrop-blur-sm h-full`}
-    >
-      <div className="relative p-6 md:p-8">
-        <span className={`text-sm font-mono ${cardAccents[colorIdx]} opacity-70`}>
-          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-        </span>
-
-        <h2 className="text-xl md:text-2xl font-bold mt-2">{video.title}</h2>
-        <p className={`text-sm mt-1 ${cardAccents[colorIdx]}`}>{video.creator}</p>
-        {isCurrent ? (
-          video.description ? (
-            <p className="text-muted mt-2 text-sm line-clamp-2 min-h-[2.5rem]">{video.description}</p>
-          ) : (
-            <div className="min-h-[2.5rem]" />
-          )
-        ) : (
-          <div className="min-h-[2.5rem]" />
-        )}
-      </div>
-
-      {isCurrent && (
-        <div className="px-6 md:px-8 pb-6 md:pb-8">
-          <div className="w-full aspect-video bg-black rounded-lg overflow-hidden">
-            <iframe
-              className="w-full h-full"
-              src={`https://www.youtube.com/embed/${video.youtubeId}`}
-              title={video.title}
-              style={{ border: "none" }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-        </div>
-      )}
-
-      {!isCurrent && (
-        <div className="px-6 md:px-8 pb-6 md:pb-8">
-          <div className="w-full aspect-video bg-white/5 rounded-lg flex items-center justify-center">
-            <span className="text-4xl opacity-20">▶</span>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+function matchesQuery(video: VideoRecommendation, query: string) {
+  const haystack = `${video.title} ${video.creator} ${video.description}`.toLowerCase();
+  return haystack.includes(query.toLowerCase());
 }
 
 export default function VideoCarousel({ videos }: VideoCarouselProps) {
-  const [current, setCurrent] = useState(0);
-  const id = useId();
+  const [selectedId, setSelectedId] = useState(videos[0]?.youtubeId ?? "");
+  const [query, setQuery] = useState("");
 
-  const prevIdx = current > 0 ? current - 1 : null;
-  const nextIdx = current < videos.length - 1 ? current + 1 : null;
+  const selected = videos.find((video) => video.youtubeId === selectedId) ?? videos[0];
+  const filtered = useMemo(
+    () => videos.filter((video) => matchesQuery(video, query.trim())),
+    [query, videos],
+  );
 
-  const prev = () => {
-    if (current === 0) return;
-    setCurrent((c) => c - 1);
-  };
-  const next = () => {
-    if (current === videos.length - 1) return;
-    setCurrent((c) => c + 1);
-  };
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  });
-
-  const handleWheel = (e: React.WheelEvent) => {
-    if (e.deltaY > 0) next();
-    else if (e.deltaY < 0) prev();
-  };
-
-  const variants = {
-    enter: { opacity: 0, scale: 0.95 },
-    center: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.95 },
-  };
+  if (!selected) {
+    return (
+      <div className="rounded-lg border border-border p-6 text-sm text-muted">
+        No video recommendations are available yet.
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full max-w-5xl mx-auto" onWheel={handleWheel}>
-      <div className="relative flex items-center justify-center gap-4 md:gap-6">
-        {/* Previous card preview */}
-        {prevIdx !== null ? (
-          <button
-            onClick={prev}
-            className="hidden md:block flex-shrink-0 w-44 lg:w-52 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
-            aria-label="Previous video"
-          >
-            <VideoCard video={videos[prevIdx]} index={prevIdx} total={videos.length} isCurrent={false} />
-          </button>
-        ) : (
-          <div className="hidden md:block flex-shrink-0 w-44 lg:w-52" />
-        )}
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+      <section>
+        <LiteYouTubePlayer key={selected.youtubeId} youtubeId={selected.youtubeId} title={selected.title} />
 
-        {/* Center card */}
-        <div className="flex-shrink-0 w-full md:w-[32rem] lg:w-[36rem] relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.25 }}
-            >
-              <VideoCard video={videos[current]} index={current} total={videos.length} isCurrent={true} />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Mobile arrows */}
-          <button
-            onClick={prev}
-            className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/30 transition-all z-10"
-            aria-label="Previous video"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={next}
-            className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/30 transition-all z-10"
-            aria-label="Next video"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+        <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+          <span className="rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-accent">
+            {selected.creator}
+          </span>
+          <span className="text-muted">
+            {String(videos.findIndex((video) => video.youtubeId === selected.youtubeId) + 1).padStart(2, "0")} /{" "}
+            {String(videos.length).padStart(2, "0")}
+          </span>
         </div>
 
-        {/* Next card preview */}
-        {nextIdx !== null ? (
-          <button
-            onClick={next}
-            className="hidden md:block flex-shrink-0 w-44 lg:w-52 opacity-40 hover:opacity-60 scale-90 transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden"
-            aria-label="Next video"
-          >
-            <VideoCard video={videos[nextIdx]} index={nextIdx} total={videos.length} isCurrent={false} />
-          </button>
+        <h2 className="mt-4 text-2xl font-bold md:text-3xl">{selected.title}</h2>
+        {selected.description ? (
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-muted md:text-base">{selected.description}</p>
         ) : (
-          <div className="hidden md:block flex-shrink-0 w-44 lg:w-52" />
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-muted md:text-base">
+            A saved recommendation from {selected.creator}.
+          </p>
         )}
-      </div>
+      </section>
 
-      {/* Track dots */}
-      <div className="flex justify-center gap-1.5 mt-6 flex-wrap">
-        {videos.map((_, i) => (
-          <button
-            key={`${id}-dot-${i}`}
-            onClick={() => {
-              setCurrent(i);
-            }}
-            className={`rounded-full transition-all duration-300 ${
-              i === current
-                ? "w-6 h-2 bg-accent"
-                : "w-2 h-2 bg-white/20 hover:bg-white/40"
-            }`}
-            aria-label={`Go to video ${i + 1}`}
+      <aside>
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted">
+            <Video className="h-4 w-4" />
+            Library
+          </h2>
+          <span className="text-xs text-muted">{filtered.length} shown</span>
+        </div>
+
+        <label htmlFor="video-search" className="sr-only">
+          Search videos
+        </label>
+        <div className="relative mb-4">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+          <input
+            id="video-search"
+            type="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search title, creator, note"
+            className="w-full rounded-lg border border-border bg-surface py-2.5 pl-9 pr-3 text-sm outline-none transition-colors placeholder:text-muted/70 focus:border-accent/40"
           />
-        ))}
-      </div>
+        </div>
+
+        <div className="max-h-[36rem] space-y-2 overflow-y-auto pr-1">
+          {filtered.length > 0 ? (
+            filtered.map((video) => {
+              const active = video.youtubeId === selected.youtubeId;
+              return (
+                <button
+                  key={video.youtubeId}
+                  type="button"
+                  onClick={() => setSelectedId(video.youtubeId)}
+                  className={`w-full rounded-lg border p-3 text-left transition-colors ${
+                    active
+                      ? "border-accent/35 bg-accent/10"
+                      : "border-border bg-surface hover:border-accent/25"
+                  }`}
+                  aria-current={active ? "true" : undefined}
+                >
+                  <span className="block text-xs text-accent/80">{video.creator}</span>
+                  <span className="mt-1 block font-medium text-foreground">{video.title}</span>
+                  {video.description && (
+                    <span className="mt-1 block truncate text-xs text-muted">{video.description}</span>
+                  )}
+                </button>
+              );
+            })
+          ) : (
+            <div className="rounded-lg border border-border p-4 text-sm text-muted">
+              No videos match that search.
+            </div>
+          )}
+        </div>
+      </aside>
     </div>
   );
 }
