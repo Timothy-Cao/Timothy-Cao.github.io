@@ -155,12 +155,6 @@ export default function TwentyFourPage() {
     setMessageType("info");
   };
 
-  // Update used-number highlighting when expression changes
-  const onExpressionChange = (val: string) => {
-    setUserExpression(val);
-    updateUsedNumbers(val);
-  };
-
   return (
     <PageTransition>
       <div className="max-w-3xl mx-auto px-6 py-20">

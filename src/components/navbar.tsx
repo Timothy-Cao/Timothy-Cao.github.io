@@ -89,18 +89,15 @@ function ThemeToggle() {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpenForPath, setMobileOpenForPath] = useState<string | null>(null);
   const pathname = usePathname();
+  const mobileOpen = mobileOpenForPath === pathname;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   return (
     <motion.nav
@@ -153,7 +150,9 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             className="flex flex-col gap-1.5 p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => {
+              setMobileOpenForPath((current) => (current === pathname ? null : pathname));
+            }}
             aria-label="Toggle menu"
           >
             <span

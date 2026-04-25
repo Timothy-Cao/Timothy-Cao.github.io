@@ -138,7 +138,6 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [direction, setDirection] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const id = useId();
 
@@ -159,7 +158,6 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
     const onEnd = () => {
       setPlaying(false);
       if (current < compositions.length - 1) {
-        setDirection(1);
         setCurrent((prev) => prev + 1);
       }
     };
@@ -206,12 +204,10 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
 
   const prev = () => {
     if (current === 0) return;
-    setDirection(-1);
     setCurrent((c) => c - 1);
   };
   const next = () => {
     if (current === compositions.length - 1) return;
-    setDirection(1);
     setCurrent((c) => c + 1);
   };
 
@@ -335,7 +331,6 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
           <button
             key={`${id}-dot-${i}`}
             onClick={() => {
-              setDirection(i > current ? 1 : -1);
               setCurrent(i);
             }}
             className={`rounded-full transition-all duration-300 ${

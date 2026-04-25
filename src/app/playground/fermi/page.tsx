@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import PageTransition from "@/components/page-transition";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 
-const QUESTION_BANK_URL =
-  "https://raw.githubusercontent.com/EricAndrechek/FermiQuestions/main/question-bank.json";
+const QUESTION_BANK_URL = "/api/fermi-questions";
 
 interface Question {
   question: string;
@@ -143,7 +142,7 @@ function ScaleBar({ data }: { data: ScaleBarData }) {
 export default function FermiPage() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [current, setCurrent] = useState<Question | null>(null);
-  const [qIndex, setQIndex] = useState(0);
+  const [, setQIndex] = useState(0);
   const [qNum, setQNum] = useState(0);
   const [points, setPoints] = useState(0);
   const [maxPoints, setMaxPoints] = useState(0);
@@ -162,25 +161,30 @@ export default function FermiPage() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
 
-  // Refs for keyboard handler to access latest state
-  const currentRef = useRef(current);
-  const editingRef = useRef(editing);
-  currentRef.current = current;
-  editingRef.current = editing;
-
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(QUESTION_BANK_URL);
+        const res = await fetch(QUESTION_BANK_URL, {
+          signal: AbortSignal.timeout(8000),
+        });
+        if (!res.ok) return;
+
         const data = await res.json();
-        const raw = data.questions;
         const arr: Question[] = [];
-        for (const source in raw) {
-          for (const q in raw[source]) {
-            const a = raw[source][q];
-            if (a >= -40 && a <= 40 && q.length < 200) arr.push({ question: q, answer: a });
+
+        if (!Array.isArray(data.questions)) return;
+
+        for (const item of data.questions) {
+          if (
+            item &&
+            typeof item === "object" &&
+            typeof item.question === "string" &&
+            typeof item.answer === "number"
+          ) {
+            arr.push({ question: item.question, answer: item.answer });
           }
         }
+
         for (let i = arr.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -240,20 +244,23 @@ export default function FermiPage() {
     setEditing(false);
   };
 
-  const advanceQuestion = () => {
-    if (qIndex < questions.length) {
-      setCurrent(questions[qIndex]);
-      setQIndex((i) => i + 1);
-      setQNum((n) => n + 1);
-      setValue(0);
-    } else {
+  const advanceQuestion = useCallback(() => {
+    setQIndex((index) => {
+      if (index < questions.length) {
+        setCurrent(questions[index]);
+        setQNum((n) => n + 1);
+        setValue(0);
+        return index + 1;
+      }
+
       setCurrent(null);
-    }
-  };
+      return index;
+    });
+  }, [questions]);
 
   const submit = useCallback(() => {
-    if (!currentRef.current) return;
-    const q = currentRef.current;
+    if (!current) return;
+    const q = current;
     const diff = Math.abs(q.answer - value);
     const awarded = diff === 0 ? 5 : diff === 1 ? 3 : diff === 2 ? 1 : 0;
     const isCorrect = diff <= 1;
@@ -280,11 +287,11 @@ export default function FermiPage() {
     const msgs: Record<number, string> = { 0: "Perfect! 5 pts", 1: "Close! 3 pts", 2: "Not bad! 1 pt" };
     setResult(msgs[diff] || "0 pts — keep going!");
     advanceQuestion();
-  }, [value, qIndex, questions]);
+  }, [advanceQuestion, current, value]);
 
   const skip = useCallback(() => {
-    if (!currentRef.current) return;
-    const q = currentRef.current;
+    if (!current) return;
+    const q = current;
     setStreak(0);
     setHistory((h) => [
       { question: q.question, userAnswer: 0, correctAnswer: q.answer, points: 0, skipped: true },
@@ -293,13 +300,13 @@ export default function FermiPage() {
     setScaleBar(null);
     setResult("");
     advanceQuestion();
-  }, [qIndex, questions]);
+  }, [advanceQuestion, current]);
 
   // Keyboard shortcuts
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       // Don't intercept when editing the text input
-      if (editingRef.current) return;
+      if (editing) return;
       // Don't intercept when typing in other inputs
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
@@ -341,7 +348,7 @@ export default function FermiPage() {
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [submit, skip]);
+  }, [editing, submit, skip]);
 
   // Scroll history to top when new entry added
   useEffect(() => {

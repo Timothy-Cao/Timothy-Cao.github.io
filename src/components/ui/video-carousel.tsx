@@ -95,7 +95,6 @@ function VideoCard({
 
 export default function VideoCarousel({ videos }: VideoCarouselProps) {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(0);
   const id = useId();
 
   const prevIdx = current > 0 ? current - 1 : null;
@@ -103,12 +102,10 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
 
   const prev = () => {
     if (current === 0) return;
-    setDirection(-1);
     setCurrent((c) => c - 1);
   };
   const next = () => {
     if (current === videos.length - 1) return;
-    setDirection(1);
     setCurrent((c) => c + 1);
   };
 
@@ -200,7 +197,6 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
           <button
             key={`${id}-dot-${i}`}
             onClick={() => {
-              setDirection(i > current ? 1 : -1);
               setCurrent(i);
             }}
             className={`rounded-full transition-all duration-300 ${

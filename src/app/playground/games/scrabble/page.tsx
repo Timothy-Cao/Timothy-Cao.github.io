@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PageTransition from "@/components/page-transition";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { wordSets } from "@/data/scrabble";
@@ -8,16 +8,12 @@ import { wordSets } from "@/data/scrabble";
 const allKeys = Object.keys(wordSets);
 
 export default function ScrabblePage() {
-  const [keys, setKeys] = useState<string[]>([]);
+  const [keys] = useState<string[]>(() => [...allKeys].sort(() => Math.random() - 0.5));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [feedback, setFeedback] = useState("");
   const [userInput, setUserInput] = useState("");
   const [showAnswers, setShowAnswers] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-
-  useEffect(() => {
-    setKeys([...allKeys].sort(() => Math.random() - 0.5));
-  }, []);
 
   const currentKey = keys[currentIndex];
   const validWords = wordSets[currentKey] || [];

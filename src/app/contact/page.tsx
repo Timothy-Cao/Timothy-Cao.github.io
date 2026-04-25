@@ -40,23 +40,38 @@ const socials = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
+
+    setSubmitting(true);
+    setError("");
+
     try {
-      await fetch("https://formspree.io/f/myzyavkz", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(data?.error || "Unable to send message right now.");
+      }
+
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
-        setForm({ name: "", email: "", message: "" });
+        setForm({ name: "", email: "", message: "", company: "" });
       }, 3000);
-    } catch {
-      // silently fail
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to send message right now.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -76,6 +91,18 @@ export default function ContactPage() {
           {/* Form */}
           <ScrollReveal>
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="company">Company</label>
+                <input
+                  id="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.company}
+                  onChange={(e) => setForm({ ...form, company: e.target.value })}
+                />
+              </div>
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Name
@@ -121,14 +148,22 @@ export default function ContactPage() {
                 />
               </div>
 
+              {error && (
+                <p className="text-sm text-red-400" role="alert">
+                  {error}
+                </p>
+              )}
+
               <motion.button
                 type="submit"
-                disabled={submitted}
+                disabled={submitted || submitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                   submitted
                     ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                    : submitting
+                    ? "bg-accent/10 text-accent/70 border border-accent/20 cursor-not-allowed"
                     : "bg-accent/10 text-accent border border-accent/30 hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_20px_var(--color-accent-glow)]"
                 }`}
               >
@@ -137,6 +172,8 @@ export default function ContactPage() {
                     <Check className="w-4 h-4" />
                     Message Sent!
                   </>
+                ) : submitting ? (
+                  <>Sending...</>
                 ) : (
                   <>
                     <Send className="w-4 h-4" />

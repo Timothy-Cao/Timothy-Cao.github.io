@@ -104,7 +104,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "2024 Gallery",
     subtitle: "A year in the life of Tim Cao",
     href: "/playground/gallery",
-    coverImage: "/assets/media/blog_covers/me_1.jpg",
+    coverImage: "/assets/media/Photo Gallery/1.jpg",
     hoverEffect: "gallery",
   },
   {

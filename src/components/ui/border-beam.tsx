@@ -2,11 +2,10 @@
 
 interface BorderBeamProps {
   className?: string;
-  size?: number;
   duration?: number;
 }
 
-export default function BorderBeam({ className = "", size = 200, duration = 8 }: BorderBeamProps) {
+export default function BorderBeam({ className = "", duration = 8 }: BorderBeamProps) {
   return (
     <div className={`absolute inset-0 overflow-hidden rounded-full pointer-events-none ${className}`}>
       <div

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useSyncExternalStore, type ReactNode } from "react";
 
 export interface Theme {
   name: string;
@@ -22,6 +22,13 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
+const THEME_STORAGE_KEY = "theme";
+const THEME_CHANGE_EVENT = "themechange";
+let memoryThemeName = themes[0].name;
+
+function getThemeByName(name: string | null) {
+  return themes.find((t) => t.name === name) ?? themes[0];
+}
 
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
@@ -30,24 +37,45 @@ function applyTheme(theme: Theme) {
   root.style.setProperty("--color-accent-dim", theme.accentDim);
 }
 
+function getStoredTheme() {
+  if (typeof window === "undefined") return themes[0];
+
+  try {
+    const storedName = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (storedName) memoryThemeName = storedName;
+    return getThemeByName(storedName ?? memoryThemeName);
+  } catch {
+    return getThemeByName(memoryThemeName);
+  }
+}
+
+function subscribeToThemeChanges(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(THEME_CHANGE_EVENT, callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(THEME_CHANGE_EVENT, callback);
+  };
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(themes[0]);
+  const theme = useSyncExternalStore(subscribeToThemeChanges, getStoredTheme, () => themes[0]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const found = themes.find((t) => t.name === saved);
-    if (found) {
-      setThemeState(found);
-      applyTheme(found);
-    }
-  }, []);
+    applyTheme(theme);
+  }, [theme]);
 
   const setTheme = (name: string) => {
     const found = themes.find((t) => t.name === name);
     if (found) {
-      setThemeState(found);
-      applyTheme(found);
-      localStorage.setItem("theme", name);
+      memoryThemeName = name;
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, name);
+      } catch {
+        // Keep the in-memory visual theme usable if storage is unavailable.
+      }
+      window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
     }
   };
 

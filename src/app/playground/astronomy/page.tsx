@@ -2,6 +2,17 @@ import Image from "next/image";
 
 export const revalidate = 3600;
 
+const TRUSTED_MEDIA_HOSTS = new Set([
+  "apod.nasa.gov",
+  "www.nasa.gov",
+  "images-assets.nasa.gov",
+  "www.youtube.com",
+  "youtube.com",
+  "youtu.be",
+  "player.vimeo.com",
+  "vimeo.com",
+]);
+
 interface APODData {
   title: string;
   explanation: string;
@@ -10,6 +21,19 @@ interface APODData {
   media_type: string;
   date: string;
   thumbnail_url?: string;
+}
+
+function getSafeUrl(url: string | undefined) {
+  if (!url) return null;
+
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:") return null;
+    if (!TRUSTED_MEDIA_HOSTS.has(parsed.hostname)) return null;
+    return parsed.toString();
+  } catch {
+    return null;
+  }
 }
 
 async function getAPOD(): Promise<APODData | null> {
@@ -28,6 +52,9 @@ async function getAPOD(): Promise<APODData | null> {
 
 export default async function AstronomyPage() {
   const data = await getAPOD();
+  const safeImageUrl = getSafeUrl(data?.url);
+  const safeVideoUrl = getSafeUrl(data?.url);
+  const safeThumbnailUrl = getSafeUrl(data?.thumbnail_url);
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-20">
@@ -38,22 +65,52 @@ export default async function AstronomyPage() {
         <div className="space-y-8">
           <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.08)]">
             {data.media_type === "video" ? (
-              <iframe
-                src={data.url}
-                title={data.title}
-                className="w-full aspect-video"
-                style={{ border: "none" }}
-                allowFullScreen
-              />
-            ) : (
+              <div className="bg-black/40">
+                {safeThumbnailUrl ? (
+                  <Image
+                    src={safeThumbnailUrl}
+                    alt={data.title}
+                    width={1200}
+                    height={675}
+                    className="w-full h-auto"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="w-full aspect-video flex items-center justify-center text-[#888888]">
+                    Preview unavailable
+                  </div>
+                )}
+
+                <div className="p-4 border-t border-[rgba(255,255,255,0.08)]">
+                  {safeVideoUrl ? (
+                    <a
+                      href={safeVideoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-accent hover:underline"
+                    >
+                      Watch this APOD video on the source site
+                    </a>
+                  ) : (
+                    <p className="text-sm text-[#888888]">
+                      Video preview blocked because the source host is not trusted.
+                    </p>
+                  )}
+                </div>
+              </div>
+            ) : safeImageUrl ? (
               <Image
-                src={data.hdurl || data.url}
+                src={safeImageUrl}
                 alt={data.title}
                 width={1200}
                 height={800}
                 className="w-full h-auto"
                 unoptimized
               />
+            ) : (
+              <div className="w-full aspect-video flex items-center justify-center text-[#888888] bg-black/40">
+                Image preview blocked because the source host is not trusted.
+              </div>
             )}
           </div>
 

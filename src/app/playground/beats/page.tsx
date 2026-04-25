@@ -9,7 +9,7 @@ export default function BeatsPage() {
     <PageTransition>
       <div className="max-w-4xl mx-auto px-6 py-20 text-center">
         <ScrollReveal>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Tim's Beats</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">Tim&apos;s Beats</h1>
           <p className="text-muted mb-12">Toggle-beat maker with chord generation and melody improv</p>
         </ScrollReveal>
 

@@ -131,13 +131,6 @@ export default function ParticleBackground() {
     const getAccentHex = () =>
       getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim();
 
-    const getAccentRGB = (hex: string) => {
-      const r = parseInt(hex.slice(1, 3), 16) || 0;
-      const g = parseInt(hex.slice(3, 5), 16) || 0;
-      const b = parseInt(hex.slice(5, 7), 16) || 0;
-      return { r, g, b };
-    };
-
     const getMode = () => {
       const hex = getAccentHex().toLowerCase();
       if (hex === "#00ff41") return "matrix";
