@@ -6,7 +6,47 @@ export interface PlaygroundCard {
   hoverEffect?: "gallery" | "music" | "spin" | "parallax" | "dial" | "keys" | "twinkle" | "grain";
   external?: boolean;
   comingSoon?: boolean;
+  statusLabel?: string;
 }
+
+export interface ComingSoonProject {
+  title: string;
+  subtitle: string;
+  href: string;
+  description: string;
+  statusLabel: string;
+  highlights: string[];
+}
+
+export const comingSoonProjects = {
+  mapledle: {
+    title: "Roguelike",
+    subtitle: "Work in progress",
+    href: "/playground/mapledle",
+    description:
+      "A compact game prototype is still being shaped. The placeholder stays public so the idea has a stable home while the mechanics settle.",
+    statusLabel: "Prototype in progress",
+    highlights: ["Core loop design", "Difficulty tuning", "Playable build"],
+  },
+  beats: {
+    title: "Guess the Instruments",
+    subtitle: "Identify instruments from the piece",
+    href: "/playground/beats",
+    description:
+      "An ear-training idea for recognizing instruments inside short musical examples. The next useful milestone is a small set of reliable clips and answer feedback.",
+    statusLabel: "Concept stage",
+    highlights: ["Clip sourcing", "Answer feedback", "Score tracking"],
+  },
+  shelf: {
+    title: "Procrastinator",
+    subtitle: "A vague work in progress",
+    href: "/playground/shelf",
+    description:
+      "A deliberately loose playground slot for an anti-productivity experiment. It is not ready for visitors yet, but it now has a cleaner landing state.",
+    statusLabel: "Idea forming",
+    highlights: ["Interaction model", "Content shape", "Launch criteria"],
+  },
+} satisfies Record<string, ComingSoonProject>;
 
 export const playgroundCards: PlaygroundCard[] = [
   // --- Active cards ---
@@ -144,25 +184,28 @@ export const playgroundCards: PlaygroundCard[] = [
   },
   // --- Coming soon ---
   {
-    title: "Roguelike",
-    subtitle: "Work in progress",
-    href: "/playground/mapledle",
+    title: comingSoonProjects.mapledle.title,
+    subtitle: comingSoonProjects.mapledle.subtitle,
+    href: comingSoonProjects.mapledle.href,
     coverImage: "",
     comingSoon: true,
+    statusLabel: comingSoonProjects.mapledle.statusLabel,
   },
   {
-    title: "Guess the Instruments",
-    subtitle: "Identify instruments from the piece",
-    href: "/playground/beats",
+    title: comingSoonProjects.beats.title,
+    subtitle: comingSoonProjects.beats.subtitle,
+    href: comingSoonProjects.beats.href,
     coverImage: "",
     comingSoon: true,
+    statusLabel: comingSoonProjects.beats.statusLabel,
   },
   {
-    title: "Procrastinator",
-    subtitle: "A vague work in progress",
-    href: "/playground/shelf",
+    title: comingSoonProjects.shelf.title,
+    subtitle: comingSoonProjects.shelf.subtitle,
+    href: comingSoonProjects.shelf.href,
     coverImage: "",
     comingSoon: true,
+    statusLabel: comingSoonProjects.shelf.statusLabel,
   },
 ];
 
