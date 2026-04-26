@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { Music2, Pause, Play, SkipBack, SkipForward, Star } from "lucide-react";
+import { Music2, Pause, Play, SkipBack, SkipForward, Sparkles, Star } from "lucide-react";
 import type { Composition } from "@/data/music";
 
 function formatTime(seconds: number) {
@@ -10,6 +10,18 @@ function formatTime(seconds: number) {
   const remaining = Math.floor(seconds % 60);
   return `${minutes}:${remaining.toString().padStart(2, "0")}`;
 }
+
+const CATEGORY_BADGE: Record<NonNullable<Composition["category"]>, string | null> = {
+  original: null,
+  "ai-played": "AI playback",
+  "ai-generated": "AI generated",
+};
+
+const CATEGORY_NOTICE: Record<NonNullable<Composition["category"]>, string | null> = {
+  original: null,
+  "ai-played": "Piece by me, played back by AI.",
+  "ai-generated": "Fully AI generated, with only minor musical input from me.",
+};
 
 interface MusicCarouselProps {
   compositions: Composition[];
@@ -27,6 +39,8 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
 
   const total = compositions.length;
   const comp = compositions[current] ?? compositions[0];
+  const badge = comp ? CATEGORY_BADGE[comp.category] : null;
+  const notice = comp ? CATEGORY_NOTICE[comp.category] : null;
 
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume;
@@ -114,11 +128,20 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
               <Music2 className="h-4 w-4" />
               Now Playing
             </p>
-            <h2 className="flex items-center gap-3 text-2xl font-bold md:text-3xl">
+            <h2 className="flex flex-wrap items-center gap-3 text-2xl font-bold md:text-3xl">
               {comp.title}
               {comp.isFavorite && <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />}
+              {badge && (
+                <span className="inline-flex items-center gap-1 rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-accent">
+                  <Sparkles className="h-3 w-3" />
+                  {badge}
+                </span>
+              )}
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-muted md:text-base">{comp.description}</p>
+            {notice && (
+              <p className="mt-3 max-w-2xl text-xs italic text-muted/80">{notice}</p>
+            )}
           </div>
           <span className="shrink-0 font-mono text-sm text-muted">
             {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
@@ -183,6 +206,7 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
         <div className="max-h-[34rem] space-y-2 overflow-y-auto pr-1">
           {compositions.map((track, index) => {
             const selected = index === current;
+            const trackBadge = CATEGORY_BADGE[track.category];
             return (
               <button
                 key={track.src}
@@ -200,6 +224,15 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
                   <span className="flex items-center gap-2 font-medium text-foreground">
                     <span className="truncate">{track.title}</span>
                     {track.isFavorite && <Star className="h-3.5 w-3.5 shrink-0 fill-yellow-400 text-yellow-400" />}
+                    {trackBadge && (
+                      <span
+                        className="inline-flex shrink-0 items-center gap-1 rounded-full border border-accent/25 bg-accent/5 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent/80"
+                        title={trackBadge}
+                      >
+                        <Sparkles className="h-2.5 w-2.5" />
+                        AI
+                      </span>
+                    )}
                   </span>
                   <span className="mt-1 block truncate text-xs text-muted">{track.description}</span>
                 </span>

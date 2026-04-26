@@ -22,6 +22,19 @@ describe("composition media", () => {
 
     expect(missing).toEqual([]);
   });
+
+  it("keeps AI playback and generated music in distinct categories", () => {
+    const aiPlayed = compositions.filter((composition) => composition.category === "ai-played");
+    const aiGenerated = compositions.filter((composition) => composition.category === "ai-generated");
+
+    expect(aiPlayed.map((composition) => composition.title).sort()).toEqual([
+      "3 Hands",
+      "Journey of the Dodo",
+      "My September",
+      "The Theme of Dodoman",
+    ]);
+    expect(aiGenerated).toHaveLength(5);
+  });
 });
 
 describe("youtube recommendation data", () => {
