@@ -13,13 +13,13 @@ function formatTime(seconds: number) {
 
 const CATEGORY_BADGE: Record<NonNullable<Composition["category"]>, string | null> = {
   original: null,
-  "ai-played": "AI playback",
+  "ai-played": null,
   "ai-generated": "AI generated",
 };
 
 const CATEGORY_NOTICE: Record<NonNullable<Composition["category"]>, string | null> = {
   original: null,
-  "ai-played": "Piece by me, played back by AI.",
+  "ai-played": null,
   "ai-generated": "Fully AI generated, with only minor musical input from me.",
 };
 

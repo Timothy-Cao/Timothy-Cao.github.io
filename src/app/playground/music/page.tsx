@@ -17,10 +17,10 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { id: "original", label: "Fully Mine" },
+  { id: "original", label: "Originals" },
   {
     id: "ai-played",
-    label: "Mine, AI Played",
+    label: "Original w/ AI Playback",
     notice: "These are pieces I wrote, played back by AI. The composition is mine; the performance is synthesized.",
   },
   {
@@ -58,7 +58,7 @@ export default function MusicPage() {
         <ScrollReveal>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Composition</h1>
           <p className="text-muted mb-8">
-            Disclaimer: I am not liable to headaches induced by my songs
+            Pieces I&apos;ve written over the past decade. Written in Musescore and FL Studio. Sound production software: Suno AI
           </p>
         </ScrollReveal>
 
@@ -96,7 +96,7 @@ export default function MusicPage() {
             {TABS.map((t) => {
               const selected = t.id === activeTab;
               const count = grouped[t.id].length;
-              const showSparkle = t.id !== "original";
+              const showSparkle = t.id === "ai-generated";
               return (
                 <button
                   key={t.id}
