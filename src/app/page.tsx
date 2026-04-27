@@ -25,7 +25,7 @@ export default function Home() {
     <PageTransition>
       <div className="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden">
         <ParticleBackground />
-        {isCyan && <Meteors count={18} />}
+        {isCyan && <Meteors count={10} />}
 
         <div className="relative z-10 flex flex-col items-center gap-8 px-6 text-center">
           {/* Profile Picture */}

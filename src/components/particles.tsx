@@ -31,6 +31,8 @@ interface HexNode {
   pulseTime: number;
 }
 
+type ParticleMode = "particles" | "matrix" | "hex";
+
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000 });
@@ -45,11 +47,13 @@ export default function ParticleBackground() {
   const wavesRef = useRef<{ ox: number; oy: number; time: number }[]>([]);
   const nextAutoPulseRef = useRef(0);
   const cyberAttractRef = useRef(true);
+  const cyberModeAttrRef = useRef("");
+  const modeRef = useRef<ParticleMode>("particles");
+  const lastFrameTimeRef = useRef(0);
   const matrixTrailRef = useRef<{ x: number; y: number; vx: number; vy: number; char: string; life: number; fadeSpeed: number; size: number; isExplosion: boolean }[]>([]);
 
   const initParticles = useCallback((width: number, height: number) => {
-    // More particles — denser field
-    const count = Math.min(Math.floor((width * height) / 7000), 200);
+    const count = Math.min(Math.floor((width * height) / 11000), 140);
     const particles: Particle[] = [];
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -140,12 +144,29 @@ export default function ParticleBackground() {
       return "particles";
     };
 
+    const setMode = () => {
+      const mode = getMode();
+      modeRef.current = mode;
+      if (mode === "matrix" && matrixDropsRef.current.length === 0) {
+        initMatrixDrops(canvas.width, canvas.height);
+      } else if (mode === "hex" && hexNodesRef.current.length === 0) {
+        initHexGrid(canvas.width, canvas.height);
+      } else if (mode === "particles" && particlesRef.current.length === 0) {
+        initParticles(canvas.width, canvas.height);
+      }
+    };
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      initParticles(canvas.width, canvas.height);
-      initMatrixDrops(canvas.width, canvas.height);
-      initHexGrid(canvas.width, canvas.height);
+      const mode = modeRef.current;
+      if (mode === "matrix") {
+        initMatrixDrops(canvas.width, canvas.height);
+      } else if (mode === "hex") {
+        initHexGrid(canvas.width, canvas.height);
+      } else {
+        initParticles(canvas.width, canvas.height);
+      }
     };
 
     const onMouse = (e: MouseEvent) => {
@@ -183,8 +204,12 @@ export default function ParticleBackground() {
       cyberAttractRef.current = !cyberAttractRef.current;
     };
 
+    setMode();
+    const initialModeSync = requestAnimationFrame(setMode);
     resize();
     window.addEventListener("resize", resize);
+    window.addEventListener("themechange", setMode);
+    window.addEventListener("storage", setMode);
     window.addEventListener("mousemove", onMouse);
     window.addEventListener("click", onClick);
     window.addEventListener("contextmenu", onContextMenu);
@@ -477,12 +502,26 @@ export default function ParticleBackground() {
       const mouse = mouseRef.current;
       const direction = cyberAttractRef.current ? 1 : -1;
 
-      document.documentElement.setAttribute(
-        "data-cyber-mode",
-        cyberAttractRef.current ? "attract" : "repel"
-      );
+      const nextCyberMode = cyberAttractRef.current ? "attract" : "repel";
+      if (cyberModeAttrRef.current !== nextCyberMode) {
+        document.documentElement.setAttribute("data-cyber-mode", nextCyberMode);
+        cyberModeAttrRef.current = nextCyberMode;
+      }
 
       const mergeRadius = 6;
+      const connectionRadius = 150;
+      const connectionRadiusSq = connectionRadius * connectionRadius;
+      const gridSize = connectionRadius;
+      const grid = new Map<string, number[]>();
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        if (p.dead) continue;
+        const key = `${Math.floor(p.x / gridSize)},${Math.floor(p.y / gridSize)}`;
+        const bucket = grid.get(key);
+        if (bucket) bucket.push(i);
+        else grid.set(key, [i]);
+      }
 
       // Draw + update pop effects first (behind particles)
       for (let i = pops.length - 1; i >= 0; i--) {
@@ -558,33 +597,45 @@ export default function ParticleBackground() {
           ctx.fill();
         }
 
-        // Pair check: connections + merge
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          if (p2.dead) continue;
+        const gx = Math.floor(p.x / gridSize);
+        const gy = Math.floor(p.y / gridSize);
 
-          const cdx = p.x - p2.x;
-          const cdy = p.y - p2.y;
-          const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+        // Pair check: connections + merge, limited to nearby grid buckets
+        for (let ox = -1; ox <= 1; ox++) {
+          for (let oy = -1; oy <= 1; oy++) {
+            const bucket = grid.get(`${gx + ox},${gy + oy}`);
+            if (!bucket) continue;
 
-          // Merge if touching
-          if (cdist < mergeRadius) {
-            p.size = Math.min(p.size + p2.size * 0.2, 8);
-            p.life += 0.6;
-            p.vx = (p.vx + p2.vx) * 0.5;
-            p.vy = (p.vy + p2.vy) * 0.5;
-            p2.dead = true;
-          }
+            for (const j of bucket) {
+              if (j <= i) continue;
+              const p2 = particles[j];
+              if (p2.dead) continue;
 
-          // Connection lines
-          if (cdist < 150) {
-            const lineColor = getParticleColor(Math.max(p.life, p2.life), 0.18 * (1 - cdist / 150));
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(${lineColor.r}, ${lineColor.g}, ${lineColor.b}, ${lineColor.a})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
+              const cdx = p.x - p2.x;
+              const cdy = p.y - p2.y;
+              const cdistSq = cdx * cdx + cdy * cdy;
+
+              // Merge if touching
+              if (cdistSq < mergeRadius * mergeRadius) {
+                p.size = Math.min(p.size + p2.size * 0.2, 8);
+                p.life += 0.6;
+                p.vx = (p.vx + p2.vx) * 0.5;
+                p.vy = (p.vy + p2.vy) * 0.5;
+                p2.dead = true;
+              }
+
+              // Connection lines
+              if (cdistSq < connectionRadiusSq) {
+                const cdist = Math.sqrt(cdistSq);
+                const lineColor = getParticleColor(Math.max(p.life, p2.life), 0.18 * (1 - cdist / connectionRadius));
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(${lineColor.r}, ${lineColor.g}, ${lineColor.b}, ${lineColor.a})`;
+                ctx.lineWidth = 0.6;
+                ctx.stroke();
+              }
+            }
           }
         }
       }
@@ -597,10 +648,15 @@ export default function ParticleBackground() {
       }
     };
 
-    let lastMode = getMode();
+    let lastMode = modeRef.current;
 
-    const animate = () => {
-      const mode = getMode();
+    const animate = (time = 0) => {
+      animationRef.current = requestAnimationFrame(animate);
+
+      if (time - lastFrameTimeRef.current < 33) return;
+      lastFrameTimeRef.current = time;
+
+      const mode = modeRef.current;
 
       if (mode !== lastMode) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -614,15 +670,16 @@ export default function ParticleBackground() {
       } else {
         animateParticles();
       }
-
-      animationRef.current = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
       cancelAnimationFrame(animationRef.current);
+      cancelAnimationFrame(initialModeSync);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("themechange", setMode);
+      window.removeEventListener("storage", setMode);
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("click", onClick);
       window.removeEventListener("contextmenu", onContextMenu);

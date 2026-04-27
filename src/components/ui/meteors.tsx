@@ -14,6 +14,8 @@ export default function Meteors({ count = 15 }: { count?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const meteorsRef = useRef<Meteor[]>([]);
   const animationRef = useRef<number>(0);
+  const accentRef = useRef({ r: 0, g: 229, b: 255 });
+  const lastFrameTimeRef = useRef(0);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -29,6 +31,17 @@ export default function Meteors({ count = 15 }: { count?: number }) {
     };
     resize();
     window.addEventListener("resize", resize);
+
+    const updateAccent = () => {
+      const hex = getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim();
+      const r = parseInt(hex.slice(1, 3), 16) || 0;
+      const g = parseInt(hex.slice(3, 5), 16) || 0;
+      const b = parseInt(hex.slice(5, 7), 16) || 0;
+      accentRef.current = { r, g, b };
+    };
+    updateAccent();
+    window.addEventListener("themechange", updateAccent);
+    window.addEventListener("storage", updateAccent);
 
     const spawnMeteor = (initialSpread = false): Meteor => {
       const x = canvas.width * (0.2 + Math.random() * 1.0);
@@ -46,21 +59,17 @@ export default function Meteors({ count = 15 }: { count?: number }) {
 
     meteorsRef.current = Array.from({ length: count }, () => spawnMeteor(true));
 
-    const getAccent = () => {
-      const hex = getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim();
-      const r = parseInt(hex.slice(1, 3), 16) || 0;
-      const g = parseInt(hex.slice(3, 5), 16) || 0;
-      const b = parseInt(hex.slice(5, 7), 16) || 0;
-      return { r, g, b };
-    };
-
     const angle = (215 * Math.PI) / 180;
     const dx = Math.cos(angle);
     const dy = Math.sin(angle);
 
-    const animate = () => {
+    const animate = (time = 0) => {
+      animationRef.current = requestAnimationFrame(animate);
+      if (time - lastFrameTimeRef.current < 33) return;
+      lastFrameTimeRef.current = time;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const { r, g, b } = getAccent();
+      const { r, g, b } = accentRef.current;
 
       for (let i = 0; i < meteorsRef.current.length; i++) {
         const m = meteorsRef.current[i];
@@ -99,8 +108,6 @@ export default function Meteors({ count = 15 }: { count?: number }) {
           meteorsRef.current[i] = spawnMeteor(false);
         }
       }
-
-      animationRef.current = requestAnimationFrame(animate);
     };
 
     animate();
@@ -108,6 +115,8 @@ export default function Meteors({ count = 15 }: { count?: number }) {
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("themechange", updateAccent);
+      window.removeEventListener("storage", updateAccent);
     };
   }, [count]);
 
