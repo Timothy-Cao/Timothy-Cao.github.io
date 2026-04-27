@@ -158,7 +158,7 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
       <audio
         ref={audioRef}
         src={comp.src}
