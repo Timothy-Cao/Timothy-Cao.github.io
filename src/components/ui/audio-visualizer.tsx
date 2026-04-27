@@ -16,27 +16,24 @@ interface AudioVisualizerProps {
   trackKey: string;
 }
 
-const VISUALIZER_PALETTE: Record<CompositionCategory, { line: string; glow: string; fill: string; fillSoft: string; warm: string }> = {
+const VISUALIZER_PALETTE: Record<CompositionCategory, { glow: string; fill: string; fillSoft: string; warm: string }> = {
   original: {
-    line: "rgba(0, 229, 255, 0.86)",
-    glow: "rgba(0, 229, 255, 0.22)",
-    fill: "rgba(0, 229, 255, 0.48)",
-    fillSoft: "rgba(255, 255, 255, 0.08)",
-    warm: "rgba(255, 214, 125, 0.5)",
+    glow: "rgba(0, 229, 255, 0.13)",
+    fill: "rgba(0, 229, 255, 0.23)",
+    fillSoft: "rgba(255, 255, 255, 0.035)",
+    warm: "rgba(255, 214, 125, 0.18)",
   },
   "ai-played": {
-    line: "rgba(132, 235, 190, 0.84)",
-    glow: "rgba(132, 235, 190, 0.18)",
-    fill: "rgba(132, 235, 190, 0.42)",
-    fillSoft: "rgba(0, 229, 255, 0.08)",
-    warm: "rgba(255, 214, 125, 0.46)",
+    glow: "rgba(132, 235, 190, 0.12)",
+    fill: "rgba(132, 235, 190, 0.2)",
+    fillSoft: "rgba(0, 229, 255, 0.035)",
+    warm: "rgba(255, 214, 125, 0.16)",
   },
   "ai-generated": {
-    line: "rgba(190, 165, 255, 0.84)",
-    glow: "rgba(190, 165, 255, 0.2)",
-    fill: "rgba(190, 165, 255, 0.44)",
-    fillSoft: "rgba(0, 229, 255, 0.08)",
-    warm: "rgba(0, 229, 255, 0.42)",
+    glow: "rgba(190, 165, 255, 0.13)",
+    fill: "rgba(190, 165, 255, 0.22)",
+    fillSoft: "rgba(0, 229, 255, 0.035)",
+    warm: "rgba(0, 229, 255, 0.14)",
   },
 };
 
@@ -114,44 +111,43 @@ export default function AudioVisualizer({ audioGraphRef, category, playing, trac
       energy = 0.05 + Math.sin(time * 0.0008 + seed) * 0.015;
     }
 
-    const background = ctx.createLinearGradient(0, 0, width, height);
-    background.addColorStop(0, "rgba(255, 255, 255, 0.035)");
-    background.addColorStop(0.5, palette.glow);
-    background.addColorStop(1, "rgba(0, 0, 0, 0.18)");
+    const background = ctx.createRadialGradient(width * 0.74, height * 0.88, 0, width * 0.74, height * 0.88, width * 0.72);
+    background.addColorStop(0, palette.glow);
+    background.addColorStop(0.48, "rgba(255, 255, 255, 0.025)");
+    background.addColorStop(1, "rgba(0, 0, 0, 0)");
     ctx.fillStyle = background;
     ctx.fillRect(0, 0, width, height);
 
-    ctx.globalAlpha = 0.5;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-    ctx.lineWidth = 1;
-    for (let row = 1; row <= 3; row += 1) {
-      const y = (height / 4) * row;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
+    const fade = ctx.createLinearGradient(0, height * 0.18, 0, height);
+    fade.addColorStop(0, "rgba(0, 0, 0, 0)");
+    fade.addColorStop(1, "rgba(0, 0, 0, 0.18)");
+    ctx.fillStyle = fade;
+    ctx.fillRect(0, 0, width, height);
 
-    const barCount = 42;
-    const margin = 14;
+    const barCount = 52;
+    const margin = 18;
     const usableWidth = width - margin * 2;
     const step = usableWidth / barCount;
-    const barWidth = Math.max(2, Math.min(7, step * 0.46));
-    const centerY = height * 0.56;
+    const barWidth = Math.max(1.4, Math.min(5, step * 0.38));
+    const baseline = height + 10;
+    const maxBarHeight = height * 0.52;
+
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
 
     for (let index = 0; index < barCount; index += 1) {
       const dataIndex = visualData ? Math.floor((index / barCount) * visualData.length) : 0;
       const live = visualData ? visualData[dataIndex] / 255 : 0;
-      const drift = Math.sin(time * 0.0016 + index * 0.58 + seed * 0.01);
-      const ripple = Math.cos(time * 0.001 + index * 0.33 + seed * 0.02);
+      const drift = Math.sin(time * 0.0011 + index * 0.46 + seed * 0.01);
+      const ripple = Math.cos(time * 0.0008 + index * 0.27 + seed * 0.02);
       const level = visualData
-        ? Math.max(live, 0.04 + Math.max(0, drift) * 0.04)
-        : 0.035 + (drift + 1) * 0.018;
-      const barHeight = 8 + level * height * 0.6 + energy * Math.max(0, ripple) * 9;
+        ? Math.max(live * 0.76, 0.035 + Math.max(0, drift) * 0.025)
+        : 0.035 + (drift + 1) * 0.012;
+      const edgeFade = Math.sin((Math.PI * index) / (barCount - 1));
+      const barHeight = (8 + level * maxBarHeight + energy * Math.max(0, ripple) * 7) * (0.32 + edgeFade * 0.68);
       const x = margin + index * step + (step - barWidth) / 2;
-      const y = centerY - barHeight / 2;
-      const barGradient = ctx.createLinearGradient(0, y, 0, y + barHeight);
+      const y = baseline - barHeight;
+      const barGradient = ctx.createLinearGradient(0, y, 0, baseline);
       barGradient.addColorStop(0, palette.warm);
       barGradient.addColorStop(0.5, palette.fill);
       barGradient.addColorStop(1, palette.fillSoft);
@@ -159,30 +155,11 @@ export default function AudioVisualizer({ audioGraphRef, category, playing, trac
       drawPill(ctx, x, y, barWidth, barHeight, 999);
     }
 
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
-    ctx.shadowColor = palette.line;
-    ctx.shadowBlur = 18;
-    ctx.strokeStyle = palette.line;
-    ctx.lineWidth = 1.6;
-    ctx.beginPath();
-    const points = 90;
-    for (let index = 0; index <= points; index += 1) {
-      const x = (width / points) * index;
-      const bin = visualData ? visualData[Math.floor((index / points) * visualData.length)] / 255 : 0;
-      const pulse = Math.sin(time * 0.0018 + index * 0.28 + seed * 0.03);
-      const counterPulse = Math.cos(time * 0.0011 + index * 0.17 + seed * 0.04);
-      const amplitude = 7 + energy * 18 + (visualData ? bin * 9 : 0);
-      const y = centerY + pulse * amplitude + counterPulse * 3;
-      if (index === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
     ctx.restore();
 
-    ctx.fillStyle = `rgba(255, 255, 255, ${0.12 + Math.min(energy, 0.5) * 0.18})`;
+    ctx.fillStyle = `rgba(255, 255, 255, ${0.04 + Math.min(energy, 0.5) * 0.07})`;
     ctx.beginPath();
-    ctx.arc(width - 18, 18, 2.5 + energy * 5, 0, Math.PI * 2);
+    ctx.arc(width - 18, height - 18, 1.8 + energy * 3, 0, Math.PI * 2);
     ctx.fill();
   }, [audioGraphRef, palette, playing, seed]);
 
@@ -199,7 +176,7 @@ export default function AudioVisualizer({ audioGraphRef, category, playing, trac
   }, [drawFrame]);
 
   return (
-    <div className="mb-8 h-28 overflow-hidden rounded-lg border border-white/10 bg-black/20 md:h-32">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-70">
       <canvas ref={canvasRef} aria-hidden="true" className="h-full w-full" />
     </div>
   );

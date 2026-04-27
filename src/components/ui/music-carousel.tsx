@@ -170,8 +170,10 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
         onEnded={handleEnded}
       />
 
-      <section className="rounded-lg border border-border bg-surface p-6 md:p-8">
-        <div className="mb-8 flex items-start justify-between gap-4">
+      <section className="relative overflow-hidden rounded-lg border border-border bg-surface p-6 md:p-8">
+        <AudioVisualizer audioGraphRef={audioGraphRef} category={comp.category} playing={playing} trackKey={comp.src} />
+
+        <div className="relative z-10 mb-8 flex items-start justify-between gap-4">
           <div>
             <p className="mb-3 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-accent">
               <Music2 className="h-4 w-4" />
@@ -197,9 +199,7 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
           </span>
         </div>
 
-        <AudioVisualizer audioGraphRef={audioGraphRef} category={comp.category} playing={playing} trackKey={comp.src} />
-
-        <div className="flex items-center gap-3">
+        <div className="relative z-10 flex items-center gap-3">
           <button
             type="button"
             onClick={() => goTo(current - 1)}
