@@ -20,7 +20,7 @@ const TABS: Tab[] = [
   { id: "original", label: "Originals" },
   {
     id: "ai-played",
-    label: "Original w/ AI Playback",
+    label: "Final Cover",
     notice: "These are pieces I wrote, played back by AI. The composition is mine; the performance is synthesized.",
   },
   {

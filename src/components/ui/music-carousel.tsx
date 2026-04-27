@@ -2,7 +2,12 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Music2, Pause, Play, SkipBack, SkipForward, Sparkles, Star } from "lucide-react";
+import AudioVisualizer, { type AudioGraph } from "@/components/ui/audio-visualizer";
 import type { Composition } from "@/data/music";
+
+interface AudioWindow extends Window {
+  webkitAudioContext?: typeof AudioContext;
+}
 
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds)) return "0:00";
@@ -28,12 +33,17 @@ interface MusicCarouselProps {
   volume: number;
 }
 
+function getAudioContextConstructor() {
+  return window.AudioContext ?? (window as AudioWindow).webkitAudioContext ?? null;
+}
+
 export default function MusicCarousel({ compositions, volume }: MusicCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const audioGraphRef = useRef<AudioGraph | null>(null);
   const shouldResumeRef = useRef(false);
   const id = useId();
 
@@ -46,6 +56,41 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
     if (audioRef.current) audioRef.current.volume = volume;
   }, [volume]);
 
+  const ensureAudioGraph = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return null;
+    if (audioGraphRef.current) return audioGraphRef.current;
+
+    const AudioContextConstructor = getAudioContextConstructor();
+    if (!AudioContextConstructor) return null;
+
+    try {
+      const context = new AudioContextConstructor();
+      const analyser = context.createAnalyser();
+      const source = context.createMediaElementSource(audio);
+      analyser.fftSize = 128;
+      analyser.smoothingTimeConstant = 0.86;
+      source.connect(analyser);
+      analyser.connect(context.destination);
+      audioGraphRef.current = {
+        analyser,
+        context,
+        data: new Uint8Array(analyser.frequencyBinCount),
+      };
+    } catch {
+      return null;
+    }
+
+    return audioGraphRef.current;
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      audioGraphRef.current?.context.close().catch(() => undefined);
+      audioGraphRef.current = null;
+    };
+  }, []);
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || !comp) return;
@@ -53,10 +98,11 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
     audio.load();
 
     if (shouldResumeRef.current) {
+      ensureAudioGraph()?.context.resume().catch(() => undefined);
       audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
     }
     shouldResumeRef.current = false;
-  }, [current, comp]);
+  }, [current, comp, ensureAudioGraph]);
 
   const goTo = useCallback((index: number, resume = playing) => {
     if (total === 0) return;
@@ -79,6 +125,7 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
       return;
     }
 
+    ensureAudioGraph()?.context.resume().catch(() => undefined);
     audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
   };
 
@@ -117,6 +164,8 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
         src={comp.src}
         preload="metadata"
         onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+        onPause={() => setPlaying(false)}
+        onPlay={() => setPlaying(true)}
         onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
         onEnded={handleEnded}
       />
@@ -147,6 +196,8 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
             {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
         </div>
+
+        <AudioVisualizer audioGraphRef={audioGraphRef} category={comp.category} playing={playing} trackKey={comp.src} />
 
         <div className="flex items-center gap-3">
           <button
