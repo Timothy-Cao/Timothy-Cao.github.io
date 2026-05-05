@@ -94,7 +94,8 @@ export default function ParticleBackground() {
 
   const initHexGrid = useCallback((width: number, height: number) => {
     const nodes: HexNode[] = [];
-    const hexSize = 60;
+    // Larger hex size = fewer nodes = better perf. 75 ~= 36% fewer nodes than 60.
+    const hexSize = 75;
     const hexH = hexSize * Math.sqrt(3);
     const rowSpacing = hexH * 0.5;
     const colSpacing = hexSize * 1.5;
@@ -110,15 +111,35 @@ export default function ParticleBackground() {
       }
     }
 
+    // Spatial grid for O(n) neighbor finding (was O(n²) ~285k iters at 1080p)
     const neighborDist = hexSize * 1.7;
+    const neighborDistSq = neighborDist * neighborDist;
+    const cellSize = neighborDist;
+    const initGrid = new Map<string, number[]>();
     for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].baseX - nodes[j].baseX;
-        const dy = nodes[i].baseY - nodes[j].baseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < neighborDist) {
-          nodes[i].neighbors.push(j);
-          nodes[j].neighbors.push(i);
+      const gx = Math.floor(nodes[i].baseX / cellSize);
+      const gy = Math.floor(nodes[i].baseY / cellSize);
+      const key = `${gx},${gy}`;
+      const bucket = initGrid.get(key);
+      if (bucket) bucket.push(i);
+      else initGrid.set(key, [i]);
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      const gx = Math.floor(nodes[i].baseX / cellSize);
+      const gy = Math.floor(nodes[i].baseY / cellSize);
+      for (let ox = -1; ox <= 1; ox++) {
+        for (let oy = -1; oy <= 1; oy++) {
+          const bucket = initGrid.get(`${gx + ox},${gy + oy}`);
+          if (!bucket) continue;
+          for (const j of bucket) {
+            if (j <= i) continue;
+            const dx = nodes[i].baseX - nodes[j].baseX;
+            const dy = nodes[i].baseY - nodes[j].baseY;
+            if (dx * dx + dy * dy < neighborDistSq) {
+              nodes[i].neighbors.push(j);
+              nodes[j].neighbors.push(i);
+            }
+          }
         }
       }
     }
@@ -360,36 +381,67 @@ export default function ParticleBackground() {
       const waveDuration = 3.5;
 
       wavesRef.current = wavesRef.current.filter(w => now - w.time < waveDuration);
+      const waves = wavesRef.current;
+      const hasWaves = waves.length > 0;
 
-      // Mouse influence
+      // Precompute wave radii once per frame instead of per-call
+      const waveRadii: number[] = hasWaves ? new Array(waves.length) : [];
+      const waveTimeFades: number[] = hasWaves ? new Array(waves.length) : [];
+      for (let w = 0; w < waves.length; w++) {
+        const elapsed = now - waves[w].time;
+        waveRadii[w] = elapsed * waveSpeed;
+        waveTimeFades[w] = Math.max(0, 1 - elapsed / waveDuration);
+      }
+
+      // Mouse influence — only iterate near-mouse nodes via spatial grid
       const mouseInfluenceRadius = 280;
+      const mouseInfluenceRadiusSq = mouseInfluenceRadius * mouseInfluenceRadius;
+      const mouseActive = mouse.x > -500;
+
+      // Reset all node positions toward base, then apply mouse force only to nearby
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
-        const dx = mouse.x - n.baseX;
-        const dy = mouse.y - n.baseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        n.x += (n.baseX - n.x) * 0.03;
+        n.y += (n.baseY - n.y) * 0.03;
+      }
 
-        if (dist < mouseInfluenceRadius && dist > 0) {
+      if (mouseActive) {
+        // Simple bbox check then sqrt only when in range
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          const dx = mouse.x - n.baseX;
+          const dy = mouse.y - n.baseY;
+          if (Math.abs(dx) > mouseInfluenceRadius || Math.abs(dy) > mouseInfluenceRadius) continue;
+          const distSq = dx * dx + dy * dy;
+          if (distSq >= mouseInfluenceRadiusSq || distSq === 0) continue;
+          const dist = Math.sqrt(distSq);
           const force = (mouseInfluenceRadius - dist) / mouseInfluenceRadius;
           n.x = n.baseX + (dx / dist) * force * 15;
           n.y = n.baseY + (dy / dist) * force * 15;
-        } else {
-          n.x += (n.baseX - n.x) * 0.03;
-          n.y += (n.baseY - n.y) * 0.03;
         }
       }
 
+      // Wave brightness using precomputed values + squared distance early-out
       const getWaveBrightness = (px: number, py: number) => {
+        if (!hasWaves) return 0;
         let brightness = 0;
-        for (const wave of wavesRef.current) {
-          const elapsed = now - wave.time;
-          const radius = elapsed * waveSpeed;
-          const dist = Math.sqrt((px - wave.ox) ** 2 + (py - wave.oy) ** 2);
+        for (let w = 0; w < waves.length; w++) {
+          const wave = waves[w];
+          const radius = waveRadii[w];
+          // Early reject: if farther than radius+waveWidth or closer than radius-waveWidth
+          const wdx = px - wave.ox;
+          const wdy = py - wave.oy;
+          const distSq = wdx * wdx + wdy * wdy;
+          const inner = radius - waveWidth;
+          const outer = radius + waveWidth;
+          if (distSq > outer * outer) continue;
+          if (inner > 0 && distSq < inner * inner) continue;
+          const dist = Math.sqrt(distSq);
           const delta = Math.abs(dist - radius);
           if (delta < waveWidth) {
             const ringBrightness = 1 - delta / waveWidth;
-            const timeFade = Math.max(0, 1 - elapsed / waveDuration);
-            brightness = Math.max(brightness, ringBrightness * timeFade);
+            const b = ringBrightness * waveTimeFades[w];
+            if (b > brightness) brightness = b;
           }
         }
         return brightness;
@@ -407,12 +459,22 @@ export default function ParticleBackground() {
 
           const midX = (n.x + n2.x) / 2;
           const midY = (n.y + n2.y) / 2;
-          const waveBright = getWaveBrightness(midX, midY);
-          alpha += waveBright * 0.8;
 
-          const mouseDist = Math.sqrt((mouse.x - midX) ** 2 + (mouse.y - midY) ** 2);
-          if (mouseDist < mouseInfluenceRadius) {
-            alpha += (1 - mouseDist / mouseInfluenceRadius) * 0.2;
+          if (hasWaves) {
+            const waveBright = getWaveBrightness(midX, midY);
+            alpha += waveBright * 0.8;
+          }
+
+          if (mouseActive) {
+            const mdx = mouse.x - midX;
+            const mdy = mouse.y - midY;
+            if (Math.abs(mdx) <= mouseInfluenceRadius && Math.abs(mdy) <= mouseInfluenceRadius) {
+              const mouseDistSq = mdx * mdx + mdy * mdy;
+              if (mouseDistSq < mouseInfluenceRadiusSq) {
+                const mouseDist = Math.sqrt(mouseDistSq);
+                alpha += (1 - mouseDist / mouseInfluenceRadius) * 0.2;
+              }
+            }
           }
 
           ctx.beginPath();
@@ -429,15 +491,24 @@ export default function ParticleBackground() {
         let alpha = 0.06;
         let size = 1.5;
 
-        const wavePulse = getWaveBrightness(n.x, n.y);
-        alpha += wavePulse * 1.0;
-        size += wavePulse * 4;
+        if (hasWaves) {
+          const wavePulse = getWaveBrightness(n.x, n.y);
+          alpha += wavePulse * 1.0;
+          size += wavePulse * 4;
+        }
 
-        const mouseDist = Math.sqrt((mouse.x - n.x) ** 2 + (mouse.y - n.y) ** 2);
-        if (mouseDist < mouseInfluenceRadius) {
-          const proximity = 1 - mouseDist / mouseInfluenceRadius;
-          alpha += proximity * 0.4;
-          size += proximity * 2;
+        if (mouseActive) {
+          const mdx = mouse.x - n.x;
+          const mdy = mouse.y - n.y;
+          if (Math.abs(mdx) <= mouseInfluenceRadius && Math.abs(mdy) <= mouseInfluenceRadius) {
+            const mouseDistSq = mdx * mdx + mdy * mdy;
+            if (mouseDistSq < mouseInfluenceRadiusSq) {
+              const mouseDist = Math.sqrt(mouseDistSq);
+              const proximity = 1 - mouseDist / mouseInfluenceRadius;
+              alpha += proximity * 0.4;
+              size += proximity * 2;
+            }
+          }
         }
 
         // Glow for bright nodes
