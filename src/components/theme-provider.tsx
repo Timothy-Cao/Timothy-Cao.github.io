@@ -75,6 +75,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       } catch {
         // Keep the in-memory visual theme usable if storage is unavailable.
       }
+      // Apply CSS vars synchronously so listeners that fire on themechange
+      // (e.g., particle background's setMode) read the new accent color
+      // immediately, instead of racing with React's useEffect.
+      applyTheme(found);
       window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
     }
   };
