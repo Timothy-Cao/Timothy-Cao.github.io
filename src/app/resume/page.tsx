@@ -1,41 +1,70 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Download, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/page-transition";
 import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
-import BorderBeam from "@/components/ui/border-beam";
+
+const RESUME_URL = "/assets/media/Timothy_Cao_Resume.pdf";
 
 export default function ResumePage() {
   return (
     <PageTransition>
-      <div className="max-w-4xl mx-auto px-6 py-20">
+      <div className="max-w-5xl mx-auto px-6 py-20">
         <ScrollReveal>
-          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-            <div className="relative w-64 h-80 rounded-lg border border-accent/20 bg-surface flex items-center justify-center mb-8">
-              <BorderBeam duration={6} />
-              <div className="space-y-4 text-muted">
-                <motion.div
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-32 h-1 bg-accent/20 rounded mx-auto"
-                />
-                <motion.div
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-                  className="w-24 h-1 bg-accent/20 rounded mx-auto"
-                />
-                <motion.div
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-                  className="w-28 h-1 bg-accent/20 rounded mx-auto"
-                />
-              </div>
+          <div className="flex flex-col gap-2 mb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold mb-2">Resume</h1>
+              <p className="text-muted text-sm md:text-base">
+                A quick look at my background. Open the PDF for the full version.
+              </p>
             </div>
 
-            <h1 className="text-3xl font-bold mb-4">Resume</h1>
-            <p className="text-muted text-lg mb-2">Coming Soon</p>
-            <p className="text-sm text-muted/60">Check back soon for my full resume</p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={RESUME_URL}
+                download
+                className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+              >
+                <Download className="w-4 h-4" />
+                Download PDF
+              </a>
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/30 hover:text-foreground"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Open in new tab
+              </a>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <div className="relative overflow-hidden rounded-xl border border-border bg-surface">
+            <object
+              data={`${RESUME_URL}#view=FitH`}
+              type="application/pdf"
+              className="w-full h-[80vh] min-h-[600px]"
+              aria-label="Timothy Cao Resume"
+            >
+              <div className="flex flex-col items-center justify-center gap-4 p-12 text-center">
+                <p className="text-muted">
+                  Your browser can&apos;t preview PDFs inline.
+                </p>
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Open the resume in a new tab
+                </a>
+              </div>
+            </object>
           </div>
         </ScrollReveal>
       </div>
