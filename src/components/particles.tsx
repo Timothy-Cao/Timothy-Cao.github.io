@@ -537,7 +537,7 @@ export default function ParticleBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const grid = gridRef.current;
       if (!grid) return;
-      const { dots, cols, rows, spacing } = grid;
+      const { dots } = grid;
       const mouse = mouseRef.current;
       const mouseActive = mouse.x > -500;
       const direction = cyberAttractRef.current ? 1 : -1;
@@ -548,11 +548,10 @@ export default function ParticleBackground() {
         cyberModeAttrRef.current = nextCyberMode;
       }
 
-      const boosted = document.documentElement.getAttribute("data-cursor-boost") === "true";
-      const baseRadius = 280;
-      const radius = boosted ? baseRadius * 1.6 : baseRadius;
+      // Always at the "boosted" magnitude (no toggle); cursor stays small visually
+      const radius = 450;
       const radiusSq = radius * radius;
-      const baseDisp = boosted ? 60 : 38; // capped displacement so dots stay near base
+      const baseDisp = 60; // capped displacement so dots stay near base
       const lerp = 0.18;
 
       // Update dot positions
@@ -580,36 +579,6 @@ export default function ParticleBackground() {
 
         d.x += (targetX - d.x) * lerp;
         d.y += (targetY - d.y) * lerp;
-      }
-
-      // Draw connection lines — only for dots whose base is within radius
-      // of the cursor (visualizes the warped region as a mesh)
-      if (mouseActive) {
-        const lineRadius = radius + spacing;
-        const lineRadiusSq = lineRadius * lineRadius;
-        ctx.strokeStyle = "rgba(0, 229, 255, 0.18)";
-        ctx.lineWidth = 0.7;
-        ctx.beginPath();
-        for (let r = 0; r < rows; r++) {
-          for (let c = 0; c < cols; c++) {
-            const idx = r * cols + c;
-            const d = dots[idx];
-            const mdx = mouse.x - d.baseX;
-            const mdy = mouse.y - d.baseY;
-            if (mdx * mdx + mdy * mdy > lineRadiusSq) continue;
-            if (c < cols - 1) {
-              const right = dots[idx + 1];
-              ctx.moveTo(d.x, d.y);
-              ctx.lineTo(right.x, right.y);
-            }
-            if (r < rows - 1) {
-              const down = dots[idx + cols];
-              ctx.moveTo(d.x, d.y);
-              ctx.lineTo(down.x, down.y);
-            }
-          }
-        }
-        ctx.stroke();
       }
 
       // Draw dots — brighter and larger near cursor

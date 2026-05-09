@@ -8,7 +8,6 @@ import { useTheme } from "@/components/theme-provider";
 export default function CustomCursor() {
   const [visible, setVisible] = useState(false);
   const [isRepel, setIsRepel] = useState(false);
-  const [expanded, setExpanded] = useState(false);
   const { theme } = useTheme();
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -28,25 +27,12 @@ export default function CustomCursor() {
     const handleLeave = () => setVisible(false);
     const handleEnter = () => setVisible(true);
 
-    const handleClick = (e: MouseEvent) => {
-      if (e.button !== 0) return;
-      const target = e.target as HTMLElement;
-      if (target.closest("a, button, [role='button'], input, textarea, [data-hover]")) return;
-      setExpanded((prev) => {
-        const next = !prev;
-        document.documentElement.setAttribute("data-cursor-boost", next ? "true" : "false");
-        return next;
-      });
-    };
-
     window.addEventListener("mousemove", move);
-    window.addEventListener("click", handleClick);
     document.addEventListener("mouseleave", handleLeave);
     document.addEventListener("mouseenter", handleEnter);
 
     return () => {
       window.removeEventListener("mousemove", move);
-      window.removeEventListener("click", handleClick);
       document.removeEventListener("mouseleave", handleLeave);
       document.removeEventListener("mouseenter", handleEnter);
     };
@@ -77,7 +63,6 @@ export default function CustomCursor() {
 
   const ringColor = isRepel ? "rgba(255,23,68,0.5)" : "rgba(41,121,255,0.5)";
   const glowColor = isRepel ? "rgba(255,23,68,0.3)" : "rgba(41,121,255,0.3)";
-  const ringSize = expanded ? 48 : 24;
 
   return (
     <motion.div
@@ -91,14 +76,12 @@ export default function CustomCursor() {
       }}
     >
       <div
-        className="rounded-full transition-all duration-200"
+        className="rounded-full transition-colors duration-200"
         style={{
-          width: ringSize,
-          height: ringSize,
+          width: 24,
+          height: 24,
           border: `1.5px solid ${ringColor}`,
-          boxShadow: expanded
-            ? `0 0 20px ${glowColor}, 0 0 40px ${glowColor}`
-            : `0 0 8px ${glowColor}`,
+          boxShadow: `0 0 8px ${glowColor}`,
         }}
       />
     </motion.div>
