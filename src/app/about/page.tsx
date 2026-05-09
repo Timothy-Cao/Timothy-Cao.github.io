@@ -42,7 +42,7 @@ export default function AboutPage() {
 
         {/* Long Term Hobbies */}
         <ScrollReveal>
-          <h2 className="text-2xl font-bold mb-6">Long Term Hobbies</h2>
+          <h2 className="text-2xl font-bold mb-6">Long Standing Hobbies</h2>
           <div className="flex flex-wrap gap-3 mb-10">
             {hobbies.map((hobby, i) => (
               <motion.span
@@ -65,7 +65,7 @@ export default function AboutPage() {
 
         {/* Current Interests */}
         <ScrollReveal>
-          <h3 className="text-lg font-semibold mb-4 text-muted">Current Interests</h3>
+          <h3 className="text-lg font-semibold mb-4 text-muted">Recent Interests</h3>
           <div className="flex flex-wrap gap-3 mb-20">
             {currentInterests.map((interest, i) => (
               <motion.span

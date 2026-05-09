@@ -12,7 +12,6 @@ export const hobbies = [
   "Piano",
   "Board Games",
   "Video Games",
-  "Crafts",
 ];
 
 export const currentInterests = [
@@ -20,6 +19,8 @@ export const currentInterests = [
   "Sci-Fi",
   "GeoGuessr",
   "Japanese",
+  "Vibe Coding",
+  "Jam",
 ];
 
 export interface TimelineEntry {
