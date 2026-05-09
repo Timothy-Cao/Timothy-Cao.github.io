@@ -6,6 +6,7 @@ import PageTransition from "@/components/page-transition";
 import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { useTheme } from "@/components/theme-provider";
+import ContactForm from "@/components/contact-form";
 import { bio, hobbies, currentInterests, websiteCredits } from "@/data/about";
 
 const profileImage: Record<string, string> = {
@@ -101,6 +102,19 @@ export default function AboutPage() {
               <h3 className="text-xl font-bold mb-2">Meet Pudding</h3>
               <p className="text-muted leading-relaxed">{bio.pudding}</p>
             </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Get in touch */}
+        <ScrollReveal className="mt-20">
+          <div className="max-w-xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">Get In Touch</h2>
+              <p className="text-muted">
+                Message me about anything except my car&apos;s extended warranty.
+              </p>
+            </div>
+            <ContactForm />
           </div>
         </ScrollReveal>
 
