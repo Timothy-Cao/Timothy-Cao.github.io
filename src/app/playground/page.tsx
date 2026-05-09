@@ -186,9 +186,23 @@ export default function PlaygroundPage() {
       </motion.div>
     );
 
-    if (isComingSoon) return <Link href={card.href}>{cardContent}</Link>;
-    if (card.external) return <a href={card.href} target="_blank" rel="noopener noreferrer">{cardContent}</a>;
-    return <Link href={card.href}>{cardContent}</Link>;
+    // Wrap hero cards with a subtle pulsing accent glow to hint
+    // 'featured / most interesting' without being noisy
+    const wrapped = hero ? (
+      <div className="relative">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-xl pointer-events-none hero-pulse"
+        />
+        <div className="relative">{cardContent}</div>
+      </div>
+    ) : (
+      cardContent
+    );
+
+    if (isComingSoon) return <Link href={card.href}>{wrapped}</Link>;
+    if (card.external) return <a href={card.href} target="_blank" rel="noopener noreferrer">{wrapped}</a>;
+    return <Link href={card.href}>{wrapped}</Link>;
   };
 
   const liveCards = playgroundCards.filter((c) => !c.comingSoon);

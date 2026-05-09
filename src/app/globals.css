@@ -59,3 +59,18 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }
+
+/* Subtle pulsing accent glow for featured playground heroes */
+@keyframes hero-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0px 0px var(--color-accent-glow);
+    opacity: 0.85;
+  }
+  50% {
+    box-shadow: 0 0 38px 6px var(--color-accent-glow);
+    opacity: 1;
+  }
+}
+.hero-pulse {
+  animation: hero-pulse-glow 3.2s ease-in-out infinite;
+}
