@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTheme, themes } from "@/components/theme-provider";
 
 const links = [
@@ -20,68 +20,67 @@ function isActive(pathname: string, href: string) {
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
-  }, []);
 
   return (
-    <div ref={ref} className="relative">
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors group"
-        aria-label="Change theme"
-      >
-        <div
-          className="w-4 h-4 rounded-full border border-white/20 transition-all duration-200 group-hover:scale-150 group-hover:shadow-[0_0_12px_var(--color-accent-glow)]"
-          style={{ background: theme.accent }}
-        />
-        {/* Hint label — desktop only, always visible */}
-        <span className="hidden md:flex items-center gap-1 text-xs text-white/90 z-[9999] ml-3 pointer-events-none select-none">
-          <motion.span
-            key="theme-arrow"
-            animate={{ x: [0, -4, 0] }}
-            transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+    <div
+      className="flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/40 px-1.5 py-1 backdrop-blur-sm"
+      role="radiogroup"
+      aria-label="Change theme"
+    >
+      {themes.map((t, i) => {
+        const active = theme.name === t.name;
+        return (
+          <motion.button
+            key={t.name}
+            onClick={() => setTheme(t.name)}
+            role="radio"
+            aria-checked={active}
+            aria-label={t.label}
+            title={t.label}
+            className="relative flex items-center justify-center w-6 h-6 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.92 }}
           >
-            ←
-          </motion.span>
-          Theme
-        </span>
-      </button>
+            {/* Selected ring — animated layout transition between buttons */}
+            {active && (
+              <motion.span
+                layoutId="theme-active-ring"
+                className="absolute inset-0 rounded-full border"
+                style={{
+                  borderColor: t.accent,
+                  boxShadow: `0 0 12px ${t.accentGlow}, inset 0 0 6px ${t.accentGlow}`,
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -5, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -5, scale: 0.95 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 top-8 bg-surface border border-border rounded-lg shadow-xl py-2 min-w-[160px] z-50"
-          >
-            {themes.map((t) => (
-              <button
-                key={t.name}
-                onClick={() => { setTheme(t.name); setOpen(false); }}
-                className={`w-full flex items-center gap-2.5 px-3 py-1.5 text-sm transition-colors hover:bg-white/5 ${
-                  theme.name === t.name ? "text-foreground" : "text-muted"
-                }`}
-              >
-                <div
-                  className="w-3 h-3 rounded-full flex-shrink-0"
-                  style={{ background: t.accent }}
-                />
-                {t.label}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* Idle pulsing dot */}
+            <motion.span
+              className="block rounded-full"
+              style={{ background: t.accent }}
+              animate={
+                active
+                  ? { width: 12, height: 12, opacity: 1 }
+                  : {
+                      width: [8, 9, 8],
+                      height: [8, 9, 8],
+                      opacity: [0.55, 0.85, 0.55],
+                    }
+              }
+              transition={
+                active
+                  ? { type: "spring", stiffness: 400, damping: 25 }
+                  : {
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.35,
+                    }
+              }
+            />
+          </motion.button>
+        );
+      })}
     </div>
   );
 }
