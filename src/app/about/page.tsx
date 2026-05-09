@@ -163,25 +163,21 @@ export default function AboutPage() {
         <ScrollReveal>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Pudding */}
-            <div className="rounded-2xl bg-surface border border-border p-6">
-              <p className="mb-4 text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
-                Long-distance
+            <div className="rounded-2xl bg-surface border border-border p-6 flex flex-col">
+              <p className="mb-3 text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+                Pet
               </p>
-              <div className="flex items-start gap-4">
-                <div className="relative w-20 h-20 rounded-xl overflow-hidden shrink-0">
-                  <Image
-                    src="/assets/media/about/rabbit.jpg"
-                    alt="Pudding the rabbit"
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-1">Meet Pudding</h3>
-                  <p className="text-sm text-muted leading-relaxed">{bio.pudding}</p>
-                </div>
+              <h3 className="text-lg font-bold mb-4">Meet Pudding</h3>
+              <div className="relative w-full flex-1 min-h-[260px] rounded-xl overflow-hidden">
+                <Image
+                  src="/assets/media/about/rabbit.jpg"
+                  alt="Pudding the rabbit"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </div>
+              <p className="mt-4 text-sm text-muted leading-relaxed">{bio.pudding}</p>
             </div>
 
             {/* Contact */}
