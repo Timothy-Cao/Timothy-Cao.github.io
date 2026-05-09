@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Download, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/page-transition";
 import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { useTheme } from "@/components/theme-provider";
 import ContactForm from "@/components/contact-form";
 import { bio, hobbies, currentInterests, websiteCredits } from "@/data/about";
+
+const RESUME_URL = "/assets/media/Timothy_Cao_Resume.pdf";
 
 const profileImage: Record<string, string> = {
   limitless: "/assets/media/profile/cyber.jpg",
@@ -108,46 +111,90 @@ export default function AboutPage() {
           </div>
         </ScrollReveal>
 
-        {/* Pudding */}
+        {/* Resume */}
         <ScrollReveal>
           <div className="mb-6 flex items-baseline gap-4">
             <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
-              Long-distance
+              Resume
             </h2>
             <span className="block flex-1 h-px bg-border" />
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-surface border border-border">
-            <div className="relative w-48 h-48 rounded-xl overflow-hidden shrink-0">
-              <Image
-                src="/assets/media/about/rabbit.jpg"
-                alt="Pudding the rabbit"
-                fill
-                className="object-cover"
-              />
+          <div className="flex flex-wrap gap-3 mb-6">
+            <a
+              href={RESUME_URL}
+              download
+              className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+            >
+              <Download className="w-4 h-4" />
+              Download PDF
+            </a>
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/30 hover:text-foreground"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open in new tab
+            </a>
+          </div>
+          <div className="relative overflow-hidden rounded-xl border border-border bg-surface mb-24">
+            <div className="blur-[6px] select-none pointer-events-none">
+              <object
+                data={`${RESUME_URL}#view=FitH&toolbar=0&navpanes=0`}
+                type="application/pdf"
+                className="w-full h-[60vh] min-h-[480px]"
+                aria-label="Timothy Cao Resume (blurred preview)"
+              >
+                <div className="flex flex-col items-center justify-center gap-4 p-12 text-center">
+                  <p className="text-muted">Your browser can&apos;t preview PDFs inline.</p>
+                </div>
+              </object>
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Meet Pudding</h3>
-              <p className="text-muted leading-relaxed">{bio.pudding}</p>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="rounded-full border border-accent/40 bg-[rgba(10,10,10,0.75)] px-5 py-2 backdrop-blur-md text-sm font-medium uppercase tracking-[0.2em] text-accent shadow-[0_0_30px_var(--color-accent-glow)]">
+                Under Construction
+              </div>
             </div>
           </div>
         </ScrollReveal>
 
-        {/* Get in touch */}
-        <ScrollReveal className="mt-24">
-          <div className="mb-6 flex items-baseline gap-4">
-            <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
-              Reach out
-            </h2>
-            <span className="block flex-1 h-px bg-border" />
-          </div>
-          <div className="max-w-xl mx-auto">
-            <div className="text-center mb-10">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Get in touch</h3>
-              <p className="text-muted">
-                Message me about anything except my car&apos;s extended warranty.
+        {/* Pudding + Contact — paired side by side */}
+        <ScrollReveal>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Pudding */}
+            <div className="rounded-2xl bg-surface border border-border p-6">
+              <p className="mb-4 text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+                Long-distance
               </p>
+              <div className="flex items-start gap-4">
+                <div className="relative w-20 h-20 rounded-xl overflow-hidden shrink-0">
+                  <Image
+                    src="/assets/media/about/rabbit.jpg"
+                    alt="Pudding the rabbit"
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold mb-1">Meet Pudding</h3>
+                  <p className="text-sm text-muted leading-relaxed">{bio.pudding}</p>
+                </div>
+              </div>
             </div>
-            <ContactForm />
+
+            {/* Contact */}
+            <div className="rounded-2xl bg-surface border border-border p-6">
+              <p className="mb-4 text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+                Reach out
+              </p>
+              <h3 className="text-lg font-bold mb-1">Get in touch</h3>
+              <p className="text-xs text-muted mb-5">
+                Anything except my car&apos;s extended warranty.
+              </p>
+              <ContactForm />
+            </div>
           </div>
         </ScrollReveal>
 

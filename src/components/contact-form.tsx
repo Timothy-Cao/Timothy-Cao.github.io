@@ -42,7 +42,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <div className="hidden" aria-hidden="true">
         <label htmlFor="company">Company</label>
         <input
@@ -56,7 +56,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
+        <label htmlFor="name" className="block text-xs font-medium mb-1.5 text-muted">
           Name
         </label>
         <input
@@ -65,13 +65,13 @@ export default function ContactForm() {
           required
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 focus:shadow-[0_0_10px_var(--color-accent-glow)] transition-all"
+          className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
           placeholder="Your name"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">
+        <label htmlFor="email" className="block text-xs font-medium mb-1.5 text-muted">
           Email
         </label>
         <input
@@ -80,22 +80,22 @@ export default function ContactForm() {
           required
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 focus:shadow-[0_0_10px_var(--color-accent-glow)] transition-all"
+          className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
           placeholder="your@email.com"
         />
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">
+        <label htmlFor="message" className="block text-xs font-medium mb-1.5 text-muted">
           Message
         </label>
         <textarea
           id="message"
           required
-          rows={5}
+          rows={3}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 focus:shadow-[0_0_10px_var(--color-accent-glow)] transition-all resize-none"
+          className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all resize-none"
           placeholder="What's on your mind?"
         />
       </div>
@@ -111,7 +111,7 @@ export default function ContactForm() {
         disabled={submitted || submitting}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+        className={`w-full flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-lg font-medium transition-all duration-300 ${
           submitted
             ? "bg-green-500/20 text-green-400 border border-green-500/30"
             : submitting

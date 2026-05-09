@@ -200,9 +200,9 @@ export default function PlaygroundPage() {
     <PageTransition>
       <div className="max-w-6xl mx-auto px-6 py-20">
         <PageHeader
-          eyebrow="The Playground"
-          title="Things I've built"
-          description="Games, music, AI experiments, practice tools, and the odd creative tangent. Some live elsewhere, others run right here."
+          eyebrow="Playground"
+          title="My Projects"
+          description="Games, Music, AI, Helpers, Tools, etc. Check it out!"
         />
 
         {/* Featured: two equal-size heroes */}

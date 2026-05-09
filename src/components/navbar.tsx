@@ -9,7 +9,6 @@ import { useTheme, themes } from "@/components/theme-provider";
 const links = [
   { href: "/about", label: "About" },
   { href: "/playground", label: "Playground" },
-  { href: "/resume", label: "Resume" },
 ];
 
 function isActive(pathname: string, href: string) {
