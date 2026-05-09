@@ -6,7 +6,7 @@ import PageTransition from "@/components/page-transition";
 import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import { useTheme } from "@/components/theme-provider";
-import { bio, hobbies, currentInterests, timeline, websiteCredits } from "@/data/about";
+import { bio, hobbies, currentInterests, websiteCredits } from "@/data/about";
 
 const profileImage: Record<string, string> = {
   limitless: "/assets/media/profile/cyber.jpg",
@@ -86,34 +86,8 @@ export default function AboutPage() {
           </div>
         </ScrollReveal>
 
-        {/* Timeline */}
-        <ScrollReveal>
-          <h2 className="text-2xl font-bold mb-10">Journey</h2>
-        </ScrollReveal>
-        <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-accent/20 -translate-x-1/2" />
-
-          {timeline.map((item, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <div
-                className={`relative flex flex-col md:flex-row items-start gap-6 mb-12 ${
-                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-              >
-                <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-accent border-2 border-background -translate-x-1/2 mt-1.5 z-10" />
-
-                <div className={`ml-10 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <span className="text-xs text-accent font-mono">{item.year}</span>
-                  <h3 className="text-lg font-semibold mt-1">{item.title}</h3>
-                  <p className="text-sm text-muted">{item.description}</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-
         {/* Pudding */}
-        <ScrollReveal className="mt-20">
+        <ScrollReveal>
           <div className="flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-surface border border-border">
             <div className="relative w-48 h-48 rounded-xl overflow-hidden shrink-0">
               <Image
