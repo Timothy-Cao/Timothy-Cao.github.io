@@ -20,7 +20,6 @@ export const currentInterests = [
   "GeoGuessr",
   "Japanese",
   "Vibe Coding",
-  "Jam",
 ];
 
 export const websiteCredits = {
