@@ -172,7 +172,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Naruto Quizzes",
     subtitle: "Test your shinobi knowledge",
     href: "https://naruto-quiz.vercel.app/",
-    coverImage: "/assets/media/games/naruto-quiz.svg",
+    coverImage: "/assets/media/blog_covers/naruto-quiz.png",
     external: true,
   },
   {
