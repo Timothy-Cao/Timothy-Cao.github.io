@@ -75,7 +75,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="relative rounded-lg border border-accent/20 bg-[rgba(10,10,10,0.8)] backdrop-blur-sm overflow-hidden w-[340px] md:w-[420px]"
+            className="relative rounded-lg border border-accent/20 bg-[rgba(10,10,10,0.8)] backdrop-blur-sm overflow-hidden w-full max-w-[340px] md:max-w-[420px]"
           >
             {/* Terminal title bar */}
             <div className="flex items-center gap-1.5 px-3 py-1.5 border-b border-accent/10 bg-[rgba(255,255,255,0.03)]">
