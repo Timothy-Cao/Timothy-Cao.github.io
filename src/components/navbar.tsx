@@ -21,7 +21,7 @@ function ThemeToggle() {
 
   return (
     <div
-      className="flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/40 px-1.5 py-1 backdrop-blur-sm"
+      className="flex items-center gap-2 rounded-full border border-border/60 bg-surface/40 px-2 py-1.5 backdrop-blur-sm"
       role="radiogroup"
       aria-label="Change theme"
     >
@@ -35,18 +35,18 @@ function ThemeToggle() {
             aria-checked={active}
             aria-label={t.label}
             title={t.label}
-            className="relative flex items-center justify-center w-6 h-6 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
-            whileHover={{ scale: 1.15 }}
+            className="relative flex items-center justify-center w-9 h-9 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+            whileHover={{ scale: 1.12 }}
             whileTap={{ scale: 0.92 }}
           >
             {/* Selected ring — animated layout transition between buttons */}
             {active && (
               <motion.span
                 layoutId="theme-active-ring"
-                className="absolute inset-0 rounded-full border"
+                className="absolute inset-1 rounded-full border"
                 style={{
                   borderColor: t.accent,
-                  boxShadow: `0 0 12px ${t.accentGlow}, inset 0 0 6px ${t.accentGlow}`,
+                  boxShadow: `0 0 14px ${t.accentGlow}, inset 0 0 6px ${t.accentGlow}`,
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
@@ -58,10 +58,10 @@ function ThemeToggle() {
               style={{ background: t.accent }}
               animate={
                 active
-                  ? { width: 12, height: 12, opacity: 1 }
+                  ? { width: 16, height: 16, opacity: 1 }
                   : {
-                      width: [8, 9, 8],
-                      height: [8, 9, 8],
+                      width: [11, 13, 11],
+                      height: [11, 13, 11],
                       opacity: [0.55, 0.85, 0.55],
                     }
               }
