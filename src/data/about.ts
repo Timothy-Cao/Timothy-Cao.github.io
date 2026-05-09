@@ -1,6 +1,6 @@
 export const bio = {
   greeting: "Hello, I'm Tim",
-  personal: "Born 2000, grew up Markham Canada. Sometimes ENFP sometimes INTP. Recognizable by bouncy walk and attachment to backpack.",
+  personal: "Born 2000, grew up in Markham, Canada. ENFP on weekends INTP on weekdays. Recognizable by bouncy walk and attachment to backpack.",
   pudding: "She loves celery and hates vacuum. Chonky (4 kg).",
 };
 
