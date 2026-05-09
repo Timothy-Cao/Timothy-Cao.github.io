@@ -143,7 +143,7 @@ export default function AboutPage() {
               <object
                 data={`${RESUME_URL}#view=FitH&toolbar=0&navpanes=0`}
                 type="application/pdf"
-                className="w-full h-[60vh] min-h-[480px]"
+                className="w-full h-[200px] md:h-[240px]"
                 aria-label="Timothy Cao Resume (blurred preview)"
               >
                 <div className="flex flex-col items-center justify-center gap-4 p-12 text-center">
