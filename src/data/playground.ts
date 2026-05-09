@@ -169,6 +169,13 @@ export const playgroundCards: PlaygroundCard[] = [
     hoverEffect: "twinkle",
   },
   {
+    title: "Naruto Quizzes",
+    subtitle: "Test your shinobi knowledge",
+    href: "https://naruto-quiz.vercel.app/",
+    coverImage: "/assets/media/games/naruto-quiz.svg",
+    external: true,
+  },
+  {
     title: "GenZ Typeracer",
     subtitle: "How fast can you skibidi type?",
     href: "https://genztyper.vercel.app/",
