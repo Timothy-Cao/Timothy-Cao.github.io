@@ -60,17 +60,18 @@ body {
   background: var(--color-accent);
 }
 
-/* Subtle pulsing accent glow for featured playground heroes */
-@keyframes hero-pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 0px 0px var(--color-accent-glow);
-    opacity: 0.85;
-  }
-  50% {
-    box-shadow: 0 0 38px 6px var(--color-accent-glow);
-    opacity: 1;
-  }
+/* Subtle pulsing accent glow for featured playground heroes.
+   Animates opacity (compositor-only, no paint) on a static shadow
+   for cheap pulses, especially on mobile. */
+@keyframes hero-pulse-fade {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
 }
 .hero-pulse {
-  animation: hero-pulse-glow 3.2s ease-in-out infinite;
+  box-shadow: 0 0 38px 4px var(--color-accent-glow);
+  animation: hero-pulse-fade 3.2s ease-in-out infinite;
+  will-change: opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-pulse { animation: none; opacity: 0.6; }
 }

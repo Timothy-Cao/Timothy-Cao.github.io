@@ -21,7 +21,7 @@ function ThemeToggle() {
 
   return (
     <div
-      className="flex items-center gap-2 rounded-full border border-border/60 bg-surface/40 px-2 py-1.5 backdrop-blur-sm"
+      className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-border/60 bg-surface/40 px-1.5 py-1 sm:px-2 sm:py-1.5 backdrop-blur-sm"
       role="radiogroup"
       aria-label="Change theme"
     >
@@ -35,7 +35,7 @@ function ThemeToggle() {
             aria-checked={active}
             aria-label={t.label}
             title={t.label}
-            className="relative flex items-center justify-center w-9 h-9 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+            className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
             whileHover={{ scale: 1.12 }}
             whileTap={{ scale: 0.92 }}
           >
