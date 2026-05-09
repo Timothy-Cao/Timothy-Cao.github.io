@@ -12,14 +12,6 @@ import { Clock3, Construction, ExternalLink } from "lucide-react";
 
 const getImagePath = (index: number) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
 
-function getDomain(href: string) {
-  try {
-    return new URL(href).hostname.replace(/^www\./, "");
-  } catch {
-    return null;
-  }
-}
-
 export default function PlaygroundPage() {
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [gallerySpeed, setGallerySpeed] = useState(1000);
@@ -90,7 +82,6 @@ export default function PlaygroundPage() {
     const isGallery = card.hoverEffect === "gallery";
     const isSpin = card.hoverEffect === "spin";
     const isComingSoon = card.comingSoon;
-    const domain = card.external ? getDomain(card.href) : null;
 
     const coverHeight = hero ? "h-64 md:h-80" : "h-44";
 
@@ -160,9 +151,8 @@ export default function PlaygroundPage() {
           )}
 
           {card.external && !isComingSoon && (
-            <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full border border-white/10 bg-background/70 px-2 py-0.5 text-[10px] font-mono text-white/70 backdrop-blur">
-              <ExternalLink className="w-3 h-3" />
-              {domain}
+            <div className="absolute top-3 right-3 flex items-center justify-center w-7 h-7 rounded-full border border-white/10 bg-background/70 text-white/70 backdrop-blur">
+              <ExternalLink className="w-3.5 h-3.5" />
             </div>
           )}
 
