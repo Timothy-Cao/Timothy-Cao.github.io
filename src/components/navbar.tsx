@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { useTheme, themes } from "@/components/theme-provider";
 
 const links = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/playground", label: "Playground" },
   { href: "/resume", label: "Resume" },
@@ -109,37 +108,58 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+        {/* Home logo — terminal-style "TIMCAO ▮" with blinking accent cursor */}
         <Link
           href="/"
-          className="text-lg font-bold tracking-tight text-foreground hover:text-accent transition-colors"
+          aria-label="Home"
+          className="group relative flex items-center gap-2 rounded-md px-2 py-1 -ml-2 transition-colors"
         >
-          TC
+          <span className="font-mono font-bold text-base md:text-lg tracking-[0.22em] text-foreground transition-all duration-300 group-hover:text-accent group-hover:[text-shadow:0_0_14px_var(--color-accent-glow)]">
+            TIMCAO
+          </span>
+          <motion.span
+            className="block w-[3px] h-4 md:h-5 bg-accent rounded-[1px]"
+            animate={{ opacity: [1, 0.15, 1] }}
+            transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
+            style={{ boxShadow: "0 0 8px var(--color-accent-glow)" }}
+            aria-hidden="true"
+          />
+          {/* Subtle underline that draws in on hover */}
+          <span className="pointer-events-none absolute left-2 right-2 bottom-0 h-px origin-left scale-x-0 bg-accent/60 transition-transform duration-300 group-hover:scale-x-100" />
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative group text-sm font-medium transition-colors"
-            >
-              <span
-                className={
-                  isActive(pathname, link.href) ? "text-accent" : "text-muted hover:text-foreground"
-                }
-              >
-                {link.label}
-              </span>
-              {isActive(pathname, link.href) && (
-                <motion.div
-                  layoutId="nav-underline"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                />
-              )}
-            </Link>
-          ))}
+        {/* Desktop links — pill bar with animated active background */}
+        <div className="hidden md:flex items-center gap-3">
+          <div
+            className="relative flex items-center gap-1 rounded-full border border-border/60 bg-surface/40 p-1 backdrop-blur-sm"
+          >
+            {links.map((link) => {
+              const active = isActive(pathname, link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="relative px-4 py-1.5 text-sm font-medium rounded-full transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-accent/50"
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="nav-active-pill"
+                      className="absolute inset-0 rounded-full bg-accent/12 border border-accent/40"
+                      style={{ boxShadow: "0 0 14px var(--color-accent-glow)" }}
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 transition-colors ${
+                      active ? "text-accent" : "text-muted hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
           <ThemeToggle />
         </div>
 
