@@ -2,6 +2,7 @@
 
 import { Download, ExternalLink } from "lucide-react";
 import PageTransition from "@/components/page-transition";
+import PageHeader from "@/components/ui/page-header";
 import Footer from "@/components/footer";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 
@@ -11,34 +12,31 @@ export default function ResumePage() {
   return (
     <PageTransition>
       <div className="max-w-5xl mx-auto px-6 py-20">
-        <ScrollReveal>
-          <div className="flex flex-col gap-2 mb-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-2">Resume</h1>
-              <p className="text-muted text-sm md:text-base">
-                A quick look at my background. Open the PDF for the full version.
-              </p>
-            </div>
+        <PageHeader
+          eyebrow="Resume"
+          title="A quick look at my work"
+          description="Open the PDF for the full version. Currently being polished."
+        />
 
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={RESUME_URL}
-                download
-                className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
-              >
-                <Download className="w-4 h-4" />
-                Download PDF
-              </a>
-              <a
-                href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/30 hover:text-foreground"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Open in new tab
-              </a>
-            </div>
+        <ScrollReveal>
+          <div className="flex flex-wrap gap-3 mb-8">
+            <a
+              href={RESUME_URL}
+              download
+              className="inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+            >
+              <Download className="w-4 h-4" />
+              Download PDF
+            </a>
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/30 hover:text-foreground"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open in new tab
+            </a>
           </div>
         </ScrollReveal>
 

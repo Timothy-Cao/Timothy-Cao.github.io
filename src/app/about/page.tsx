@@ -24,39 +24,59 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto px-6 py-20">
         {/* Hero section */}
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row items-center gap-10 mb-20">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border border-accent/20 shrink-0">
-              <Image
-                src={currentProfile}
-                alt="Timothy Cao"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 rounded-full bg-accent/5 blur-xl -z-10 scale-150" />
-            </div>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">{bio.greeting}</h1>
-              <p className="text-muted leading-relaxed">{bio.personal}</p>
+          <div className="relative mb-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-[640px] max-w-full h-[280px] -z-10 opacity-60"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, var(--color-accent-glow), transparent 65%)",
+              }}
+            />
+            <p className="mb-4 inline-flex items-center gap-2 text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-accent/80">
+              <span className="block h-px w-6 bg-accent/40" />
+              About
+            </p>
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-10">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border border-accent/20 shrink-0">
+                <Image
+                  src={currentProfile}
+                  alt="Timothy Cao"
+                  fill
+                  sizes="(min-width: 768px) 160px, 128px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 rounded-full bg-accent/5 blur-xl -z-10 scale-150" />
+              </div>
+              <div>
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
+                  {bio.greeting}
+                </h1>
+                <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl">
+                  {bio.personal}
+                </p>
+              </div>
             </div>
           </div>
         </ScrollReveal>
 
-        {/* Long Term Hobbies */}
+        {/* Long Standing Hobbies */}
         <ScrollReveal>
-          <h2 className="text-2xl font-bold mb-6">Long Standing Hobbies</h2>
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="mb-6 flex items-baseline gap-4">
+            <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+              Long Standing
+            </h2>
+            <span className="block flex-1 h-px bg-border" />
+          </div>
+          <div className="flex flex-wrap gap-3 mb-12">
             {hobbies.map((hobby, i) => (
               <motion.span
                 key={hobby}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 15px var(--color-accent-glow)",
-                }}
-                className="px-4 py-2 rounded-full border border-accent/20 text-sm text-accent bg-accent/5 transition-colors hover:border-accent/50 hover:bg-accent/10"
+                transition={{ delay: i * 0.04 }}
+                className="px-4 py-2 rounded-full border border-white/10 text-sm text-foreground/85 bg-white/[0.02] transition-colors hover:border-accent/40 hover:text-accent"
               >
                 {hobby}
               </motion.span>
@@ -64,22 +84,23 @@ export default function AboutPage() {
           </div>
         </ScrollReveal>
 
-        {/* Current Interests */}
+        {/* Recent Interests */}
         <ScrollReveal>
-          <h3 className="text-lg font-semibold mb-4 text-muted">Recent Interests</h3>
-          <div className="flex flex-wrap gap-3 mb-20">
+          <div className="mb-6 flex items-baseline gap-4">
+            <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+              Recently
+            </h2>
+            <span className="block flex-1 h-px bg-border" />
+          </div>
+          <div className="flex flex-wrap gap-3 mb-24">
             {currentInterests.map((interest, i) => (
               <motion.span
                 key={interest}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 15px var(--color-accent-glow)",
-                }}
-                className="px-4 py-2 rounded-full border border-accent/20 text-sm text-accent/70 bg-accent/5 transition-colors hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
+                transition={{ delay: i * 0.04 }}
+                className="px-4 py-2 rounded-full border border-white/10 text-sm text-muted bg-white/[0.02] transition-colors hover:border-accent/40 hover:text-accent"
               >
                 {interest}
               </motion.span>
@@ -89,6 +110,12 @@ export default function AboutPage() {
 
         {/* Pudding */}
         <ScrollReveal>
+          <div className="mb-6 flex items-baseline gap-4">
+            <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+              The roommate
+            </h2>
+            <span className="block flex-1 h-px bg-border" />
+          </div>
           <div className="flex flex-col md:flex-row items-center gap-8 p-8 rounded-2xl bg-surface border border-border">
             <div className="relative w-48 h-48 rounded-xl overflow-hidden shrink-0">
               <Image
@@ -106,10 +133,16 @@ export default function AboutPage() {
         </ScrollReveal>
 
         {/* Get in touch */}
-        <ScrollReveal className="mt-20">
+        <ScrollReveal className="mt-24">
+          <div className="mb-6 flex items-baseline gap-4">
+            <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
+              Reach out
+            </h2>
+            <span className="block flex-1 h-px bg-border" />
+          </div>
           <div className="max-w-xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">Get In Touch</h2>
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Get in touch</h3>
               <p className="text-muted">
                 Message me about anything except my car&apos;s extended warranty.
               </p>

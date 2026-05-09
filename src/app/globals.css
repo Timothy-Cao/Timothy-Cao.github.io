@@ -3,7 +3,8 @@
 @theme inline {
   --color-background: #0a0a0a;
   --color-foreground: #e0e0e0;
-  --color-surface: #111111;
+  --color-surface: #161616;
+  --color-surface-elevated: #1c1c1c;
   --color-muted: #888888;
   --color-border: rgba(255, 255, 255, 0.08);
   --font-sans: var(--font-geist-sans);
