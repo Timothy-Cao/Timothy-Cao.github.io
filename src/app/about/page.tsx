@@ -112,7 +112,7 @@ export default function AboutPage() {
         <ScrollReveal>
           <div className="mb-6 flex items-baseline gap-4">
             <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">
-              The roommate
+              Long-distance
             </h2>
             <span className="block flex-1 h-px bg-border" />
           </div>

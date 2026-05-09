@@ -2,15 +2,18 @@
 
 import { useEffect, useRef, useCallback } from "react";
 
-interface Particle {
+interface GridDot {
+  baseX: number;
+  baseY: number;
   x: number;
   y: number;
-  vx: number;
-  vy: number;
-  size: number;
-  opacity: number;
-  life: number; // 0 = fresh (blue), 0→1 = blue→purple, >1 = fading out
-  dead: boolean;
+}
+
+interface GravityGrid {
+  dots: GridDot[];
+  cols: number;
+  rows: number;
+  spacing: number;
 }
 
 interface MatrixDrop {
@@ -39,7 +42,7 @@ export default function ParticleBackground() {
   const mouseMovingRef = useRef(false);
   const mouseMoveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastPulseRef = useRef(0);
-  const particlesRef = useRef<Particle[]>([]);
+  const gridRef = useRef<GravityGrid | null>(null);
   const matrixDropsRef = useRef<MatrixDrop[]>([]);
   const hexNodesRef = useRef<HexNode[]>([]);
   const animationRef = useRef<number>(0);
@@ -52,22 +55,20 @@ export default function ParticleBackground() {
   const lastFrameTimeRef = useRef(0);
   const matrixTrailRef = useRef<{ x: number; y: number; vx: number; vy: number; char: string; life: number; fadeSpeed: number; size: number; isExplosion: boolean }[]>([]);
 
-  const initParticles = useCallback((width: number, height: number) => {
-    const count = Math.min(Math.floor((width * height) / 11000), 140);
-    const particles: Particle[] = [];
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2.5 + 0.5,
-        opacity: Math.random() * 0.6 + 0.2,
-        life: 0,
-        dead: false,
-      });
+  const initGravityGrid = useCallback((width: number, height: number) => {
+    const spacing = 50; // px between dots
+    // Pad one cell on each side so warping near the edge still has neighbors
+    const cols = Math.ceil(width / spacing) + 3;
+    const rows = Math.ceil(height / spacing) + 3;
+    const dots: GridDot[] = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = c * spacing - spacing;
+        const y = r * spacing - spacing;
+        dots.push({ baseX: x, baseY: y, x, y });
+      }
     }
-    particlesRef.current = particles;
+    gridRef.current = { dots, cols, rows, spacing };
   }, []);
 
   const initMatrixDrops = useCallback((width: number, height: number) => {
@@ -172,8 +173,8 @@ export default function ParticleBackground() {
         initMatrixDrops(canvas.width, canvas.height);
       } else if (mode === "hex" && hexNodesRef.current.length === 0) {
         initHexGrid(canvas.width, canvas.height);
-      } else if (mode === "particles" && particlesRef.current.length === 0) {
-        initParticles(canvas.width, canvas.height);
+      } else if (mode === "particles" && !gridRef.current) {
+        initGravityGrid(canvas.width, canvas.height);
       }
     };
 
@@ -186,7 +187,7 @@ export default function ParticleBackground() {
       } else if (mode === "hex") {
         initHexGrid(canvas.width, canvas.height);
       } else {
-        initParticles(canvas.width, canvas.height);
+        initGravityGrid(canvas.width, canvas.height);
       }
     };
 
@@ -526,51 +527,19 @@ export default function ParticleBackground() {
       }
     };
 
-    // ── Cyber Particles ──
-    // Color gradient: blue → purple → red → orange → yellow → white
-    // life goes from 0 to 5 (each merge adds ~0.08), reaching white triggers pop
-    const colorStops = [
-      { at: 0, r: 0, g: 229, b: 255 },     // cyan
-      { at: 1, r: 179, g: 136, b: 255 },    // purple
-      { at: 2, r: 255, g: 23, b: 68 },      // red
-      { at: 3, r: 255, g: 152, b: 0 },      // orange
-      { at: 4, r: 255, g: 235, b: 59 },     // yellow
-      { at: 5, r: 255, g: 255, b: 255 },    // white
-    ];
-
-    const getParticleColor = (life: number, baseOpacity: number) => {
-      const t = Math.min(Math.max(life, 0), 5);
-      let i = 0;
-      while (i < colorStops.length - 2 && colorStops[i + 1].at < t) i++;
-      const a = colorStops[i];
-      const b2 = colorStops[i + 1];
-      const frac = (t - a.at) / (b2.at - a.at);
-      return {
-        r: Math.round(a.r + (b2.r - a.r) * frac),
-        g: Math.round(a.g + (b2.g - a.g) * frac),
-        b: Math.round(a.b + (b2.b - a.b) * frac),
-        a: baseOpacity,
-      };
-    };
-
-    // Pop effects — expanding bright rings where particles die
-    const pops: { x: number; y: number; time: number; r: number; g: number; b: number }[] = [];
-
-    const spawnFreshParticle = (): Particle => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      size: Math.random() * 2.5 + 0.5,
-      opacity: Math.random() * 0.6 + 0.2,
-      life: 0,
-      dead: false,
-    });
-
-    const animateParticles = () => {
+    // ── Limitless: Gravity-warped grid ──
+    // Static grid of cyan dots; mouse acts as a gravity well (attract) or
+    // anti-gravity source (repel via right-click). Dots displace toward/away
+    // from the cursor with a capped magnitude so they never leave the page.
+    // Connection lines are only drawn near the cursor — visualizes the warp
+    // without per-frame O(n²) cost.
+    const animateGravityGrid = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const particles = particlesRef.current;
+      const grid = gridRef.current;
+      if (!grid) return;
+      const { dots, cols, rows, spacing } = grid;
       const mouse = mouseRef.current;
+      const mouseActive = mouse.x > -500;
       const direction = cyberAttractRef.current ? 1 : -1;
 
       const nextCyberMode = cyberAttractRef.current ? "attract" : "repel";
@@ -579,143 +548,93 @@ export default function ParticleBackground() {
         cyberModeAttrRef.current = nextCyberMode;
       }
 
-      const mergeRadius = 6;
-      const connectionRadius = 150;
-      const connectionRadiusSq = connectionRadius * connectionRadius;
-      const gridSize = connectionRadius;
-      const grid = new Map<string, number[]>();
+      const boosted = document.documentElement.getAttribute("data-cursor-boost") === "true";
+      const baseRadius = 280;
+      const radius = boosted ? baseRadius * 1.6 : baseRadius;
+      const radiusSq = radius * radius;
+      const baseDisp = boosted ? 60 : 38; // capped displacement so dots stay near base
+      const lerp = 0.18;
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        if (p.dead) continue;
-        const key = `${Math.floor(p.x / gridSize)},${Math.floor(p.y / gridSize)}`;
-        const bucket = grid.get(key);
-        if (bucket) bucket.push(i);
-        else grid.set(key, [i]);
-      }
+      // Update dot positions
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        let targetX = d.baseX;
+        let targetY = d.baseY;
 
-      // Draw + update pop effects first (behind particles)
-      for (let i = pops.length - 1; i >= 0; i--) {
-        const pop = pops[i];
-        pop.time += 0.016;
-        const progress = pop.time / 0.4; // 0.4s total duration
-        if (progress >= 1) {
-          pops.splice(i, 1);
-          continue;
-        }
-        const radius = 4 + progress * 25;
-        const alpha = (1 - progress) * 0.6;
-        ctx.beginPath();
-        ctx.arc(pop.x, pop.y, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${pop.r}, ${pop.g}, ${pop.b}, ${alpha})`;
-        ctx.lineWidth = 2 * (1 - progress);
-        ctx.stroke();
-        // Inner flash
-        if (progress < 0.3) {
-          ctx.beginPath();
-          ctx.arc(pop.x, pop.y, radius * 0.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${(0.3 - progress) * 2})`;
-          ctx.fill();
-        }
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        if (p.dead) continue;
-
-        // Mouse force
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const boosted = document.documentElement.getAttribute("data-cursor-boost") === "true";
-        const forceMultiplier = boosted ? 5 : 1;
-        if (dist < 300 && dist > 0) {
-          const force = (300 - dist) / 300;
-          p.vx += (dx / dist) * force * 0.06 * direction * forceMultiplier;
-          p.vy += (dy / dist) * force * 0.06 * direction * forceMultiplier;
-        }
-
-        p.vx *= 0.995;
-        p.vy *= 0.995;
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        // Pop when reaching white (life >= 5)
-        if (p.life >= 5) {
-          const c = getParticleColor(p.life, 1);
-          pops.push({ x: p.x, y: p.y, time: 0, r: c.r, g: c.g, b: c.b });
-          p.dead = true;
-          continue;
-        }
-
-        // Draw particle
-        const color = getParticleColor(p.life, p.opacity);
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
-        ctx.fill();
-
-        // Glow halo for hot particles
-        if (p.life > 2) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${(p.life / 5) * 0.12})`;
-          ctx.fill();
-        }
-
-        const gx = Math.floor(p.x / gridSize);
-        const gy = Math.floor(p.y / gridSize);
-
-        // Pair check: connections + merge, limited to nearby grid buckets
-        for (let ox = -1; ox <= 1; ox++) {
-          for (let oy = -1; oy <= 1; oy++) {
-            const bucket = grid.get(`${gx + ox},${gy + oy}`);
-            if (!bucket) continue;
-
-            for (const j of bucket) {
-              if (j <= i) continue;
-              const p2 = particles[j];
-              if (p2.dead) continue;
-
-              const cdx = p.x - p2.x;
-              const cdy = p.y - p2.y;
-              const cdistSq = cdx * cdx + cdy * cdy;
-
-              // Merge if touching
-              if (cdistSq < mergeRadius * mergeRadius) {
-                p.size = Math.min(p.size + p2.size * 0.2, 8);
-                p.life += 0.6;
-                p.vx = (p.vx + p2.vx) * 0.5;
-                p.vy = (p.vy + p2.vy) * 0.5;
-                p2.dead = true;
-              }
-
-              // Connection lines
-              if (cdistSq < connectionRadiusSq) {
-                const cdist = Math.sqrt(cdistSq);
-                const lineColor = getParticleColor(Math.max(p.life, p2.life), 0.18 * (1 - cdist / connectionRadius));
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(p2.x, p2.y);
-                ctx.strokeStyle = `rgba(${lineColor.r}, ${lineColor.g}, ${lineColor.b}, ${lineColor.a})`;
-                ctx.lineWidth = 0.6;
-                ctx.stroke();
-              }
+        if (mouseActive) {
+          const dx = mouse.x - d.baseX;
+          const dy = mouse.y - d.baseY;
+          // Cheap bbox prefilter
+          if (Math.abs(dx) < radius && Math.abs(dy) < radius) {
+            const distSq = dx * dx + dy * dy;
+            if (distSq < radiusSq && distSq > 0) {
+              const dist = Math.sqrt(distSq);
+              const t = 1 - dist / radius;
+              const falloff = t * t; // ease so warp is dramatic near cursor
+              const dispMag = falloff * baseDisp;
+              targetX = d.baseX + (dx / dist) * dispMag * direction;
+              targetY = d.baseY + (dy / dist) * dispMag * direction;
             }
           }
         }
+
+        d.x += (targetX - d.x) * lerp;
+        d.y += (targetY - d.y) * lerp;
       }
 
-      // Remove dead particles and spawn replacements
-      const deadCount = particles.filter(p => p.dead).length;
-      particlesRef.current = particles.filter(p => !p.dead);
-      for (let i = 0; i < deadCount; i++) {
-        particlesRef.current.push(spawnFreshParticle());
+      // Draw connection lines — only for dots whose base is within radius
+      // of the cursor (visualizes the warped region as a mesh)
+      if (mouseActive) {
+        const lineRadius = radius + spacing;
+        const lineRadiusSq = lineRadius * lineRadius;
+        ctx.strokeStyle = "rgba(0, 229, 255, 0.18)";
+        ctx.lineWidth = 0.7;
+        ctx.beginPath();
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const idx = r * cols + c;
+            const d = dots[idx];
+            const mdx = mouse.x - d.baseX;
+            const mdy = mouse.y - d.baseY;
+            if (mdx * mdx + mdy * mdy > lineRadiusSq) continue;
+            if (c < cols - 1) {
+              const right = dots[idx + 1];
+              ctx.moveTo(d.x, d.y);
+              ctx.lineTo(right.x, right.y);
+            }
+            if (r < rows - 1) {
+              const down = dots[idx + cols];
+              ctx.moveTo(d.x, d.y);
+              ctx.lineTo(down.x, down.y);
+            }
+          }
+        }
+        ctx.stroke();
+      }
+
+      // Draw dots — brighter and larger near cursor
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        let alpha = 0.32;
+        let size = 1.0;
+
+        if (mouseActive) {
+          const mdx = mouse.x - d.baseX;
+          const mdy = mouse.y - d.baseY;
+          if (Math.abs(mdx) < radius && Math.abs(mdy) < radius) {
+            const distSq = mdx * mdx + mdy * mdy;
+            if (distSq < radiusSq) {
+              const t = 1 - Math.sqrt(distSq) / radius;
+              alpha = 0.32 + t * 0.65;
+              size = 1.0 + t * 1.8;
+            }
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`;
+        ctx.fill();
       }
     };
 
@@ -739,7 +658,7 @@ export default function ParticleBackground() {
       } else if (mode === "hex") {
         animateHex();
       } else {
-        animateParticles();
+        animateGravityGrid();
       }
     };
 
@@ -756,7 +675,7 @@ export default function ParticleBackground() {
       window.removeEventListener("contextmenu", onContextMenu);
       if (mouseMoveTimerRef.current) clearTimeout(mouseMoveTimerRef.current);
     };
-  }, [initParticles, initMatrixDrops, initHexGrid]);
+  }, [initGravityGrid, initMatrixDrops, initHexGrid]);
 
   return (
     <canvas

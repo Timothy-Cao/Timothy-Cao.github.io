@@ -193,8 +193,8 @@ export default function PlaygroundPage() {
 
   const liveCards = playgroundCards.filter((c) => !c.comingSoon);
   const comingSoonCards = playgroundCards.filter((c) => c.comingSoon);
-  const featured = liveCards.slice(0, 3);
-  const rest = liveCards.slice(3);
+  const featured = liveCards.slice(0, 2);
+  const rest = liveCards.slice(2);
 
   return (
     <PageTransition>
@@ -205,19 +205,14 @@ export default function PlaygroundPage() {
           description="Games, music, AI experiments, practice tools, and the odd creative tangent. Some live elsewhere, others run right here."
         />
 
-        {/* Featured row: 1 hero + 2 stacked */}
+        {/* Featured: two equal-size heroes */}
         {featured.length > 0 && (
-          <div className="mb-10 grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6">
+          <div className="mb-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
             {featured[0] && (
-              <div className="lg:col-span-2 lg:row-span-2">
-                <ScrollReveal>{renderCard(featured[0], true)}</ScrollReveal>
-              </div>
+              <ScrollReveal>{renderCard(featured[0], true)}</ScrollReveal>
             )}
             {featured[1] && (
-              <ScrollReveal delay={0.05}>{renderCard(featured[1])}</ScrollReveal>
-            )}
-            {featured[2] && (
-              <ScrollReveal delay={0.1}>{renderCard(featured[2])}</ScrollReveal>
+              <ScrollReveal delay={0.06}>{renderCard(featured[1], true)}</ScrollReveal>
             )}
           </div>
         )}
