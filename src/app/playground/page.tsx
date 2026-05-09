@@ -186,14 +186,10 @@ export default function PlaygroundPage() {
       </motion.div>
     );
 
-    // Wrap hero cards with a subtle pulsing accent glow to hint
-    // 'featured / most interesting' without being noisy
+    // Hero cards get an accent beam that traces around the perimeter
     const wrapped = hero ? (
       <div className="relative">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 rounded-xl pointer-events-none hero-pulse"
-        />
+        <div aria-hidden="true" className="hero-trace" />
         <div className="relative">{cardContent}</div>
       </div>
     ) : (

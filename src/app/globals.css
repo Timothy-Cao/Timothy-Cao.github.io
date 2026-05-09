@@ -60,18 +60,40 @@ body {
   background: var(--color-accent);
 }
 
-/* Subtle pulsing accent glow for featured playground heroes.
-   Animates opacity (compositor-only, no paint) on a static shadow
-   for cheap pulses, especially on mobile. */
-@keyframes hero-pulse-fade {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; }
+/* Featured playground heroes: an accent beam that traces around the
+   card perimeter. A conic gradient with one bright arc rotates behind
+   the card; the card body masks the centre so only the thin halo is
+   visible. transform: rotate is GPU-accelerated and cheap on mobile. */
+@keyframes hero-trace-spin {
+  to { transform: rotate(360deg); }
 }
-.hero-pulse {
-  box-shadow: 0 0 38px 4px var(--color-accent-glow);
-  animation: hero-pulse-fade 3.2s ease-in-out infinite;
-  will-change: opacity;
+.hero-trace {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 13.5px; /* card uses rounded-xl (12px); +1.5 for halo */
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.hero-trace::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    var(--color-accent-dim) 290deg,
+    var(--color-accent) 320deg,
+    var(--color-accent-dim) 350deg,
+    transparent 360deg
+  );
+  animation: hero-trace-spin 5s linear infinite;
+  will-change: transform;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-pulse { animation: none; opacity: 0.6; }
+  .hero-trace::before { animation: none; }
+  .hero-trace { opacity: 0.4; }
 }
