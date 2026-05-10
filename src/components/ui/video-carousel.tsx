@@ -86,7 +86,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
           />
         </div>
 
-        <div className="max-h-[36rem] lg:max-h-none lg:flex-1 lg:min-h-0 space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[36rem] lg:max-h-none lg:flex-1 lg:min-h-0 lg:flex lg:flex-col lg:justify-end space-y-2 overflow-y-auto pr-1">
           {filtered.length > 0 ? (
             filtered.map((video) => {
               const active = video.youtubeId === selected.youtubeId;

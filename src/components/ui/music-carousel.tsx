@@ -261,7 +261,7 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
           <span className="text-xs text-muted">{total} tracks</span>
         </div>
 
-        <div className="max-h-[34rem] lg:max-h-none lg:flex-1 lg:min-h-0 space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[34rem] lg:max-h-none lg:flex-1 lg:min-h-0 lg:flex lg:flex-col lg:justify-end space-y-2 overflow-y-auto pr-1">
           {compositions.map((track, index) => {
             const selected = index === current;
             const trackBadge = CATEGORY_BADGE[track.category];
