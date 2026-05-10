@@ -18,7 +18,6 @@ export const videoRecommendations: VideoRecommendation[] = [
   { title: "The Power of Suggestion", creator: "Vsauce", youtubeId: "QDCcuCHOIyY", description: "" },
   { title: "Who's Afraid of Modern Art", creator: "Jacob Geller", youtubeId: "v5DqmTtCPiQ", description: "Changed my view on art." },
   { title: "Witnessing the Death of American Capitalism", creator: "Benn Jordan", youtubeId: "gqtrNXdlraM", description: "" },
-  { title: "Really Achieving Your Childhood Dreams", creator: "Randy Pausch", youtubeId: "ji5_MqicxSo", description: "" },
   { title: "Is success Luck or Hard work?", creator: "Veritasium", youtubeId: "3LopI4YeC4I", description: "Bad luck is easier to spot than good luck." },
   { title: "The Evolution Of Intelligence", creator: "Art of the Problem", youtubeId: "5EcQ1IcEMFQ", description: "Human intelligence ended with language, while LLMs begin with language." },
   { title: "Wealth Inequality in America", creator: "Politizane", youtubeId: "QPKKQnijnsM", description: "" },
