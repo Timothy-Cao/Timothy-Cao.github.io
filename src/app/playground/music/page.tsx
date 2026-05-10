@@ -139,7 +139,7 @@ export default function MusicPage() {
     <PageTransition>
       <div className="max-w-5xl mx-auto px-6 py-20">
         <ScrollReveal>
-          <MusicCarousel key={activeTab} compositions={items} volume={volume} header={headerSlot} />
+          <MusicCarousel compositions={items} volume={volume} header={headerSlot} />
         </ScrollReveal>
       </div>
     </PageTransition>
