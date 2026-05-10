@@ -36,7 +36,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
       <section>
         {header}
         <LiteYouTubePlayer key={selected.youtubeId} youtubeId={selected.youtubeId} title={selected.title} />
@@ -61,7 +61,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
         )}
       </section>
 
-      <aside>
+      <aside className="lg:flex lg:flex-col lg:min-h-0">
         <div className="mb-3 flex items-center justify-between gap-3">
           <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted">
             <Video className="h-4 w-4" />
@@ -85,7 +85,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
           />
         </div>
 
-        <div className="max-h-[36rem] space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[36rem] lg:max-h-none lg:flex-1 lg:min-h-0 space-y-2 overflow-y-auto pr-1">
           {filtered.length > 0 ? (
             filtered.map((video) => {
               const active = video.youtubeId === selected.youtubeId;

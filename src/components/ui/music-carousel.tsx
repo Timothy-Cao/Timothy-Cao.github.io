@@ -161,7 +161,7 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
       <audio
         ref={audioRef}
         src={comp.src}
@@ -254,13 +254,13 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
         </section>
       </div>
 
-      <section>
+      <section className="lg:flex lg:flex-col lg:min-h-0">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">Playlist</h2>
           <span className="text-xs text-muted">{total} tracks</span>
         </div>
 
-        <div className="max-h-[34rem] space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[34rem] lg:max-h-none lg:flex-1 lg:min-h-0 space-y-2 overflow-y-auto pr-1">
           {compositions.map((track, index) => {
             const selected = index === current;
             const trackBadge = CATEGORY_BADGE[track.category];
