@@ -25,7 +25,7 @@ const CATEGORY_BADGE: Record<NonNullable<Composition["category"]>, string | null
 const CATEGORY_NOTICE: Record<NonNullable<Composition["category"]>, string | null> = {
   original: null,
   "ai-played": null,
-  "ai-generated": "Fully AI generated, with only minor musical input from me.",
+  "ai-generated": null,
 };
 
 interface MusicCarouselProps {

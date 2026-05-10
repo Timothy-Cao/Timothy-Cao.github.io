@@ -27,8 +27,7 @@ const TABS: Tab[] = [
   {
     id: "ai-generated",
     label: "AI Generated",
-    notice: "These were fully AI generated, with only minor musical input from me.",
-    quote: "Wow! AI generated music is getting a little too good... I feel like they play my pieces sound so beautifully. Even the music generated entirely on it's own sounds good. Scary!",
+    notice: "These are almost entirely generated from AI if not fully. Only guidance was given.",
   },
 ];
 
