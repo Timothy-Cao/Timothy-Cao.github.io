@@ -53,93 +53,90 @@ export default function MusicPage() {
   const tab = TABS.find((t) => t.id === activeTab) ?? TABS[0];
   const items = grouped[activeTab];
 
+  const headerSlot = (
+    <>
+      <PageHeader
+        eyebrow="Music"
+        title="Composition"
+        description="Pieces I've written over the past decade. Musescore and FL Studio for writing; Suno AI for production on the AI cuts."
+        glow={false}
+      />
+
+      <div className="flex items-center gap-3 mb-8 max-w-xs">
+        <button
+          onClick={() => setVolume(volume > 0 ? 0 : 0.5)}
+          className="text-muted hover:text-foreground transition-colors"
+          aria-label={volume === 0 ? "Unmute" : "Mute"}
+        >
+          {volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+        </button>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={(e) => setVolume(parseFloat(e.target.value))}
+          className="flex-1 h-1.5 rounded-full appearance-none bg-white/10 accent-accent cursor-pointer"
+          aria-label="Volume"
+        />
+        <span className="text-xs text-muted font-mono w-8">
+          {Math.round(volume * 100)}%
+        </span>
+      </div>
+
+      <div
+        role="tablist"
+        aria-label="Composition categories"
+        className="mb-6 flex flex-wrap gap-2 border-b border-border"
+      >
+        {TABS.map((t) => {
+          const selected = t.id === activeTab;
+          const count = grouped[t.id].length;
+          const showSparkle = t.id === "ai-generated";
+          return (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              aria-selected={selected}
+              onClick={() => setActiveTab(t.id)}
+              className={`relative -mb-px flex items-center gap-2 border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
+                selected
+                  ? "border-accent text-foreground"
+                  : "border-transparent text-muted hover:text-foreground"
+              }`}
+            >
+              {showSparkle && <Sparkles className="h-3.5 w-3.5 text-accent/70" />}
+              <span>{t.label}</span>
+              <span className="rounded-full bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-muted">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {tab.notice && (
+        <div className="mb-4 rounded-lg border border-accent/20 bg-accent/5 px-4 py-3 text-sm text-muted">
+          <p className="flex items-start gap-2">
+            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            <span>{tab.notice}</span>
+          </p>
+        </div>
+      )}
+
+      {tab.quote && (
+        <blockquote className="mb-6 rounded-lg border-l-2 border-accent/50 bg-surface px-4 py-3 text-sm italic text-muted">
+          &ldquo;{tab.quote}&rdquo;
+        </blockquote>
+      )}
+    </>
+  );
+
   return (
     <PageTransition>
       <div className="max-w-5xl mx-auto px-6 py-20">
-        <PageHeader
-          eyebrow="Music"
-          title="Composition"
-          description="Pieces I've written over the past decade. Musescore and FL Studio for writing; Suno AI for production on the AI cuts."
-        />
-
-        <ScrollReveal delay={0.1}>
-          <div className="flex items-center gap-3 mb-8 max-w-xs">
-            <button
-              onClick={() => setVolume(volume > 0 ? 0 : 0.5)}
-              className="text-muted hover:text-foreground transition-colors"
-              aria-label={volume === 0 ? "Unmute" : "Mute"}
-            >
-              {volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={(e) => setVolume(parseFloat(e.target.value))}
-              className="flex-1 h-1.5 rounded-full appearance-none bg-white/10 accent-accent cursor-pointer"
-              aria-label="Volume"
-            />
-            <span className="text-xs text-muted font-mono w-8">
-              {Math.round(volume * 100)}%
-            </span>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.15}>
-          <div
-            role="tablist"
-            aria-label="Composition categories"
-            className="mb-6 flex flex-wrap gap-2 border-b border-border"
-          >
-            {TABS.map((t) => {
-              const selected = t.id === activeTab;
-              const count = grouped[t.id].length;
-              const showSparkle = t.id === "ai-generated";
-              return (
-                <button
-                  key={t.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setActiveTab(t.id)}
-                  className={`relative -mb-px flex items-center gap-2 border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
-                    selected
-                      ? "border-accent text-foreground"
-                      : "border-transparent text-muted hover:text-foreground"
-                  }`}
-                >
-                  {showSparkle && <Sparkles className="h-3.5 w-3.5 text-accent/70" />}
-                  <span>{t.label}</span>
-                  <span className="rounded-full bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-muted">{count}</span>
-                </button>
-              );
-            })}
-          </div>
-        </ScrollReveal>
-
-        {tab.notice && (
-          <ScrollReveal delay={0.18}>
-            <div className="mb-4 rounded-lg border border-accent/20 bg-accent/5 px-4 py-3 text-sm text-muted">
-              <p className="flex items-start gap-2">
-                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                <span>{tab.notice}</span>
-              </p>
-            </div>
-          </ScrollReveal>
-        )}
-
-        {tab.quote && (
-          <ScrollReveal delay={0.2}>
-            <blockquote className="mb-6 rounded-lg border-l-2 border-accent/50 bg-surface px-4 py-3 text-sm italic text-muted">
-              &ldquo;{tab.quote}&rdquo;
-            </blockquote>
-          </ScrollReveal>
-        )}
-
-        <ScrollReveal delay={0.25}>
-          <MusicCarousel key={activeTab} compositions={items} volume={volume} />
+        <ScrollReveal>
+          <MusicCarousel key={activeTab} compositions={items} volume={volume} header={headerSlot} />
         </ScrollReveal>
       </div>
     </PageTransition>
