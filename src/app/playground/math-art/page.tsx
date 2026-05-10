@@ -61,7 +61,7 @@ export default function MathArtPage() {
                   role="tab"
                   aria-selected={active}
                   onClick={() => goTo(i)}
-                  className={`relative shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                  className={`relative shrink-0 rounded-full border px-3 py-2 sm:py-1.5 text-xs font-medium transition-colors ${
                     active
                       ? "border-accent/40 bg-accent/10 text-accent"
                       : "border-white/10 bg-white/[0.02] text-muted hover:border-accent/25 hover:text-foreground"
