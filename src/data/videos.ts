@@ -32,6 +32,6 @@ export const videoRecommendations: VideoRecommendation[] = [
 ];
 
 export const videosIntro = {
-  title: "Videos that changed my perspective.",
-  description: "In the age of the internet, we don't need to go through a lifetime of hardship to attain transformative wisdom. These are videos that either have been influential in my view of the world, or videos that I believe many could benefit from watching.",
+  title: "My favourite videos",
+  description: "A collection of videos that have shaped my perspective of the world. Learn from the hardship, wisdom and perspective of others.",
 };
