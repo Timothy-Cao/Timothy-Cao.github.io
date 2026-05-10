@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { Music2, Pause, Play, SkipBack, SkipForward, Sparkles, Star } from "lucide-react";
 import AudioVisualizer, { type AudioGraph } from "@/components/ui/audio-visualizer";
 import type { Composition } from "@/data/music";
@@ -31,13 +31,16 @@ const CATEGORY_NOTICE: Record<NonNullable<Composition["category"]>, string | nul
 interface MusicCarouselProps {
   compositions: Composition[];
   volume: number;
+  /** Rendered above the player inside the main column. Lets the page
+   *  header share its row with the right-hand sidebar. */
+  header?: ReactNode;
 }
 
 function getAudioContextConstructor() {
   return window.AudioContext ?? (window as AudioWindow).webkitAudioContext ?? null;
 }
 
-export default function MusicCarousel({ compositions, volume }: MusicCarouselProps) {
+export default function MusicCarousel({ compositions, volume, header }: MusicCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -170,8 +173,10 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
         onEnded={handleEnded}
       />
 
-      <section className="relative overflow-hidden rounded-lg border border-border bg-surface p-6 md:p-8">
-        <AudioVisualizer audioGraphRef={audioGraphRef} category={comp.category} playing={playing} trackKey={comp.src} />
+      <div>
+        {header}
+        <section className="relative overflow-hidden rounded-lg border border-border bg-surface p-6 md:p-8">
+          <AudioVisualizer audioGraphRef={audioGraphRef} category={comp.category} playing={playing} trackKey={comp.src} />
 
         <div className="relative z-10 mb-8 flex items-start justify-between gap-4">
           <div>
@@ -246,7 +251,8 @@ export default function MusicCarousel({ compositions, volume }: MusicCarouselPro
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </div>
 
       <section>
         <div className="mb-3 flex items-center justify-between">

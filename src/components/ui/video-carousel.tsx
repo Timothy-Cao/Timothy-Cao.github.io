@@ -1,12 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Search, Video } from "lucide-react";
 import type { VideoRecommendation } from "@/data/videos";
 import LiteYouTubePlayer from "@/components/ui/lite-youtube-player";
 
 interface VideoCarouselProps {
   videos: VideoRecommendation[];
+  /** Rendered above the player inside the main column. Used to keep the
+   *  page header sharing a row with the right-hand library sidebar. */
+  header?: ReactNode;
 }
 
 function matchesQuery(video: VideoRecommendation, query: string) {
@@ -14,7 +17,7 @@ function matchesQuery(video: VideoRecommendation, query: string) {
   return haystack.includes(query.toLowerCase());
 }
 
-export default function VideoCarousel({ videos }: VideoCarouselProps) {
+export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
   const [selectedId, setSelectedId] = useState(videos[0]?.youtubeId ?? "");
   const [query, setQuery] = useState("");
 
@@ -33,8 +36,9 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
       <section>
+        {header}
         <LiteYouTubePlayer key={selected.youtubeId} youtubeId={selected.youtubeId} title={selected.title} />
 
         <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
