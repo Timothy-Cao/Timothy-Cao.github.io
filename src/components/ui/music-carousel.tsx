@@ -256,12 +256,17 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
 
       <section className="lg:relative">
         <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
-        <div className="lg:mt-auto mb-3 flex items-center justify-between">
+        {/* Spacer above the playlist block: pushes the title+list to the
+            bottom when the list doesn't fill the column. */}
+        <div aria-hidden="true" className="hidden lg:block lg:flex-1 lg:min-h-0" />
+
+        <div className="lg:flex lg:flex-col lg:min-h-0 lg:max-h-full">
+        <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">Playlist</h2>
           <span className="text-xs text-muted">{total} tracks</span>
         </div>
 
-        <div className="max-h-[34rem] lg:max-h-none lg:min-h-0 space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[34rem] lg:max-h-none lg:flex-1 lg:min-h-0 space-y-2 overflow-y-auto pr-1">
           {compositions.map((track, index) => {
             const selected = index === current;
             const trackBadge = CATEGORY_BADGE[track.category];
@@ -300,6 +305,7 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
               </button>
             );
           })}
+        </div>
         </div>
         </div>
       </section>
