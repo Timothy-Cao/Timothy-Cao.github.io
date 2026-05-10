@@ -28,6 +28,7 @@ export const videoRecommendations: VideoRecommendation[] = [
   { title: "Why We Won't Raise Our Kids in Suburbia", creator: "Not Just Bikes", youtubeId: "oHlpmxLTxpw", description: "" },
   { title: "The Pursuit of Perfection", creator: "imdanjo", youtubeId: "FmVbFhsmzcw", description: "" },
   { title: "When You Stop Explaining Yourself, Everything Changes – Carl Jung", creator: "Psyphoria", youtubeId: "ARwUS8Lnn98", description: "" },
+  { title: "Secret History #4: How Evil Triumphs", creator: "Predictive History", youtubeId: "BtlWoqWLm9Q", description: "" },
 ];
 
 export const videosIntro = {
