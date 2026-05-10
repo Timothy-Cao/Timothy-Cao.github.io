@@ -1,4 +1,4 @@
-export type PlaygroundCategory = "Game" | "Tool" | "AI" | "Music" | "Visual";
+export type PlaygroundCategory = "Game" | "Tool" | "AI" | "Music" | "Visual" | "Learn";
 
 export interface PlaygroundCard {
   title: string;
@@ -99,7 +99,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/videos",
     coverImage: "/assets/media/blog_covers/thinker.jpg",
     hoverEffect: "grain",
-    category: "Visual",
+    category: "Learn",
   },
   {
     title: "Harmonic Life",
@@ -170,7 +170,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/math-art",
     coverImage: "/assets/media/blog_covers/math.png",
     hoverEffect: "parallax",
-    category: "Visual",
+    category: "Learn",
   },
   {
     title: "Piano YouTubers",
@@ -186,7 +186,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/astronomy",
     coverImage: "/assets/media/blog_covers/nasa.png",
     hoverEffect: "twinkle",
-    category: "Visual",
+    category: "Learn",
   },
   {
     title: "Naruto Quizzes",

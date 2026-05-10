@@ -16,7 +16,7 @@ export default function MathArtPage() {
     <PageTransition>
       <div className="max-w-5xl mx-auto px-6 py-20">
         <PageHeader
-          eyebrow="Visual"
+          eyebrow="Learn"
           title="Mathematical Art"
           description="How bored have you gotten in math class?"
         />

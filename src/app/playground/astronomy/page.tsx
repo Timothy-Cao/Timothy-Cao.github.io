@@ -60,7 +60,7 @@ export default async function AstronomyPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-20">
       <PageHeader
-        eyebrow="Visual"
+        eyebrow="Learn"
         title="Astronomy"
         description="Your daily dose of NASA — photo of the day."
       />

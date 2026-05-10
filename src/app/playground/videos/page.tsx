@@ -11,7 +11,7 @@ export default function VideosPage() {
     <PageTransition>
       <div className="max-w-6xl mx-auto px-6 py-20">
         <PageHeader
-          eyebrow="Visual"
+          eyebrow="Learn"
           title={videosIntro.title}
           description={videosIntro.description}
         />
