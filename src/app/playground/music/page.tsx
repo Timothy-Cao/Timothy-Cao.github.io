@@ -18,16 +18,20 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { id: "original", label: "Originals" },
+  {
+    id: "original",
+    label: "Originals",
+    notice: "Original pieces written with musical notation on Musescore.",
+  },
   {
     id: "ai-played",
     label: "Final Cover",
-    notice: "These are pieces I wrote, played back by AI. The composition is mine; the performance is synthesized.",
+    notice: "Original pieces that were refined and replayed with AI instruments.",
   },
   {
     id: "ai-generated",
     label: "AI Generated",
-    notice: "These are almost entirely generated from AI if not fully. Only guidance was given.",
+    notice: "Fully AI generated pieces, with only musical input from me.",
   },
 ];
 

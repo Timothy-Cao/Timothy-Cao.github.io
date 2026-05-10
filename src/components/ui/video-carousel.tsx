@@ -63,7 +63,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
 
       <aside className="lg:relative">
         <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
-        <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="lg:mt-auto mb-3 flex items-center justify-between gap-3">
           <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted">
             <Video className="h-4 w-4" />
             Library
@@ -86,7 +86,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
           />
         </div>
 
-        <div className="max-h-[36rem] lg:max-h-none lg:flex-1 lg:min-h-0 lg:flex lg:flex-col lg:justify-end space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[36rem] lg:max-h-none lg:min-h-0 space-y-2 overflow-y-auto pr-1">
           {filtered.length > 0 ? (
             filtered.map((video) => {
               const active = video.youtubeId === selected.youtubeId;
