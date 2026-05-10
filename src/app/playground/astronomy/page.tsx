@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PageHeader from "@/components/ui/page-header";
 
 export const revalidate = 3600;
 
@@ -58,8 +59,11 @@ export default async function AstronomyPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-20">
-      <h1 className="text-3xl md:text-4xl font-bold mb-2">Astronomy</h1>
-      <p className="text-muted mb-12">Your daily dose of NASA</p>
+      <PageHeader
+        eyebrow="Visual"
+        title="Astronomy"
+        description="Your daily dose of NASA — photo of the day."
+      />
 
       {data ? (
         <div className="space-y-8">

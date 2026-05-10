@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import PageTransition from "@/components/page-transition";
+import PageHeader from "@/components/ui/page-header";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import Accordion from "@/components/ui/accordion";
 import { mathArtSections } from "@/data/math-art";
@@ -14,12 +15,11 @@ export default function MathArtPage() {
   return (
     <PageTransition>
       <div className="max-w-5xl mx-auto px-6 py-20">
-        <ScrollReveal>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Mathematical Art</h1>
-          <p className="text-muted mb-12">
-            How bored have you gotten in math class?
-          </p>
-        </ScrollReveal>
+        <PageHeader
+          eyebrow="Visual"
+          title="Mathematical Art"
+          description="How bored have you gotten in math class?"
+        />
 
         <div className="space-y-3">
           {mathArtSections.map((section, i) => (

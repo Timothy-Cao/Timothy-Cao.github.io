@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "@/components/page-transition";
-import ScrollReveal from "@/components/ui/scroll-reveal";
+import PageHeader from "@/components/ui/page-header";
 import Lightbox from "@/components/ui/lightbox";
 import { GALLERY_IMAGE_COUNT } from "@/data/playground";
 
@@ -16,10 +16,11 @@ export default function GalleryPage() {
   return (
     <PageTransition>
       <div className="max-w-6xl mx-auto px-6 py-20">
-        <ScrollReveal>
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Gallery</h1>
-          <p className="text-muted mb-12">Looking back on 2024</p>
-        </ScrollReveal>
+        <PageHeader
+          eyebrow="Visual"
+          title="2024 Gallery"
+          description="Looking back on a year through photos."
+        />
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
           {images.map((src, i) => (

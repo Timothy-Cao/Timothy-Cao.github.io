@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import PageTransition from "@/components/page-transition";
+import PageHeader from "@/components/ui/page-header";
 import ScrollReveal from "@/components/ui/scroll-reveal";
 import MusicCarousel from "@/components/ui/music-carousel";
 import { compositions, type Composition, type CompositionCategory } from "@/data/music";
@@ -55,12 +56,11 @@ export default function MusicPage() {
   return (
     <PageTransition>
       <div className="max-w-5xl mx-auto px-6 py-20">
-        <ScrollReveal>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Composition</h1>
-          <p className="text-muted mb-8">
-            Pieces I&apos;ve written over the past decade. Written in Musescore and FL Studio. Sound production software: Suno AI
-          </p>
-        </ScrollReveal>
+        <PageHeader
+          eyebrow="Music"
+          title="Composition"
+          description="Pieces I've written over the past decade. Musescore and FL Studio for writing; Suno AI for production on the AI cuts."
+        />
 
         <ScrollReveal delay={0.1}>
           <div className="flex items-center gap-3 mb-8 max-w-xs">
