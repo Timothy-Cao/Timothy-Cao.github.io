@@ -80,8 +80,7 @@ export default function NotFound() {
           transition={{ duration: 0.5, delay: 0.18 }}
           className="mt-3 text-muted text-base max-w-md"
         >
-          Either it moved, never existed, or you mistyped a URL the way I
-          mistype variable names.
+          Either it moved or it never existed.
         </motion.p>
 
         {/* Terminal log card */}
