@@ -254,7 +254,8 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
         </section>
       </div>
 
-      <section className="lg:flex lg:flex-col lg:min-h-0">
+      <section className="lg:relative">
+        <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">Playlist</h2>
           <span className="text-xs text-muted">{total} tracks</span>
@@ -299,6 +300,7 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
               </button>
             );
           })}
+        </div>
         </div>
       </section>
     </div>

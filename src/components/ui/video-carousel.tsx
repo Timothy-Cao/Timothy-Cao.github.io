@@ -61,7 +61,8 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
         )}
       </section>
 
-      <aside className="lg:flex lg:flex-col lg:min-h-0">
+      <aside className="lg:relative">
+        <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
         <div className="mb-3 flex items-center justify-between gap-3">
           <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted">
             <Video className="h-4 w-4" />
@@ -114,6 +115,7 @@ export default function VideoCarousel({ videos, header }: VideoCarouselProps) {
               No videos match that search.
             </div>
           )}
+        </div>
         </div>
       </aside>
     </div>
