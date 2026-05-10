@@ -129,7 +129,9 @@ export default function TwentyFourPage() {
     }
     try {
       const result = safeEvaluate(normalized);
-      if (result === 24) {
+      // Tolerance for float math (e.g., 6/(1-2/3) = 24 evaluates to
+      // 23.999999999999996 in IEEE 754).
+      if (Math.abs(result - 24) < 1e-9) {
         setMessage("Correct!");
         setMessageType("success");
       } else {

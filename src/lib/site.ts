@@ -1,4 +1,4 @@
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://timothy-cao.github.io";
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.timcao.com";
 
 export const siteConfig = {
   name: "Timothy Cao",

@@ -59,19 +59,22 @@ export default function MusicCarousel({ compositions, volume, header }: MusicCar
     if (audioRef.current) audioRef.current.volume = volume;
   }, [volume]);
 
-  // When the compositions list changes (e.g., user switches Originals -> AI),
-  // reset to the first track and pause any playback. Avoids carrying the
-  // previous list's index over and remounting the carousel.
-  useEffect(() => {
+  // Adjust state during render when the compositions prop changes (e.g.,
+  // switching Originals -> AI on /music). React's "previous props" pattern
+  // — setState calls during render are fine when guarded by the prev-prop
+  // check; the existing audio effect below handles pausing via audio.load()
+  // when `current` changes.
+  const [prevCompositions, setPrevCompositions] = useState(compositions);
+  if (compositions !== prevCompositions) {
+    setPrevCompositions(compositions);
     setCurrent(0);
     setCurrentTime(0);
     setDuration(0);
+  }
+
+  // Refs can't be mutated in render, so defer to an effect.
+  useEffect(() => {
     shouldResumeRef.current = false;
-    const audio = audioRef.current;
-    if (audio && !audio.paused) {
-      audio.pause();
-      setPlaying(false);
-    }
   }, [compositions]);
 
   const ensureAudioGraph = useCallback(() => {
