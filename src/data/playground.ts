@@ -1,3 +1,5 @@
+export type PlaygroundCategory = "Game" | "Tool" | "AI" | "Music" | "Visual";
+
 export interface PlaygroundCard {
   title: string;
   subtitle: string;
@@ -7,6 +9,7 @@ export interface PlaygroundCard {
   external?: boolean;
   comingSoon?: boolean;
   statusLabel?: string;
+  category?: PlaygroundCategory;
 }
 
 export interface ComingSoonProject {
@@ -56,6 +59,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://multitasker-pi.vercel.app/",
     coverImage: "/multitasker.png",
     external: true,
+    category: "Game",
   },
   {
     title: "Misconfigured",
@@ -63,6 +67,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://misconfigured.vercel.app/",
     coverImage: "/misconfigured.png",
     external: true,
+    category: "Game",
   },
   {
     title: "Fermi Estimations",
@@ -70,6 +75,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/fermi",
     coverImage: "/assets/media/puzzles/fermi.jpg",
     hoverEffect: "dial",
+    category: "Game",
   },
   {
     title: "Gabo Helper",
@@ -77,6 +83,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://gabo-tim.vercel.app/",
     coverImage: "/gabo.png",
     external: true,
+    category: "Tool",
   },
   {
     title: "Composition",
@@ -84,6 +91,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/music",
     coverImage: "/assets/media/blog_covers/music.png",
     hoverEffect: "music",
+    category: "Music",
   },
   {
     title: "Video Recommendations",
@@ -91,6 +99,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/videos",
     coverImage: "/assets/media/blog_covers/thinker.jpg",
     hoverEffect: "grain",
+    category: "Visual",
   },
   {
     title: "Harmonic Life",
@@ -98,6 +107,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://harmonic-life-five.vercel.app/",
     coverImage: "/assets/media/games/harmonic-life.svg",
     external: true,
+    category: "Music",
   },
   {
     title: "Geography Trainer",
@@ -105,6 +115,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://geotrainer-beta.vercel.app/",
     coverImage: "/assets/media/games/geotrainer.jpg",
     external: true,
+    category: "Game",
   },
   {
     title: "Polar Intuition",
@@ -112,6 +123,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://polar-intuition.vercel.app/",
     coverImage: "/assets/media/games/polarvision.jpg",
     external: true,
+    category: "Game",
   },
   {
     title: "Prime Climb AI",
@@ -120,6 +132,7 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/games/primeclimb.png",
     hoverEffect: "spin",
     external: true,
+    category: "AI",
   },
   {
     title: "Chinese Checkers AI",
@@ -127,18 +140,21 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://chinese-checkers.vercel.app/",
     coverImage: "/assets/media/blog_covers/checkers.jpg",
     external: true,
+    category: "AI",
   },
   {
     title: "Scrabble Trainer",
     subtitle: "Train top 1000 likelihood scrabbles.",
     href: "/playground/games/scrabble",
     coverImage: "/assets/media/games/scrabble.png",
+    category: "Tool",
   },
   {
     title: "Math Game 24",
     subtitle: "Test your math speed.",
     href: "/playground/games/24",
     coverImage: "/assets/media/games/24.png",
+    category: "Game",
   },
   {
     title: "2024 Gallery",
@@ -146,6 +162,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/gallery",
     coverImage: "/assets/media/Photo Gallery/1.jpg",
     hoverEffect: "gallery",
+    category: "Visual",
   },
   {
     title: "Math Art",
@@ -153,6 +170,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/math-art",
     coverImage: "/assets/media/blog_covers/math.png",
     hoverEffect: "parallax",
+    category: "Visual",
   },
   {
     title: "Piano YouTubers",
@@ -160,6 +178,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/piano",
     coverImage: "/assets/media/blog_covers/sheets.jpg",
     hoverEffect: "keys",
+    category: "Music",
   },
   {
     title: "Astronomy",
@@ -167,6 +186,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/astronomy",
     coverImage: "/assets/media/blog_covers/nasa.png",
     hoverEffect: "twinkle",
+    category: "Visual",
   },
   {
     title: "Naruto Quizzes",
@@ -174,6 +194,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://naruto-quiz.vercel.app/",
     coverImage: "/assets/media/blog_covers/naruto-quiz.png",
     external: true,
+    category: "Game",
   },
   {
     title: "GenZ Typeracer",
@@ -181,6 +202,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://genztyper.vercel.app/",
     coverImage: "/assets/media/games/typeracer.svg",
     external: true,
+    category: "Game",
   },
   {
     title: "Dodo Dots",
@@ -188,6 +210,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://dodo-dots.vercel.app/",
     coverImage: "/assets/media/games/dodo-dots.svg",
     external: true,
+    category: "Game",
   },
   // --- Coming soon ---
   {

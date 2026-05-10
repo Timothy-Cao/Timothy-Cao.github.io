@@ -34,21 +34,14 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: "/",
     siteName: siteConfig.name,
-    images: [
-      {
-        url: "/assets/media/profile/cyber.jpg",
-        width: 1200,
-        height: 1200,
-        alt: siteConfig.name,
-      },
-    ],
     type: "website",
+    // OG image auto-detected from src/app/opengraph-image.png
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/assets/media/profile/cyber.jpg"],
+    // Twitter image auto-detected from src/app/twitter-image.png
   },
 };
 
