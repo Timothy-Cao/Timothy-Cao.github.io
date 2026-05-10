@@ -10,18 +10,14 @@ export default function VideosPage() {
   return (
     <PageTransition>
       <div className="max-w-6xl mx-auto px-6 py-20">
+        <PageHeader
+          eyebrow="Learn"
+          title={videosIntro.title}
+          description={videosIntro.description}
+        />
+
         <ScrollReveal>
-          <VideoCarousel
-            videos={videoRecommendations}
-            header={
-              <PageHeader
-                eyebrow="Learn"
-                title={videosIntro.title}
-                description={videosIntro.description}
-                glow={false}
-              />
-            }
-          />
+          <VideoCarousel videos={videoRecommendations} />
         </ScrollReveal>
       </div>
     </PageTransition>
