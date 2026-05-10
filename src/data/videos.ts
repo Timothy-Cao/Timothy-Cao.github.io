@@ -19,15 +19,15 @@ export const videoRecommendations: VideoRecommendation[] = [
   { title: "Who's Afraid of Modern Art", creator: "Jacob Geller", youtubeId: "v5DqmTtCPiQ", description: "Changed my view on art." },
   { title: "Witnessing the Death of American Capitalism", creator: "Benn Jordan", youtubeId: "gqtrNXdlraM", description: "" },
   { title: "Really Achieving Your Childhood Dreams", creator: "Randy Pausch", youtubeId: "ji5_MqicxSo", description: "" },
-  { title: "This is Water", creator: "David Foster Wallace", youtubeId: "DCbGM4mqEVw", description: "Incredible perspective of the world and the human condition." },
-  { title: "The overview effect", creator: "Crosspollinate", youtubeId: "CHMIfOecrlo", description: "A wonderful way to see our planet." },
   { title: "Is success Luck or Hard work?", creator: "Veritasium", youtubeId: "3LopI4YeC4I", description: "Bad luck is easier to spot than good luck." },
   { title: "The Evolution Of Intelligence", creator: "Art of the Problem", youtubeId: "5EcQ1IcEMFQ", description: "Human intelligence ended with language, while LLMs begin with language." },
   { title: "Wealth Inequality in America", creator: "Politizane", youtubeId: "QPKKQnijnsM", description: "" },
   { title: "What AI Teaches Us About Game Theory", creator: "Pursuit of Wonder", youtubeId: "l4CDTH5dXBY", description: "Info hazards." },
   { title: "What Actually Matters in Your 20s", creator: "MindFlow", youtubeId: "PB-Fb_5u97Q", description: "" },
   { title: "Let's Go Whaling: Tricks for Monetising Mobile Game Players", creator: "PocketGamer.biz", youtubeId: "xNjI03CGkb4", description: "Watch this if you spend money on mobile games." },
-  { title: "AI 2027: A Realistic Scenario of AI Takeover", creator: "Documenting AGI", youtubeId: "k_onqn68GHY", description: "This one is almost entirely speculative but an interesting watch." },
+  { title: "Why We Won't Raise Our Kids in Suburbia", creator: "Not Just Bikes", youtubeId: "oHlpmxLTxpw", description: "" },
+  { title: "The Pursuit of Perfection", creator: "imdanjo", youtubeId: "FmVbFhsmzcw", description: "" },
+  { title: "When You Stop Explaining Yourself, Everything Changes – Carl Jung", creator: "Psyphoria", youtubeId: "ARwUS8Lnn98", description: "" },
 ];
 
 export const videosIntro = {
