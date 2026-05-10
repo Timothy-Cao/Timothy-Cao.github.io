@@ -42,6 +42,7 @@ export default function Home() {
                 src={currentProfile}
                 alt="Tim Cao"
                 fill
+                sizes="160px"
                 className="object-cover relative z-10"
                 priority
               />
