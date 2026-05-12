@@ -197,6 +197,14 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "Game",
   },
   {
+    title: "Wiki Distance",
+    subtitle: "Shortest link path between two Wikipedia articles",
+    href: "https://wiki-distance-game.vercel.app/",
+    coverImage: "/assets/media/games/wiki-distance.svg",
+    external: true,
+    category: "Game",
+  },
+  {
     title: "GenZ Typeracer",
     subtitle: "How fast can you skibidi type?",
     href: "https://genztyper.vercel.app/",
