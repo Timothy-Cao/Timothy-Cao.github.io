@@ -6,17 +6,13 @@ const routes = [
   "/about",
   "/playground",
   "/playground/astronomy",
-  "/playground/beats",
   "/playground/fermi",
   "/playground/gallery",
   "/playground/games/24",
   "/playground/games/scrabble",
-  "/playground/geoguessr",
-  "/playground/mapledle",
   "/playground/math-art",
   "/playground/music",
   "/playground/piano",
-  "/playground/shelf",
   "/playground/videos",
 ];
 
