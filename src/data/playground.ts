@@ -1,4 +1,4 @@
-export type PlaygroundCategory = "Game" | "Tool" | "AI" | "Music" | "Visual" | "Learn";
+export type PlaygroundCategory = "Game" | "Tool" | "AI" | "Music" | "Visual" | "Learn" | "Writing";
 
 export interface PlaygroundCard {
   title: string;
@@ -211,6 +211,14 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/games/typeracer.svg",
     external: true,
     category: "Game",
+  },
+  {
+    title: "Bound",
+    subtitle: "An archived timeline of humanity's transformation",
+    href: "https://bound-sigma.vercel.app/",
+    coverImage: "/assets/media/games/bound.svg",
+    external: true,
+    category: "Writing",
   },
   {
     title: "Dodo Dots",

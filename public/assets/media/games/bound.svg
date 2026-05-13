@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bd-paper" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#f3ead6"/>
+      <stop offset="70%" stop-color="#e8dcc1"/>
+      <stop offset="100%" stop-color="#c9b58f"/>
+    </radialGradient>
+    <filter id="bd-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.1
+                             0 0 0 0 0.08
+                             0 0 0 0 0.05
+                             0 0 0 0.12 0"/>
+    </filter>
+  </defs>
+
+  <!-- Outer darker backdrop -->
+  <rect width="400" height="400" fill="#3a2f23"/>
+
+  <!-- Paper page, slightly inset and rotated faintly -->
+  <g transform="translate(200,200) rotate(-1.2) translate(-180,-180)">
+    <rect x="0" y="0" width="360" height="360" fill="url(#bd-paper)"/>
+    <rect x="0" y="0" width="360" height="360" fill="#000" opacity="0.04" filter="url(#bd-grain)"/>
+
+    <!-- Faint fold lines -->
+    <line x1="0" y1="118" x2="360" y2="120" stroke="#b59e75" stroke-width="0.6" opacity="0.45"/>
+    <line x1="0" y1="246" x2="360" y2="244" stroke="#b59e75" stroke-width="0.6" opacity="0.35"/>
+
+    <!-- Title -->
+    <text x="34" y="62"
+          font-family="'IBM Plex Mono', ui-monospace, Menlo, monospace"
+          font-size="26" font-weight="700" letter-spacing="6"
+          fill="#1a1a1a">BOUND</text>
+
+    <!-- Fully redacted line under title -->
+    <rect x="34" y="78" width="246" height="14" fill="#0a0a0a"/>
+
+    <!-- Document body: redaction bars over implied text lines -->
+    <g fill="#0a0a0a">
+      <rect x="34" y="116" width="180" height="11"/>
+      <rect x="222" y="116" width="76" height="11"/>
+
+      <rect x="34" y="136" width="92" height="11"/>
+      <rect x="134" y="136" width="160" height="11"/>
+
+      <rect x="34" y="156" width="220" height="11"/>
+
+      <rect x="34" y="176" width="64" height="11"/>
+      <rect x="106" y="176" width="108" height="11"/>
+      <rect x="222" y="176" width="64" height="11"/>
+
+      <rect x="34" y="196" width="248" height="11"/>
+
+      <rect x="34" y="216" width="140" height="11"/>
+      <rect x="182" y="216" width="116" height="11"/>
+
+      <rect x="34" y="258" width="120" height="11"/>
+      <rect x="162" y="258" width="156" height="11"/>
+
+      <rect x="34" y="278" width="200" height="11"/>
+
+      <rect x="34" y="298" width="76" height="11"/>
+      <rect x="118" y="298" width="180" height="11"/>
+    </g>
+
+    <!-- Red rubber stamp: CONTAINMENT // §7.2(c) -->
+    <g transform="translate(248,326) rotate(-6)" opacity="0.86">
+      <rect x="-78" y="-22" width="156" height="44" fill="none"
+            stroke="#7a1a1a" stroke-width="2.4"/>
+      <text x="0" y="-3" text-anchor="middle"
+            font-family="'IBM Plex Mono', ui-monospace, Menlo, monospace"
+            font-size="11" font-weight="700" letter-spacing="3"
+            fill="#7a1a1a">CONTAINMENT</text>
+      <text x="0" y="14" text-anchor="middle"
+            font-family="'IBM Plex Mono', ui-monospace, Menlo, monospace"
+            font-size="10" font-weight="600" letter-spacing="2"
+            fill="#7a1a1a">§ 7.2 (c)</text>
+    </g>
+
+    <!-- Stamp ink imperfections -->
+    <g fill="#7a1a1a" opacity="0.45">
+      <circle cx="190" cy="318" r="1.2"/>
+      <circle cx="312" cy="338" r="1.0"/>
+      <circle cx="262" cy="306" r="0.8"/>
+    </g>
+  </g>
+</svg>
