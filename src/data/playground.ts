@@ -25,7 +25,7 @@ export const comingSoonProjects = {
   mapledle: {
     title: "Roguelike",
     subtitle: "Work in progress",
-    href: "/playground/mapledle",
+    href: "/playground/roguelike",
     description:
       "A compact game prototype is still being shaped. The placeholder stays public so the idea has a stable home while the mechanics settle.",
     statusLabel: "Prototype in progress",
@@ -34,7 +34,7 @@ export const comingSoonProjects = {
   beats: {
     title: "Guess the Instruments",
     subtitle: "Identify instruments from the piece",
-    href: "/playground/beats",
+    href: "/playground/guess-the-instruments",
     description:
       "An ear-training idea for recognizing instruments inside short musical examples. The next useful milestone is a small set of reliable clips and answer feedback.",
     statusLabel: "Concept stage",
@@ -43,7 +43,7 @@ export const comingSoonProjects = {
   shelf: {
     title: "Procrastinator",
     subtitle: "A vague work in progress",
-    href: "/playground/shelf",
+    href: "/playground/procrastinator",
     description:
       "A deliberately loose playground slot for an anti-productivity experiment. It is not ready for visitors yet, but it now has a cleaner landing state.",
     statusLabel: "Idea forming",
