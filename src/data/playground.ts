@@ -166,7 +166,7 @@ export const playgroundCards: PlaygroundCard[] = [
   {
     title: "Prime Climb AI",
     subtitle: "Statistical comparison of heuristic and strategic efficiency",
-    href: "https://web-lake-ten-27.vercel.app/",
+    href: "https://prime-climb-ai.vercel.app/",
     coverImage: "/assets/media/games/primeclimb.png",
     hoverEffect: "spin",
     external: true,
