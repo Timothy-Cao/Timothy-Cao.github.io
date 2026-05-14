@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="lt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0e1a"/>
+      <stop offset="100%" stop-color="#171a2c"/>
+    </linearGradient>
+    <linearGradient id="lt-active" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c8aff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="400" rx="20" fill="url(#lt-bg)"/>
+
+  <!-- Faint vertical grid hint (start / finish lines) -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="60" y1="60" x2="60" y2="340"/>
+    <line x1="340" y1="60" x2="340" y2="340"/>
+  </g>
+
+  <!--
+    Five horizontal "lanes" of typing.
+    Each lane = a row of small rounded tiles representing characters.
+    Tiles already typed are bright (active gradient); upcoming tiles
+    are dim. Each lane has its own progress (where the lane's caret is)
+    so the image reads as a race.
+  -->
+  <g font-family="ui-monospace, monospace" font-size="9">
+
+    <!-- helper: function would help but inline for SVG. Tile size 20x20, gap 6 -->
+
+    <!-- Lane 1 (slowest) -->
+    <g transform="translate(60,80)">
+      <text x="-12" y="14" fill="#7c8aff" font-size="11" font-weight="700" opacity="0.6">1</text>
+      <!-- 12 tiles total; 2 typed -->
+      <rect x="0"   y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="26"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <!-- caret -->
+      <rect x="52"  y="2" width="3"  height="16" rx="1" fill="#ffffff" opacity="0.85"/>
+      <!-- remaining dim tiles -->
+      <rect x="58"  y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="84"  y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="110" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="136" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="162" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="188" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="214" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="240" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="266" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+    </g>
+
+    <!-- Lane 2 -->
+    <g transform="translate(60,130)">
+      <text x="-12" y="14" fill="#7c8aff" font-size="11" font-weight="700" opacity="0.6">2</text>
+      <!-- 5 typed -->
+      <rect x="0"   y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="26"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="52"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="78"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="104" y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="130" y="2" width="3"  height="16" rx="1" fill="#ffffff" opacity="0.85"/>
+      <rect x="136" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="162" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="188" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="214" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="240" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="266" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+    </g>
+
+    <!-- Lane 3 — focused/leading -->
+    <g transform="translate(60,180)">
+      <!-- Highlight band -->
+      <rect x="-22" y="-6" width="316" height="32" rx="8" fill="#7c8aff" opacity="0.12"/>
+      <text x="-12" y="14" fill="#ffffff" font-size="11" font-weight="700">3</text>
+      <!-- 9 typed -->
+      <rect x="0"   y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="26"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="52"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="78"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="104" y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="130" y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="156" y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="182" y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="208" y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <!-- caret with subtle glow -->
+      <rect x="232" y="-2" width="4"  height="24" rx="1.5" fill="#ffffff"/>
+      <rect x="240" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.10"/>
+      <rect x="266" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.10"/>
+    </g>
+
+    <!-- Lane 4 -->
+    <g transform="translate(60,230)">
+      <text x="-12" y="14" fill="#7c8aff" font-size="11" font-weight="700" opacity="0.6">4</text>
+      <!-- 4 typed -->
+      <rect x="0"   y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="26"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="52"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="78"  y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="104" y="2" width="3"  height="16" rx="1" fill="#ffffff" opacity="0.85"/>
+      <rect x="110" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="136" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="162" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="188" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="214" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="240" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="266" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+    </g>
+
+    <!-- Lane 5 (slowest) -->
+    <g transform="translate(60,280)">
+      <text x="-12" y="14" fill="#7c8aff" font-size="11" font-weight="700" opacity="0.6">5</text>
+      <!-- 1 typed -->
+      <rect x="0"   y="0" width="20" height="20" rx="4" fill="url(#lt-active)"/>
+      <rect x="26"  y="2" width="3"  height="16" rx="1" fill="#ffffff" opacity="0.85"/>
+      <rect x="32"  y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="58"  y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="84"  y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="110" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="136" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="162" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="188" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="214" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="240" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+      <rect x="266" y="0" width="20" height="20" rx="4" fill="#ffffff" opacity="0.08"/>
+    </g>
+  </g>
+
+  <!-- Title chip -->
+  <g transform="translate(200,358)">
+    <text x="0" y="0" text-anchor="middle"
+          font-family="ui-monospace, monospace" font-size="11"
+          fill="#7c8aff" letter-spacing="4" font-weight="700">LANE · TYPER</text>
+  </g>
+</svg>
