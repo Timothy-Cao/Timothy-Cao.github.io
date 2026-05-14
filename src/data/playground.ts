@@ -49,6 +49,30 @@ export const comingSoonProjects = {
     statusLabel: "Idea forming",
     highlights: ["Interaction model", "Content shape", "Launch criteria"],
   },
+  foodTowerDefense: {
+    title: "Food Tower Defense",
+    subtitle: "Work in progress",
+    href: "/playground/food-tower-defense",
+    description: "",
+    statusLabel: "Idea forming",
+    highlights: [],
+  },
+  siteBuildingTutorial: {
+    title: "Site Building Tutorial",
+    subtitle: "Work in progress",
+    href: "/playground/site-building-tutorial",
+    description: "",
+    statusLabel: "Idea forming",
+    highlights: [],
+  },
+  gallery2026: {
+    title: "2026 Gallery",
+    subtitle: "Work in progress",
+    href: "/playground/2026-gallery",
+    description: "",
+    statusLabel: "Collecting",
+    highlights: [],
+  },
 } satisfies Record<string, ComingSoonProject>;
 
 export const playgroundCards: PlaygroundCard[] = [
@@ -252,6 +276,30 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "",
     comingSoon: true,
     statusLabel: comingSoonProjects.shelf.statusLabel,
+  },
+  {
+    title: comingSoonProjects.foodTowerDefense.title,
+    subtitle: comingSoonProjects.foodTowerDefense.subtitle,
+    href: comingSoonProjects.foodTowerDefense.href,
+    coverImage: "",
+    comingSoon: true,
+    statusLabel: comingSoonProjects.foodTowerDefense.statusLabel,
+  },
+  {
+    title: comingSoonProjects.siteBuildingTutorial.title,
+    subtitle: comingSoonProjects.siteBuildingTutorial.subtitle,
+    href: comingSoonProjects.siteBuildingTutorial.href,
+    coverImage: "",
+    comingSoon: true,
+    statusLabel: comingSoonProjects.siteBuildingTutorial.statusLabel,
+  },
+  {
+    title: comingSoonProjects.gallery2026.title,
+    subtitle: comingSoonProjects.gallery2026.subtitle,
+    href: comingSoonProjects.gallery2026.href,
+    coverImage: "",
+    comingSoon: true,
+    statusLabel: comingSoonProjects.gallery2026.statusLabel,
   },
 ];
 
