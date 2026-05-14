@@ -240,7 +240,7 @@ export default function PlaygroundPage() {
         <PageHeader
           eyebrow="Playground"
           title="My Projects"
-          description="Games, Music, AI, Helpers, Tools, etc. Check it out!"
+          description="Try to get a new high score in my games!"
         />
 
         {/* Category filter chips — horizontally scrollable on overflow.

@@ -1,4 +1,4 @@
-export type PlaygroundCategory = "Game" | "Tool" | "AI" | "Music" | "Visual" | "Learn" | "Writing";
+export type PlaygroundCategory = "Game" | "Studio" | "Learn" | "AI";
 
 export interface PlaygroundCard {
   title: string;
@@ -107,7 +107,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://bound-archive.vercel.app/",
     coverImage: "/assets/media/games/bound.svg",
     external: true,
-    category: "Writing",
+    category: "Studio",
   },
   {
     title: "Lane Typer",
@@ -123,7 +123,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://geotrainer-beta.vercel.app/",
     coverImage: "/assets/media/games/geotrainer.jpg",
     external: true,
-    category: "Game",
+    category: "Learn",
   },
   {
     title: "Polar Intuition",
@@ -131,7 +131,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://polar-intuition.vercel.app/",
     coverImage: "/polar-training.png",
     external: true,
-    category: "Game",
+    category: "Learn",
   },
   {
     title: "Dodo Dots",
@@ -147,7 +147,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/music",
     coverImage: "/assets/media/blog_covers/music.png",
     hoverEffect: "music",
-    category: "Music",
+    category: "Studio",
   },
   {
     title: "Gabo Helper",
@@ -155,7 +155,7 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "https://gabo-tim.vercel.app/",
     coverImage: "/gabo.png",
     external: true,
-    category: "Tool",
+    category: "Learn",
   },
   {
     title: "Fermi Estimations",
@@ -187,20 +187,28 @@ export const playgroundCards: PlaygroundCard[] = [
     href: "/playground/piano",
     coverImage: "/assets/media/blog_covers/sheets.jpg",
     hoverEffect: "keys",
-    category: "Music",
+    category: "Studio",
   },
   {
     title: "Scrabble Trainer",
     subtitle: "Train top 1000 likelihood scrabbles.",
     href: "/playground/games/scrabble",
     coverImage: "/assets/media/games/scrabble.png",
-    category: "Tool",
+    category: "Learn",
   },
   {
     title: "Math Game 24",
     subtitle: "Test your math speed.",
     href: "/playground/games/24",
     coverImage: "/assets/media/games/24.png",
+    category: "Game",
+  },
+  {
+    title: "Harmonic Life",
+    subtitle: "Musical cellular automata",
+    href: "https://harmonic-life-five.vercel.app/",
+    coverImage: "/assets/media/games/harmonic-life.svg",
+    external: true,
     category: "Game",
   },
   {
@@ -221,20 +229,12 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "AI",
   },
   {
-    title: "Harmonic Life",
-    subtitle: "Musical cellular automata",
-    href: "https://harmonic-life-five.vercel.app/",
-    coverImage: "/assets/media/games/harmonic-life.svg",
-    external: true,
-    category: "Music",
-  },
-  {
     title: "2024 Gallery",
     subtitle: "A year in the life of Tim Cao",
     href: "/playground/gallery",
     coverImage: "/assets/media/Photo Gallery/1.jpg",
     hoverEffect: "gallery",
-    category: "Visual",
+    category: "Studio",
   },
   {
     title: "Math Art",
