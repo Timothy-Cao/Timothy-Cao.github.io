@@ -88,7 +88,7 @@ export const playgroundCards: PlaygroundCard[] = [
   {
     title: "Bound",
     subtitle: "An archived timeline of humanity's transformation",
-    href: "https://bound-sigma.vercel.app/",
+    href: "https://bound-archive.vercel.app/",
     coverImage: "/assets/media/games/bound.svg",
     external: true,
     category: "Writing",
