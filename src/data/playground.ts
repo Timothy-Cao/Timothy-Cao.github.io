@@ -137,7 +137,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Fermi Estimations",
     subtitle: "Become a master guesser",
     href: "/playground/fermi",
-    coverImage: "/assets/media/puzzles/fermi.jpg",
+    coverImage: "/fermi.png",
     hoverEffect: "dial",
     category: "Game",
   },
