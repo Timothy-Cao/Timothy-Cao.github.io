@@ -113,7 +113,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Dodo Dots",
     subtitle: "",
     href: "https://dodo-dots.vercel.app/",
-    coverImage: "/assets/media/games/dodo-dots.svg",
+    coverImage: "/dodo-dots.png",
     external: true,
     category: "Game",
   },
