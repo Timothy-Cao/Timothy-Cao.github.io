@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PageTransition from "@/components/page-transition";
 import PageHeader from "@/components/ui/page-header";
 import ScrollReveal from "@/components/ui/scroll-reveal";
-import { playgroundCards, GALLERY_IMAGE_COUNT, type PlaygroundCard } from "@/data/playground";
+import {
+  playgroundCards,
+  GALLERY_IMAGE_COUNT,
+  type PlaygroundCard,
+  type PlaygroundCategory,
+} from "@/data/playground";
 import { Clock3, Construction, ExternalLink } from "lucide-react";
+
+type Filter = "All" | PlaygroundCategory;
 
 const getImagePath = (index: number) => `/assets/media/Photo Gallery/${index + 1}.jpg`;
 
@@ -197,10 +204,35 @@ export default function PlaygroundPage() {
     return <Link href={card.href}>{wrapped}</Link>;
   };
 
+  const [filter, setFilter] = useState<Filter>("All");
+
   const liveCards = playgroundCards.filter((c) => !c.comingSoon);
   const comingSoonCards = playgroundCards.filter((c) => c.comingSoon);
-  const featured = liveCards.slice(0, 2);
-  const rest = liveCards.slice(2);
+
+  // Build the chip list dynamically — All + every category that appears
+  // at least once in the live cards, in the order they're first declared.
+  const categoryChips = useMemo<Filter[]>(() => {
+    const seen = new Set<PlaygroundCategory>();
+    const ordered: PlaygroundCategory[] = [];
+    for (const card of liveCards) {
+      if (card.category && !seen.has(card.category)) {
+        seen.add(card.category);
+        ordered.push(card.category);
+      }
+    }
+    return ["All", ...ordered];
+  }, [liveCards]);
+
+  const filteredLive = useMemo(
+    () => (filter === "All" ? liveCards : liveCards.filter((c) => c.category === filter)),
+    [filter, liveCards],
+  );
+
+  // Featured heroes only appear in the unfiltered view; filtered grids
+  // show every match in a uniform layout so the user can scan.
+  const showFeatured = filter === "All";
+  const featured = showFeatured ? filteredLive.slice(0, 2) : [];
+  const rest = showFeatured ? filteredLive.slice(2) : filteredLive;
 
   return (
     <PageTransition>
@@ -211,7 +243,42 @@ export default function PlaygroundPage() {
           description="Games, Music, AI, Helpers, Tools, etc. Check it out!"
         />
 
-        {/* Featured: two equal-size heroes */}
+        {/* Category filter chips — horizontally scrollable on overflow.
+            Negative inset lets the scroll bleed past the page padding so
+            it feels natural to swipe on mobile. */}
+        <div className="-mx-6 mb-10 overflow-x-auto px-6 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex min-w-max items-center gap-2" role="tablist" aria-label="Filter by category">
+            {categoryChips.map((cat) => {
+              const active = filter === cat;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setFilter(cat)}
+                  className={`relative shrink-0 rounded-full border px-4 py-2 text-xs font-mono font-medium uppercase tracking-[0.2em] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-accent/50 ${
+                    active
+                      ? "border-accent/40 bg-accent/10 text-accent"
+                      : "border-white/10 bg-white/[0.02] text-muted hover:border-accent/25 hover:text-foreground"
+                  }`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="playground-filter-pill"
+                      className="absolute inset-0 rounded-full border border-accent/40 bg-accent/12"
+                      style={{ boxShadow: "0 0 14px var(--color-accent-glow)" }}
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Featured: two equal-size heroes (only in the All view) */}
         {featured.length > 0 && (
           <div className="mb-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
             {featured[0] && (
@@ -223,17 +290,26 @@ export default function PlaygroundPage() {
           </div>
         )}
 
-        {/* Rest of live work */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {rest.map((card, i) => (
-            <ScrollReveal key={card.title} delay={i * 0.04}>
-              {renderCard(card)}
-            </ScrollReveal>
-          ))}
-        </div>
+        {/* Rest of live work (or the full filtered list) */}
+        {rest.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rest.map((card, i) => (
+              <ScrollReveal key={card.title} delay={i * 0.04}>
+                {renderCard(card)}
+              </ScrollReveal>
+            ))}
+          </div>
+        ) : (
+          !showFeatured && (
+            <div className="rounded-xl border border-border bg-surface p-8 text-center text-sm text-muted">
+              Nothing in this category yet.
+            </div>
+          )
+        )}
 
-        {/* Coming soon — softer presentation */}
-        {comingSoonCards.length > 0 && (
+        {/* Coming soon — only in the All view; filtered views hide it
+            so the chip selection feels exclusive. */}
+        {showFeatured && comingSoonCards.length > 0 && (
           <div className="mt-24">
             <div className="mb-8 flex items-baseline gap-4">
               <h2 className="text-[11px] font-mono font-medium uppercase tracking-[0.28em] text-muted">

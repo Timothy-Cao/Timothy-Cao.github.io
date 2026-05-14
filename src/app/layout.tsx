@@ -60,7 +60,9 @@ export default function RootLayout({
           <CustomCursor />
           <KonamiEasterEgg />
           <Navbar />
-          <main className="flex-1 pt-16">{children}</main>
+          {/* pb on mobile clears the fixed bottom tab bar; desktop nav is
+              only at the top so no bottom inset is needed. */}
+          <main className="flex-1 pt-16 pb-20 md:pb-0">{children}</main>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
