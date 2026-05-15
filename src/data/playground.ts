@@ -142,6 +142,14 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "Game",
   },
   {
+    title: "Flip a Coin",
+    subtitle: "",
+    href: "https://goldberg-flip.vercel.app/",
+    coverImage: "/goldberg-flip.png",
+    external: true,
+    category: "Game",
+  },
+  {
     title: "Composition",
     subtitle: "Sample some of my past works!",
     href: "/playground/music",
