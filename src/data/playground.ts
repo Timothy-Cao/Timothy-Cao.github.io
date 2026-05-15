@@ -142,14 +142,6 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "Studio",
   },
   {
-    title: "Dodo Dots",
-    subtitle: "",
-    href: "https://dodo-dots.vercel.app/",
-    coverImage: "/dodo-dots.png",
-    external: true,
-    category: "Game",
-  },
-  {
     title: "Composition",
     subtitle: "Sample some of my past works!",
     href: "/playground/music",
@@ -259,6 +251,14 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/assets/media/blog_covers/nasa.png",
     hoverEffect: "twinkle",
     category: "Learn",
+  },
+  {
+    title: "Dodo Dots",
+    subtitle: "",
+    href: "https://dodo-dots.vercel.app/",
+    coverImage: "/dodo-dots.png",
+    external: true,
+    category: "Game",
   },
   // --- Coming soon ---
   {
