@@ -4,16 +4,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { User, LayoutGrid } from "lucide-react";
+import { LayoutGrid } from "lucide-react";
 import { useTheme, themes } from "@/components/theme-provider";
 
 const links = [
-  { href: "/about", label: "About" },
   { href: "/playground", label: "Playground" },
 ];
 
 const mobileTabs = [
-  { href: "/about", label: "About", Icon: User },
   { href: "/playground", label: "Playground", Icon: LayoutGrid },
 ];
 
@@ -180,7 +178,7 @@ export default function Navbar() {
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         aria-label="Primary"
       >
-        <div className="relative grid grid-cols-2">
+        <div className="relative grid grid-cols-1">
           {mobileTabs.map((tab) => {
             const active = isActive(pathname, tab.href);
             return (
