@@ -134,6 +134,14 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "Learn",
   },
   {
+    title: "Fling Thing",
+    subtitle: "",
+    href: "https://fling-thing.vercel.app/",
+    coverImage: "/flingthing.jpg",
+    external: true,
+    category: "Game",
+  },
+  {
     title: "Bound",
     subtitle: "An archived timeline of humanity's transformation",
     href: "https://bound-archive.vercel.app/",
