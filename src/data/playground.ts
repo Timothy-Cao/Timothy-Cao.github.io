@@ -236,14 +236,15 @@ export const playgroundCards: PlaygroundCard[] = [
     external: true,
     category: "AI",
   },
-  {
-    title: "2024 Gallery",
-    subtitle: "A year in the life of Tim Cao",
-    href: "/playground/gallery",
-    coverImage: "/assets/media/Photo Gallery/1.jpg",
-    hoverEffect: "gallery",
-    category: "Studio",
-  },
+  // Hidden — still reachable at /playground/gallery
+  // {
+  //   title: "2024 Gallery",
+  //   subtitle: "A year in the life of Tim Cao",
+  //   href: "/playground/gallery",
+  //   coverImage: "/assets/media/Photo Gallery/1.jpg",
+  //   hoverEffect: "gallery",
+  //   category: "Studio",
+  // },
   {
     title: "Math Art",
     subtitle: "How bored have you gotten in math class?",
