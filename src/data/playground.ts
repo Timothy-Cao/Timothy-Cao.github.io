@@ -97,7 +97,7 @@ export const playgroundCards: PlaygroundCard[] = [
     title: "Lane Typer",
     subtitle: "Five-lane typing speed challenge",
     href: "https://lane-typer.vercel.app/",
-    coverImage: "/lanetyper.png",
+    coverImage: "/lanetyper.jpg",
     external: true,
     category: "Game",
   },
