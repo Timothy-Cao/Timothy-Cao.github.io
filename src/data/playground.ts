@@ -118,6 +118,14 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "Game",
   },
   {
+    title: "Fling Thing",
+    subtitle: "",
+    href: "https://fling-thing.vercel.app/",
+    coverImage: "/flingthing.jpg",
+    external: true,
+    category: "Game",
+  },
+  {
     title: "Geography Trainer",
     subtitle: "Test your world knowledge",
     href: "https://geotrainer-beta.vercel.app/",
@@ -132,14 +140,6 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/polar-training.png",
     external: true,
     category: "Learn",
-  },
-  {
-    title: "Fling Thing",
-    subtitle: "",
-    href: "https://fling-thing.vercel.app/",
-    coverImage: "/flingthing.jpg",
-    external: true,
-    category: "Game",
   },
   {
     title: "Bound",
