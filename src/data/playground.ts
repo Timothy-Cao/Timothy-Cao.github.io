@@ -126,6 +126,14 @@ export const playgroundCards: PlaygroundCard[] = [
     category: "Game",
   },
   {
+    title: "Bound",
+    subtitle: "An archived timeline of humanity's transformation",
+    href: "https://bound-archive.vercel.app/",
+    coverImage: "/assets/media/games/bound.svg",
+    external: true,
+    category: "Studio",
+  },
+  {
     title: "Geography Trainer",
     subtitle: "Test your world knowledge",
     href: "https://geotrainer-beta.vercel.app/",
@@ -140,14 +148,6 @@ export const playgroundCards: PlaygroundCard[] = [
     coverImage: "/polar-training.png",
     external: true,
     category: "Learn",
-  },
-  {
-    title: "Bound",
-    subtitle: "An archived timeline of humanity's transformation",
-    href: "https://bound-archive.vercel.app/",
-    coverImage: "/assets/media/games/bound.svg",
-    external: true,
-    category: "Studio",
   },
   {
     title: "Composition",
